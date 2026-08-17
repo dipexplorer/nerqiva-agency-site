@@ -63,7 +63,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="relative w-full aspect-square flex items-center justify-center order-first lg:order-none mb-10 lg:mb-0"
+            className="relative w-full aspect-square flex items-center justify-center order-first lg:order-0 mb-10 lg:mb-0"
           >
             <div className="absolute inset-0 bg-accent/20 blur-[100px] rounded-full scale-75" />
             <Image

@@ -1,2 +1,43 @@
-"\"use client\";\n\nimport SmoothScroll from \"../components/SmoothScroll\";\nimport CustomCursor from \"../components/CustomCursor\";\nimport Loader from \"../components/Loader\";\nimport Navigation from \"../components/Navigation\";\nimport ScrollStory from \"../components/ScrollStory\";\nimport ProblemSection from \"../components/ProblemSection\";\nimport SolutionBuilder from \"../components/SolutionBuilder\";\nimport Solutions from \"../components/Solutions\";\nimport Process from \"../components/Process\";\nimport CaseStudies from \"../components/CaseStudies\";\nimport Technology from \"../components/Technology\";\nimport WhyUs from \"../components/WhyUs\";\nimport Credibility from \"../components/Credibility\";\nimport CTA from \"../components/CTA\";\nimport Footer from \"../components/Footer\";\n\nexport default function Home() {\n  return (\n    <>\n      {/* Initialization loader */}\n      <Loader />\n\n      {/* Lenis smooth scroll */}\n      <SmoothScroll />\n\n      {/* Custom desktop cursor */}\n      <CustomCursor />\n\n      {/* Navigation */}\n      <Navigation />\n\n      {/* Main content */}\n      <main>\n        {/*\n         * SCROLL STORY — Pinned hero with 6-state Canvas scroll world.\n         * This occupies 600vh (6 × 100vh) of scroll space.\n         * Contains: Hero copy (state 0), NerveWorld canvas (states 1–6)\n         */}\n        <ScrollStory />\n\n        {/*\n         * PROBLEM SECTION\n         * \"Most digital problems aren't technology problems.\"\n         */}\n        <ProblemSection />\n\n        {/*\n         * SOLUTION BUILDER\n         * \"What are you trying to solve?\" interactive selector\n         */}\n        <SolutionBuilder />\n\n        {/*\n         * SOLUTIONS — 4 systems we build\n         */}\n        <Solutions />\n\n        {/*\n         * CASE STUDIES — Real projects, real engineering\n         */}\n        <CaseStudies />\n\n        {/*\n         * PROCESS — 6-phase process timeline\n         */}\n        <Process />\n\n        {/*\n         
-<truncated 457 bytes>
+"use client";
+
+import SmoothScroll from "../components/SmoothScroll";
+import CustomCursor from "../components/CustomCursor";
+import Loader from "../components/Loader";
+import Navigation from "../components/Navigation";
+import ScrollStory from "../components/ScrollStory";
+import ProblemSection from "../components/ProblemSection";
+import SolutionBuilder from "../components/SolutionBuilder";
+import Solutions from "../components/Solutions";
+import Process from "../components/Process";
+import CaseStudies from "../components/CaseStudies";
+import Technology from "../components/Technology";
+import WhyUs from "../components/WhyUs";
+import Credibility from "../components/Credibility";
+import CTA from "../components/CTA";
+import Footer from "../components/Footer";
+
+export default function Home() {
+  return (
+    <>
+      <Loader />
+      <SmoothScroll />
+      <CustomCursor />
+      <Navigation />
+
+      <main className="bg-bg-primary text-text-primary selection:bg-accent/30 overflow-hidden">
+        <ScrollStory />
+        <ProblemSection />
+        <SolutionBuilder />
+        <Solutions />
+        <CaseStudies />
+        <Process />
+        <Technology />
+        <WhyUs />
+        <Credibility />
+        <CTA />
+      </main>
+
+      <Footer />
+    </>
+  );
+}

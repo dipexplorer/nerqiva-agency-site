@@ -1,2 +1,26 @@
-"\"use client\";\n\nimport { useState } from \"react\";\nimport { motion } from \"framer-motion\";\n\nconst SOLUTIONS = [\n  {\n    id: \"presence\",\n    number: \"01\",\n    title: \"Digital Presence\",\n    tagline: \"Websites engineered for trust, clarity, and conversion.\",\n    body: \"A great website isn't just visual — it's a system designed to communicate clearly, load fast, and guide visitors toward a decision.\",\n    examples: [\"Marketing Websites\", \"Brand Experiences\", \"Landing Pages\", \"Portfolios\"],\n    icon: (\n      <svg viewBox=\"0 0 48 48\" fill=\"none\" className=\"h-10 w-10\">\n        <rect x=\"4\" y=\"8\" width=\"40\" height=\"32\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <path d=\"M4 14h40\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <rect x=\"8\" y=\"18\" width=\"12\" height=\"8\" rx=\"0.5\" stroke=\"currentColor\" strokeWidth=\"1\" />\n        <path d=\"M24 19h12M24 23h8\" stroke=\"currentColor\" strokeWidth=\"1\" strokeLinecap=\"round\" />\n      </svg>\n    ),\n  },\n  {\n    id: \"products\",\n    number: \"02\",\n    title: \"Digital Products\",\n    tagline: \"Custom web applications built for real usage.\",\n    body: \"Dashboards, portals, internal tools, and SaaS products — we build applications that are technically sound, usable, and scalable.\",\n    examples: [\"Dashboards\", \"Admin Portals\", \"SaaS Products\", \"Internal Tools\"],\n    icon: (\n      <svg viewBox=\"0 0 48 48\" fill=\"none\" className=\"h-10 w-10\">\n        <rect x=\"4\" y=\"4\" width=\"18\" height=\"18\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <rect x=\"26\" y=\"4\" width=\"18\" height=\"18\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <rect x=\"4\" y=\"26\" width=\"18\" height=\"18\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n        <rect x=\"26\" y=\"26\" width=\"18\" height=\"18\" rx=\"1\" stroke=\"currentColor\" strokeWidth=\"1.5\" />\n      </svg>\n    ),\n  },\n  {\n    id: \"ai\",\n    numbe
-<truncated 6508 bytes>
+"use client";
+
+export default function Solutions() {
+  const solutions = [
+    { id: "web", title: "Digital Presence", desc: "Websites engineered for trust and conversion." },
+    { id: "products", title: "Digital Products", desc: "Custom web applications built for real usage." },
+    { id: "ai", title: "AI Integration", desc: "Adding intelligence to your workflows." },
+    { id: "data", title: "Data Systems", desc: "Infrastructure for actionable insights." },
+  ];
+
+  return (
+    <section className="py-24 bg-bg-secondary">
+      <div className="section-container">
+        <h2 className="text-3xl font-bold mb-12">Solutions</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {solutions.map((s) => (
+            <div key={s.id} className="p-6 border border-border/50 rounded-lg bg-bg-primary hover:border-accent transition-colors">
+              <h3 className="font-bold mb-2">{s.title}</h3>
+              <p className="text-sm text-text-secondary">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

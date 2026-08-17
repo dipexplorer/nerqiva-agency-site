@@ -1,2 +1,172 @@
-"\"use client\";\n\nimport { useState } from \"react\";\nimport { motion, AnimatePresence } from \"framer-motion\";\n\nconst PROJECTS = [\n  {\n    id: \"sahidawa\",\n    number: \"01\",\n    name: \"SAHIDAWA\",\n    type: \"Open-Source / Public Health\",\n    tagline: \"Citizen medicine verification platform.\",\n    challenge:\n      \"India has a significant problem with counterfeit medicine — particularly in rural areas where verification infrastructure doesn't exist. The challenge was building a system that worked across language barriers, variable connectivity, and low technical literacy.\",\n    architecture:\n      \"Multi-modal ingestion layer (OCR + Whisper ASR) feeding into a FastAPI backend with semantic retrieval via pgvector. Offline-first architecture ensures functionality in low-connectivity environments.\",\n    engineering: [\n      \"TensorFlow Lite on-device inference for medicine label OCR\",\n      \"Whisper ASR for multilingual voice queries\",\n      \"pgvector for semantic medicine retrieval\",\n      \"Offline-first PWA architecture\",\n      \"Supabase + PostgreSQL for data persistence\",\n    ],\n    stack: [\"Next.js\", \"FastAPI\", \"PostgreSQL\", \"Supabase\", \"TensorFlow Lite\", \"Whisper ASR\", \"Docker\", \"pgvector\"],\n    gradient: \"from-violet-600 to-purple-900\",\n    accentColor: \"#7C3AED\",\n  },\n  {\n    id: \"gridmind\",\n    number: \"02\",\n    name: \"GRIDMIND\",\n    type: \"Internship Project — APDCL\",\n    tagline: \"Smart electrical-grid monitoring and prediction system.\",\n    challenge:\n      \"Assam Power Distribution Company Limited (APDCL) needed to move from reactive maintenance to predictive operations. The system needed to process real-time telemetry from multiple substations, display geographic asset maps, and surface predictions before failures occur.\",\n    architecture:\n      \"FastAPI backend with TimescaleDB for time-series telemetry, PostGIS for geographic data, Celery + Redis for async pipeline, and Deck.gl for geographic visualization
-<truncated 11604 bytes>
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const PROJECTS = [
+  {
+    id: "fintech",
+    number: "01",
+    name: "FINTECH OPS",
+    type: "Enterprise / Financial",
+    tagline: "Global settlement and predictive insights.",
+    challenge:
+      "A global financial institution needed to move from batch processing to real-time predictive operations. The system needed to process telemetry from multiple regional hubs and surface predictions before bottlenecks occurred.",
+    architecture:
+      "FastAPI backend with TimescaleDB for time-series data, Celery + Redis for async pipelines, and a high-performance Next.js dashboard for real-time visualization.",
+    engineering: [
+      "Real-time Websocket data streaming",
+      "Predictive machine learning models",
+      "TimescaleDB for high-throughput metrics",
+      "Next.js edge rendering",
+    ],
+    stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "TimescaleDB", "Docker"],
+    gradient: "from-blue-600 to-indigo-900",
+    accentColor: "#3B82F6",
+  },
+  {
+    id: "healthtech",
+    number: "02",
+    name: "HEALTHYNC",
+    type: "Healthcare / ML",
+    tagline: "Secure medical data and diagnosis platform.",
+    challenge:
+      "A healthcare provider needed a secure, HIPAA-compliant system to unify patient records and provide ML-assisted diagnosis suggestions to doctors during consultations.",
+    architecture:
+      "Multi-modal ingestion layer feeding into a secure backend with semantic retrieval. Offline-first architecture ensures functionality even in low-connectivity hospital wings.",
+    engineering: [
+      "On-device inference for data privacy",
+      "Semantic medical record retrieval",
+      "Offline-first PWA architecture",
+      "End-to-end encryption",
+    ],
+    stack: ["Next.js", "Go", "PostgreSQL", "TensorFlow", "Redis"],
+    gradient: "from-teal-600 to-emerald-900",
+    accentColor: "#10B981",
+  }
+];
+
+export default function CaseStudies() {
+  const [active, setActive] = useState(PROJECTS[0].id);
+
+  return (
+    <section id="work" className="py-24 bg-bg-primary border-t border-border/50">
+      <div className="section-container">
+        
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="label-eyebrow text-accent">CASE STUDIES</span>
+            </div>
+            <h2 className="font-sans font-extrabold text-text-primary leading-[1.1]" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}>
+              Engineering for <span className="text-accent">impact.</span>
+            </h2>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed max-w-sm">
+            We don't just build websites. We engineer systems that solve complex business problems.
+          </p>
+        </div>
+
+        {/* Accordion List */}
+        <div className="flex flex-col gap-2">
+          {PROJECTS.map((project) => {
+            const isActive = active === project.id;
+            
+            return (
+              <div 
+                key={project.id}
+                className={`border border-border/50 rounded-xl overflow-hidden transition-colors duration-500 ${isActive ? 'bg-bg-secondary' : 'bg-transparent hover:bg-white/5'}`}
+              >
+                {/* Header (Clickable) */}
+                <button 
+                  onClick={() => setActive(isActive ? "" : project.id)}
+                  className="w-full flex items-center justify-between p-6 md:p-8 text-left"
+                >
+                  <div className="flex items-center gap-6 md:gap-12">
+                    <span className="font-mono text-sm text-text-tertiary hidden md:block">{project.number}</span>
+                    <h3 className={`font-sans font-bold text-2xl md:text-3xl transition-colors ${isActive ? 'text-text-primary' : 'text-text-secondary'}`}>
+                      {project.name}
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary hidden sm:block">
+                      {project.type}
+                    </span>
+                    <div className={`w-8 h-8 rounded-full border border-border flex items-center justify-center transition-transform duration-500 ${isActive ? 'rotate-180 bg-white/5' : ''}`}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                      </svg>
+                    </div>
+                  </div>
+                </button>
+
+                {/* Expanded Content */}
+                <AnimatePresence>
+                  {isActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-6 md:p-8 pt-0 border-t border-border/30 mt-2">
+                        
+                        <div className="grid lg:grid-cols-2 gap-12 pt-8">
+                          {/* Left: Visual / Abstract representation */}
+                          <div className={`w-full aspect-4/3 rounded-lg bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
+                            {/* Abstract Tech Visual */}
+                            <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
+                            <div className="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center">
+                              <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30" />
+                            </div>
+                          </div>
+
+                          {/* Right: Details */}
+                          <div className="flex flex-col justify-center">
+                            <h4 className="text-xl font-bold text-text-primary mb-6">{project.tagline}</h4>
+                            
+                            <div className="mb-8">
+                              <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-2 block">The Challenge</span>
+                              <p className="text-sm text-text-secondary leading-relaxed">{project.challenge}</p>
+                            </div>
+                            
+                            <div className="mb-8">
+                              <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-2 block">Engineering</span>
+                              <ul className="flex flex-col gap-2">
+                                {project.engineering.map((item, i) => (
+                                  <li key={i} className="text-sm text-text-secondary flex items-start gap-2">
+                                    <span className="text-accent mt-0.5">▹</span>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+
+                            <div>
+                              <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-widest mb-3 block">Tech Stack</span>
+                              <div className="flex flex-wrap gap-2">
+                                {project.stack.map(tech => (
+                                  <span key={tech} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-mono text-[9px] text-text-secondary uppercase">
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </div>
+
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

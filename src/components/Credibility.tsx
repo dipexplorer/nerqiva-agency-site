@@ -1,2 +1,25 @@
-"\"use client\";\n\nimport { motion } from \"framer-motion\";\n\nconst CREDENTIALS = [\n  {\n    id: \"apdcl\",\n    name: \"APDCL\",\n    desc: \"Assam Power Distribution Company Limited\",\n    sub: \"Software Engineering Internship\",\n    detail: \"Built GRIDMIND — a production telemetry and prediction system for grid monitoring.\",\n  },\n  {\n    id: \"gssoc\",\n    name: \"GSSoC\",\n    desc: \"GirlScript Summer of Code\",\n    sub: \"Project Admin\",\n    detail: \"Led SAHIDAWA as an open-source project under GSSoC. Coordinated contributors, reviewed PRs, managed roadmap.\",\n  },\n  {\n    id: \"opensource\",\n    name: \"Open Source\",\n    desc: \"GitHub — Public Projects\",\n    sub: \"Project Leadership\",\n    detail: \"Maintained open-source repositories with community contributors. SAHIDAWA, ACADENCE, and LEGALHUB are all publicly available.\",\n  },\n  {\n    id: \"gauhati\",\n    name: \"Gauhati University\",\n    desc: \"Bachelor of Engineering — Computer Science\",\n    sub: \"Academic Foundation\",\n    detail: \"Computer Science and Engineering undergraduate program at Gauhati University, Assam.\",\n  },\n];\n\nexport default function Credibility() {\n  return (\n    <section id=\"credentials\" className=\"py-20 border-y border-border bg-bg-primary\">\n      <div className=\"section-container\">\n        <div className=\"flex items-center gap-3 mb-10\">\n          <div className=\"h-px w-8 bg-accent\" />\n          <span className=\"label-eyebrow text-accent\">Credentials</span>\n        </div>\n\n        <div className=\"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4\">\n          {CREDENTIALS.map((cred, i) => (\n            <motion.div\n              key={cred.id}\n              initial={{ opacity: 0, y: 16 }}\n              whileInView={{ opacity: 1, y: 0 }}\n              viewport={{ once: true }}\n              transition={{ duration: 0.45, delay: i * 0.07 }}\n              className=\"group relative p-6 border border-border bg-white rounded-sm hover:border-accent/20 hover:s
-<truncated 1214 bytes>
+"use client";
+
+export default function Credibility() {
+  const standards = [
+    { id: 1, title: "Engineering Excellence", desc: "Clean, documented, and tested code." },
+    { id: 2, title: "Performance Focused", desc: "Built for speed and scalability." },
+    { id: 3, title: "Design Driven", desc: "Intuitive and accessible interfaces." },
+  ];
+
+  return (
+    <section className="py-24 bg-bg-secondary">
+      <div className="section-container">
+        <h2 className="text-3xl font-bold mb-12">Our Standards</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {standards.map((s) => (
+            <div key={s.id} className="p-6 border border-border/50 rounded-lg bg-bg-primary">
+              <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+              <p className="text-text-secondary">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

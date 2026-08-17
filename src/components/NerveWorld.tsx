@@ -1,2 +1,86 @@
-"\"use client\";\n\nimport { useEffect, useRef, useCallback } from \"react\";\n\ninterface Particle {\n  x: number;\n  y: number;\n  targetX: number;\n  targetY: number;\n  baseX: number;\n  baseY: number;\n  radius: number;\n  opacity: number;\n  color: string;\n  vx: number;\n  vy: number;\n  type: \"node\" | \"fragment\" | \"interface\" | \"data\" | \"core\";\n  pulsePhase: number;\n}\n\ninterface Connection {\n  a: number;\n  b: number;\n  opacity: number;\n  active: boolean;\n}\n\ninterface NerveWorldProps {\n  scrollProgress: number; // 0 to 1\n  mouseX?: number;\n  mouseY?: number;\n}\n\n// Color palette\nconst C = {\n  purple: \"124, 58, 237\",\n  purpleLight: \"139, 92, 246\",\n  purpleSoft: \"167, 139, 250\",\n  purpleGlow: \"196, 181, 253\",\n  dark: \"12, 12, 16\",\n  bg: \"247, 246, 243\",\n};\n\nfunction lerp(a: number, b: number, t: number): number {\n  return a + (b - a) * t;\n}\n\nfunction easeInOut(t: number): number {\n  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;\n}\n\nfunction easeOut(t: number): number {\n  return 1 - Math.pow(1 - t, 3);\n}\n\nexport default function NerveWorld({ scrollProgress, mouseX = 0, mouseY = 0 }: NerveWorldProps) {\n  const canvasRef = useRef<HTMLCanvasElement>(null);\n  const stateRef = useRef({\n    particles: [] as Particle[],\n    connections: [] as Connection[],\n    animFrame: 0,\n    time: 0,\n    width: 0,\n    height: 0,\n    lastProgress: 0,\n  });\n\n  const initScene = useCallback((w: number, h: number) => {\n    const cx = w / 2;\n    const cy = h / 2;\n    const particles: Particle[] = [];\n\n    // Core nodes — the architectural spine\n    const corePositions = [\n      { x: 0, y: 0 },\n      { x: -100, y: -80 },\n      { x: 100, y: -80 },\n      { x: -120, y: 60 },\n      { x: 120, y: 60 },\n      { x: 0, y: -130 },\n      { x: -60, y: 100 },\n      { x: 60, y: 100 },\n    ];\n\n    corePositions.forEach(({ x, y }, i) => {\n      const spreadX = (Math.random() - 0.5) * w * 0.6;\n      const spreadY = (Math.random() - 0.5) * h * 0.6;\n      pa
-<truncated 13171 bytes>
+"use client";
+
+import { useEffect, useRef } from "react";
+
+export default function NerveWorld({ state = 0 }: { state?: number }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: false });
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    // Minimal particles for high performance
+    const particles = Array.from({ length: 40 }).map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+    }));
+
+    let animationFrame: number;
+
+    function render() {
+      if (!ctx || !canvas) return;
+      
+      // Clear with dark background
+      ctx.fillStyle = "#030303";
+      ctx.fillRect(0, 0, width, height);
+
+      // Accent color based on state, simple logic
+      const alpha = Math.min(1, 0.1 + state * 0.1);
+      ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`;
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.fillStyle = `rgba(124, 58, 237, ${alpha + 0.2})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationFrame = requestAnimationFrame(render);
+    }
+
+    render();
+
+    const handleResize = () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [state]);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0">
+      <canvas ref={canvasRef} className="w-full h-full opacity-60" />
+    </div>
+  );
+}
