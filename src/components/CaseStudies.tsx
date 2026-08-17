@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { PROJECTS } from "../data/projects";
 
 export default function CaseStudies() {
@@ -82,26 +83,22 @@ export default function CaseStudies() {
                     </Link>
                   </h3>
 
-                  <p className="text-text-primary font-medium text-sm mb-4 leading-snug">
+                  <p className="text-text-secondary text-sm leading-relaxed mb-6 font-light">
                     {project.tagline}
                   </p>
 
-                  <div className="mb-6">
-                    <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest mb-1.5 block font-bold">[THE_CHALLENGE]</span>
-                    <p className="text-xs text-text-secondary leading-relaxed">{project.challenge}</p>
-                  </div>
-
-                  {/* Key System Highlights */}
-                  <div className="mb-6 border-t border-white/5 pt-4">
-                    <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest mb-2 block font-bold">[ARCHITECTURE_FLOW]</span>
-                    <ul className="flex flex-col gap-1.5">
-                      {project.engineeringDecisions.map((highlight: string, index: number) => (
-                        <li key={index} className="text-xs text-text-secondary flex items-start gap-2">
-                          <span className="text-accent text-[9px] select-none">▹</span>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Minimal Action Footer */}
+                  <div className="mt-8 flex items-center justify-between border-t border-white/5 pt-6">
+                    <span className="font-mono text-[8px] text-text-tertiary uppercase tracking-wider font-semibold">
+                      [DEMO_ENVIRONMENT]
+                    </span>
+                    <Link 
+                      href={`/work/${project.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
+                    >
+                      Website Preview
+                      <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
                 </div>
               </div>
