@@ -6,60 +6,80 @@
    ============================================ */
 
 :root {
-  /* Background */
-  --bg-primary: #F7F6F3;
-  --bg-secondary: #EFEDE8;
-  --bg-card: #FFFFFF;
-  --bg-dark: #0C0C10;
-  --bg-dark-card: #141418;
+  /* Warm/Soft White Backgrounds (Light default) */
+  --bg-primary: #FBFBFC;
+  --bg-secondary: #F5F5F7;
+  --bg-card: rgba(255, 255, 255, 0.65);
+  --bg-dark: #000000;
+  --bg-dark-card: #0A0A0E;
 
-  /* Typography */
-  --text-primary: #0C0C10;
-  --text-secondary: #524F5F;
-  --text-tertiary: #9C99AB;
+  /* Typography (Apple Charcoal / Slate) */
+  --text-primary: #1D1D1F;
+  --text-secondary: #86868B;
+  --text-tertiary: #A1A1A6;
   --text-inverted: #F7F6F3;
 
-  /* Accent */
+  /* Accent (Apple Purple / Indigo) */
   --accent: #7C3AED;
   --accent-light: #A78BFA;
   --accent-mid: #8B5CF6;
-  --accent-glow: rgba(124, 58, 237, 0.15);
-  --accent-glow-soft: rgba(139, 92, 246, 0.08);
+  --accent-glow: rgba(124, 58, 237, 0.05);
+  --accent-glow-soft: rgba(139, 92, 246, 0.03);
 
-  /* Borders */
-  --border: #E5E3DE;
-  --border-dark: #272730;
+  /* Subtle Light Borders */
+  --border: rgba(0, 0, 0, 0.06);
+  --border-dark: rgba(0, 0, 0, 0.12);
 
   /* Semantic */
   --foreground: var(--text-primary);
   --background: var(--bg-primary);
 }
 
+/* Dark Mode Overrides for Specific Sections */
+.dark {
+  --bg-primary: #0A0A0E;
+  --bg-secondary: #121218;
+  --bg-card: rgba(18, 18, 24, 0.45);
+  --bg-dark: #000000;
+  --bg-dark-card: #08080C;
+
+  --text-primary: #F7F6F3;
+  --text-secondary: #9C99AB;
+  --text-tertiary: #524F5F;
+  --text-inverted: #1D1D1F;
+
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --accent-glow-soft: rgba(139, 92, 246, 0.08);
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.15);
+}
+
 /* ============================================
    Tailwind Theme Extension
    ============================================ */
 @theme {
-  /* Backgrounds */
-  --color-bg-primary: #F7F6F3;
-  --color-bg-secondary: #EFEDE8;
-  --color-bg-card: #FFFFFF;
-  --color-bg-dark: #0C0C10;
-  --color-bg-dark-card: #141418;
+  /* Backgrounds mapped to CSS Variables */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-card: var(--bg-dark-card);
 
-  /* Text */
-  --color-text-primary: #0C0C10;
-  --color-text-secondary: #524F5F;
-  --color-text-tertiary: #9C99AB;
-  --color-text-inverted: #F7F6F3;
+  /* Text mapped to CSS Variables */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-inverted: var(--text-inverted);
 
-  /* Accent */
-  --color-accent: #7C3AED;
-  --color-accent-light: #A78BFA;
-  --color-accent-mid: #8B5CF6;
+  /* Accent mapped to CSS Variables */
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-accent-mid: var(--accent-mid);
 
-  /* Borders */
-  --color-border: #E5E3DE;
-  --color-border-dark: #272730;
+  /* Borders mapped to CSS Variables */
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
 
   /* Fonts */
   --font-sans: var(--font-jakarta), sans-serif;
@@ -203,7 +223,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--text-tertiary);
 }
 
 /* Gradient text purple */
@@ -213,6 +233,36 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Glass Panel Utility (New) */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 4px; /* Standardized to 4px (rounded-sm) */
+}
+
+/* Blueprint Dot Grid Background */
+.bg-grid-dots {
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Blueprint Technical Coordinate Labels */
+.blueprint-coord {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  user-select: none;
+}
+
+/* Watermark Mask for Canvas Container */
+.watermark-mask {
+  mask-image: linear-gradient(to top, transparent 0%, transparent 12%, black 20%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, transparent 12%, black 20%);
 }
 
 /* Section max width */

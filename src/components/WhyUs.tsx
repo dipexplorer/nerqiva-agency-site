@@ -1,87 +1,121 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const PRINCIPLES = [
-  {
-    number: "01",
-    title: "Problem First",
-    body: "We don't start with technology. We start with what needs to change. The right solution follows from a clear understanding of the actual problem — not from a preference for any particular stack or approach.",
-    emphasis: "Understand before proposing.",
-  },
-  {
-    number: "02",
-    title: "Engineering Depth",
-    body: "Interfaces are only one layer. We can engineer the systems behind them — databases, APIs, pipelines, integrations, and the architecture that makes a product actually work under real conditions.",
-    emphasis: "Built to last, not just to demo.",
-  },
-  {
-    number: "03",
-    title: "AI Where It Matters",
-    body: "AI is used when it creates actual leverage — not because it sounds impressive. We integrate LLMs, semantic search, and machine learning where they solve problems that simpler approaches cannot.",
-    emphasis: "Utility over trend.",
-  },
-  {
-    number: "04",
-    title: "Built to Evolve",
-    body: "Every system we build is designed for version two. Clean architecture, documented decisions, and extensible code mean the solution can grow alongside your business without needing to be rebuilt.",
-    emphasis: "Systems, not just deliverables.",
-  },
-];
+import { Check, Shield, Zap, Code } from "lucide-react";
 
 export default function WhyUs() {
+  const principles = [
+    {
+      id: "depth",
+      icon: <Code size={16} className="text-accent" />,
+      title: "Engineering Depth",
+      body: "We focus on the systems behind the interface — custom schemas, optimized queries, secure webhooks, and background workers built to run reliably under load.",
+      emphasis: "Systems over mere mockups."
+    },
+    {
+      id: "ai",
+      icon: <Zap size={16} className="text-accent" />,
+      title: "AI Where It Matters",
+      body: "AI is integrated where it creates clear business leverage, not as a decorative chatbot or marketing feature. Utility always comes before hype.",
+      emphasis: "Utility over hype."
+    },
+    {
+      id: "evolve",
+      icon: <Shield size={16} className="text-accent" />,
+      title: "Built to Evolve",
+      body: "Every system is documented and structured for extensibility. Your codebase remains simple, clean, and ready to evolve as your business scales.",
+      emphasis: "Clean, maintainable source code."
+    }
+  ];
+
   return (
-    <section id="about" className="py-32 bg-bg-secondary">
+    <section id="about" className="py-32 bg-transparent relative border-t border-border/30">
       <div className="section-container">
+        
         {/* Header */}
         <div className="max-w-2xl mb-20">
           <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-8 bg-accent" />
-            <span className="label-eyebrow text-accent">Why NERQIVA</span>
+            <span className="label-eyebrow">OUR PHILOSOPHY</span>
+            <div className="h-[1px] w-8 bg-accent/30" />
           </div>
           <h2
-            className="font-sans font-extrabold text-text-primary leading-[1.1]"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+            className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
           >
             How we think.
           </h2>
         </div>
 
-        {/* Principles grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {PRINCIPLES.map((p, i) => (
-            <motion.div
-              key={p.number}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="border border-border bg-white rounded-sm p-8 md:p-10 group hover:border-accent/20 hover:shadow-md transition-all duration-300"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <span className="font-mono text-[11px] font-semibold text-accent tracking-widest">
-                  {p.number}
-                </span>
-                <div className="h-px w-12 bg-border mt-3 group-hover:w-20 group-hover:bg-accent/30 transition-all duration-400" />
-              </div>
-
-              <h3 className="font-sans font-extrabold text-2xl text-text-primary mb-4">
-                {p.title}
+        {/* Asymmetric Composition to Break Card Fatigue */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-stretch relative z-10">
+          
+          {/* Left Column: Featured Principle (Large Focus) */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 p-8 md:p-12 glass-panel border border-border/40 flex flex-col justify-between min-h-[400px] bg-accent/[0.02]"
+            style={{ borderRadius: "4px" }}
+          >
+            <div className="flex flex-col">
+              <span className="font-mono text-[10px] font-bold text-accent uppercase tracking-widest mb-6 block">
+                [Core Principle]
+              </span>
+              <h3 className="font-sans font-extrabold text-3xl text-text-primary mb-6 leading-tight">
+                Problem First.
               </h3>
-
-              <p className="text-text-secondary text-sm leading-relaxed mb-5">
-                {p.body}
+              <p className="text-text-secondary text-base leading-relaxed mb-6">
+                We do not start with a tech stack. We start with the operational bottleneck. The correct solution is designed around the actual problem, keeping complexity to an absolute minimum.
               </p>
+            </div>
+            
+            <div className="pt-6 border-t border-border/30 flex items-center gap-2.5">
+              <div className="h-4 w-4 rounded-full bg-accent/15 flex items-center justify-center shrink-0">
+                <Check size={9} className="text-accent" />
+              </div>
+              <span className="font-sans font-semibold text-text-primary text-sm italic">
+                Understand before engineering.
+              </span>
+            </div>
+          </motion.div>
 
-              <div className="flex items-center gap-2 pt-4 border-t border-border">
-                <div className="h-1.5 w-1.5 rounded-full bg-accent" />
-                <span className="font-sans font-medium text-text-primary text-sm italic">
+          {/* Right Column: Supporting Principles List */}
+          <div className="lg:col-span-7 flex flex-col justify-between gap-6">
+            {principles.map((p, index) => (
+              <motion.div
+                key={p.id}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-6 md:p-8 border border-border/30 hover:border-accent/40 bg-bg-card/25 transition-all duration-200 flex flex-col sm:flex-row gap-5 items-start justify-between"
+                style={{ borderRadius: "4px" }}
+              >
+                <div className="flex gap-4">
+                  {/* Icon Container */}
+                  <div className="h-8 w-8 rounded-[3px] bg-accent/5 border border-accent/15 flex items-center justify-center shrink-0 mt-0.5">
+                    {p.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-sans font-bold text-lg text-text-primary mb-2">
+                      {p.title}
+                    </h4>
+                    <p className="text-text-secondary text-sm leading-relaxed max-w-xl">
+                      {p.body}
+                    </p>
+                  </div>
+                </div>
+                
+                <span className="font-mono text-[9px] uppercase tracking-wider text-text-tertiary self-end sm:self-start bg-bg-secondary px-2.5 py-1 rounded-[2px]">
                   {p.emphasis}
                 </span>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
         </div>
+
       </div>
     </section>
   );

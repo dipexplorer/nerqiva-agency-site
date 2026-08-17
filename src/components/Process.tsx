@@ -1,18 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { PROCESS_STEPS } from "../data/process";
 
 export default function Process() {
   const [activeStep, setActiveStep] = useState("discover");
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Set up intersection observer to highlight the active stepper item on scroll
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-25% 0px -50% 0px", // Trigger when the item occupies the center-top viewport
+      rootMargin: "-25% 0px -50% 0px",
       threshold: 0.1,
     };
 
@@ -38,13 +36,13 @@ export default function Process() {
   };
 
   return (
-    <section id="process" className="py-32 bg-bg-secondary border-t border-border/50">
+    <section id="process" className="py-32 bg-bg-primary text-text-primary border-t border-border/45 relative z-10">
       <div className="section-container relative" ref={containerRef}>
         
         {/* Main Grid: Stepper (Left) and Content (Right) */}
         <div className="grid lg:grid-cols-12 gap-16">
           
-          {/* Left Column: Sticky Sidebar Stepper (Hidden on mobile) */}
+          {/* Left Column: Sticky Sidebar Stepper */}
           <div className="hidden lg:block lg:col-span-4">
             <div className="sticky top-32 flex flex-col gap-6 select-none max-w-xs">
               <div className="flex flex-col gap-2 mb-6">
@@ -55,14 +53,14 @@ export default function Process() {
               </div>
 
               {/* Vertical Stepper List */}
-              <div className="flex flex-col gap-4 border-l border-border pl-4 font-mono text-xs font-semibold text-text-tertiary">
+              <div className="flex flex-col gap-4 border-l border-border/40 pl-4 font-mono text-xs font-semibold text-text-tertiary">
                 {PROCESS_STEPS.map((step) => {
                   const isActive = activeStep === step.id;
                   return (
                     <button
                       key={step.id}
                       onClick={() => scrollToStep(step.id)}
-                      className={`flex items-center gap-3 text-left transition-all duration-300 hover:text-text-primary ${
+                      className={`flex items-center gap-3 text-left transition-all duration-300 hover:text-text-primary cursor-pointer ${
                         isActive ? "text-accent font-bold translate-x-1" : ""
                       }`}
                     >
@@ -80,7 +78,7 @@ export default function Process() {
           {/* Right Column: Detailed Vertical Process List */}
           <div className="col-span-12 lg:col-span-8 flex flex-col gap-12">
             
-            {/* Header (Visible on Mobile only) */}
+            {/* Header (Mobile only) */}
             <div className="block lg:hidden max-w-md mb-8">
               <span className="label-eyebrow text-accent">OUR METHODOLOGY</span>
               <h2 className="font-sans font-extrabold text-text-primary leading-tight mt-2 mb-4" style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)" }}>
@@ -94,9 +92,9 @@ export default function Process() {
             {/* Stepper Content Stack */}
             <div className="flex flex-col gap-8 relative">
               {/* Vertical connector line overlay */}
-              <div className="absolute top-10 bottom-10 left-[23px] w-[1px] bg-border/80 hidden sm:block z-0" />
+              <div className="absolute top-10 bottom-10 left-[23px] w-[1px] bg-border/40 hidden sm:block z-0" />
 
-              {PROCESS_STEPS.map((phase, i) => {
+              {PROCESS_STEPS.map((phase) => {
                 const isActive = activeStep === phase.id;
                 
                 return (
@@ -104,12 +102,15 @@ export default function Process() {
                     key={phase.id}
                     id={phase.id}
                     data-process-step
-                    className="relative z-10 flex flex-col sm:flex-row gap-6 p-6 sm:p-8 border border-border bg-white rounded-sm transition-all duration-300 hover:border-accent/30"
+                    className={`relative z-10 flex flex-col sm:flex-row gap-6 p-6 sm:p-8 transition-all duration-300 border-b border-border/20 last:border-none ${
+                      isActive ? "bg-bg-secondary/40" : "opacity-40"
+                    }`}
+                    style={{ borderRadius: "4px" }}
                   >
                     {/* Node Number Indicator */}
                     <div className="flex items-center justify-center shrink-0">
-                      <div className={`w-12 h-12 rounded-full border border-border bg-bg-secondary flex items-center justify-center text-text-secondary transition-all duration-300 ${
-                        isActive ? "border-accent text-accent font-bold shadow-[0_4px_16px_rgba(124,58,237,0.1)] scale-105" : ""
+                      <div className={`w-12 h-12 rounded-full border border-border/40 bg-transparent flex items-center justify-center text-text-secondary transition-all duration-300 ${
+                        isActive ? "border-accent text-accent font-bold shadow-[0_4px_16px_rgba(124,58,237,0.15)] scale-105" : ""
                       }`}>
                         <span className="font-mono text-sm">{phase.number}</span>
                       </div>
@@ -121,8 +122,8 @@ export default function Process() {
                         <h3 className="font-sans font-bold text-xl text-text-primary">
                           {phase.title}
                         </h3>
-                        <span className="font-mono text-[10px] text-accent uppercase tracking-widest">
-                          {phase.tagline}
+                        <span className="font-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                          [{phase.tagline}]
                         </span>
                       </div>
 
@@ -131,11 +132,12 @@ export default function Process() {
                       </p>
 
                       {/* Details pills grid */}
-                      <div className="flex flex-wrap gap-2 pt-2 border-t border-border/40 mt-3">
+                      <div className="flex flex-wrap gap-2 pt-2 border-t border-border/20 mt-3">
                         {phase.details.map((det, idx) => (
                           <span
                             key={idx}
-                            className="px-3 py-1 bg-bg-secondary border border-border/60 rounded-sm font-mono text-[9px] text-text-tertiary uppercase tracking-wider"
+                            className="px-3 py-1 bg-bg-secondary text-text-secondary border-none font-mono text-[8px] uppercase tracking-wider select-none"
+                            style={{ borderRadius: "2px" }}
                           >
                             {det}
                           </span>

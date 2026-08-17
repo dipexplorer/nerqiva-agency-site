@@ -55,6 +55,12 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "../components/ThemeProvider";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
+import InteractiveGridBackground from "../components/InteractiveGridBackground";
+import Loader from "../components/Loader";
+
 export default function RootLayout({
   children,
 }: {
@@ -64,9 +70,22 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${jakarta.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+          <Loader />
+          <InteractiveGridBackground />
+          <Navigation />
+          
+          <main className="flex-1 flex flex-col bg-transparent text-text-primary selection:bg-accent/30 overflow-x-hidden relative z-10 w-full">
+            {children}
+          </main>
+          
+          <div className="relative z-20 w-full mt-auto">
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

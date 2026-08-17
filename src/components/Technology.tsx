@@ -72,8 +72,9 @@ export default function Technology() {
   const active = CATEGORIES.find((c) => c.id === activeId);
 
   return (
-    <section id="tech" className="py-32 bg-bg-primary">
+    <section id="tech" className="py-32 bg-transparent relative border-t border-white/5 bg-grid-dots">
       <div className="section-container">
+        
         {/* Header */}
         <div className="max-w-2xl mb-16">
           <div className="flex items-center gap-3 mb-5">
@@ -82,19 +83,17 @@ export default function Technology() {
           </div>
           <h2
             className="font-sans font-extrabold text-text-primary leading-[1.1] mb-4"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+            style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)", letterSpacing: "-0.02em" }}
           >
-            Technology is a tool.
-            <br />
-            The problem comes first.
+            Technology is a tool.<br />The problem comes first.
           </h2>
           <p className="text-text-secondary text-base leading-relaxed">
-            We choose technology based on what the problem requires — not what&apos;s trending. Hover a category to explore the stack.
+            We select tools based on what the problem requires — not what&apos;s trending. Hover a category to inspect details.
           </p>
         </div>
 
         {/* Category tabs */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-3 mb-12 relative z-10">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
@@ -103,11 +102,12 @@ export default function Technology() {
               onClick={() =>
                 setActiveId(activeId === cat.id ? null : cat.id)
               }
-              className={`group relative px-6 py-3 rounded-sm border font-mono text-xs font-semibold uppercase tracking-widest transition-all duration-250 ${
+              className={`group relative px-6 py-3 rounded-sm border font-mono text-xs font-semibold uppercase tracking-widest transition-all duration-250 cursor-pointer ${
                 activeId === cat.id
                   ? "border-accent bg-accent text-white"
-                  : "border-border text-text-secondary hover:text-text-primary hover:border-accent/30 bg-white"
+                  : "border-none text-text-secondary hover:text-text-primary hover:border-accent/30 glass-panel"
               }`}
+              style={{ borderRadius: "4px" }}
             >
               {cat.label}
             </button>
@@ -115,10 +115,15 @@ export default function Technology() {
         </div>
 
         {/* Tech grid */}
-        <div className="border border-border rounded-sm bg-white overflow-hidden min-h-[220px]">
+        <div 
+          className="border-none glass-panel overflow-hidden min-h-[220px] shadow-lg relative z-10"
+          style={{ borderRadius: "4px" }}
+        >
+          {/* Clean panel — no bracket labels */}
+
           {!activeId && (
-            <div className="flex items-center justify-center h-56 text-text-tertiary font-mono text-[11px] uppercase tracking-widest">
-              Hover a category above
+            <div className="flex items-center justify-center h-56 text-text-tertiary font-mono text-xs">
+              Select a category above to explore our stack
             </div>
           )}
 
@@ -128,14 +133,14 @@ export default function Technology() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
-              className="p-8"
+              className="p-10"
             >
               <div className="mb-6">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-semibold">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-semibold">
                   {active.label} Stack
                 </span>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {active.items.map((item, i) => (
                   <motion.div
                     key={item.name}
@@ -158,7 +163,10 @@ export default function Technology() {
         </div>
 
         {/* Philosophy note */}
-        <div className="mt-8 flex items-start gap-4 p-6 border border-border/60 rounded-sm bg-bg-secondary">
+        <div 
+          className="mt-8 flex items-start gap-4 p-6 glass-panel border border-border/40 relative z-10"
+          style={{ borderRadius: "4px" }}
+        >
           <div className="h-1.5 w-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
           <p className="text-text-secondary text-sm leading-relaxed">
             <strong className="text-text-primary font-medium">We don&apos;t chase trends.</strong> Every technology decision is made based on what best solves the problem at the right cost and complexity level. Sometimes that&apos;s a modern AI stack. Sometimes it&apos;s a simple, well-structured PostgreSQL schema.

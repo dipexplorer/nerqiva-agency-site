@@ -2,179 +2,259 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Activity, AlertCircle, RefreshCw } from "lucide-react";
 
 const PROBLEMS = [
   {
     id: "presence",
     label: "Outdated Digital Presence",
-    detail:
-      "Your website was built years ago and no longer reflects who you actually are or what you can do.",
+    detail: "Looks functional. Leaks potential customers because it fails to reflect your standard of execution.",
+    cost: "Lost authority, low conversion, and weak brand differentiation.",
+    investigate: [
+      "Messaging alignment with actual capabilities",
+      "Visual authority & typographic hierarchy",
+      "Responsive accessibility & touch targets"
+    ],
+    resolution: "Modern clean-code redesign built on Next.js."
   },
   {
     id: "journey",
     label: "Confusing User Journey",
-    detail:
-      "Visitors land on your product but can't figure out what it does or why it matters to them.",
+    detail: "Visitors arrive but cannot instantly comprehend what you solve or why they should take action.",
+    cost: "High bounce rates, brief session times, and zero lead flow.",
+    investigate: [
+      "Headline readability & clear value metrics",
+      "Information path & cognitive scroll fatigue",
+      "Friction in initial onboarding steps"
+    ],
+    resolution: "Guided user paths & clear landing page structures."
   },
   {
     id: "mobile",
     label: "Poor Mobile Experience",
-    detail:
-      "More than 60% of your visitors are on mobile. If that experience is broken, so is your funnel.",
+    detail: "More than 60% of search traffic is mobile. A laggy mobile design is a broken business funnel.",
+    cost: "Incomplete checkout forms, abandoned carts, and zoom errors.",
+    investigate: [
+      "Tap target padding & button hit ranges",
+      "Dynamic keyboard input zoom behaviors (Safari/Chrome)",
+      "Core Web Vitals mobile layout shift (CLS)"
+    ],
+    resolution: "Responsive-first layouts designed for 375px+ screens."
   },
   {
     id: "manual",
     label: "Manual Workflows",
-    detail:
-      "Your team spends hours on repetitive tasks that should be automated or handled by a system.",
+    detail: "Your team spends hours copying, formatting, and double-checking records across software systems.",
+    cost: "High transcription error rates and wasted internal payroll.",
+    investigate: [
+      "Repetitive copy-paste task identification",
+      "API availability between tools in your stack",
+      "Database schema synchronization friction"
+    ],
+    resolution: "Custom API pipelines & automated background scripts."
   },
   {
     id: "disconnected",
-    label: "Disconnected Tools",
-    detail:
-      "Your CRM doesn't talk to your forms. Your forms don't talk to your email. Nothing connects.",
+    label: "Siloed Software Tools",
+    detail: "Forms do not feed your CRM. CRM does not trigger marketing alerts. Decisions are split.",
+    cost: "Fragmented database records, delayed follow-ups, and customer friction.",
+    investigate: [
+      "Webhooks & real-time messaging structures",
+      "Data formatting mismatches between systems",
+      "Security token lifecycles & webhook retries"
+    ],
+    resolution: "Robust middleware logic & real-time webhooks."
   },
   {
     id: "slow",
-    label: "Slow Processes",
-    detail:
-      "Bottlenecks that slow decisions, approvals, or delivery are costing you time and credibility.",
+    label: "Laggy Data Sync",
+    detail: "Decisions rely on weekly exports or manually compiled spreadsheets rather than real-time data.",
+    cost: "Blind spots in metrics and delayed operational adjustments.",
+    investigate: [
+      "Database query bottlenecks and slow indexes",
+      "Cron-job execution latency & background queues",
+      "Batch pipeline caching & schema structure"
+    ],
+    resolution: "PostgreSQL read optimization, caching, & Redis queues."
   },
   {
     id: "conversion",
-    label: "Weak Conversion Paths",
-    detail:
-      "Traffic exists but doesn't convert. The path from interest to action is unclear or broken.",
-  },
+    label: "Weak Conversion Funnels",
+    detail: "Traffic exists but does not convert. The path from initial interest to qualified enquiry is broken.",
+    cost: "Wasted marketing spend and high acquisition costs.",
+    investigate: [
+      "Form length complexity & placeholder utility",
+      "CTA prominence, contrast, and layout placing",
+      "Immediate auto-responses on enquiry receipt"
+    ],
+    resolution: "Streamlined low-friction inputs & telemetry monitoring."
+  }
 ];
 
 export default function ProblemSection() {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string>("presence");
+  const activeProblem = PROBLEMS.find((p) => p.id === activeId) || PROBLEMS[0];
 
   return (
-    <section id="problems" className="py-32 bg-bg-primary">
+    <section id="problems" className="py-32 bg-transparent relative border-t border-border/30">
       <div className="section-container">
+        
         {/* Header */}
-        <div className="max-w-2xl mb-20">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-8 bg-accent" />
-            <span className="label-eyebrow text-accent">Common Problems</span>
+        <div className="grid lg:grid-cols-12 gap-8 mb-20 items-end">
+          <div className="lg:col-span-8">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="label-eyebrow">DIAGNOSTIC PROCESS</span>
+              <div className="h-[1px] w-8 bg-accent/30" />
+            </div>
+            <h2
+              className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+            >
+              Most digital bottlenecks are not technology problems.
+            </h2>
           </div>
-          <h2
-            className="font-sans font-extrabold text-text-primary leading-[1.1] mb-4"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
-          >
-            Most digital problems aren&apos;t technology problems.
-          </h2>
-          <p className="text-text-secondary text-lg leading-relaxed">
-            They are <em className="text-text-primary not-italic font-semibold">clarity problems.</em>{" "}
-            Hover over what sounds familiar.
-          </p>
+          <div className="lg:col-span-4">
+            <p className="text-text-secondary text-base leading-relaxed">
+              They are <span className="text-text-primary font-semibold">clarity & flow problems.</span> Explore a bottleneck to view its diagnostics.
+            </p>
+          </div>
         </div>
 
-        {/* Problem nodes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {PROBLEMS.map((problem, i) => (
-            <motion.div
-              key={problem.id}
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.07 }}
-              onMouseEnter={() => setActiveId(problem.id)}
-              onMouseLeave={() => setActiveId(null)}
-              onClick={() =>
-                setActiveId(activeId === problem.id ? null : problem.id)
-              }
-              className={`relative rounded-sm border cursor-default overflow-hidden transition-all duration-300 ${
-                activeId === problem.id
-                  ? "border-accent/40 bg-white shadow-lg"
-                  : "border-border bg-white/60 hover:border-accent/20 hover:bg-white"
-              }`}
-            >
-              <div className="p-6">
-                {/* Node indicator */}
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div
-                    className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                      activeId === problem.id ? "bg-accent" : "bg-border"
+        {/* Two-Column Problem Explorer */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
+          
+          {/* Left Column: Selectors */}
+          <div className="lg:col-span-5 flex flex-col border-l border-border/30">
+            {PROBLEMS.map((problem, i) => {
+              const isActive = activeId === problem.id;
+              return (
+                <button
+                  key={problem.id}
+                  onMouseEnter={() => setActiveId(problem.id)}
+                  onClick={() => setActiveId(problem.id)}
+                  className={`group flex items-center justify-between text-left py-4 pl-6 border-l-2 -ml-[2px] transition-all duration-200 cursor-pointer ${
+                    isActive
+                      ? "border-accent text-accent bg-accent/5 font-bold"
+                      : "border-transparent text-text-secondary hover:text-text-primary hover:border-accent/30"
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5">
+                    <span className="font-mono text-[10px] text-text-tertiary select-none">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-sans text-sm md:text-base tracking-tight">
+                      {problem.label}
+                    </span>
+                  </div>
+                  <ArrowRight
+                    size={14}
+                    className={`text-text-tertiary group-hover:text-accent transition-all duration-200 ${
+                      isActive ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
                     }`}
-                    style={
-                      activeId === problem.id
-                        ? { boxShadow: "0 0 8px rgba(124,58,237,0.5)" }
-                        : {}
-                    }
                   />
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
-                    {String(i + 1).padStart(2, "0")}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Diagnostic Output Card */}
+          <div className="lg:col-span-7">
+            <div 
+              className="glass-panel w-full border border-border/40 overflow-hidden shadow-lg min-h-[360px]"
+              style={{ borderRadius: "4px" }}
+            >
+              {/* Card Header */}
+              <div className="px-6 py-4 bg-bg-secondary border-b border-border/40 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Activity size={12} className="text-accent animate-pulse" />
+                  <span className="font-mono text-[9px] font-bold text-text-secondary tracking-widest">
+                    SYSTEM_ANALYSIS // BOTTLENECK_0{PROBLEMS.indexOf(activeProblem) + 1}
                   </span>
                 </div>
-
-                <p className="font-sans font-semibold text-text-primary text-sm leading-snug mb-3">
-                  {problem.label}
-                </p>
-
-                <AnimatePresence>
-                  {activeId === problem.id && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="text-text-secondary text-xs leading-relaxed overflow-hidden"
-                    >
-                      {problem.detail}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
+                <div className="font-mono text-[8px] text-text-tertiary">
+                  ID: {activeProblem.id.toUpperCase()}
+                </div>
               </div>
 
-              {/* Accent bar */}
-              <div
-                className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300"
-                style={{ width: activeId === problem.id ? "100%" : "0%" }}
-              />
-            </motion.div>
-          ))}
+              {/* Card Body */}
+              <div className="p-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProblem.id}
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col gap-6"
+                  >
+                    {/* Diagnostic Summary */}
+                    <div>
+                      <h3 className="font-sans font-extrabold text-xl text-text-primary mb-2">
+                        {activeProblem.label}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed">
+                        {activeProblem.detail}
+                      </p>
+                    </div>
 
-          {/* Distinct Accent CTA card */}
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: PROBLEMS.length * 0.07 }}
-            className="relative rounded-sm border-2 border-dashed border-accent/60 bg-accent/5 p-6 flex flex-col justify-between group hover:bg-accent hover:border-accent shadow-[0_4px_24px_rgba(124,58,237,0.06)] hover:shadow-[0_8px_32px_rgba(124,58,237,0.15)] transition-all duration-300 cursor-pointer"
-          >
-            <div>
-              <div className="h-2 w-2 rounded-full bg-accent mb-4 group-hover:bg-white transition-colors" style={{ boxShadow: "0 0 8px rgba(124,58,237,0.5)" }} />
-              <p className="font-sans font-bold text-text-primary text-sm mb-2 group-hover:text-white transition-colors">
-                Something else?
-              </p>
-              <p className="text-text-secondary text-xs leading-relaxed group-hover:text-white/80 transition-colors">
-                Every problem is unique. Tell us what you&apos;re dealing with.
-              </p>
+                    {/* Cost of Problem */}
+                    <div className="bg-red-500/5 border border-red-500/10 rounded-[3px] p-4 flex gap-3">
+                      <AlertCircle size={15} className="text-red-500 shrink-0 mt-0.5" />
+                      <div>
+                        <span className="font-mono text-[8px] uppercase tracking-widest text-red-500 font-bold block mb-1">
+                          Business Impact
+                        </span>
+                        <p className="text-xs text-text-secondary leading-snug">
+                          {activeProblem.cost}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Check list */}
+                    <div>
+                      <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-3 font-bold">
+                        What we investigate:
+                      </span>
+                      <div className="grid sm:grid-cols-1 gap-2.5">
+                        {activeProblem.investigate.map((item, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5">
+                            <span className="text-accent text-[10px] select-none mt-0.5">▹</span>
+                            <span className="text-xs text-text-secondary leading-normal">
+                              {item}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Solution Path */}
+                    <div className="pt-5 border-t border-border/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-2">
+                      <div className="flex items-start gap-2">
+                        <RefreshCw size={12} className="text-accent mt-0.5 shrink-0" />
+                        <div>
+                          <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-0.5">
+                            Nerqiva Resolution
+                          </span>
+                          <span className="text-xs font-semibold text-text-primary">
+                            {activeProblem.resolution}
+                          </span>
+                        </div>
+                      </div>
+                      <a
+                        href="#contact"
+                        className="group font-mono text-[10px] uppercase tracking-widest text-accent font-bold hover:text-accent-mid flex items-center gap-1.5 shrink-0 self-end sm:self-center transition-colors"
+                      >
+                        Request diagnostic audit <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                      </a>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </div>
-            <span className="mt-4 font-mono text-[10px] uppercase tracking-widest text-accent group-hover:text-white group-hover:gap-3 flex items-center gap-2 transition-all">
-              Talk to us <span className="transition-transform group-hover:translate-x-1">→</span>
-            </span>
-          </motion.a>
+          </div>
+
         </div>
 
-        {/* Secondary CTA block */}
-        <div className="mt-16 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-text-secondary text-sm font-mono uppercase tracking-wider">
-            Not sure what category your problem fits in?
-          </p>
-          <a
-            href="#contact"
-            className="group flex items-center gap-2 text-sm font-bold text-accent hover:text-accent-mid transition-colors"
-          >
-            Request a free discovery call
-            <span className="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-        </div>
       </div>
     </section>
   );

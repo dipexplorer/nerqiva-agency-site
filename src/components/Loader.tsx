@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import BrandLogo from "./BrandLogo";
 
 const INIT_STEPS = [
-  "LOADING WORLD",
-  "BUILDING INTERFACE",
-  "PREPARING EXPERIENCE",
+  "Loading assets",
+  "Building interface",
+  "Preparing experience",
 ];
 
 export default function Loader() {
@@ -17,6 +18,7 @@ export default function Loader() {
     // Skip on revisits
     const seen = sessionStorage.getItem("nq_seen");
     if (seen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(false);
       return;
     }
@@ -47,16 +49,7 @@ export default function Loader() {
     >
       {/* Logo mark */}
       <div className="mb-8">
-        <svg viewBox="0 0 40 40" fill="none" className="h-10 w-10">
-          <rect x="1" y="1" width="38" height="38" stroke="rgb(124,58,237)" strokeWidth="2" />
-          <path
-            d="M10 30V10L30 30V10"
-            stroke="rgb(124,58,237)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <BrandLogo className="h-14 w-14" />
       </div>
 
       <span className="font-mono text-xl font-bold tracking-[0.25em] text-text-primary mb-8">
