@@ -15,15 +15,9 @@ import { PROCESS_STEPS } from "../data/process";
 const HeroScene = dynamic(() => import("./HeroScene"), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 z-0 flex items-center justify-center bg-bg-primary/20">
-      <div className="relative w-full aspect-square max-w-[500px] opacity-40">
-        <Image
-          src="/images/hero_island.png"
-          alt="Loading interactive scene..."
-          fill
-          className="object-contain animate-pulse-soft"
-          priority
-        />
+    <div className="absolute inset-0 z-0 flex items-center justify-center bg-bg-primary">
+      <div className="text-text-secondary animate-pulse-soft font-mono text-sm border border-border/50 px-4 py-2 rounded-full">
+        Loading System Grid...
       </div>
     </div>
   ),
@@ -159,16 +153,9 @@ export default function ScrollStory() {
         </div>
       ) : (
         // Mobile Layout / Reduced Motion Static Layout
-        <div className="absolute right-0 top-1/4 md:top-0 w-full lg:w-1/2 h-2/3 lg:h-full z-0 opacity-20 pointer-events-none flex items-center justify-center">
-          <div className="relative w-72 h-72 md:w-[450px] md:h-[450px]">
-            <Image
-              src="/images/hero_island.png"
-              alt="NERQIVA System Architecture Island"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
+        <div className="absolute right-0 top-1/4 md:top-0 w-full lg:w-1/2 h-2/3 lg:h-full z-0 opacity-10 pointer-events-none flex items-center justify-center">
+          {/* A simple CSS architectural grid instead of a heavy image */}
+          <div className="w-full h-full relative" style={{ backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         </div>
       )}
 

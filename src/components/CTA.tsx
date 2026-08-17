@@ -70,18 +70,8 @@ export default function CTA() {
   return (
     <section id="contact" className="relative py-32 overflow-hidden bg-black text-white min-h-[85vh] flex items-center justify-center border-t border-border-dark/60">
       
-      {/* 3D Cosmic Swirl Background */}
-      <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen pointer-events-none">
-        <Image 
-          src="/images/cta_swirl.png" 
-          alt="Cosmic Swirl" 
-          fill 
-          className="object-cover object-center"
-        />
-      </div>
-
-      {/* Dark overlay for clean contrast */}
-      <div className="absolute inset-0 z-10 bg-linear-to-b from-black/50 via-transparent to-black/90 pointer-events-none" />
+      {/* Solid dark theme background for consistency */}
+      <div className="absolute inset-0 z-10 bg-bg-primary pointer-events-none" />
 
       {/* Content Layout */}
       <div className="section-container relative z-20 w-full grid lg:grid-cols-12 gap-16 items-center">
