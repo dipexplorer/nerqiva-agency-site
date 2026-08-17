@@ -250,37 +250,39 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </div>
 
         {/* Dynamic Contextual Navigation */}
-        <div className="border-t border-border/40 py-16 bg-bg-secondary/40 relative z-20">
-          <div className="section-container max-w-4xl">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
-              <Link 
-                href={`/work/${prevProject.slug}`} 
-                className="group flex flex-col items-start gap-1 text-left w-full sm:w-1/2"
-              >
-                <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
-                  ← Previous Project
-                </span>
-                <span className="font-sans font-bold text-lg text-text-secondary group-hover:text-accent transition-colors">
-                  {prevProject.name}
-                </span>
-              </Link>
+        {PROJECTS.length > 1 && (
+          <div className="border-t border-border/40 py-16 bg-bg-secondary/40 relative z-20">
+            <div className="section-container max-w-4xl">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
+                <Link 
+                  href={`/work/${prevProject.slug}`} 
+                  className="group flex flex-col items-start gap-1 text-left w-full sm:w-1/2"
+                >
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
+                    ← Previous Project
+                  </span>
+                  <span className="font-sans font-bold text-lg text-text-secondary group-hover:text-accent transition-colors">
+                    {prevProject.name}
+                  </span>
+                </Link>
 
-              <div className="h-[1px] w-full sm:h-12 sm:w-[1px] bg-border/40" />
+                <div className="h-[1px] w-full sm:h-12 sm:w-[1px] bg-border/40" />
 
-              <Link 
-                href={`/work/${nextProject.slug}`} 
-                className="group flex flex-col items-end gap-1 text-right w-full sm:w-1/2"
-              >
-                <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
-                  Next Project →
-                </span>
-                <span className="font-sans font-bold text-lg text-text-secondary group-hover:text-accent transition-colors">
-                  {nextProject.name}
-                </span>
-              </Link>
+                <Link 
+                  href={`/work/${nextProject.slug}`} 
+                  className="group flex flex-col items-end gap-1 text-right w-full sm:w-1/2"
+                >
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
+                    Next Project →
+                  </span>
+                  <span className="font-sans font-bold text-lg text-text-secondary group-hover:text-accent transition-colors">
+                    {nextProject.name}
+                  </span>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
