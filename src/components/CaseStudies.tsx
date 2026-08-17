@@ -46,29 +46,22 @@ export default function CaseStudies() {
               <div>
                 {/* Visual Header / Accent Gradient / Screenshot */}
                 {project.projectType === "demo" && project.demoUrl ? (
-                  <a 
-                    href={project.demoUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-full h-48 bg-gradient-to-br from-bg-secondary to-bg-primary relative overflow-hidden flex items-center justify-center border-b border-white/5 block"
+                  <div 
+                    className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-white/5"
                   >
-                    {project.gallery && project.gallery.length > 0 ? (
-                      <Image
-                        src={project.gallery[0]}
-                        alt={project.name}
-                        fill
-                        sizes="(max-w-768px) 100vw, 50vw"
-                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                        priority
-                      />
-                    ) : (
-                      <div className="absolute inset-0 opacity-15" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '16px 16px' }} />
-                    )}
-                    {/* Top Badge overlay */}
-                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs">
+                    <iframe
+                      src={project.demoUrl}
+                      title={`${project.name} Live Preview`}
+                      className="absolute inset-0 w-full h-full border-none bg-white"
+                      sandbox="allow-scripts allow-same-origin"
+                      loading="lazy"
+                    />
+                    
+                    {/* Top Badge overlay - disabled pointer events so it doesn't block iframe scrolling */}
+                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs pointer-events-none">
                       PROJECT_{project.number}
                     </div>
-                  </a>
+                  </div>
                 ) : (
                   <div className={`w-full h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
                     {/* Decorative Blueprint Graph Grid overlay */}
