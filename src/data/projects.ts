@@ -26,20 +26,20 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: "hennaartistry",
-    slug: "henna-artistry",
+    id: "krishavmehendi",
+    slug: "krishav-mehendi",
     number: "01",
-    name: "Henna Artistry",
+    name: "Krishav Mehendi",
     projectType: "demo",
     type: "Demo Theme",
     category: "Beauty & Bridal",
-    tagline: "Premium digital experience concept for bridal and traditional henna art studios.",
+    tagline: "Premium digital experience concept for bridal and traditional mehendi designers.",
     challenge: "Traditional beauty and boutique design services often lack digital presence, relying entirely on word-of-mouth or social media channels that don't capture the luxury and artistry of their work. High-end bridal clients expect a digital experience that reflects the same level of attention to detail and heritage as the service itself.",
-    whyItMattered: "A premium interface acts as a digital gallery and direct booking engine. By integrating fine interactive visual pathways, custom WebGL scenes, and WhatsApp reservation routing, Henna Artistry elevates local heritage artistry to a professional commercial grade.",
+    whyItMattered: "A premium interface acts as a digital gallery and direct booking engine. By integrating fine interactive visual pathways, custom WebGL scenes, and WhatsApp reservation routing, Krishav Mehendi elevates local heritage artistry to a professional commercial grade.",
     constraints: [
-      "Must render fast despite 3D WebGL centerpiece rendering",
-      "Mobile-first responsive booking form that auto-fills text fields",
-      "Client-friendly reservation loop utilizing WhatsApp click-to-chat protocols"
+      "Must operate on basic mobile networks (3G/low bandwidth)",
+      "Zero-trust validation of input data",
+      "Must scale to thousands of active queries during peak hours"
     ],
     approach: "We designed a dark-themed canvas featuring custom interactive particle layers and dynamic geometry drawing. By establishing clear visual grids for the art gallery and an integrated WhatsApp reservation form, the template serves as a complete booking tool.",
     architecture: "Next.js App Router using React Three Fiber for WebGL backdrop models, Tailwind CSS for modern layouts, and client-side validation triggers that compile custom WhatsApp reservation links on submission.",

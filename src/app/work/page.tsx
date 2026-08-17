@@ -114,45 +114,63 @@ export default function WorkPage() {
         <div className="section-container mb-32 max-w-5xl">
           {filteredProjects.length > 0 ? (
             <div className="flex flex-col gap-12">
-              {filteredProjects.map((project) => (
-                <Link 
-                  key={project.id}
-                  href={`/work/${project.slug}`}
-                  className="group relative glass-panel p-8 md:p-12 block overflow-hidden transition-all duration-300 hover:border-accent/40"
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                  
-                  <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-8">
-                    <div>
-                      {/* Meta information tags */}
-                      <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-[2px] font-bold border ${
-                          project.projectType === "demo"
-                            ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                            : "bg-accent/10 text-accent border-accent/20"
-                        }`}>
-                          {project.projectType === "demo" ? "DEMO THEME" : "CLIENT PROJECT"}
-                        </span>
-                        <span className="font-mono text-[9px] text-text-tertiary tracking-wider font-bold">
-                          {project.number} — {project.category}
-                        </span>
-                      </div>
-
-                      <h2 className="font-sans font-bold text-3xl text-text-primary mb-3 group-hover:text-accent transition-colors duration-200">
-                        {project.name}
-                      </h2>
-                      <p className="text-text-secondary max-w-lg leading-relaxed">
-                        {project.tagline}
-                      </p>
-                    </div>
+              {filteredProjects.map((project) => {
+                const CardContent = () => (
+                  <>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     
-                    <div className="flex items-center gap-3 md:mt-2 text-text-primary font-mono text-[10px] uppercase tracking-widest font-bold">
-                      Explore {project.projectType === "demo" ? "Theme" : "Study"}
-                      <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform duration-300 text-accent" />
+                    <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-8">
+                      <div>
+                        {/* Meta information tags */}
+                        <div className="flex flex-wrap items-center gap-3 mb-4">
+                          <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-[2px] font-bold border ${
+                            project.projectType === "demo"
+                              ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                              : "bg-accent/10 text-accent border-accent/20"
+                          }`}>
+                            {project.projectType === "demo" ? "DEMO THEME" : "CLIENT PROJECT"}
+                          </span>
+                          <span className="font-mono text-[9px] text-text-tertiary tracking-wider font-bold">
+                            {project.number} — {project.category}
+                          </span>
+                        </div>
+
+                        <h2 className="font-sans font-bold text-3xl text-text-primary mb-3 group-hover:text-accent transition-colors duration-200">
+                          {project.name}
+                        </h2>
+                        <p className="text-text-secondary max-w-lg leading-relaxed">
+                          {project.tagline}
+                        </p>
+                      </div>
+                      
+                      <div className="flex items-center gap-3 md:mt-2 text-text-primary font-mono text-[10px] uppercase tracking-widest font-bold">
+                        {project.projectType === "demo" ? "Live Preview" : "Explore Study"}
+                        <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform duration-300 text-accent" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ))}
+                  </>
+                );
+
+                return project.projectType === "demo" && project.demoUrl ? (
+                  <a
+                    key={project.id}
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative glass-panel p-8 md:p-12 block overflow-hidden transition-all duration-300 hover:border-accent/40"
+                  >
+                    <CardContent />
+                  </a>
+                ) : (
+                  <Link 
+                    key={project.id}
+                    href={`/work/${project.slug}`}
+                    className="group relative glass-panel p-8 md:p-12 block overflow-hidden transition-all duration-300 hover:border-accent/40"
+                  >
+                    <CardContent />
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             /* Elegant Empty State */
