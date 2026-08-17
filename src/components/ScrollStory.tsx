@@ -5,124 +5,220 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AnimatePresence, motion } from "framer-motion";
-import NerveWorld from "./NerveWorld";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useMediaQuery } from "../hooks/useMediaQuery";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+import { PROCESS_STEPS } from "../data/process";
+
+// Dynamically import the 3D Hero Scene with SSR disabled to prevent hydration errors
+const HeroScene = dynamic(() => import("./HeroScene"), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 z-0 flex items-center justify-center bg-bg-primary/20">
+      <div className="relative w-full aspect-square max-w-[500px] opacity-40">
+        <Image
+          src="/images/hero_island.png"
+          alt="Loading interactive scene..."
+          fill
+          className="object-contain animate-pulse-soft"
+          priority
+        />
+      </div>
+    </div>
+  ),
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATES = [
-  {
-    id: "discover",
-    label: "01 / DISCOVER",
-    title: "Understand the\nreal problem.",
-    body: "Before any solution, we need clarity on what's actually broken — and why.",
-  },
-  {
-    id: "define",
-    label: "02 / DEFINE",
-    title: "Find the\nright direction.",
-    body: "Strategy is choosing what to build — and what not to. We align on the approach before writing a line of code.",
-  },
-  {
-    id: "design",
-    label: "03 / DESIGN",
-    title: "Shape the\nexperience.",
-    body: "Design is how complex ideas become simple interactions. Every decision is made with the end user in mind.",
-  },
-  {
-    id: "build",
-    label: "04 / BUILD",
-    title: "Engineer\nthe system.",
-    body: "We build to production standards — clean architecture, tested code, and systems that scale beyond the first version.",
-  },
-  {
-    id: "launch",
-    label: "05 / LAUNCH",
-    title: "Deliver something\npeople can use.",
-    body: "A shipped product is worth infinitely more than a perfect concept. We move fast and deploy with confidence.",
-  },
-  {
-    id: "evolve",
-    label: "06 / EVOLVE",
-    title: "Improve.\nScale. Grow.",
-    body: "A launch is a beginning. We build systems designed to adapt, improve, and expand as your business grows.",
-  },
-];
-
 export default function ScrollStory() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const [currentState, setCurrentState] = useState(0);
+  const isMobile = useMediaQuery("(max-w: 768px)");
+  const prefersReducedMotion = useReducedMotion();
+  const [currentState, setCurrentState] = useState(0); // 0: Hero, 1-6: Process Steps
 
   useGSAP(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || isMobile || prefersReducedMotion) return;
 
+    // Pinning the hero section for the scroll story
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
-      end: "+=600%", // 600vh height
+      end: "+=500%", // 500vh scroll height
       pin: true,
-      scrub: 1,
+      scrub: 0.5,
       onUpdate: (self) => {
-        const stateIndex = Math.floor(self.progress * 5.99);
-        setCurrentState(stateIndex);
-      }
+        // Map progress (0 to 1) into 7 steps: 0 (Hero) to 6 (Evolve)
+        const progress = self.progress;
+        const totalStages = 7; // Hero + 6 stages
+        const stageIndex = Math.min(
+          totalStages - 1,
+          Math.floor(progress * totalStages * 0.99)
+        );
+        setCurrentState(stageIndex);
+      },
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [isMobile, prefersReducedMotion] });
 
-  return (
-    <div ref={containerRef} className="h-screen w-full relative bg-bg-primary overflow-hidden">
-      
-      {/* Background Canvas */}
-      <NerveWorld state={currentState} />
-
-      <div ref={stickyRef} className="absolute inset-0 z-10 flex flex-col justify-center section-container">
-        
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          
-          {/* Timeline Indicators */}
-          <div className="hidden md:flex flex-col gap-8">
-            {STATES.map((s, i) => (
-              <div 
-                key={s.id} 
-                className={`font-mono text-sm tracking-widest transition-colors duration-500 ${currentState === i ? 'text-accent font-bold' : 'text-text-tertiary'}`}
-              >
-                {s.label}
-              </div>
-            ))}
+  // Render Left Column Content based on the current state index
+  const renderTextContent = () => {
+    if (currentState === 0) {
+      // Initial Hero Display
+      return (
+        <motion.div
+          key="hero-content"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -15 }}
+          transition={{ duration: 0.4 }}
+          className="flex flex-col gap-6"
+        >
+          <div className="flex items-center gap-3">
+            <div className="h-px w-8 bg-accent" />
+            <span className="label-eyebrow text-accent">Digital Systems Studio</span>
           </div>
 
-          {/* Active State Content */}
-          <div className="relative h-64">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentState}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="absolute inset-0 flex flex-col justify-center"
-              >
-                <div className="flex items-center gap-3 mb-6 md:hidden">
-                  <span className="label-eyebrow text-accent">{STATES[currentState].label}</span>
+          <h1 className="font-sans font-extrabold text-text-primary leading-[1.05] tracking-tight" style={{ fontSize: "clamp(2.75rem, 5vw, 5.5rem)" }}>
+            Ideas.<br />
+            Engineered.<br />
+            <span className="text-accent">Impact.</span><br />
+            Delivered.
+          </h1>
+
+          <p className="text-text-secondary text-base md:text-lg leading-relaxed max-w-sm">
+            We turn complex problems into digital solutions that are <strong className="text-text-primary font-medium">simple, powerful, and scalable.</strong>
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4 mt-4">
+            <a
+              href="#contact"
+              className="px-8 py-4 bg-text-primary text-bg-primary font-mono text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-white transition-colors duration-300 rounded-sm"
+            >
+              Start a Project
+            </a>
+            <a
+              href="#work"
+              className="px-8 py-4 bg-transparent border border-border text-text-primary font-mono text-xs font-bold uppercase tracking-widest hover:border-text-primary transition-colors duration-300 rounded-sm"
+            >
+              Explore Work
+            </a>
+          </div>
+        </motion.div>
+      );
+    }
+
+    // Process States (1 to 6 mapped to discover -> evolve)
+    const currentStep = PROCESS_STEPS[currentState - 1];
+
+    return (
+      <motion.div
+        key={currentStep.id}
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -15 }}
+        transition={{ duration: 0.4 }}
+        className="flex flex-col justify-center"
+      >
+        <div className="flex items-center gap-3 mb-6">
+          <span className="label-eyebrow text-accent">
+            {currentStep.number} / {currentStep.title}
+          </span>
+        </div>
+
+        <h2 className="font-sans font-extrabold text-text-primary text-4xl md:text-5xl leading-[1.1] mb-6 tracking-tight">
+          {currentStep.tagline}
+        </h2>
+
+        <p className="text-text-secondary text-base leading-relaxed max-w-md mb-6">
+          {currentStep.description}
+        </p>
+
+        <ul className="grid grid-cols-2 gap-3">
+          {currentStep.details.map((detail, index) => (
+            <li key={index} className="flex items-center gap-2 text-xs font-mono text-text-secondary">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+              {detail}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
+    );
+  };
+
+  return (
+    <div ref={containerRef} className="relative min-h-screen w-full bg-bg-primary overflow-hidden">
+      
+      {/* 3D World Scene / Static Fallback Container */}
+      {!isMobile && !prefersReducedMotion ? (
+        <div className="absolute right-0 top-0 w-full lg:w-1/2 h-full z-0">
+          <HeroScene state={currentState} />
+        </div>
+      ) : (
+        // Mobile Layout / Reduced Motion Static Layout
+        <div className="absolute right-0 top-1/4 md:top-0 w-full lg:w-1/2 h-2/3 lg:h-full z-0 opacity-20 pointer-events-none flex items-center justify-center">
+          <div className="relative w-72 h-72 md:w-[450px] md:h-[450px]">
+            <Image
+              src="/images/hero_island.png"
+              alt="NERQIVA System Architecture Island"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Foreground Content Interface */}
+      <div className="relative z-10 w-full min-h-screen flex flex-col justify-center section-container pt-20 pb-16">
+        <div className="grid lg:grid-cols-[100px_1fr_1fr] gap-8 items-center h-full">
+          
+          {/* Vertical Progress Indicators (Hidden on mobile) */}
+          <div className="hidden lg:flex flex-col gap-6 text-text-tertiary font-mono text-xs font-semibold select-none">
+            <div 
+              onClick={() => isMobile ? null : window.scrollTo({ top: 0, behavior: "smooth" })}
+              className={`flex items-center gap-4 cursor-pointer transition-colors duration-300 ${
+                currentState === 0 ? "text-accent font-bold" : "hover:text-text-primary"
+              }`}
+            >
+              <span className={`w-1.5 h-1.5 rounded-full bg-accent transition-transform duration-300 ${
+                currentState === 0 ? "scale-120" : "scale-0"
+              }`} />
+              HERO
+            </div>
+            
+            {PROCESS_STEPS.map((step, idx) => {
+              const stepIndex = idx + 1;
+              const isActive = currentState === stepIndex;
+              return (
+                <div
+                  key={step.id}
+                  className={`flex items-center gap-4 transition-colors duration-300 ${
+                    isActive ? "text-accent font-bold" : "hover:text-text-primary"
+                  }`}
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full bg-accent transition-transform duration-300 ${
+                    isActive ? "scale-120" : "scale-0"
+                  }`} />
+                  {step.number} {step.id.toUpperCase()}
                 </div>
-                
-                <h2 className="font-sans font-extrabold text-text-primary text-5xl md:text-6xl leading-[1.1] mb-6 whitespace-pre-line tracking-tight">
-                  {STATES[currentState].title}
-                </h2>
-                
-                <p className="text-text-secondary text-lg leading-relaxed max-w-md">
-                  {STATES[currentState].body}
-                </p>
-              </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Dynamic Content Panel */}
+          <div className="col-span-1 lg:max-w-xl h-[420px] flex flex-col justify-center">
+            <AnimatePresence mode="wait">
+              {renderTextContent()}
             </AnimatePresence>
           </div>
 
+          {/* Empty right column on desktop to leave room for the 3D scene */}
+          <div className="hidden lg:block h-full" />
         </div>
-
       </div>
     </div>
   );

@@ -2,52 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const PROJECTS = [
-  {
-    id: "fintech",
-    number: "01",
-    name: "FINTECH OPS",
-    type: "Enterprise / Financial",
-    tagline: "Global settlement and predictive insights.",
-    challenge:
-      "A global financial institution needed to move from batch processing to real-time predictive operations. The system needed to process telemetry from multiple regional hubs and surface predictions before bottlenecks occurred.",
-    architecture:
-      "FastAPI backend with TimescaleDB for time-series data, Celery + Redis for async pipelines, and a high-performance Next.js dashboard for real-time visualization.",
-    engineering: [
-      "Real-time Websocket data streaming",
-      "Predictive machine learning models",
-      "TimescaleDB for high-throughput metrics",
-      "Next.js edge rendering",
-    ],
-    stack: ["Next.js", "FastAPI", "PostgreSQL", "Redis", "TimescaleDB", "Docker"],
-    gradient: "from-blue-600 to-indigo-900",
-    accentColor: "#3B82F6",
-  },
-  {
-    id: "healthtech",
-    number: "02",
-    name: "HEALTHYNC",
-    type: "Healthcare / ML",
-    tagline: "Secure medical data and diagnosis platform.",
-    challenge:
-      "A healthcare provider needed a secure, HIPAA-compliant system to unify patient records and provide ML-assisted diagnosis suggestions to doctors during consultations.",
-    architecture:
-      "Multi-modal ingestion layer feeding into a secure backend with semantic retrieval. Offline-first architecture ensures functionality even in low-connectivity hospital wings.",
-    engineering: [
-      "On-device inference for data privacy",
-      "Semantic medical record retrieval",
-      "Offline-first PWA architecture",
-      "End-to-end encryption",
-    ],
-    stack: ["Next.js", "Go", "PostgreSQL", "TensorFlow", "Redis"],
-    gradient: "from-teal-600 to-emerald-900",
-    accentColor: "#10B981",
-  }
-];
+import { PROJECTS } from "../data/projects";
 
 export default function CaseStudies() {
-  const [active, setActive] = useState(PROJECTS[0].id);
+  const [active, setActive] = useState(PROJECTS[0]?.id || "");
 
   return (
     <section id="work" className="py-24 bg-bg-primary border-t border-border/50">
@@ -59,7 +17,7 @@ export default function CaseStudies() {
             <div className="flex items-center gap-3 mb-6">
               <span className="label-eyebrow text-accent">CASE STUDIES</span>
             </div>
-            <h2 className="font-sans font-extrabold text-text-primary leading-[1.1]" style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}>
+            <h2 className="font-sans font-extrabold text-text-primary leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
               Engineering for <span className="text-accent">impact.</span>
             </h2>
           </div>
@@ -76,7 +34,7 @@ export default function CaseStudies() {
             return (
               <div 
                 key={project.id}
-                className={`border border-border/50 rounded-xl overflow-hidden transition-colors duration-500 ${isActive ? 'bg-bg-secondary' : 'bg-transparent hover:bg-white/5'}`}
+                className={`border border-border/50 rounded-sm overflow-hidden transition-colors duration-500 ${isActive ? 'bg-bg-secondary' : 'bg-transparent hover:bg-white/5'}`}
               >
                 {/* Header (Clickable) */}
                 <button 
@@ -115,7 +73,7 @@ export default function CaseStudies() {
                         
                         <div className="grid lg:grid-cols-2 gap-12 pt-8">
                           {/* Left: Visual / Abstract representation */}
-                          <div className={`w-full aspect-4/3 rounded-lg bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
+                          <div className={`w-full aspect-4/3 rounded-sm bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
                             {/* Abstract Tech Visual */}
                             <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
                             <div className="w-32 h-32 rounded-full border border-white/20 flex items-center justify-center">
