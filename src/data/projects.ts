@@ -26,16 +26,16 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: "krishavmehendi",
-    slug: "krishav-mehendi",
+    id: "hennaartistry",
+    slug: "henna-artistry",
     number: "01",
-    name: "Krishav Mehendi",
+    name: "Henna Artistry",
     projectType: "demo",
     type: "Demo Theme",
     category: "Beauty & Bridal",
-    tagline: "Premium digital experience concept for bridal and traditional mehendi designers.",
+    tagline: "Premium digital experience concept for bridal and traditional henna art studios.",
     challenge: "Traditional beauty and boutique design services often lack digital presence, relying entirely on word-of-mouth or social media channels that don't capture the luxury and artistry of their work. High-end bridal clients expect a digital experience that reflects the same level of attention to detail and heritage as the service itself.",
-    whyItMattered: "A premium interface acts as a digital gallery and direct booking engine. By integrating fine interactive visual pathways, custom WebGL scenes, and WhatsApp reservation routing, Krishav Mehendi elevates local heritage artistry to a professional commercial grade.",
+    whyItMattered: "A premium interface acts as a digital gallery and direct booking engine. By integrating fine interactive visual pathways, custom WebGL scenes, and WhatsApp reservation routing, Henna Artistry elevates local heritage artistry to a professional commercial grade.",
     constraints: [
       "Must render fast despite 3D WebGL centerpiece rendering",
       "Mobile-first responsive booking form that auto-fills text fields",
@@ -55,6 +55,7 @@ export const PROJECTS: Project[] = [
     gradient: "from-amber-600/10 to-emerald-600/10",
     accentColor: "bg-amber-600",
     featured: true,
+    demoUrl: "https://hennaart-nine.vercel.app/",
     gallery: [
       "/images/projects/krishav-mehendi/bridal.png",
       "/images/projects/krishav-mehendi/arabic.png",

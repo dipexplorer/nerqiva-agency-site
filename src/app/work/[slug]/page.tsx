@@ -66,21 +66,33 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <div className="section-container mb-32 max-w-5xl">
           {/* Demo Warning / Description Banner */}
           {project.projectType === "demo" && (
-            <div className="glass-panel p-6 border-amber-500/20 bg-amber-500/5 mb-16 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="glass-panel p-6 border-accent/20 bg-accent/5 mb-16 rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
-                <span className="font-mono text-[9px] uppercase tracking-wider text-amber-500 font-bold block mb-1">
+                <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-bold block mb-1">
                   NERQIVA DEMO THEME
                 </span>
                 <p className="text-xs text-text-secondary leading-relaxed max-w-xl">
-                  This is a conceptual digital experience created to demonstrate how a modern, premium online presence and scheduling system can be engineered for the <strong>{project.category}</strong> sector.
+                  This is a conceptual digital experience designed to showcase how a modern, premium web presence and reservation dashboard can be engineered for the <strong>{project.category}</strong> sector.
                 </p>
               </div>
-              <Link 
-                href="/contact" 
-                className="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded-sm transition-colors text-center shrink-0"
-              >
-                Deploy This Theme
-              </Link>
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                {project.demoUrl && (
+                  <a 
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2.5 bg-accent hover:bg-accent-mid text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded-sm transition-all shadow-md shadow-accent/10 text-center"
+                  >
+                    View Live Demo →
+                  </a>
+                )}
+                <Link 
+                  href="/contact" 
+                  className="px-4 py-2.5 border border-border/60 text-text-secondary hover:text-text-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded-sm transition-colors text-center"
+                >
+                  Request Deployment
+                </Link>
+              </div>
             </div>
           )}
 
