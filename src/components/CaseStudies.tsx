@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { PROJECTS } from "../data/projects";
 
 export default function CaseStudies() {
+  const featuredProjects = PROJECTS.filter((p) => p.featured);
+
   return (
     <section id="work" className="py-32 bg-transparent border-t border-white/5 bg-grid-dots">
       <div className="section-container">
@@ -28,7 +31,7 @@ export default function CaseStudies() {
 
         {/* Project Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-          {PROJECTS.map((project, i) => (
+          {featuredProjects.map((project, i) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 24 }}
@@ -60,14 +63,23 @@ export default function CaseStudies() {
 
                 {/* Content Block */}
                 <div className="p-8">
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <span className="font-mono text-[9px] text-accent uppercase tracking-widest font-semibold">
+                  <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                    <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-[2px] font-bold border ${
+                      project.projectType === "demo"
+                        ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                        : "bg-accent/10 text-accent border-accent/20"
+                    }`}>
+                      {project.projectType === "demo" ? "DEMO THEME" : "CLIENT PROJECT"}
+                    </span>
+                    <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest font-semibold">
                       {project.type}
                     </span>
                   </div>
 
                   <h3 className="font-sans font-extrabold text-2xl text-text-primary mb-3 group-hover:text-accent transition-colors duration-200">
-                    {project.name}
+                    <Link href={`/work/${project.slug}`}>
+                      {project.name}
+                    </Link>
                   </h3>
 
                   <p className="text-text-primary font-medium text-sm mb-4 leading-snug">

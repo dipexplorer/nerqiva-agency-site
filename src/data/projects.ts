@@ -3,7 +3,9 @@ export interface Project {
   slug: string;
   number: string;
   name: string;
+  projectType: "demo" | "client";
   type: string;
+  category: string;
   tagline: string;
   challenge: string;
   whyItMattered: string;
@@ -17,6 +19,9 @@ export interface Project {
   stack: string[];
   gradient: string;
   accentColor: string;
+  demoUrl?: string;
+  featured?: boolean;
+  gallery?: string[];
 }
 
 export const PROJECTS: Project[] = [
@@ -25,7 +30,9 @@ export const PROJECTS: Project[] = [
     slug: "sahidawa",
     number: "01",
     name: "SahiDawa",
+    projectType: "client",
     type: "Open-Source Verification Platform",
+    category: "Healthcare",
     tagline: "Medicine Authentication Network & Regional Database",
     challenge: "Counterfeit and sub-standard medicines pose a critical threat to citizens in developing regions. Verification systems need to be extremely high-speed, cost-effective for end-users, and robust enough to handle high volumes of simultaneous verification requests without falling offline.",
     whyItMattered: "Direct verification saves lives. By allowing citizens to instantly verify if a batch number, manufacturer, and packaging detail matches regional drug databases, SahiDawa establishes a layer of protection that bypassed legacy distribution blindspots.",
@@ -34,7 +41,7 @@ export const PROJECTS: Project[] = [
       "Zero-trust validation of input data",
       "Must scale to thousands of active queries during peak hours"
     ],
-    approach: "We designed a microservices network that splits query parsing from storage operations. To populate regional drug catalogs accurately, the project was launched open-source, accumulating massive development support through GSsoC.",
+    approach: "We designed a microservices network that splits query parsing from storage operations. To populate regional drug catalogs accurately, the project was launched open-source, accumulating massive development support through GSSoC.",
     architecture: "Ingestion queues process scanned barcodes, parsing them into format-neutral models. A PostgreSQL read-replica cluster speeds up lookups, while an automated CI/CD pipeline manages development contributions across hundreds of forks.",
     engineeringDecisions: [
       "Established strict type gates for multi-developer contributions",
@@ -47,13 +54,16 @@ export const PROJECTS: Project[] = [
     stack: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
     gradient: "from-blue-500/10 to-cyan-500/10",
     accentColor: "bg-blue-500",
+    featured: true,
   },
   {
     id: "acadence",
     slug: "acadence",
     number: "02",
     name: "Acadence",
+    projectType: "client",
     type: "Decision-Support Platform",
+    category: "Education",
     tagline: "Academic Attendance Decision-Support System",
     challenge: "Academic institutions struggled with fragmented attendance data, leading to delayed academic interventions and high student drop-out rates. Legacy software lacked predictive capability to identify at-risk students before their performance declined.",
     whyItMattered: "Early identification is the key to student retention. Acadence was built to aggregate biometric scanner logs and manual classroom checklists into a unified real-time analytics portal.",
@@ -75,13 +85,16 @@ export const PROJECTS: Project[] = [
     stack: ["React", "Express", "MongoDB", "Redis", "Framer Motion"],
     gradient: "from-purple-500/10 to-pink-500/10",
     accentColor: "bg-purple-500",
+    featured: true,
   },
   {
     id: "gridmind",
     slug: "gridmind",
     number: "03",
     name: "GridMind",
+    projectType: "client",
     type: "IoT Data Pipeline",
+    category: "IoT / Data",
     tagline: "Electrical Grid Telemetry & Anomaly Detection",
     challenge: "Electrical grid operators require instant telemetry updates on transformer temperatures and load values. Legacy systems relied on periodic polling, which was too slow to detect load surges, leading to expensive transformer burnouts.",
     whyItMattered: "Preventing hardware damage saves cities millions in infrastructure costs and avoids widespread blackouts.",
@@ -90,7 +103,7 @@ export const PROJECTS: Project[] = [
       "Zero network congestion over narrow grid channels",
       "Instantaneous alerts when thermal readings exceed safety levels"
     ],
-    approach: "We designed a lightweight WebSocket server that ingests sensor streams and writes them directly to a time-series database. An anomaly detection engine evaluates incoming telemetry on-the-fly.",
+    approach: "We designed a WebSocket server that ingests sensor streams and writes them directly to a time-series database. An anomaly detection engine evaluates incoming telemetry on-the-fly.",
     architecture: "Sensors stream payloads to a FastAPI socket server. Data is stored in InfluxDB, while a React dashboard polls the cache to display real-time grid metrics.",
     engineeringDecisions: [
       "Utilized time-series database optimized for telemetric queries",
@@ -103,13 +116,16 @@ export const PROJECTS: Project[] = [
     stack: ["Python", "FastAPI", "InfluxDB", "React", "WebSockets"],
     gradient: "from-emerald-500/10 to-teal-500/10",
     accentColor: "bg-emerald-500",
+    featured: true,
   },
   {
     id: "legalhub",
     slug: "legalhub",
     number: "04",
     name: "LegalHub",
+    projectType: "client",
     type: "Workflow Automation Portal",
+    category: "Professional Services",
     tagline: "Legal Document Processing & Contract Management",
     challenge: "UNKNOWN — AWAITING CLIENT VERIFICATION. (This is a place-holder case study until confirmation on the exact problem LegalHub solves is provided).",
     whyItMattered: "UNKNOWN — AWAITING CLIENT VERIFICATION. (Awaiting context on the workflow bottlenecks and business impact of the LegalHub portal).",
@@ -131,5 +147,43 @@ export const PROJECTS: Project[] = [
     stack: ["Next.js", "PostgreSQL", "Supabase", "TypeScript"],
     gradient: "from-amber-500/10 to-orange-500/10",
     accentColor: "bg-amber-500",
+    featured: false,
+  },
+  {
+    id: "krishavmehendi",
+    slug: "krishav-mehendi",
+    number: "05",
+    name: "Krishav Mehendi",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Beauty & Bridal",
+    tagline: "Premium digital experience concept for bridal and traditional mehendi designers.",
+    challenge: "Traditional beauty and boutique design services often lack digital presence, relying entirely on word-of-mouth or social media channels that don't capture the luxury and artistry of their work. High-end bridal clients expect a digital experience that reflects the same level of attention to detail and heritage as the service itself.",
+    whyItMattered: "A premium interface acts as a digital gallery and direct booking engine. By integrating fine interactive visual pathways, custom WebGL scenes, and WhatsApp reservation routing, Krishav Mehendi elevates local heritage artistry to a professional commercial grade.",
+    constraints: [
+      "Must render fast despite 3D WebGL centerpiece rendering",
+      "Mobile-first responsive booking form that auto-fills text fields",
+      "Client-friendly reservation loop utilizing WhatsApp click-to-chat protocols"
+    ],
+    approach: "We designed a dark-themed canvas featuring custom interactive particle layers and dynamic geometry drawing. By establishing clear visual grids for the art gallery and an integrated WhatsApp reservation form, the template serves as a complete booking tool.",
+    architecture: "Next.js App Router using React Three Fiber for WebGL backdrop models, Tailwind CSS for modern layouts, and client-side validation triggers that compile custom WhatsApp reservation links on submission.",
+    engineeringDecisions: [
+      "Used Three.js geometries for interactive canvas elements",
+      "Engineered an automated reservation compiler routing straight to client communication apps",
+      "Optimized image loading structures for massive high-resolution bridal catalogs"
+    ],
+    implementation: "Developed a functional theme including a live gallery filter system, custom dynamic inputs, interactive client reviews, and direct dialing assets designed to operate flawlessly on all devices.",
+    outcome: "Fully operational design system that can be deployed for regional boutiques in minutes, proving that local lifestyle businesses can benefit from premium custom web engineering.",
+    lessons: "Interactive 3D libraries must degrade gracefully. Devices lacking WebGL capability are served a clean static gradient background without impacting core navigation or booking features.",
+    stack: ["Next.js", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion"],
+    gradient: "from-amber-600/10 to-emerald-600/10",
+    accentColor: "bg-amber-600",
+    featured: true,
+    gallery: [
+      "/images/projects/krishav-mehendi/bridal.png",
+      "/images/projects/krishav-mehendi/arabic.png",
+      "/images/projects/krishav-mehendi/traditional.png",
+      "/images/projects/krishav-mehendi/minimal.png"
+    ]
   }
 ];
