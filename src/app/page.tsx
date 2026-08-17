@@ -1,6 +1,5 @@
 "use client";
 
-import SmoothScroll from "../components/SmoothScroll";
 import CustomCursor from "../components/CustomCursor";
 import Loader from "../components/Loader";
 import Navigation from "../components/Navigation";
@@ -20,7 +19,6 @@ export default function Home() {
   return (
     <>
       <Loader />
-      <SmoothScroll />
       <CustomCursor />
       <Navigation />
 
