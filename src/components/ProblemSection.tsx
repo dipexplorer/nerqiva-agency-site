@@ -138,28 +138,42 @@ export default function ProblemSection() {
             </motion.div>
           ))}
 
-          {/* CTA card */}
+          {/* Distinct Accent CTA card */}
           <motion.a
             href="#contact"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: PROBLEMS.length * 0.07 }}
-            className="relative rounded-sm border border-accent/30 bg-accent/5 p-6 flex flex-col justify-between group hover:bg-accent/10 transition-colors cursor-pointer"
+            className="relative rounded-sm border-2 border-dashed border-accent/60 bg-accent/5 p-6 flex flex-col justify-between group hover:bg-accent hover:border-accent shadow-[0_4px_24px_rgba(124,58,237,0.06)] hover:shadow-[0_8px_32px_rgba(124,58,237,0.15)] transition-all duration-300 cursor-pointer"
           >
             <div>
-              <div className="h-2 w-2 rounded-full bg-accent mb-4" style={{ boxShadow: "0 0 8px rgba(124,58,237,0.5)" }} />
-              <p className="font-sans font-semibold text-text-primary text-sm mb-2">
+              <div className="h-2 w-2 rounded-full bg-accent mb-4 group-hover:bg-white transition-colors" style={{ boxShadow: "0 0 8px rgba(124,58,237,0.5)" }} />
+              <p className="font-sans font-bold text-text-primary text-sm mb-2 group-hover:text-white transition-colors">
                 Something else?
               </p>
-              <p className="text-text-secondary text-xs leading-relaxed">
+              <p className="text-text-secondary text-xs leading-relaxed group-hover:text-white/80 transition-colors">
                 Every problem is unique. Tell us what you&apos;re dealing with.
               </p>
             </div>
-            <span className="mt-4 font-mono text-[10px] uppercase tracking-widest text-accent group-hover:gap-3 flex items-center gap-2 transition-all">
+            <span className="mt-4 font-mono text-[10px] uppercase tracking-widest text-accent group-hover:text-white group-hover:gap-3 flex items-center gap-2 transition-all">
               Talk to us <span className="transition-transform group-hover:translate-x-1">→</span>
             </span>
           </motion.a>
+        </div>
+
+        {/* Secondary CTA block */}
+        <div className="mt-16 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <p className="text-text-secondary text-sm font-mono uppercase tracking-wider">
+            Not sure what category your problem fits in?
+          </p>
+          <a
+            href="#contact"
+            className="group flex items-center gap-2 text-sm font-bold text-accent hover:text-accent-mid transition-colors"
+          >
+            Request a free discovery call
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </a>
         </div>
       </div>
     </section>

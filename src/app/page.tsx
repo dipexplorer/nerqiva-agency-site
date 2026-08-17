@@ -1,9 +1,8 @@
 "use client";
 
-import CustomCursor from "../components/CustomCursor";
 import Loader from "../components/Loader";
 import Navigation from "../components/Navigation";
-import ScrollStory from "../components/ScrollStory";
+import Hero from "../components/Hero";
 import ProblemSection from "../components/ProblemSection";
 import SolutionBuilder from "../components/SolutionBuilder";
 import Solutions from "../components/Solutions";
@@ -19,11 +18,10 @@ export default function Home() {
   return (
     <>
       <Loader />
-      <CustomCursor />
       <Navigation />
 
       <main className="bg-bg-primary text-text-primary selection:bg-accent/30 overflow-hidden">
-        <ScrollStory />
+        <Hero />
         <ProblemSection />
         <SolutionBuilder />
         <Solutions />

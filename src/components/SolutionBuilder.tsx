@@ -83,10 +83,10 @@ export default function SolutionBuilder() {
             <button
               key={opt.id}
               onClick={() => setSelected(selected === opt.id ? null : opt.id)}
-              className={`px-5 py-2.5 rounded-sm font-mono text-[11px] font-semibold uppercase tracking-widest transition-all duration-250 border ${
+              className={`group flex items-center gap-2 px-5 py-2.5 rounded-sm font-mono text-[11px] font-semibold uppercase tracking-widest transition-all duration-200 border cursor-pointer ${
                 selected === opt.id
                   ? "bg-accent text-white border-accent shadow-lg"
-                  : "bg-white text-text-secondary border-border hover:border-accent/30 hover:text-text-primary hover:bg-white"
+                  : "bg-white text-text-secondary border-border hover:border-accent/40 hover:text-accent hover:bg-bg-primary"
               }`}
               style={
                 selected === opt.id
@@ -94,7 +94,10 @@ export default function SolutionBuilder() {
                   : {}
               }
             >
-              {opt.label}
+              <span>{opt.label}</span>
+              <span className={`transition-transform duration-200 text-[10px] ${selected === opt.id ? 'rotate-180 text-white' : 'text-text-tertiary group-hover:text-accent'}`}>
+                ▼
+              </span>
             </button>
           ))}
         </div>
@@ -172,6 +175,20 @@ export default function SolutionBuilder() {
             </p>
           </div>
         )}
+
+        {/* Secondary CTA block */}
+        <div className="mt-16 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <p className="text-text-secondary text-sm font-mono uppercase tracking-wider">
+            Need a complex multi-platform system?
+          </p>
+          <a
+            href="#contact"
+            className="group flex items-center gap-2 text-sm font-bold text-accent hover:text-accent-mid transition-colors"
+          >
+            Configure custom stack options
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );

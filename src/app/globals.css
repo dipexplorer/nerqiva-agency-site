@@ -15,7 +15,7 @@
 
   /* Typography */
   --text-primary: #0C0C10;
-  --text-secondary: #6B6878;
+  --text-secondary: #524F5F;
   --text-tertiary: #9C99AB;
   --text-inverted: #F7F6F3;
 
@@ -48,7 +48,7 @@
 
   /* Text */
   --color-text-primary: #0C0C10;
-  --color-text-secondary: #6B6878;
+  --color-text-secondary: #524F5F;
   --color-text-tertiary: #9C99AB;
   --color-text-inverted: #F7F6F3;
 
@@ -107,20 +107,6 @@ body {
   background: var(--accent);
 }
 
-/* ============================================
-   Custom Cursor
-   ============================================ */
-@media (min-width: 1024px) {
-  .custom-cursor-active,
-  .custom-cursor-active a,
-  .custom-cursor-active button,
-  .custom-cursor-active input,
-  .custom-cursor-active select,
-  .custom-cursor-active textarea,
-  .custom-cursor-active [role="button"] {
-    cursor: none !important;
-  }
-}
 
 /* ============================================
    Selection
