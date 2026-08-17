@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+/* ============================================
+   NERQIVA — Design System v2
+   Light palette | Purple accent
+   ============================================ */
+
+:root {
+  /* Background */
+  --bg-primary: #F7F6F3;
+  --bg-secondary: #EFEDE8;
+  --bg-card: #FFFFFF;
+  --bg-dark: #0C0C10;
+  --bg-dark-card: #141418;
+
+  /* Typography */
+  --text-primary: #0C0C10;
+  --text-secondary: #6B6878;
+  --text-tertiary: #9C99AB;
+  --text-inverted: #F7F6F3;
+
+  /* Accent */
+  --accent: #7C3AED;
+  --accent-light: #A78BFA;
+  --accent-mid: #8B5CF6;
+  --accent-glow: rgba(124, 58, 237, 0.15);
+  --accent-glow-soft: rgba(139, 92, 246, 0.08);
+
+  /* Borders */
+  --border: #E5E3DE;
+  --border-dark: #272730;
+
+  /* Semantic */
+  --foreground: var(--text-primary);
+  --background: var(--bg-primary);
+}
+
+/* ============================================
+   Tailwind Theme Extension
+   ============================================ */
+@theme {
+  /* Backgrounds */
+  --color-bg-primary: #F7F6F3;
+  --color-bg-secondary: #EFEDE8;
+  --color-bg-card: #FFFFFF;
+  --color-bg-dark: #0C0C10;
+  --color-bg-dark-card: #141418;
+
+  /* Text */
+  --color-text-primary: #0C0C10;
+  --color-text-secondary: #6B6878;
+  --color-text-tertiary: #9C99AB;
+  --color-text-inverted: #F7F6F3;
+
+  /* Accent */
+  --color-accent: #7C3AED;
+  --color-accent-light: #A78BFA;
+  --color-accent-mid: #8B5CF6;
+
+  /* Borders */
+  --color-border: #E5E3DE;
+  --color-border-dark: #272730;
+
+  /* Fonts */
+  --font-sans: var(--font-jakarta), sans-serif;
+  --font-mono: var(--font-space-grotesk), monospace;
+}
+
+/* ============================================
+   Base Reset
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Custom Scrollbar
+   ============================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4C0D8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+@media (min-width: 1024px) {
+  .custom-cursor-active,
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active input,
+  .custom-cursor-active select,
+  .custom-cursor-active textarea,
+  .custom-cursor-active [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* ============================================
+   Selection
+   ============================================ */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+@keyframes float-up {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes float-down {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.animate-float-up { animation: float-up 5s ease-in-out infinite; }
+.animate-float-down { animation: float-down 6s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.7s ease forwards; }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Frosted glass (light) */
+.glass-light {
+  background: rgba(247, 246, 243, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* Frosted glass (dark) */
+.glass-dark {
+  background: rgba(12, 12, 16, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Purple accent glow */
+.glow-accent {
+  box-shadow: 0 0 40px 0 rgba(124, 58, 237, 0.2);
+}
+
+/* Eyebrow label style */
+.label-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Gradient text purple */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section max width */
+.section-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
