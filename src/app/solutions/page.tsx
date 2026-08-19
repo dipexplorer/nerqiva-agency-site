@@ -13,7 +13,7 @@ const SOLUTIONS_DETAIL = [
     problem: "Many highly competent firms are passed over because their websites look outdated, load slowly, or fail to clearly articulate what problems they solve. If a visitor cannot trust your website, they will not trust you with their operations.",
     whenItMakesSense: "When you are losing opportunities to less competent competitors who have cleaner marketing, or when your current website is a template that doesn't convey your actual capabilities.",
     whatWeBuild: "High-performance, custom-coded Next.js marketing websites. We write precise copy, design responsive layouts that establish trust, and optimize for perfect Core Web Vitals scores.",
-    engagement: "1-2 weeks discovery and positioning audit, followed by 2-3 weeks design and development.",
+    engagement: "1-2 days discovery and positioning audit, followed by 3-5 days design and development.",
     expectations: "A blistering-fast website that clearly explains your business and drives qualified leads to your contact form.",
     gradient: "from-blue-500/5 to-cyan-500/5",
   },

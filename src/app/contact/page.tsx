@@ -75,7 +75,7 @@ export default function ContactPage() {
       const body = encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\nBusiness: ${formData.business || "Not provided"}\n\nProblem Statement:\n${formData.problem}\n\nProposed Solution:\n${formData.goal}\n\nCurrent Situation / Stack:\n${formData.situation || "Not provided"}\n\nBudget: ${formData.budget}\nTimeline: ${formData.timeline}\n\nAdditional Context:\n${formData.context || "Not provided"}`
       );
-      window.location.href = `mailto:contact@nerqiva.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:nerqiva.studio@gmail.com?subject=${subject}&body=${body}`;
 
       await new Promise((resolve) => setTimeout(resolve, 800));
       setStatus("success");
@@ -91,7 +91,7 @@ export default function ContactPage() {
         context: "",
       });
     } catch {
-      setErrorMessage("Something went wrong. Please try again or email us directly at contact@nerqiva.com.");
+      setErrorMessage("Something went wrong. Please try again or email us directly at nerqiva.studio@gmail.com.");
       setStatus("error");
     }
   };

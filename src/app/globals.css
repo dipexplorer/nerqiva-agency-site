@@ -16,7 +16,7 @@
   /* Typography (Apple Charcoal / Slate) */
   --text-primary: #1D1D1F;
   --text-secondary: #86868B;
-  --text-tertiary: #A1A1A6;
+  --text-tertiary: #76767B;
   --text-inverted: #F7F6F3;
 
   /* Accent (Apple Purple / Indigo) */
@@ -45,7 +45,7 @@
 
   --text-primary: #F7F6F3;
   --text-secondary: #9C99AB;
-  --text-tertiary: #524F5F;
+  --text-tertiary: #868399;
   --text-inverted: #1D1D1F;
 
   --accent-glow: rgba(124, 58, 237, 0.15);
@@ -294,4 +294,15 @@ body {
   html {
     scroll-behavior: auto;
   }
+}
+
+/* ============================================
+   Keyboard Navigation Accessibility Focus
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }

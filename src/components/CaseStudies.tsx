@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import { PROJECTS } from "../data/projects";
 
 export default function CaseStudies() {
   const featuredProjects = PROJECTS.filter((p) => p.featured);
+  const [activeIframeId, setActiveIframeId] = useState<string | null>(null);
 
   return (
     <section id="work" className="py-32 bg-transparent border-t border-white/5 bg-grid-dots">
@@ -42,6 +44,7 @@ export default function CaseStudies() {
               transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="group relative glass-panel overflow-hidden flex flex-col justify-between hover:border-accent/60 hover:shadow-[0_12px_32px_rgba(124,58,237,0.12)] transition-all duration-300"
               style={{ borderRadius: "4px" }}
+              onMouseLeave={() => setActiveIframeId(null)}
             >
               <div>
                 {/* Visual Header / Accent Gradient / Screenshot */}
@@ -52,13 +55,27 @@ export default function CaseStudies() {
                     <iframe
                       src={project.demoUrl}
                       title={`${project.name} Live Preview`}
-                      className="absolute inset-0 w-full h-full border-none bg-white"
+                      className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
+                        activeIframeId === project.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-90"
+                      }`}
                       sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                       loading="lazy"
                     />
                     
+                    {activeIframeId !== project.id && (
+                      <div 
+                        onClick={() => setActiveIframeId(project.id)}
+                        className="absolute inset-0 bg-black/45 backdrop-blur-xs flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/35 z-20 group/overlay"
+                      >
+                        <div className="bg-bg-primary/95 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-border-dark shadow-xl group-hover/overlay:scale-105 transition-transform duration-200" style={{ borderRadius: '3px' }}>
+                          <span className="md:inline hidden">Click to Interact / Scroll</span>
+                          <span className="inline md:hidden">Tap to Interact / Scroll</span>
+                        </div>
+                      </div>
+                    )}
+                    
                     {/* Top Badge overlay - disabled pointer events so it doesn't block iframe scrolling */}
-                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs pointer-events-none">
+                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs pointer-events-none z-30">
                       PROJECT_{project.number}
                     </div>
                   </div>
