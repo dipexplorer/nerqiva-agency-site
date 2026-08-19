@@ -92,7 +92,7 @@ export default function Process() {
             {/* Stepper Content Stack */}
             <div className="flex flex-col gap-8 relative">
               {/* Vertical connector line overlay */}
-              <div className="absolute top-10 bottom-10 left-[23px] w-[1px] bg-border/40 hidden sm:block z-0" />
+              <div className="absolute top-10 bottom-10 left-[23px] w-px bg-border/40 hidden sm:block z-0" />
 
               {PROCESS_STEPS.map((phase) => {
                 const isActive = activeStep === phase.id;

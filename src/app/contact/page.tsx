@@ -248,7 +248,7 @@ export default function ContactPage() {
                             onClick={() => handleSelectBottleneck(b.value)}
                             className={`p-5 text-left border rounded transition-all cursor-pointer group flex flex-col justify-between ${
                               formData.goal === b.value
-                                ? "border-accent bg-accent/[0.02]"
+                                ? "border-accent bg-accent/2"
                                 : "border-border/50 bg-bg-secondary/40 hover:border-accent/40"
                             }`}
                             style={{ borderRadius: "4px" }}
@@ -296,7 +296,7 @@ export default function ContactPage() {
                             onClick={() => handleSelectTimeline(t.value)}
                             className={`p-5 text-left border rounded transition-all cursor-pointer flex items-center justify-between group ${
                               formData.timeline === t.value
-                                ? "border-accent bg-accent/[0.02]"
+                                ? "border-accent bg-accent/2"
                                 : "border-border/50 bg-bg-secondary/40 hover:border-accent/40"
                             }`}
                             style={{ borderRadius: "4px" }}

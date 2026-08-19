@@ -80,7 +80,7 @@ export default function Hero() {
               <span className="label-eyebrow">
                 Digital Systems Studio
               </span>
-              <div className="h-[1px] w-12 bg-accent/30" />
+              <div className="h-px w-12 bg-accent/30" />
             </motion.div>
 
             {/* Headline */}

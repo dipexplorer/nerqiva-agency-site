@@ -79,7 +79,7 @@ export default function SolutionsPage() {
               <div 
                 key={sol.id} 
                 id={sol.id}
-                className={`glass-panel p-8 md:p-12 relative overflow-hidden bg-gradient-to-br ${sol.gradient}`}
+                className={`glass-panel p-8 md:p-12 relative overflow-hidden bg-linear-to-br ${sol.gradient}`}
                 style={{ borderRadius: "4px" }}
               >
                 <div className="relative z-10 grid md:grid-cols-12 gap-8 lg:gap-12">

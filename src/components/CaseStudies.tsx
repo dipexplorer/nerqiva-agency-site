@@ -80,7 +80,7 @@ export default function CaseStudies() {
                     </div>
                   </div>
                 ) : (
-                  <div className={`w-full h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
+                  <div className={`w-full h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
                     {/* Decorative Blueprint Graph Grid overlay */}
                     <div className="absolute inset-0 opacity-15 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '16px 16px' }} />
                     

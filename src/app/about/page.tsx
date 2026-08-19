@@ -86,7 +86,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-4 flex justify-center md:justify-start">
               {/* Founder Avatar Mockup / Graphic */}
-              <div className="w-40 h-40 bg-gradient-to-br from-accent/20 to-accent-light/10 border border-accent/20 flex flex-col items-center justify-center p-4 relative" style={{ borderRadius: "4px" }}>
+              <div className="w-40 h-40 bg-linear-to-br from-accent/20 to-accent-light/10 border border-accent/20 flex flex-col items-center justify-center p-4 relative" style={{ borderRadius: "4px" }}>
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '12px 12px' }} />
                 <span className="font-mono text-[48px] font-extrabold text-accent select-none">DJ</span>
                 <span className="font-mono text-[9px] uppercase tracking-wider text-text-secondary mt-1">Dip Jyoti</span>
