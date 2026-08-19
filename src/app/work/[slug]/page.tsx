@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, MessageSquare } from "lucide-react";
 import { PROJECTS } from "../../../data/projects";
@@ -7,6 +8,32 @@ export function generateStaticParams() {
   return PROJECTS.map((project) => ({
     slug: project.slug,
   }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const project = PROJECTS.find((p) => p.slug === params.slug);
+  
+  if (!project) {
+    return {
+      title: "Project Not Found | NERQIVA Studio",
+    };
+  }
+  
+  return {
+    title: `${project.name} | NERQIVA Studio Case Study`,
+    description: project.tagline,
+    openGraph: {
+      title: `${project.name} | NERQIVA Studio Case Study`,
+      description: project.tagline,
+      images: project.gallery && project.gallery.length > 0 ? [{ url: project.gallery[0] }] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} | NERQIVA Studio Case Study`,
+      description: project.tagline,
+      images: project.gallery && project.gallery.length > 0 ? [project.gallery[0]] : [],
+    },
+  };
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {

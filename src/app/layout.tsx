@@ -15,43 +15,60 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "NERQIVA — Digital Systems, Web & AI Solutions",
+  title: "NERQIVA Studio | Premium Web Engineering & Digital Growth Systems",
   description:
-    "We build digital systems, web applications, and AI integrations that make complicated things easier to use. Engineering credibility, clarity, and conversion.",
+    "NERQIVA is a specialized digital systems studio. We engineer high-converting web applications, automate operational workflows, and build premium digital experiences that turn traffic into qualified leads.",
   keywords: [
     "Digital Systems Studio",
     "Web Application Development",
-    "AI Integration",
-    "Next.js Developer",
-    "Full-Stack Engineer",
-    "Automation",
-    "Custom Web Apps",
-    "React",
-    "FastAPI",
+    "High Converting Website Design",
+    "Workflow Automation Agency",
+    "Next.js Development Agency",
+    "Custom Web Systems",
+    "Business Process Automation",
+    "Lead Generation Websites",
+    "Software Development Firm",
+    "UI/UX Design Studio"
   ],
-  authors: [{ name: "NERQIVA" }],
-  metadataBase: new URL("https://nerqiva.com"),
+  authors: [{ name: "NERQIVA Studio" }],
+  metadataBase: new URL("https://nerqiva.vercel.app"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "NERQIVA — Digital Systems, Web & AI Solutions",
+    title: "NERQIVA Studio | Premium Web Engineering & Digital Growth Systems",
     description:
-      "We build digital systems, web applications, and AI integrations that make complicated things easier to use.",
+      "We engineer high-converting web applications and automate operational workflows. Accelerate your business growth with our premium digital experiences.",
     type: "website",
     locale: "en_US",
-    url: "https://nerqiva.com",
-    siteName: "NERQIVA",
+    url: "https://nerqiva.vercel.app",
+    siteName: "NERQIVA Studio",
+    images: [
+      {
+        url: "/icon.png",
+        width: 800,
+        height: 800,
+        alt: "NERQIVA Studio Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NERQIVA — Digital Systems, Web & AI Solutions",
+    title: "NERQIVA Studio | Premium Web Engineering",
     description:
-      "We build digital systems, web applications, and AI integrations that make complicated things easier to use.",
+      "We engineer high-converting web applications and automate operational workflows. Turn traffic into qualified leads.",
+    images: ["/icon.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

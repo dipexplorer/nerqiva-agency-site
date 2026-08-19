@@ -53,7 +53,7 @@ export default function CaseStudies() {
                       src={project.demoUrl}
                       title={`${project.name} Live Preview`}
                       className="absolute inset-0 w-full h-full border-none bg-white"
-                      sandbox="allow-scripts allow-same-origin"
+                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                       loading="lazy"
                     />
                     
