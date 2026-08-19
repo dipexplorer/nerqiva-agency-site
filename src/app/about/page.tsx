@@ -80,6 +80,34 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+
+        {/* Meet the Founder Section */}
+        <div className="section-container mb-32 max-w-4xl border-t border-border/40 pt-16">
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-4 flex justify-center md:justify-start">
+              {/* Founder Avatar Mockup / Graphic */}
+              <div className="w-40 h-40 bg-gradient-to-br from-accent/20 to-accent-light/10 border border-accent/20 flex flex-col items-center justify-center p-4 relative" style={{ borderRadius: "4px" }}>
+                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '12px 12px' }} />
+                <span className="font-mono text-[48px] font-extrabold text-accent select-none">DJ</span>
+                <span className="font-mono text-[9px] uppercase tracking-wider text-text-secondary mt-1">Dip Jyoti</span>
+              </div>
+            </div>
+            <div className="md:col-span-8 space-y-4 text-center md:text-left">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-bold">
+                [Founder & Architect]
+              </span>
+              <h2 className="font-sans font-bold text-2xl text-text-primary">
+                Dip Jyoti
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                As the Lead Systems Architect and Founder of Nerqiva, I build digital systems focused on operational efficiency. I specialize in designing scalable full-stack web applications, secure APIs, and custom workflow automations. 
+              </p>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                We stay deliberately small so you work directly with the engineer writing your system—no layers of account managers, no miscommunication, just clean code built to resolve your operational bottlenecks.
+              </p>
+            </div>
+          </div>
+        </div>
         
         {/* Reuse the existing Trust/WhyUs component here */}
         <WhyUs />
