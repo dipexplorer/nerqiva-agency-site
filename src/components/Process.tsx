@@ -122,9 +122,16 @@ export default function Process() {
                         <h3 className="font-sans font-bold text-xl text-text-primary">
                           {phase.title}
                         </h3>
-                        <span className="font-mono text-[9px] text-accent uppercase tracking-widest font-bold">
-                          [{phase.tagline}]
-                        </span>
+                        <div className="flex gap-2 items-center">
+                          <span className="font-mono text-[9px] text-accent uppercase tracking-widest font-bold">
+                            [{phase.tagline}]
+                          </span>
+                          {phase.timeframe && (
+                            <span className="font-mono text-[8px] text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-1.5 py-0.5 rounded-[2px] uppercase tracking-widest font-bold">
+                              ⏱ {phase.timeframe}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       <p className="text-text-secondary text-sm leading-relaxed mb-4 max-w-xl">

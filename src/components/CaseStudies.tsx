@@ -18,15 +18,15 @@ export default function CaseStudies() {
           <div className="md:col-span-6">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-8 bg-accent" />
-              <span className="label-eyebrow text-accent">SELECTED WORK</span>
+              <span className="label-eyebrow text-accent">OUR CAPABILITIES</span>
             </div>
             <h2 className="font-sans font-extrabold text-text-primary leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
-              Engineering for <span className="text-accent">impact.</span>
+              Featured <span className="text-accent">Implementations.</span>
             </h2>
           </div>
           <div className="md:col-span-6 flex items-end">
             <p className="text-text-secondary text-base leading-relaxed max-w-md">
-              We don&apos;t just build interfaces. We engineer reliable systems that solve complex backend, database, and integration challenges.
+              This is a featured live design concept illustrating a base version. We customize and scale this with advanced functionality tailored exactly to your business.
             </p>
           </div>
         </div>

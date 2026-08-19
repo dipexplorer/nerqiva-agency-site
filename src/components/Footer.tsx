@@ -98,7 +98,7 @@ export default function Footer() {
                 <LinkedInIcon size={16} />
               </a>
               <a 
-                href="mailto:contact@nerqiva.com"
+                href="mailto:nerqiva.studio@gmail.com"
                 className="hover:text-accent transition-colors"
                 aria-label="Email"
               >
@@ -170,11 +170,22 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-4">
               <a
-                href="mailto:contact@nerqiva.com"
+                href="mailto:nerqiva.studio@gmail.com"
                 className="font-sans text-sm font-medium text-text-primary hover:text-accent transition-colors duration-200 flex items-center gap-2 group"
               >
                 <Mail size={14} className="text-accent shrink-0 group-hover:scale-110 transition-transform" />
-                contact@nerqiva.com
+                nerqiva.studio@gmail.com
+              </a>
+              <div className="font-sans text-sm font-medium text-text-secondary">
+                +91 87249 32985
+              </div>
+              <a
+                href="https://nerqiva.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-sm font-medium text-text-secondary hover:text-accent transition-colors duration-200"
+              >
+                nerqiva.vercel.app
               </a>
               <div className="flex items-center gap-2.5 mt-1">
                 <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />

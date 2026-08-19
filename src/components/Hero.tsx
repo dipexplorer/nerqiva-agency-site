@@ -8,35 +8,35 @@ const HERO_CASES = {
   website: {
     label: "Digital Presence",
     problem: "Website not converting traffic",
-    efficiency: "Leaks up to 40% of potential leads",
+    efficiency: "Losing potential clients every day",
     issues: [
-      "Mobile checkout layout is broken at 375px",
-      "Page load is 4.2s (violates Core Web Vitals)",
-      "Main Call-to-Action is hidden below the fold"
+      "Visitors get confused and leave quickly",
+      "Pages take too long to load on mobile phones",
+      "No clear way for customers to contact you"
     ],
-    outcome: "Conversion-first custom rebuild"
+    outcome: "A high-converting, professional website"
   },
   workflow: {
     label: "Repetitive Tasks",
-    problem: "6+ hours/week spent syncing CRM data",
-    efficiency: "Prone to transcription errors",
+    problem: "Hours wasted on manual data entry",
+    efficiency: "Prone to human errors and delays",
     issues: [
-      "Leads manually copied from forms to spreadsheet",
-      "No automated welcome or follow-up sequence",
-      "Team waste time checking tools instead of selling"
+      "Copy-pasting leads from forms to spreadsheets",
+      "No automatic welcome emails for new clients",
+      "Team wastes time on admin instead of selling"
     ],
-    outcome: "Automated API & spreadsheet pipeline"
+    outcome: "Automated workflow that saves 10+ hours a week"
   },
   data: {
     label: "Siloed Systems",
-    problem: "No unified business metrics",
-    efficiency: "Decisions based on outdated reports",
+    problem: "Data is scattered everywhere",
+    efficiency: "Business decisions based on guesswork",
     issues: [
-      "Payment records detached from user database",
-      "Usage analytics not feeding marketing tools",
-      "Manual exports needed for weekly meetings"
+      "Payment records don't match customer details",
+      "Marketing tools are completely disconnected",
+      "Manual reports needed for every weekly meeting"
     ],
-    outcome: "Unified PostgreSQL database pipeline"
+    outcome: "Centralized Data System that eliminates manual entry"
   }
 };
 
@@ -138,7 +138,7 @@ export default function Hero() {
           {/* Right Column: Dynamic Opportunity Diagnosis Visualizer */}
           <div className="lg:col-span-5 w-full flex flex-col">
             <div className="mb-4 flex gap-2 font-mono text-[9px] uppercase tracking-wider text-text-tertiary select-none">
-              <span>{"// Diagnose a system state:"}</span>
+              <span>{"// Select your business bottleneck:"}</span>
             </div>
 
             {/* Interactive Selectors */}
@@ -169,7 +169,7 @@ export default function Hero() {
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="font-mono text-[8px] font-bold text-text-secondary tracking-widest">
-                    SYSTEM_DIAGNOSTIC // ON_LINE
+                    SYSTEM_ANALYSIS // ACTIVE
                   </span>
                 </div>
                 <div className="flex gap-1.5">
