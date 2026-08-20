@@ -8,20 +8,20 @@ export default function AboutPage() {
   return (
     <>
       <Head>
-        <title>About Nerqiva | NERQIVA</title>
+        <title>About NERQIVA | NERQIVA</title>
       </Head>
       <div className="pt-32 relative z-20">
         <div className="section-container mb-24 max-w-4xl">
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px w-8 bg-accent/40" />
-            <span className="label-eyebrow">About Nerqiva</span>
+            <span className="label-eyebrow">About NERQIVA</span>
           </div>
           <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
             We believe technology should earn its complexity.
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
-            Nerqiva is an independent technology studio. We work with businesses to solve their most tedious, bottlenecked operational challenges through custom software engineering.
+            NERQIVA is an independent technology studio. We work with businesses to solve their most tedious, bottlenecked operational challenges through custom software engineering.
           </p>
         </div>
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
                   Small, founder-led, and hyper-focused.
                 </h3>
                 <p className="text-text-secondary text-base leading-relaxed">
-                  We don&apos;t maintain large sales teams or layers of corporate project managers. When you build with Nerqiva, you work directly with engineers who are responsible for the code, design, and deployment of your system. This allows us to move fast, avoid miscommunications, and build exactly what your business requires.
+                  We don&apos;t maintain large sales teams or layers of corporate project managers. When you build with NERQIVA, you work directly with engineers who are responsible for the code, design, and deployment of your system. This allows us to move fast, avoid miscommunications, and build exactly what your business requires.
                 </p>
               </section>
             </div>
@@ -100,7 +100,7 @@ export default function AboutPage() {
                 Dip Jyoti
               </h2>
               <p className="text-text-secondary text-sm leading-relaxed">
-                As the Lead Systems Architect and Founder of Nerqiva, I build digital systems focused on operational efficiency. I specialize in designing scalable full-stack web applications, secure APIs, and custom workflow automations. 
+                As the Lead Systems Architect and Founder of NERQIVA, I build digital systems focused on operational efficiency. I specialize in designing scalable full-stack web applications, secure APIs, and custom workflow automations. 
               </p>
               <p className="text-text-secondary text-sm leading-relaxed">
                 We stay deliberately small so you work directly with the engineer writing your system—no layers of account managers, no miscommunication, just clean code built to resolve your operational bottlenecks.

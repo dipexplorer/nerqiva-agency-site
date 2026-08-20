@@ -233,7 +233,7 @@ export default function ProblemSection() {
                         <RefreshCw size={12} className="text-accent mt-0.5 shrink-0" />
                         <div>
                           <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-0.5">
-                            Nerqiva Resolution
+                            NERQIVA Resolution
                           </span>
                           <span className="text-xs font-semibold text-text-primary">
                             {activeProblem.resolution}

@@ -18,7 +18,7 @@ const PRIVACY_SECTIONS = [
     code: "SECURITY_ENCRYPTION",
     title: "Zero-Trust Data Protection",
     icon: Shield,
-    body: "Operational security is baked into our infrastructure. Any project brief submitted to Nerqiva is immediately encapsulated and stored securely. We enforce strict role-based access control, ensuring that your system constraints and architecture ideas are only visible to the active engineering team assigned to evaluate your brief. We do not sell, license, or share your proprietary challenges with external agencies or sales vendors.",
+    body: "Operational security is baked into our infrastructure. Any project brief submitted to NERQIVA is immediately encapsulated and stored securely. We enforce strict role-based access control, ensuring that your system constraints and architecture ideas are only visible to the active engineering team assigned to evaluate your brief. We do not sell, license, or share your proprietary challenges with external agencies or sales vendors.",
   },
   {
     number: "03",

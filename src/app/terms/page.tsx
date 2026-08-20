@@ -18,14 +18,14 @@ const TERMS_SECTIONS = [
     code: "CODE_REPOS_OWNERSHIP",
     title: "Bilateral Code Ownership",
     icon: Code,
-    body: "Unless specified otherwise in a custom Statement of Work, all original source code, API pipelines, custom database schemas, configurations, and interface layouts engineered by Nerqiva will be fully transferred to the client upon receipt of final project payments. Nerqiva retains no licensing hooks, proprietary locks, or runtime restrictions on your shipped systems.",
+    body: "Unless specified otherwise in a custom Statement of Work, all original source code, API pipelines, custom database schemas, configurations, and interface layouts engineered by NERQIVA will be fully transferred to the client upon receipt of final project payments. NERQIVA retains no licensing hooks, proprietary locks, or runtime restrictions on your shipped systems.",
   },
   {
     number: "03",
     code: "LIABILITY_LIMITS",
     title: "Infrastructure Liability Limits",
     icon: AlertTriangle,
-    body: "Nerqiva builds systems to highly rigorous, type-safe production standards. However, we do not claim liability for runtime outages caused by external infrastructure APIs or third-party hosting partners (such as Vercel, Supabase, AWS, or Stripe). Risk mitigation is achieved through automated fallback pipelines and operational error tracking.",
+    body: "NERQIVA builds systems to highly rigorous, type-safe production standards. However, we do not claim liability for runtime outages caused by external infrastructure APIs or third-party hosting partners (such as Vercel, Supabase, AWS, or Stripe). Risk mitigation is achieved through automated fallback pipelines and operational error tracking.",
   }
 ];
 
