@@ -94,5 +94,69 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-red-600",
     featured: true,
     demoUrl: "https://bridalnerqiva.vercel.app/"
+  },
+  {
+    id: "elenastyles",
+    slug: "elena-styles",
+    number: "03",
+    name: "Elena Styles",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Luxury Bridal",
+    tagline: "Personal luxury artistry portfolio with editorial print aesthetics.",
+    challenge: "High-fashion bridal artists need a digital presence that feels like a luxury magazine catalog rather than a standard booking page.",
+    whyItMattered: "By rejecting dark charcoal aesthetics in favor of a warm cream and espresso-based palette, we created an interface that conveys femininity, professional trust, and premium bridal artistry.",
+    constraints: [
+      "Must feature an interactive before-after comparison slider",
+      "Editorial typography must scale flawlessly on mobile",
+      "Warm cream aesthetic must maintain high accessibility contrast"
+    ],
+    approach: "Designed a 50/50 editorial split with Vogue-style typography, integrating a custom WhatsApp lead generation system and masonry image layouts.",
+    architecture: "Built on Next.js with Tailwind CSS, utilizing high-performance image optimization for full-bleed editorial photography.",
+    engineeringDecisions: [
+      "Engineered an interactive before/after component for makeup transformation reveals",
+      "Implemented a custom cream/espresso design system from scratch",
+      "Built a seamless single-page application structure for instant navigation"
+    ],
+    implementation: "Developed a functional theme with a live gallery, custom dynamic inputs, interactive client reviews, and direct dialing assets.",
+    outcome: "A stunning, magazine-quality digital portfolio that instantly positions the artist as a premium, high-ticket service provider.",
+    lessons: "Light-themed luxury sites require meticulous attention to font-weights and letter-spacing to maintain the high-end editorial feel.",
+    stack: ["Next.js", "React", "Tailwind CSS"],
+    gradient: "from-[#F5F2EB]/10 to-[#EAE5D9]/10",
+    accentColor: "bg-[#2A2320]",
+    featured: true,
+    demoUrl: "https://aura-beauty-theme.vercel.app/"
+  },
+  {
+    id: "mayabennett",
+    slug: "maya-bennett",
+    number: "04",
+    name: "Maya Bennett",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Studio & Academy",
+    tagline: "Modern beauty studio and academy booking platform.",
+    challenge: "Beauty academies struggle to balance dual objectives: booking individual bridal clients while simultaneously registering students for makeup courses.",
+    whyItMattered: "We engineered a dual-funnel digital platform that seamlessly routes bridal inquiries and academy student registrations into organized WhatsApp flows.",
+    constraints: [
+      "Must clearly separate studio services from academy courses",
+      "High performance on 3G mobile networks",
+      "Trust-building through integrated testimonials"
+    ],
+    approach: "Developed a highly structured interface that uses clear visual hierarchy to guide users to either the 'Studio' or 'Academy' funnels.",
+    architecture: "Next.js architecture with optimized static generation to ensure instant load times and zero layout shift.",
+    engineeringDecisions: [
+      "Built independent contextual forms for different service types",
+      "Integrated a floating WhatsApp contact system for instant support",
+      "Designed a dedicated course curriculum visualization component"
+    ],
+    implementation: "Created a full-stack static site with dedicated sections for portfolio galleries, academy curriculum, and automated booking.",
+    outcome: "A professional, trustworthy digital storefront that actively generates dual revenue streams (services + courses).",
+    lessons: "When serving two distinct user personas on one site, aggressive visual separation in the hero section dramatically improves conversion rates.",
+    stack: ["Next.js", "React", "Tailwind CSS"],
+    gradient: "from-rose-500/10 to-pink-500/10",
+    accentColor: "bg-rose-500",
+    featured: true,
+    demoUrl: "https://bridalnerqiva2.vercel.app/"
   }
 ];
