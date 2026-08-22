@@ -86,12 +86,32 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "NERQIVA Studio",
+    "url": "https://nerqiva.vercel.app",
+    "logo": "https://nerqiva.vercel.app/icon.png",
+    "description": "We engineer high-converting web applications, automate operational workflows, and build premium digital experiences.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    },
+    "priceRange": "$$"
+  };
+
   return (
     <html
       lang="en"
       className={`${jakarta.variable} ${spaceGrotesk.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
         <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           <Loader />

@@ -50,6 +50,7 @@ export default function ContactPage() {
     budget: "",
     timeline: "",
     context: "",
+    dpdpConsent: false,
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -144,6 +145,7 @@ export default function ContactPage() {
       budget: "",
       timeline: "",
       context: "",
+      dpdpConsent: false,
     });
     setStatus("idle");
     setStep(1);
@@ -466,10 +468,28 @@ export default function ContactPage() {
                       </div>
 
                       <form onSubmit={handleSubmitBrief}>
+                        <div className="mb-5 flex items-start gap-3 bg-bg-primary p-4 border border-border/40 rounded">
+                          <input
+                            type="checkbox"
+                            id="dpdpConsent"
+                            name="dpdpConsent"
+                            checked={formData.dpdpConsent}
+                            onChange={(e) => setFormData(prev => ({ ...prev, dpdpConsent: e.target.checked }))}
+                            className="mt-0.5 h-4 w-4 rounded border-border-dark text-accent focus:ring-accent cursor-pointer shrink-0"
+                          />
+                          <label htmlFor="dpdpConsent" className="text-[11px] text-text-secondary leading-snug cursor-pointer select-none">
+                            I consent to NERQIVA processing my personal data in accordance with the <a href="/privacy" target="_blank" className="text-accent font-semibold hover:underline">Privacy Policy</a> to handle my project inquiry. I understand I have the right to request deletion of this data at any time.
+                          </label>
+                        </div>
+
                         <button
                           type="submit"
-                          disabled={status === "loading"}
-                          className="w-full py-4 bg-emerald-500 text-white font-mono text-[11px] font-bold uppercase tracking-widest hover:bg-emerald-600 transition-colors duration-200 rounded flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-emerald-500/10"
+                          disabled={status === "loading" || !formData.dpdpConsent}
+                          className={`w-full py-4 font-mono text-[11px] font-bold uppercase tracking-widest transition-all duration-200 rounded flex items-center justify-center gap-2 shadow-lg ${
+                            status === "loading" || !formData.dpdpConsent
+                              ? "bg-bg-secondary border border-border/40 text-text-tertiary cursor-not-allowed"
+                              : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-emerald-500/10 cursor-pointer"
+                          }`}
                         >
                           {status === "loading" ? (
                             <>

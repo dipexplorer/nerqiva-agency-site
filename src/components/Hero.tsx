@@ -69,42 +69,36 @@ export default function Hero() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Column: Typographic Positioning */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="lg:col-span-7 flex flex-col"
-          >
+          <div className="lg:col-span-7 flex flex-col">
             {/* Eyebrow Label */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
+            <div className="animate-fade-in-up flex items-center gap-3 mb-6" style={{ animationFillMode: "both" }}>
               <span className="label-eyebrow">
                 Digital Systems Studio
               </span>
               <div className="h-px w-12 bg-accent/30" />
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <motion.h1
-              variants={itemVariants}
-              className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight mb-6"
+            <h1
+              className="animate-fade-in-up font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight mb-6"
               style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)", letterSpacing: "-0.03em" }}
             >
               We don&apos;t start with technology.<br />
               We start with the <span className="text-accent">problem.</span>
-            </motion.h1>
+            </h1>
 
             {/* Description */}
-            <motion.p
-              variants={itemVariants}
-              className="text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-10 font-normal"
+            <p
+              className="animate-fade-in-up text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-10 font-normal"
+              style={{ animationDelay: "150ms", animationFillMode: "both" }}
             >
               We design and build custom web applications, integrations, and automated workflows engineered to resolve your specific business bottlenecks. No bloated packages. No generic templates. Just clean, performant systems.
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12"
+            <div
+              className="animate-fade-in-up flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12"
+              style={{ animationDelay: "300ms", animationFillMode: "both" }}
             >
               <a
                 href="#contact"
@@ -123,17 +117,17 @@ export default function Hero() {
                 <span>See our methodology</span>
                 <span className="transition-transform group-hover:translate-y-0.5">↓</span>
               </a>
-            </motion.div>
+            </div>
 
             {/* Trust Signal */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-2.5 font-mono text-[9px] uppercase tracking-widest text-text-tertiary"
+            <div
+              className="animate-fade-in-up flex items-center gap-2.5 font-mono text-[9px] uppercase tracking-widest text-text-tertiary"
+              style={{ animationDelay: "450ms", animationFillMode: "both" }}
             >
               <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span>Available for studio engagement</span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right Column: Dynamic Opportunity Diagnosis Visualizer */}
           <div className="lg:col-span-5 w-full flex flex-col">
@@ -180,7 +174,7 @@ export default function Hero() {
               </div>
 
               {/* Body */}
-              <div className="p-6">
+              <div className="p-6 min-h-[340px]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeCase}
