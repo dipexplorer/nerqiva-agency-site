@@ -70,6 +70,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "phmVP2MVbts7XXuRlp0fUVjDy3BAiGJY8nY5ShtauOM",
+  },
 };
 
 import { ThemeProvider } from "../components/ThemeProvider";
