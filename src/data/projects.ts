@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     gradient: "from-amber-600/10 to-emerald-600/10",
     accentColor: "bg-amber-600",
     featured: true,
-    demoUrl: "https://hennaart-nine.vercel.app/",
+    demoUrl: "https://aura-beauty-theme.vercel.app",
     gallery: [
       "/images/projects/aura-beauty/bridal.png",
       "/images/projects/aura-beauty/arabic.png",
@@ -93,6 +93,6 @@ export const PROJECTS: Project[] = [
     gradient: "from-red-600/10 to-[#0a0a0a]/10",
     accentColor: "bg-red-600",
     featured: true,
-    demoUrl: "https://bridalnerqiva.vercel.app/"
+    demoUrl: "https://luxe-bridal-theme.vercel.app"
   }
 ];
