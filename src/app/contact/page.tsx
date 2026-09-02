@@ -33,8 +33,8 @@ const BOTTLENECKS = [
 ];
 
 const TIMELINES = [
-  { id: "immediate", label: "Immediate (Under 1 week)", value: "immediate" },
-  { id: "medium", label: "Standard (1 - 3 weeks)", value: "medium" },
+  { id: "immediate", label: "⚡ Express 24-Hour Launch (1 Day)", value: "24_hours" },
+  { id: "medium", label: "Standard (2 - 3 Days)", value: "2_3_days" },
   { id: "flexible", label: "Flexible timeline", value: "flexible" }
 ];
 

@@ -8,86 +8,50 @@ const PROBLEMS = [
   {
     id: "presence",
     label: "Outdated Digital Presence",
-    detail: "Looks functional. Leaks potential customers because it fails to reflect your standard of execution.",
-    cost: "Lost authority, low conversion, and weak brand differentiation.",
+    detail: "Your current site looks old or broken on phones, failing to reflect the premium quality of your real business.",
+    cost: "Lost credibility and potential customers leaving for competitors.",
     investigate: [
-      "Messaging alignment with actual capabilities",
-      "Visual authority & typographic hierarchy",
-      "Responsive accessibility & touch targets"
+      "Mobile layout & touch button sizing",
+      "Clear value messaging for new clients",
+      "Fast 1-second page load optimization"
     ],
-    resolution: "Modern clean-code redesign built on Next.js."
+    resolution: "Modern high-converting web design built for results."
   },
   {
     id: "journey",
-    label: "Confusing User Journey",
-    detail: "Visitors arrive but cannot instantly comprehend what you solve or why they should take action.",
-    cost: "High bounce rates, brief session times, and zero lead flow.",
+    label: "Confusing User Experience",
+    detail: "Visitors land on your page but leave immediately because they cannot find prices, services, or contact details.",
+    cost: "High bounce rates, wasted ad spend, and zero incoming calls.",
     investigate: [
-      "Headline readability & clear value metrics",
-      "Information path & cognitive scroll fatigue",
-      "Friction in initial onboarding steps"
+      "Headlines that explain your offer in 3 seconds",
+      "Clean visual structure and readable fonts",
+      "Prominent 1-click WhatsApp & Call buttons"
     ],
-    resolution: "Guided user paths & clear landing page structures."
+    resolution: "Guided customer flow with instant action buttons."
   },
   {
     id: "mobile",
     label: "Poor Mobile Experience",
-    detail: "More than 60% of search traffic is mobile. A laggy mobile design is a broken business funnel.",
-    cost: "Incomplete checkout forms, abandoned carts, and zoom errors.",
+    detail: "Over 80% of your customers visit from mobile phones. A slow or laggy mobile layout kills conversions.",
+    cost: "Lost customer calls, unclickable buttons, and zoom glitches.",
     investigate: [
-      "Tap target padding & button hit ranges",
-      "Dynamic keyboard input zoom behaviors (Safari/Chrome)",
-      "Core Web Vitals mobile layout shift (CLS)"
+      "Large, tap-friendly buttons for easy tapping",
+      "No auto-zooming glitches when typing in forms",
+      "Ultra-fast loading on mobile network connections"
     ],
-    resolution: "Responsive-first layouts designed for 375px+ screens."
+    resolution: "Mobile-first responsive layout tailored for all phones."
   },
   {
     id: "manual",
-    label: "Manual Workflows",
-    detail: "Your team spends hours copying, formatting, and double-checking records across software systems.",
-    cost: "High transcription error rates and wasted internal payroll.",
+    label: "Manual Customer Follow-ups",
+    detail: "Your team wastes hours copy-pasting customer details, sending manual replies, or losing track of leads.",
+    cost: "Delayed responses to hot leads and wasted admin time.",
     investigate: [
-      "Repetitive copy-paste task identification",
-      "API availability between tools in your stack",
-      "Database schema synchronization friction"
+      "Instant lead notification sent to your WhatsApp",
+      "Automatic welcome replies for new customer enquiries",
+      "Zero manual data entry required"
     ],
-    resolution: "Custom API pipelines & automated background scripts."
-  },
-  {
-    id: "disconnected",
-    label: "Siloed Software Tools",
-    detail: "Forms do not feed your CRM. CRM does not trigger marketing alerts. Decisions are split.",
-    cost: "Fragmented database records, delayed follow-ups, and customer friction.",
-    investigate: [
-      "Webhooks & real-time messaging structures",
-      "Data formatting mismatches between systems",
-      "Security token lifecycles & webhook retries"
-    ],
-    resolution: "Robust middleware logic & real-time webhooks."
-  },
-  {
-    id: "slow",
-    label: "Laggy Data Sync",
-    detail: "Decisions rely on weekly exports or manually compiled spreadsheets rather than real-time data.",
-    cost: "Blind spots in metrics and delayed operational adjustments.",
-    investigate: [
-      "Database query bottlenecks and slow indexes",
-      "Cron-job execution latency & background queues",
-      "Batch pipeline caching & schema structure"
-    ],
-    resolution: "PostgreSQL read optimization, caching, & Redis queues."
-  },
-  {
-    id: "conversion",
-    label: "Weak Conversion Funnels",
-    detail: "Traffic exists but does not convert. The path from initial interest to qualified enquiry is broken.",
-    cost: "Wasted marketing spend and high acquisition costs.",
-    investigate: [
-      "Form length complexity & placeholder utility",
-      "CTA prominence, contrast, and layout placing",
-      "Immediate auto-responses on enquiry receipt"
-    ],
-    resolution: "Streamlined low-friction inputs & telemetry monitoring."
+    resolution: "Automated lead delivery directly to WhatsApp & Email."
   }
 ];
 
@@ -167,12 +131,12 @@ export default function ProblemSection() {
               <div className="px-6 py-4 bg-bg-secondary border-b border-border/40 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Activity size={12} className="text-accent animate-pulse" />
-                  <span className="font-mono text-[9px] font-bold text-text-secondary tracking-widest">
-                    SYSTEM_ANALYSIS // BOTTLENECK_0{PROBLEMS.indexOf(activeProblem) + 1}
+                  <span className="font-mono text-[8px] font-bold text-emerald-500 tracking-widest">
+                    CLIENT CASE BREAKDOWN • ANALYSIS 0{PROBLEMS.indexOf(activeProblem) + 1}
                   </span>
                 </div>
                 <div className="font-mono text-[8px] text-text-tertiary">
-                  ID: {activeProblem.id.toUpperCase()}
+                  CATEGORY: {activeProblem.label.toUpperCase()}
                 </div>
               </div>
 

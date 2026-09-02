@@ -2,52 +2,52 @@
 
 import Head from "next/head";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ClosingSection from "../../components/ClosingSection";
 
 const SOLUTIONS_DETAIL = [
   {
-    id: "presence",
-    title: "Digital Presence & Positioning",
-    subtitle: "For businesses whose digital presence fails to match their technical credibility.",
-    problem: "Many highly competent firms are passed over because their websites look outdated, load slowly, or fail to clearly articulate what problems they solve. If a visitor cannot trust your website, they will not trust you with their operations.",
-    whenItMakesSense: "When you are losing opportunities to less competent competitors who have cleaner marketing, or when your current website is a template that doesn't convey your actual capabilities.",
-    whatWeBuild: "High-performance, custom-coded Next.js marketing websites. We write precise copy, design responsive layouts that establish trust, and optimize for perfect Core Web Vitals scores.",
-    engagement: "1-2 days discovery and positioning audit, followed by 3-5 days design and development.",
-    expectations: "A blistering-fast website that clearly explains your business and drives qualified leads to your contact form.",
+    id: "website",
+    title: "High-Converting Business Websites",
+    subtitle: "For local businesses whose current website looks outdated or fails to get leads.",
+    problem: "Many customers pass over great local salons, studios, or clinics because their websites load slowly or look unprofessional on mobile. If visitors don't trust your site, they won't call you.",
+    whenItMakesSense: "When you want a premium website that builds instant trust, looks stunning on phones, and highlights your work without costing a fortune.",
+    whatWeBuild: "Ultra-fast, mobile-optimized business websites. We write clear text, display high-resolution photo galleries, and add 1-click contact buttons.",
+    engagement: "Choose a demo theme today, share your photos & text, and go live in 24 Hours!",
+    expectations: "A blistering-fast website that impresses your clients and drives inquiries directly to your phone.",
     gradient: "from-blue-500/5 to-cyan-500/5",
   },
   {
-    id: "automation",
-    title: "Workflow Automation Systems",
-    subtitle: "For organizations losing hours daily to manual copy-paste work.",
-    problem: "When your CRM, invoicing tool, database, and calendar do not communicate, humans become the integrations. This leads to slow execution times, data entry errors, and operations that cannot scale.",
-    whenItMakesSense: "When your team spends more than an hour a day copying details from one dashboard to another, or when customer notifications are delayed due to manual steps.",
-    whatWeBuild: "Custom integrations, API connections, background worker processes, and automated triggers. We connect your tools (Supabase, Stripe, Slack, CRMs) to run operations on autopilot.",
-    engagement: "Operational workflow mapping, API spec definition, fail-safe testing, and rollout.",
-    expectations: "Repetitive tasks run in seconds behind the scenes, with detailed error tracking and zero human effort.",
-    gradient: "from-purple-500/5 to-pink-500/5",
-  },
-  {
-    id: "webapps",
-    title: "Custom Web Applications",
-    subtitle: "For internal operations or customer portals that off-the-shelf software cannot solve.",
-    problem: "Using generic spreadsheets or complex enterprise software to run custom operations is like fitting a square peg in a round hole. You either compromise on your process or pay for features you never use.",
-    whenItMakesSense: "When you need a secure client portal, an internal dashboard, or a relational database utility that matches your exact business rules.",
-    whatWeBuild: "Secure, database-backed web portals. We design clear relational database schemas, write secure API endpoints, configure role-based access control, and build clean dashboards.",
-    engagement: "Detailed user requirements spec, schema blueprinting, incremental sprints, UAT, and launch.",
-    expectations: "A secure, scalable web app that works exactly how your business operates, with full mobile compatibility.",
+    id: "whatsapp",
+    title: "Instant WhatsApp Lead Flow",
+    subtitle: "For businesses who want instant inquiries without complicated email forms.",
+    problem: "Customers on mobile phones don't like filling out long contact forms and waiting 2 days for a reply. They want quick answers on WhatsApp.",
+    whenItMakesSense: "When you want every website visitor to easily contact you on WhatsApp with 1 tap, automatically sending their service request.",
+    whatWeBuild: "Smart WhatsApp integration buttons with pre-filled inquiry messages so customers can book appointments or ask prices instantly.",
+    engagement: "Configured and connected to your WhatsApp number in under 2 hours.",
+    expectations: "Instant customer messages delivered directly to your phone while they are browsing your website.",
     gradient: "from-emerald-500/5 to-teal-500/5",
   },
   {
-    id: "data",
-    title: "Data Pipelines & Telemetry",
-    subtitle: "For companies dealing with fragmented, slow, or raw sensor telemetry.",
-    problem: "Raw data is useless if it is trapped in local logs or polls too slowly. Legacy data pipelines lock up under high concurrency, making real-time monitoring and anomaly detection impossible.",
-    whenItMakesSense: "When you need to ingest telemetry from IoT sensors, biometric scanners, or remote databases and display it instantly on a real-time monitor.",
-    whatWeBuild: "High-throughput data pipelines, WebSocket streamers, and custom analytics dashboards. We handle ingestion, database indexing, and build fast visualization tools.",
-    engagement: "Ingestion capacity planning, telemetry sync tests, dashboard design, scaling audit.",
-    expectations: "Sub-second updates from sensor to screen, zero database locking, and instant anomaly alerts.",
+    id: "local-seo",
+    title: "Google Maps & Local Search Setup",
+    subtitle: "For stores and local services wanting to get found by nearby customers.",
+    problem: "When people in your city search 'best salon near me' or 'wedding photographer in town', if your Google listing and website aren't linked, you lose business to competitors.",
+    whenItMakesSense: "When you want to dominate local search results in your city and make it easy for clients to find your location.",
+    whatWeBuild: "Integrated Google Maps widgets, click-to-call phone buttons, customer review highlights, and local SEO tag setup.",
+    engagement: "Included standard with every website launch.",
+    expectations: "Higher local visibility, easy directions for clients, and more direct phone calls.",
+    gradient: "from-purple-500/5 to-pink-500/5",
+  },
+  {
+    id: "custom-portals",
+    title: "Custom Client Portals & Schedulers",
+    subtitle: "For businesses needing online appointment booking or client photo galleries.",
+    problem: "Managing client bookings, sending photo previews manually, or tracking customer invoices via chat messages wastes hours of your day.",
+    whenItMakesSense: "When you need a clean online portal for clients to view their photos, book appointment slots, or pay invoices online.",
+    whatWeBuild: "Simple, easy-to-use customer portals, online scheduling tools, and private photo gallery review pages.",
+    engagement: "Built and tailored to your exact business workflow in 1-2 days.",
+    expectations: "Saved admin hours every day with automated client booking and file previews.",
     gradient: "from-amber-500/5 to-orange-500/5",
   }
 ];
@@ -56,20 +56,20 @@ export default function SolutionsPage() {
   return (
     <>
       <Head>
-        <title>Capabilities & Solutions | NERQIVA</title>
+        <title>Services & Solutions | NERQIVA</title>
       </Head>
       <div className="pt-32 relative z-20">
         <div className="section-container mb-24 max-w-4xl">
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px w-8 bg-accent/40" />
-            <span className="label-eyebrow">Solutions</span>
+            <span className="label-eyebrow">OUR SERVICES</span>
           </div>
           <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
-            Systems engineered to solve operational bottlenecks.
+            High-converting websites built to grow your business.
           </h1>
-          <p className="text-text-secondary text-lg leading-relaxed max-w-2xl">
-            We don&apos;t build technology for its own sake. We design, code, and deploy custom systems built to solve specific business problems.
+          <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
+            We build simple, fast, and stunning websites for local business owners. Delivered live in **24 Hours** with zero technical headache.
           </p>
         </div>
 
@@ -120,16 +120,16 @@ export default function SolutionsPage() {
 
                       <div>
                         <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                          The Engagement
+                          Delivery Speed
                         </h4>
-                        <p className="text-xs text-text-secondary leading-relaxed">
-                          {sol.engagement}
+                        <p className="text-xs text-emerald-400 font-semibold leading-relaxed">
+                          ⚡ {sol.engagement}
                         </p>
                       </div>
 
                       <div>
                         <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                          Client Expectation
+                          Your Result
                         </h4>
                         <p className="text-xs text-text-secondary leading-relaxed">
                           {sol.expectations}
@@ -138,11 +138,11 @@ export default function SolutionsPage() {
                     </div>
 
                     <Link
-                      href={`/contact?problem=${sol.id}`}
+                      href={`/contact?service=${sol.id}`}
                       className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15"
                       style={{ borderRadius: "4px" }}
                     >
-                      Discuss this problem
+                      Get Started in 24 Hours
                       <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>

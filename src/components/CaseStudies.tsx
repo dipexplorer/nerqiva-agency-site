@@ -100,7 +100,7 @@ export default function CaseStudies() {
                 )}
 
               {/* Content Block */}
-              <div className="p-8">
+              <div className="p-8 pb-0">
                 <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
                   <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-[2px] font-bold border ${
                     project.projectType === "demo"
@@ -126,14 +126,16 @@ export default function CaseStudies() {
                   )}
                 </h3>
 
-                <p className="text-text-secondary text-sm leading-relaxed mb-6 font-light">
+                <p className="text-text-secondary text-sm leading-relaxed mb-6 font-light line-clamp-2">
                   {project.tagline}
                 </p>
+              </div>
 
-                {/* Minimal Action Footer */}
-                <div className="mt-8 flex items-center justify-between border-t border-white/5 pt-6">
+              {/* Minimal Action Footer */}
+              <div className="px-8 pb-8">
+                <div className="flex items-center justify-between border-t border-white/5 pt-6">
                   <span className="font-mono text-[8px] text-text-tertiary uppercase tracking-wider font-semibold">
-                    [DEMO_ENVIRONMENT]
+                    100% MOBILE OPTIMIZED
                   </span>
                   {project.projectType === "demo" && project.demoUrl ? (
                     <a 
@@ -157,18 +159,6 @@ export default function CaseStudies() {
                 </div>
               </div>
             </div>
-
-              {/* Stack Tags */}
-              <div className="px-8 pb-8 pt-0 border-t border-white/5 mt-auto flex flex-wrap gap-1.5">
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2.5 py-1 rounded-[2px] glass-panel border-none font-mono text-[8px] text-text-secondary uppercase select-none"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </motion.div>
           ))}
         </div>

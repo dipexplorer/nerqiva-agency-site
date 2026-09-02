@@ -7,36 +7,36 @@ import { ArrowRight, Sparkles, Check } from "lucide-react";
 const HERO_CASES = {
   website: {
     label: "Digital Presence",
-    problem: "Website not converting traffic",
-    efficiency: "Losing potential clients every day",
+    problem: "Website not bringing in clients",
+    efficiency: "Losing potential customers every day",
     issues: [
       "Visitors get confused and leave quickly",
       "Pages take too long to load on mobile phones",
-      "No clear way for customers to contact you"
+      "No direct WhatsApp booking or call button"
     ],
-    outcome: "A high-converting, professional website"
+    outcome: "A high-converting 24-Hour website"
   },
   workflow: {
-    label: "Repetitive Tasks",
-    problem: "Hours wasted on manual data entry",
-    efficiency: "Prone to human errors and delays",
+    label: "Customer Inquiries",
+    problem: "Missed phone calls & delayed replies",
+    efficiency: "Losing leads to faster competitors",
     issues: [
-      "Copy-pasting leads from forms to spreadsheets",
-      "No automatic welcome emails for new clients",
-      "Team wastes time on admin instead of selling"
+      "No instant way for clients to ask prices",
+      "No automated WhatsApp message greeting",
+      "Wasting hours manually replying to basic questions"
     ],
-    outcome: "Automated workflow that saves 10+ hours a week"
+    outcome: "1-Click WhatsApp Instant Lead Flow"
   },
   data: {
-    label: "Siloed Systems",
-    problem: "Data is scattered everywhere",
-    efficiency: "Business decisions based on guesswork",
+    label: "Google & Map Search",
+    problem: "Not showing up in local searches",
+    efficiency: "Local customers can't find your store",
     issues: [
-      "Payment records don't match customer details",
-      "Marketing tools are completely disconnected",
-      "Manual reports needed for every weekly meeting"
+      "Google Maps and reviews aren't connected",
+      "Competitors rank higher in city searches",
+      "No clear phone number or store location"
     ],
-    outcome: "Centralized Data System that eliminates manual entry"
+    outcome: "Google Maps & Local Search Setup"
   }
 };
 
@@ -45,23 +45,6 @@ type CaseKey = keyof typeof HERO_CASES;
 export default function Hero() {
   const [activeCase, setActiveCase] = useState<CaseKey>("website");
   const caseData = HERO_CASES[activeCase];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
 
   return (
     <section className="relative min-h-[92vh] w-full bg-transparent flex flex-col justify-center overflow-hidden pt-28 pb-16 border-b border-border/20">
@@ -73,7 +56,7 @@ export default function Hero() {
             {/* Eyebrow Label */}
             <div className="animate-fade-in-up flex items-center gap-3 mb-6" style={{ animationFillMode: "both" }}>
               <span className="label-eyebrow">
-                Digital Systems Studio
+                High-Converting Business Websites
               </span>
               <div className="h-px w-12 bg-accent/30" />
             </div>
@@ -83,8 +66,8 @@ export default function Hero() {
               className="animate-fade-in-up font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight mb-6"
               style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)", letterSpacing: "-0.03em" }}
             >
-              We don&apos;t start with technology.<br />
-              We start with the <span className="text-accent">problem.</span>
+              Get a stunning website<br />
+              live in <span className="text-accent">24 Hours.</span>
             </h1>
 
             {/* Description */}
@@ -92,7 +75,7 @@ export default function Hero() {
               className="animate-fade-in-up text-text-secondary text-base md:text-lg leading-relaxed max-w-xl mb-10 font-normal"
               style={{ animationDelay: "150ms", animationFillMode: "both" }}
             >
-              We design and build custom web applications, integrations, and automated workflows engineered to resolve your specific business bottlenecks. No bloated packages. No generic templates. Just clean, performant systems.
+              We build mobile-friendly, high-converting websites for local business owners, salons, photography studios, and clinics. Choose a demo theme, send your details, and start accepting WhatsApp leads in 1 day.
             </p>
 
             {/* CTAs */}
@@ -105,17 +88,19 @@ export default function Hero() {
                 className="group relative w-full sm:w-auto bg-accent text-white px-7 py-3.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-all duration-200 cursor-pointer overflow-hidden flex items-center justify-center gap-2"
                 style={{ borderRadius: "4px", boxShadow: "0 2px 16px rgba(124,58,237,0.25)" }}
               >
-                <span className="relative z-10">Tell us the problem</span>
+                <span className="relative z-10">Start Your Site (24H)</span>
                 <ArrowRight size={13} className="relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
               </a>
 
               <a
-                href="#process"
-                className="group w-full sm:w-auto bg-transparent border border-border-dark text-text-secondary px-7 py-3.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:border-accent/40 hover:text-text-primary transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+                href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-full sm:w-auto bg-emerald-600 text-white border border-emerald-500 px-7 py-3.5 font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-700 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20"
                 style={{ borderRadius: "4px" }}
               >
-                <span>See our methodology</span>
-                <span className="transition-transform group-hover:translate-y-0.5">↓</span>
+                <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
 
@@ -124,15 +109,15 @@ export default function Hero() {
               className="animate-fade-in-up flex items-center gap-2.5 font-mono text-[9px] uppercase tracking-widest text-text-tertiary"
               style={{ animationDelay: "450ms", animationFillMode: "both" }}
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Available for studio engagement</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>⚡ 24-Hour Express Launch • Direct WhatsApp Lead Alerts • Zero Monthly Fees</span>
             </div>
           </div>
 
           {/* Right Column: Dynamic Opportunity Diagnosis Visualizer */}
           <div className="lg:col-span-5 w-full flex flex-col">
             <div className="mb-4 flex gap-2 font-mono text-[9px] uppercase tracking-wider text-text-tertiary select-none">
-              <span>{"// Select your business bottleneck:"}</span>
+              <span>Select your business goal:</span>
             </div>
 
             {/* Interactive Selectors */}
@@ -162,8 +147,8 @@ export default function Hero() {
               <div className="px-5 py-3 border-b border-border/40 bg-bg-secondary flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-mono text-[8px] font-bold text-text-secondary tracking-widest">
-                    SYSTEM_ANALYSIS // ACTIVE
+                  <span className="font-mono text-[8px] font-bold text-emerald-500 tracking-widest">
+                    EXPRESS LAUNCH PREVIEW • 24 HOURS
                   </span>
                 </div>
                 <div className="flex gap-1.5">
@@ -201,7 +186,7 @@ export default function Hero() {
                     <div className="mb-5 grid grid-cols-2 gap-4 border-b border-border/30 pb-4">
                       <div>
                         <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-1">
-                          Leak Impact
+                          Current Leak
                         </span>
                         <span className="font-sans text-xs font-semibold text-text-primary">
                           {caseData.efficiency}
@@ -209,7 +194,7 @@ export default function Hero() {
                       </div>
                       <div>
                         <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-1">
-                          Recommended System Fix
+                          Our 24-Hour Solution
                         </span>
                         <span className="font-sans text-xs font-semibold text-accent">
                           {caseData.outcome}
@@ -220,7 +205,7 @@ export default function Hero() {
                     {/* Specific Issues list */}
                     <div className="mb-5">
                       <span className="font-mono text-[8px] uppercase tracking-widest text-text-tertiary block mb-2.5 font-bold">
-                        Observed Bottlenecks
+                        Bottlenecks We Solve
                       </span>
                       <div className="flex flex-col gap-2">
                         {caseData.issues.map((issue, idx) => (
@@ -238,14 +223,14 @@ export default function Hero() {
 
                     {/* Active engagement footer */}
                     <div className="bg-bg-secondary p-3 flex items-center justify-between" style={{ borderRadius: "3px" }}>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary">
-                        STATUS: READY_TO_BUILD
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-emerald-400 font-bold">
+                        STATUS: READY TO LAUNCH IN 24H
                       </span>
                       <a 
                         href="#contact" 
                         className="font-mono text-[9px] uppercase tracking-widest text-accent hover:text-accent-mid font-bold flex items-center gap-1 transition-colors"
                       >
-                        Fix this <ArrowRight size={10} />
+                        Launch now <ArrowRight size={10} />
                       </a>
                     </div>
                   </motion.div>

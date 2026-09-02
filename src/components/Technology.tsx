@@ -79,98 +79,88 @@ export default function Technology() {
         <div className="max-w-2xl mb-16">
           <div className="flex items-center gap-3 mb-5">
             <div className="h-px w-8 bg-accent" />
-            <span className="label-eyebrow text-accent">Technology</span>
+            <span className="label-eyebrow text-accent">OUR GUARANTEES</span>
           </div>
           <h2
             className="font-sans font-extrabold text-text-primary leading-[1.1] mb-4"
             style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)", letterSpacing: "-0.02em" }}
           >
-            Technology is a tool.<br />The problem comes first.
+            Built for speed, reliability,<br />and maximum conversion.
           </h2>
           <p className="text-text-secondary text-base leading-relaxed">
-            We select tools based on what the problem requires — not what&apos;s trending. Hover a category to inspect details.
+            We don&apos;t just write code — we guarantee tangible performance standards for your business website.
           </p>
         </div>
 
-        {/* Category tabs */}
-        <div className="flex flex-wrap gap-3 mb-12 relative z-10">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onMouseEnter={() => setActiveId(cat.id)}
-              onMouseLeave={() => setActiveId(null)}
-              onClick={() =>
-                setActiveId(activeId === cat.id ? null : cat.id)
-              }
-              className={`group relative px-6 py-3 rounded-sm border font-mono text-xs font-semibold uppercase tracking-widest transition-all duration-250 cursor-pointer ${
-                activeId === cat.id
-                  ? "border-accent bg-accent text-white"
-                  : "border-none text-text-secondary hover:text-text-primary hover:border-accent/30 glass-panel"
-              }`}
-              style={{ borderRadius: "4px" }}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tech grid */}
-        <div 
-          className="border-none glass-panel overflow-hidden min-h-[220px] shadow-lg relative z-10"
-          style={{ borderRadius: "4px" }}
-        >
-          {/* Clean panel — no bracket labels */}
-
-          {!activeId && (
-            <div className="flex items-center justify-center h-56 text-text-tertiary font-mono text-xs">
-              Select a category above to explore our stack
+        {/* Performance Guarantee Grid */}
+        <div className="grid md:grid-cols-2 gap-6 relative z-10">
+          <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
+            <div>
+              <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
+                ⚡
+              </div>
+              <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
+                1-Second Load Speed
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                Slow sites lose customers. We build lightweight, pre-rendered pages that load instantly even on weak 3G/4G mobile networks.
+              </p>
             </div>
-          )}
+            <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-bold mt-6">
+              Built with Next.js & Turbopack
+            </span>
+          </div>
 
-          {active && (
-            <motion.div
-              key={active.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.25 }}
-              className="p-10"
-            >
-              <div className="mb-6">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-semibold">
-                  {active.label} Stack
-                </span>
+          <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
+            <div>
+              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mb-5 font-extrabold text-lg">
+                📱
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {active.items.map((item, i) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.04, duration: 0.25 }}
-                    className="flex flex-col gap-1"
-                  >
-                    <span className="font-sans font-semibold text-text-primary text-sm">
-                      {item.name}
-                    </span>
-                    <span className="font-mono text-[9px] uppercase tracking-wider text-text-tertiary leading-tight">
-                      {item.desc}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </div>
+              <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
+                100% Mobile Optimized
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                Designed mobile-first. Large, tap-friendly buttons, legible typography, and zero auto-zooming glitches when filling forms.
+              </p>
+            </div>
+            <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-500 font-bold mt-6">
+              Tailwind CSS & Responsive Layouts
+            </span>
+          </div>
 
-        {/* Philosophy note */}
-        <div 
-          className="mt-8 flex items-start gap-4 p-6 glass-panel border border-border/40 relative z-10"
-          style={{ borderRadius: "4px" }}
-        >
-          <div className="h-1.5 w-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-          <p className="text-text-secondary text-sm leading-relaxed">
-            <strong className="text-text-primary font-medium">We don&apos;t chase trends.</strong> Every technology decision is made based on what best solves the problem at the right cost and complexity level. Sometimes that&apos;s a modern AI stack. Sometimes it&apos;s a simple, well-structured PostgreSQL schema.
-          </p>
+          <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
+            <div>
+              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mb-5 font-extrabold text-lg">
+                🟢
+              </div>
+              <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
+                Instant WhatsApp Lead Routing
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                Zero friction contact. When a potential client clicks your booking or contact button, it immediately opens a pre-filled WhatsApp message.
+              </p>
+            </div>
+            <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-500 font-bold mt-6">
+              1-Click Direct Messaging
+            </span>
+          </div>
+
+          <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
+            <div>
+              <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
+                🔒
+              </div>
+              <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
+                99.9% Reliable & Secure
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                No hosting crashes or server maintenance headaches. Your site stays online 24/7 on global SSL-encrypted cloud infrastructure.
+              </p>
+            </div>
+            <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-bold mt-6">
+              Global Vercel Cloud Network
+            </span>
+          </div>
         </div>
       </div>
     </section>

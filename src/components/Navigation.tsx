@@ -8,10 +8,10 @@ import BrandLogo from "./BrandLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Work", href: "/work" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Process", href: "/process" },
-  { label: "About", href: "/about" },
+  { label: "Demo Websites", href: "/work" },
+  { label: "Services", href: "/solutions" },
+  { label: "How It Works", href: "/process" },
+  { label: "About Us", href: "/about" },
 ];
 
 export default function Navigation() {

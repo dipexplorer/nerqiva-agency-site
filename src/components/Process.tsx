@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { PROCESS_STEPS } from "../data/process";
 
 export default function Process() {
-  const [activeStep, setActiveStep] = useState("discover");
+  const [activeStep, setActiveStep] = useState("select");
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

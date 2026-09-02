@@ -24,14 +24,27 @@ export default function ClosingSection() {
           We&apos;ll figure out exactly what should be built — and what shouldn&apos;t.
         </p>
 
-        <Link
-          href="/contact"
-          className="group relative bg-accent text-white px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:bg-accent-mid transition-all duration-200 cursor-pointer overflow-hidden flex items-center justify-center gap-3"
-          style={{ borderRadius: "4px", boxShadow: "0 4px 24px rgba(124,58,237,0.3)" }}
-        >
-          <span className="relative z-10">Start a Project</span>
-          <ArrowRight size={15} className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-200" />
-        </Link>
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+          <Link
+            href="/contact"
+            className="group relative w-full sm:w-auto bg-accent text-white px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:bg-accent-mid transition-all duration-200 cursor-pointer overflow-hidden flex items-center justify-center gap-3"
+            style={{ borderRadius: "4px", boxShadow: "0 4px 24px rgba(124,58,237,0.3)" }}
+          >
+            <span className="relative z-10">Start a Project</span>
+            <ArrowRight size={15} className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-200" />
+          </Link>
+
+          <a
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group w-full sm:w-auto bg-emerald-600 text-white px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:bg-emerald-700 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20"
+            style={{ borderRadius: "4px" }}
+          >
+            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
       </div>
     </section>
   );
