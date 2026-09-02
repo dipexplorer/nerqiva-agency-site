@@ -158,5 +158,37 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-rose-500",
     featured: true,
     demoUrl: "https://bridalnerqiva2.vercel.app/"
+  },
+  {
+    id: "houseoftales",
+    slug: "house-of-tales",
+    number: "05",
+    name: "House of Tales",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Photography Studio",
+    tagline: "Premium cinematic portfolio and booking platform for photography and production studios.",
+    challenge: "Photography studios often struggle to showcase high-resolution portfolios without significantly compromising website loading speeds and user experience.",
+    whyItMattered: "An immersive, lightning-fast portfolio instantly captures high-end clients' attention, acting as a direct conversion tool for premium photography packages.",
+    constraints: [
+      "Must handle extremely high-resolution image assets",
+      "Cinematic, immersive dark-mode aesthetic",
+      "Seamless gallery browsing experience"
+    ],
+    approach: "Designed a minimalist dark-theme canvas that puts stunning visual content front and center, enhanced by buttery smooth animations and transitions.",
+    architecture: "Next.js architecture leveraging advanced Image components and aggressive static optimization to ensure instant load times.",
+    engineeringDecisions: [
+      "Implemented advanced lazy-loading and blur-up techniques for heavy images",
+      "Built a seamless single-page application feel with Framer Motion",
+      "Integrated direct lead capture focused on project bookings"
+    ],
+    implementation: "Developed a functional theme with masonry galleries, interactive service cards, and an integrated consultation booking flow.",
+    outcome: "A cinematic, ultra-fast portfolio that acts as a 24/7 high-end digital storefront for photography and production services.",
+    lessons: "Balancing high-quality media with strict performance budgets requires meticulous optimization at the framework level.",
+    stack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    gradient: "from-zinc-500/10 to-stone-500/10",
+    accentColor: "bg-zinc-500",
+    featured: true,
+    demoUrl: "https://aperturelight.vercel.app/"
   }
 ];
