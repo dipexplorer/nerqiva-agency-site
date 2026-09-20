@@ -190,5 +190,37 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-zinc-500",
     featured: true,
     demoUrl: "https://aperturelight.vercel.app/"
+  },
+  {
+    id: "titangym",
+    slug: "titan-gym",
+    number: "06",
+    name: "Titan Gym",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Fitness & Wellness",
+    tagline: "High-performance athletic training center and boutique wellness concept.",
+    challenge: "Premium gyms and wellness retreats often suffer from generic, template-driven websites that fail to communicate the intense, high-end nature of their physical facilities.",
+    whyItMattered: "An aggressive, premium digital interface validates the high-ticket price of elite athletic coaching and bespoke recovery services before the client ever steps foot in the door.",
+    constraints: [
+      "Must convey raw power and premium luxury simultaneously",
+      "Interactive, liquid ripple WebGL shader without sacrificing performance",
+      "Seamless integration of class schedules and VIP trial lead generation"
+    ],
+    approach: "Engineered a dark-mode, high-octane aesthetic utilizing obsidian and charcoal tones, punctuated with aggressive gold accents and brutalist typography.",
+    architecture: "Next.js architecture with React Three Fiber for WebGL background effects, coupled with Framer Motion for premium scroll reveals.",
+    engineeringDecisions: [
+      "Implemented a custom WebGL liquid ripple shader for an immersive hero section",
+      "Extracted strict Tailwind CSS clashes into custom utility layers for a pristine codebase",
+      "Built a seamless, single-page scroll architecture for rapid consumption"
+    ],
+    implementation: "Designed an interactive hero section, training zone grids, master trainer rosters, and a frictionless 7-day VIP pass lead capture system.",
+    outcome: "A brutally effective, luxury athletic platform that instantly positions the gym as a high-end, uncompromising fitness authority.",
+    lessons: "Balancing high-performance WebGL shaders with mobile accessibility requires careful fallback mechanisms and aggressive performance budgets.",
+    stack: ["Next.js", "React Three Fiber", "Tailwind CSS", "Framer Motion"],
+    gradient: "from-amber-500/10 to-orange-600/10",
+    accentColor: "bg-amber-500",
+    featured: true,
+    demoUrl: "https://titangymnq.vercel.app/"
   }
 ];
