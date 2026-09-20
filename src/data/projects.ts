@@ -222,5 +222,37 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-amber-500",
     featured: true,
     demoUrl: "https://titangymnq.vercel.app/"
+  },
+  {
+    id: "vogueheirloom",
+    slug: "vogue-heirloom",
+    number: "07",
+    name: "Vogue & Heirloom",
+    projectType: "demo",
+    type: "Demo Theme",
+    category: "Luxury Wedding Photography",
+    tagline: "High-end cinematic fine art wedding photography portfolio.",
+    challenge: "Luxury wedding photographers need a digital presence that feels like a high-fashion magazine, balancing emotional storytelling with premium service pricing.",
+    whyItMattered: "An immersive, editorial-style portfolio positions the photographer as a luxury brand, filtering for high-ticket clients who value cinematic artistry over standard coverage.",
+    constraints: [
+      "Must showcase high-resolution photography without layout shift",
+      "Interactive, guided VIP concierge inquiry process",
+      "Multi-currency dynamic pricing for global destination weddings"
+    ],
+    approach: "Designed a premium editorial canvas with fluid animations, interactive scene-switching hero sections, and a custom VIP concierge booking drawer.",
+    architecture: "Next.js architecture leveraging advanced Tailwind CSS styling and highly optimized Image components for an instant-loading cinematic experience.",
+    engineeringDecisions: [
+      "Implemented a 3-step interactive VIP concierge drawer for qualified leads",
+      "Built a custom currency toggle system for international pricing tiers",
+      "Engineered an auto-rotating, multi-scene hero gallery"
+    ],
+    implementation: "Developed a luxury portfolio featuring masonry galleries, interactive press marquees, and an advanced investment calculator.",
+    outcome: "A stunning, magazine-quality digital portfolio that instantly commands high-ticket authority in the global destination wedding market.",
+    lessons: "Premium luxury experiences rely on micro-interactions and strict typography rules to convey exclusivity and trust.",
+    stack: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    gradient: "from-stone-400/10 to-amber-200/10",
+    accentColor: "bg-amber-600",
+    featured: true,
+    demoUrl: "https://heirloomnq.vercel.app/"
   }
 ];
