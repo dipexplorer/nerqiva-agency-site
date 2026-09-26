@@ -58,37 +58,6 @@ export default function Hero() {
 
   return (
     <section className="relative w-full bg-transparent overflow-hidden border-b border-border/20">
-      {/* ── Background Atmosphere & Noise Reduction ────────────────────── */}
-      {/* Halo 1 (Top Left): Soft ambient glow */}
-      <div
-        aria-hidden="true"
-        className="absolute -top-32 -left-32 w-[520px] h-[520px] rounded-full bg-[#C9A227]/10 blur-[130px] pointer-events-none z-0"
-      />
-
-      {/* Halo 2 (Right/Demo area): Soft luxury gold ambient glow */}
-      <div
-        aria-hidden="true"
-        className="absolute top-1/2 -right-24 -translate-y-1/2 w-[480px] h-[480px] rounded-full bg-[#4C1D95]/08 blur-[120px] pointer-events-none z-0"
-      />
-
-      {/* Single lightweight SVG curved swooping vector line */}
-      <svg
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible opacity-70"
-        viewBox="0 0 1200 600"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M -60,140 C 260,40 480,230 720,150 C 960,70 1120,290 1260,210"
-          stroke="#C9A227"
-          strokeWidth="1.5"
-          strokeOpacity="0.22"
-          strokeDasharray="4 4"
-          fill="none"
-        />
-      </svg>
-
       <div className="section-container relative z-10 w-full pt-16 pb-10 lg:pt-20 lg:pb-14">
 
         {/* ─── Main grid ───────────────────────────────────────────────── */}
@@ -111,7 +80,7 @@ export default function Hero() {
               </em>
             </h1>
 
-            {/* Subheadline — Slate 700 WCAG AAA contrast */}
+            {/* FIX 5: darkened subheadline to #4B4B55 equivalent — passes WCAG AA */}
             <p
               className="animate-fade-in-up text-text-secondary text-sm md:text-base leading-relaxed max-w-lg mb-5"
               style={{ animationDelay: "120ms", animationFillMode: "both" }}
@@ -119,7 +88,7 @@ export default function Hero() {
               We set up everything your business needs online — a professional website, organised WhatsApp and Instagram, Google visibility, and a simple booking system — so clients can find you, trust you, and reach you without any friction.
             </p>
 
-            {/* Top services pills */}
+            {/* FIX 3: 3 pills only, visually lighter */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-2 mb-5"
               style={{ animationDelay: "200ms", animationFillMode: "both" }}
@@ -127,14 +96,14 @@ export default function Hero() {
               {TOP_SERVICES.map((item) => (
                 <span
                   key={item}
-                  className="font-mono text-[10px] text-text-tertiary bg-bg-secondary/80 border border-border/40 px-3 py-1 rounded-full tracking-wide"
+                  className="font-mono text-[10px] text-text-tertiary bg-bg-secondary/60 border border-border/40 px-3 py-1 rounded-full tracking-wide"
                 >
                   {item}
                 </span>
               ))}
             </div>
 
-            {/* Primary & Secondary CTA */}
+            {/* FIX 4: primary CTA strengthened — specific action named */}
             <div
               className="animate-fade-in-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6"
               style={{ animationDelay: "270ms", animationFillMode: "both" }}
@@ -143,7 +112,7 @@ export default function Hero() {
                 href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20a%20free%20audit%20of%20my%20business%20online%20presence."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full sm:w-auto bg-accent text-white px-7 py-4 font-sans text-sm font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 rounded shadow-lg shadow-accent/20"
+                className="group w-full sm:w-auto bg-accent text-white dark:text-bg-primary px-7 py-4 font-sans text-sm font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 rounded shadow-lg shadow-accent/20"
               >
                 <span>Get a free audit of my business</span>
                 <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
@@ -164,7 +133,7 @@ export default function Hero() {
             >
               {TRUST_SIGNALS.map(({ text }) => (
                 <div key={text} className="flex items-center gap-2.5">
-                  <CheckCircle size={14} className="shrink-0 text-accent-gold" />
+                  <CheckCircle size={13} className="shrink-0 text-accent-gold" />
                   <span className="text-text-secondary text-sm">{text}</span>
                 </div>
               ))}
@@ -172,6 +141,8 @@ export default function Hero() {
           </div>
 
           {/* ── Right column: Demo showcase ──────────────────────────── */}
+          {/* On mobile this column appears AFTER the left column (natural DOM order),
+              so the CTA is always above it on small screens */}
           <div className="lg:col-span-6 w-full flex flex-col gap-4 lg:pt-2 relative">
 
             {/* Tabs */}
@@ -182,7 +153,7 @@ export default function Hero() {
                   onClick={() => { setActiveDemo(d.id as DemoId); setInteracting(null); }}
                   className={`px-4 py-2 font-sans text-xs font-semibold border transition-all duration-200 cursor-pointer rounded-full ${
                     activeDemo === d.id
-                      ? "bg-accent border-accent text-white shadow-sm shadow-accent/25"
+                      ? "bg-accent border-accent text-white dark:text-bg-primary shadow-sm shadow-accent/25"
                       : "bg-bg-secondary/70 text-text-secondary border-border/40 hover:border-accent/40 hover:text-text-primary"
                   }`}
                 >
@@ -191,27 +162,30 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Showcase Wrapper with Stacked Card Depth */}
-            <div className="relative w-full">
-              {/* Image 3 Stacked card depth backplate (subtle tilted second card behind main window) */}
-              <div 
-                aria-hidden="true"
-                className="absolute inset-0 rounded-2xl bg-white/80 border border-border/60 shadow-md transform translate-x-3.5 translate-y-3.5 rotate-1.5 scale-[0.985] pointer-events-none z-0 hidden sm:block"
-              />
+            {/* Ambient glow — warm gold */}
+            <div
+              aria-hidden
+              className="absolute -inset-4 rounded-2xl pointer-events-none"
+              style={{
+                background: "radial-gradient(ellipse 80% 60% at 55% 50%, rgba(202, 138, 4, 0.08), transparent 70%)",
+                filter: "blur(24px)",
+                zIndex: 0,
+              }}
+            />
 
-              {/* Preview Card */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeDemo}
-                  initial={{ opacity: 0, scale: 0.98, y: 6 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.97, y: -6 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative z-10 glass-panel border border-border/40 overflow-hidden rounded-2xl backdrop-blur-xl"
-                  style={{
-                    boxShadow: "0 0 0 1px rgba(9,9,11,0.06), 0 12px 36px -10px rgba(76,29,149,0.12), 0 24px 48px -12px rgba(0,0,0,0.06)"
-                  }}
-                >
+            {/* Preview Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeDemo}
+                initial={{ opacity: 0, scale: 0.98, y: 6 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.97, y: -6 }}
+                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10 glass-panel border border-border/40 overflow-hidden rounded-2xl backdrop-blur-xl"
+                style={{
+                  boxShadow: "0 0 0 1px rgba(9,9,11,0.08), 0 8px 32px -8px rgba(202,138,4,0.10), 0 24px 48px -12px rgba(0,0,0,0.08)"
+                }}
+              >
                 {/* Browser chrome */}
                 <div className="px-4 py-2.5 border-b border-border/40 bg-bg-secondary/95 flex items-center gap-3">
                   <div className="flex gap-1.5 shrink-0">
@@ -330,7 +304,6 @@ export default function Hero() {
                 </div>
               </motion.div>
             </AnimatePresence>
-            </div>
 
           </div>
         </div>

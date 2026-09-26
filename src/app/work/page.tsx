@@ -74,7 +74,7 @@ export default function WorkPage() {
                 onClick={() => handleTypeChange("all")}
                 className={`px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer ${
                   activeType === "all"
-                    ? "bg-accent text-white shadow-lg shadow-accent/25 border border-accent"
+                    ? "bg-accent text-white dark:text-bg-primary shadow-lg shadow-accent/25 border border-accent"
                     : "glass-panel text-text-secondary hover:text-text-primary border border-border/40 hover:border-accent/40"
                 }`}
                 style={{ borderRadius: "4px" }}
@@ -99,7 +99,7 @@ export default function WorkPage() {
                 onClick={() => handleTypeChange("client")}
                 className={`px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer ${
                   activeType === "client"
-                    ? "bg-accent text-white shadow-lg shadow-accent/25 border border-accent"
+                    ? "bg-accent text-white dark:text-bg-primary shadow-lg shadow-accent/25 border border-accent"
                     : "glass-panel text-text-secondary hover:text-text-primary border border-border/40 hover:border-accent/40"
                 }`}
                 style={{ borderRadius: "4px" }}
@@ -279,7 +279,7 @@ export default function WorkPage() {
                   setActiveType("all");
                   setActiveCategory("All");
                 }}
-                className="px-5 py-2.5 bg-accent text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded hover:bg-accent-mid transition-colors shadow-md cursor-pointer"
+                className="px-5 py-2.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded hover:bg-accent-mid transition-colors shadow-md cursor-pointer"
               >
                 Clear all filters
               </button>

@@ -139,7 +139,7 @@ export default function SolutionsPage() {
 
                     <Link
                       href={`/contact?service=${sol.id}`}
-                      className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15"
+                      className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15"
                       style={{ borderRadius: "4px" }}
                     >
                       Get Started in 24 Hours

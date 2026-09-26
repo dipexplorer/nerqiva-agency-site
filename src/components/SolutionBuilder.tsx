@@ -99,7 +99,7 @@ export default function SolutionBuilder() {
                 onClick={() => setSelected(opt.id)}
                 className={`px-5 py-3 font-sans text-sm font-semibold transition-all duration-200 border cursor-pointer rounded ${
                   isActive
-                    ? "bg-accent text-white border-accent shadow-md shadow-accent/20"
+                    ? "bg-accent text-white dark:text-bg-primary border-accent shadow-md shadow-accent/20"
                     : "bg-bg-secondary/80 text-text-secondary border-border/40 hover:border-accent/30 hover:text-text-primary"
                 }`}
               >
@@ -138,7 +138,7 @@ export default function SolutionBuilder() {
                   href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20interested%20in:%20${encodeURIComponent(active.label)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-accent text-white font-sans text-sm font-bold hover:bg-accent-mid transition-all duration-300 rounded shadow-lg shadow-accent/20"
+                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-accent text-white dark:text-bg-primary font-sans text-sm font-bold hover:bg-accent-mid transition-all duration-300 rounded shadow-lg shadow-accent/20"
                 >
                   <span>{active.cta}</span>
                   <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />

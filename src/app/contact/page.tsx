@@ -221,7 +221,7 @@ export default function ContactPage() {
                   </p>
                   <button
                     onClick={handleReset}
-                    className="px-6 py-2.5 bg-accent text-white font-mono text-[10px] uppercase font-bold tracking-widest hover:bg-accent-mid transition-colors duration-200 rounded cursor-pointer"
+                    className="px-6 py-2.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] uppercase font-bold tracking-widest hover:bg-accent-mid transition-colors duration-200 rounded cursor-pointer"
                   >
                     Build Another Brief
                   </button>
@@ -402,7 +402,7 @@ export default function ContactPage() {
                       <button
                         type="button"
                         onClick={handleGoToSummary}
-                        className="w-full py-4 bg-accent text-white font-mono text-[11px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors duration-200 rounded flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                        className="w-full py-4 bg-accent text-white dark:text-bg-primary font-mono text-[11px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors duration-200 rounded flex items-center justify-center gap-2 cursor-pointer shadow-lg"
                       >
                         Review Brief Summary
                         <ArrowRight size={13} />

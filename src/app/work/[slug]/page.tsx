@@ -78,7 +78,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent hover:bg-accent-mid text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded-sm transition-all shadow-md shadow-accent/25 text-center"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-accent hover:bg-accent-mid text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded-sm transition-all shadow-md shadow-accent/25 text-center"
                 >
                   Open in New Tab <ExternalLink size={12} />
                 </a>

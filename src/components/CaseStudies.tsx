@@ -52,7 +52,7 @@ export default function CaseStudies() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest font-bold border transition-all duration-300 cursor-pointer rounded ${
                 selectedCategory === cat
-                  ? "bg-accent border-accent text-white shadow-md shadow-accent/20"
+                  ? "bg-accent border-accent text-white dark:text-bg-primary shadow-md shadow-accent/20"
                   : "bg-bg-secondary/70 text-text-secondary border-border/40 hover:border-accent/30 hover:text-text-primary"
               }`}
             >

@@ -16,7 +16,7 @@ export default function NotFound() {
       <div className="flex items-center gap-4">
         <Link
           href="/"
-          className="px-6 py-3 bg-accent text-white font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors duration-200 cursor-pointer rounded"
+          className="px-6 py-3 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors duration-200 cursor-pointer rounded"
         >
           Back Home
         </Link>

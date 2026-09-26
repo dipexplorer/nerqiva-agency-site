@@ -32,7 +32,7 @@ export default function ClosingSection() {
           href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20see%20what%20you%20can%20do%20for%20my%20business."
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-full sm:w-auto bg-accent text-white px-10 py-4 font-sans text-base font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded shadow-lg shadow-accent/25 mb-4"
+          className="group w-full sm:w-auto bg-accent text-white dark:text-bg-primary px-10 py-4 font-sans text-base font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded shadow-lg shadow-accent/25 mb-4"
         >
           <span>Let's talk — WhatsApp us</span>
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
