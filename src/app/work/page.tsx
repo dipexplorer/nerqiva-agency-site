@@ -176,28 +176,28 @@ export default function WorkPage() {
                           /* Rich Architectural Showcase Card — Zero Lag, Ultra Clean */
                           <div 
                             onClick={() => setActiveIframeId(project.id)}
-                            className="absolute inset-0 bg-linear-to-br from-zinc-900 via-bg-secondary to-zinc-950 flex flex-col justify-between p-6 cursor-pointer group select-none overflow-hidden"
+                            className="absolute inset-0 bg-bg-secondary/70 dark:bg-zinc-900/90 flex flex-col justify-between p-6 cursor-pointer group select-none overflow-hidden"
                           >
                             {/* Ambient Gold Glow */}
                             <div 
                               aria-hidden
-                              className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent-gold/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500"
+                              className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent-gold/10 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500"
                             />
 
                             {/* Top Badges Bar */}
                             <div className="w-full flex items-center justify-between z-10">
-                              <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-emerald-500/10 text-emerald-400 border-emerald-500/20 flex items-center gap-1.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                              <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 flex items-center gap-1.5">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                                 PROJECT_{project.number}
                               </span>
-                              <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest border border-white/10 px-2 py-0.5 rounded bg-black/40">
+                              <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest border border-border/40 px-2 py-0.5 rounded bg-bg-primary/50">
                                 {project.category}
                               </span>
                             </div>
 
                             {/* Center Info & CTA */}
                             <div className="my-auto z-10 flex flex-col items-center text-center gap-2.5 max-w-sm mx-auto">
-                              <div className="h-10 w-10 rounded-full bg-accent-gold/10 border border-accent-gold/30 flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:bg-accent-gold group-hover:text-bg-primary transition-all duration-300 shadow-lg">
+                              <div className="h-10 w-10 rounded-full bg-accent-gold/10 border border-accent-gold/30 flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:bg-accent-gold group-hover:text-bg-primary transition-all duration-300 shadow-sm">
                                 <Sparkles size={16} />
                               </div>
 
@@ -210,14 +210,14 @@ export default function WorkPage() {
                                 </p>
                               </div>
 
-                              <div className="mt-1 bg-accent text-white dark:text-bg-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest rounded shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform duration-200 flex items-center gap-2 border border-accent">
+                              <div className="mt-1 bg-accent text-white dark:text-bg-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest rounded shadow-md group-hover:scale-105 transition-transform duration-200 flex items-center gap-2 border border-accent">
                                 <span>Launch Live Interactive Site</span>
                                 <ArrowRight size={12} />
                               </div>
                             </div>
 
                             {/* Bottom Footer Tags */}
-                            <div className="w-full flex items-center justify-center gap-4 z-10 font-mono text-[9px] text-text-tertiary uppercase tracking-wider border-t border-white/5 pt-2">
+                            <div className="w-full flex items-center justify-center gap-4 z-10 font-mono text-[9px] text-text-tertiary uppercase tracking-wider border-t border-border/30 pt-2">
                               <span>100% Mobile Optimized</span>
                               <span>•</span>
                               <span>Live Preview</span>
