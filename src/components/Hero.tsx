@@ -58,6 +58,43 @@ export default function Hero() {
 
   return (
     <section className="relative w-full bg-transparent overflow-hidden border-b border-border/20">
+      
+      {/* ── Background Layer: Max 2 Soft Atmospheric Orbs (45% Opacity Cut) ── */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        {/* Orb 1: Soft Indigo behind left headline area */}
+        <div
+          className="absolute -top-12 -left-20 w-[500px] h-[500px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(76, 29, 149, 0.07) 0%, rgba(76, 29, 149, 0) 70%)",
+            filter: "blur(60px)",
+          }}
+        />
+
+        {/* Orb 2: Soft Muted Gold behind right demo showcase area */}
+        <div
+          className="absolute top-1/4 -right-16 w-[450px] h-[450px] rounded-full"
+          style={{
+            background: "radial-gradient(circle, rgba(201, 162, 39, 0.05) 0%, rgba(201, 162, 39, 0) 70%)",
+            filter: "blur(50px)",
+          }}
+        />
+
+        {/* Single subtle swooping line accent (15% opacity) */}
+        <svg
+          className="absolute top-10 left-0 w-full h-full opacity-15"
+          viewBox="0 0 1200 600"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M -100 120 C 300 40, 500 350, 900 180 C 1050 110, 1150 220, 1300 250"
+            stroke="#4C1D95"
+            strokeWidth="1.5"
+            strokeDasharray="6 6"
+          />
+        </svg>
+      </div>
+
       <div className="section-container relative z-10 w-full pt-16 pb-10 lg:pt-20 lg:pb-14">
 
         {/* ─── Main grid ───────────────────────────────────────────────── */}
@@ -66,7 +103,7 @@ export default function Hero() {
           {/* ── Left column ─────────────────────────────────────────── */}
           <div className="lg:col-span-6 flex flex-col">
 
-            {/* Headline — responsive font size scaling for 320px–1440px viewports */}
+            {/* Headline */}
             <h1
               className="animate-fade-in-up font-display font-black text-text-primary text-2xl sm:text-4xl lg:text-[3.1rem] leading-[1.15] sm:leading-[1.1] tracking-tight mb-4"
               style={{
@@ -75,12 +112,12 @@ export default function Hero() {
               }}
             >
               Your competitors get more clients because they{" "}
-              <em className="not-italic text-accent-gold">
+              <em className="not-italic text-accent">
                 show up, respond fast, and look credible online.
               </em>
             </h1>
 
-            {/* FIX 5: darkened subheadline to #4B4B55 equivalent — passes WCAG AA */}
+            {/* Subheadline paragraph */}
             <p
               className="animate-fade-in-up text-text-secondary text-sm md:text-base leading-relaxed max-w-lg mb-5"
               style={{ animationDelay: "120ms", animationFillMode: "both" }}
@@ -88,7 +125,7 @@ export default function Hero() {
               We set up everything your business needs online — a professional website, organised WhatsApp and Instagram, Google visibility, and a simple booking system — so clients can find you, trust you, and reach you without any friction.
             </p>
 
-            {/* FIX 3: 3 pills only, visually lighter */}
+            {/* Service pills */}
             <div
               className="animate-fade-in-up flex flex-wrap gap-2 mb-5"
               style={{ animationDelay: "200ms", animationFillMode: "both" }}
@@ -103,7 +140,7 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* FIX 4: primary CTA strengthened — specific action named */}
+            {/* Primary CTA Buttons */}
             <div
               className="animate-fade-in-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6"
               style={{ animationDelay: "270ms", animationFillMode: "both" }}
@@ -141,11 +178,9 @@ export default function Hero() {
           </div>
 
           {/* ── Right column: Demo showcase ──────────────────────────── */}
-          {/* On mobile this column appears AFTER the left column (natural DOM order),
-              so the CTA is always above it on small screens */}
           <div className="lg:col-span-6 w-full flex flex-col gap-4 lg:pt-2 relative">
 
-            {/* Tabs */}
+            {/* Tabs (Image 4 Clean Tab Styling) */}
             <div className="flex gap-2 flex-wrap">
               {DEMO_SHOWCASES.map((d) => (
                 <button
@@ -162,148 +197,145 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Ambient glow — warm gold */}
-            <div
-              aria-hidden
-              className="absolute -inset-4 rounded-2xl pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse 80% 60% at 55% 50%, rgba(202, 138, 4, 0.08), transparent 70%)",
-                filter: "blur(24px)",
-                zIndex: 0,
-              }}
-            />
+            {/* Showcase Wrapper with Stacked Depth (Image 3 Card Depth) */}
+            <div className="relative w-full">
+              
+              {/* Stacked background card peeking behind (Image 3 depth effect) */}
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-bg-secondary/80 border border-border/40 rounded-2xl transform translate-x-2.5 translate-y-2.5 rotate-1 opacity-70 pointer-events-none z-0"
+              />
 
-            {/* Preview Card */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeDemo}
-                initial={{ opacity: 0, scale: 0.98, y: 6 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.97, y: -6 }}
-                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 glass-panel border border-border/40 overflow-hidden rounded-2xl backdrop-blur-xl"
-                style={{
-                  boxShadow: "0 0 0 1px rgba(9,9,11,0.08), 0 8px 32px -8px rgba(202,138,4,0.10), 0 24px 48px -12px rgba(0,0,0,0.08)"
-                }}
-              >
-                {/* Browser chrome */}
-                <div className="px-4 py-2.5 border-b border-border/40 bg-bg-secondary/95 flex items-center gap-3">
-                  <div className="flex gap-1.5 shrink-0">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
-                  </div>
-                  {/* URL bar */}
-                  <div className="flex-1 min-w-0 bg-bg-primary/60 border border-border/50 rounded px-3 py-1">
-                    <span className="font-mono text-[9px] text-text-tertiary tracking-wide truncate block">
-                      {demo.url.replace("https://", "")}
-                    </span>
-                  </div>
-                  <a
-                    href={demo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 flex items-center gap-1 font-mono text-[9px] font-bold text-text-primary uppercase tracking-widest hover:text-accent-gold transition-colors"
-                  >
-                    <ExternalLink size={10} />
-                    Open
-                  </a>
-                </div>
-
-                {/* FIX 2: iframe fully visible by default — no dark scrim on load.
-                    Scroll affordance only appears on hover as a small corner badge. */}
-                <div
-                  className="relative w-full overflow-hidden bg-bg-secondary"
-                  style={{ height: "360px" }}
-                  onMouseEnter={() => setHoveringDemo(true)}
-                  onMouseLeave={() => setHoveringDemo(false)}
+              {/* Primary Preview Card */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeDemo}
+                  initial={{ opacity: 0, scale: 0.98, y: 6 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.97, y: -6 }}
+                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative z-10 glass-panel border border-border/40 overflow-hidden rounded-2xl backdrop-blur-xl"
+                  style={{
+                    boxShadow: "0 0 0 1px rgba(9,9,11,0.08), 0 12px 32px -8px rgba(76,29,149,0.12), 0 24px 48px -12px rgba(0,0,0,0.08)"
+                  }}
                 >
-                  {/* Defer loading iframe until user interacts or on desktop hover */}
-                  {interacting === activeDemo || hoveringDemo ? (
-                    <iframe
-                      key={activeDemo}
-                      src={demo.demoUrl}
-                      title={`${demo.name} — Live Demo`}
-                      className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-200 ${
-                        interacting === activeDemo ? "pointer-events-auto" : "pointer-events-none"
-                      }`}
-                      loading="lazy"
-                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                    />
-                  ) : (
-                    <div 
-                      onClick={() => setInteracting(activeDemo)}
-                      className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
-                    >
-                      <div className="h-12 w-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3 group-hover:scale-110 transition-transform">
-                        <MousePointer2 size={18} />
-                      </div>
-                      <span className="font-sans font-bold text-sm text-text-primary mb-1">
-                        {demo.name}
-                      </span>
-                      <span className="font-mono text-[10px] text-accent uppercase tracking-widest font-bold">
-                        Tap / Click to Explore Live Demo ↗
+                  {/* Browser chrome */}
+                  <div className="px-4 py-2.5 border-b border-border/40 bg-bg-secondary/95 flex items-center gap-3">
+                    <div className="flex gap-1.5 shrink-0">
+                      <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+                    </div>
+                    {/* URL bar */}
+                    <div className="flex-1 min-w-0 bg-bg-primary/60 border border-border/50 rounded px-3 py-1">
+                      <span className="font-mono text-[9px] text-text-tertiary tracking-wide truncate block">
+                        {demo.url.replace("https://", "")}
                       </span>
                     </div>
-                  )}
-
-                  {/* Hover-only scroll badge (top-right corner, small) */}
-                  {interacting !== activeDemo && hoveringDemo && (
-                    <AnimatePresence>
-                      <motion.button
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.85 }}
-                        transition={{ duration: 0.15 }}
-                        onClick={() => setInteracting(activeDemo)}
-                        className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
-                      >
-                        <MousePointer2 size={12} className="text-accent" />
-                        Scroll & explore
-                      </motion.button>
-                    </AnimatePresence>
-                  )}
-
-                  {/* Active: stop-scrolling escape */}
-                  {interacting === activeDemo && (
-                    <button
-                      onClick={() => setInteracting(null)}
-                      className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
+                    <a
+                      href={demo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 flex items-center gap-1 font-mono text-[9px] font-bold text-text-primary uppercase tracking-widest hover:text-accent-gold transition-colors"
                     >
-                      Done scrolling
-                    </button>
-                  )}
-
-                  {/* Bottom caption — always visible, no dark scrim on top of iframe */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/85 via-black/40 to-transparent pt-12 pb-4 px-5 pointer-events-none z-10">
-                    <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest block mb-0.5">
-                      {demo.tag}
-                    </span>
-                    <p className="font-sans font-bold text-white text-sm leading-tight">
-                      {demo.name}
-                    </p>
-                    <p className="font-sans text-white/65 text-xs mt-0.5">
-                      {demo.description}
-                    </p>
+                      <ExternalLink size={10} />
+                      Open
+                    </a>
                   </div>
-                </div>
 
-                {/* Card footer */}
-                <div className="px-5 py-3 border-t border-border/40 bg-bg-secondary/95 flex items-center justify-between gap-4">
-                  <span className="font-sans text-xs text-text-secondary truncate">
-                    Like this style? We can build it for your business.
-                  </span>
-                  <a
-                    href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20like%20the%20${encodeURIComponent(demo.name)}%20style.%20Can%20you%20build%20something%20similar%20for%20me?`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 font-mono text-[10px] font-bold text-accent-gold hover:text-accent-gold-light uppercase tracking-widest flex items-center gap-1.5 transition-colors"
+                  {/* Showcase Screen */}
+                  <div
+                    className="relative w-full overflow-hidden bg-bg-secondary"
+                    style={{ height: "360px" }}
+                    onMouseEnter={() => setHoveringDemo(true)}
+                    onMouseLeave={() => setHoveringDemo(false)}
                   >
-                    Get this style <ArrowRight size={10} />
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                    {interacting === activeDemo || hoveringDemo ? (
+                      <iframe
+                        key={activeDemo}
+                        src={demo.demoUrl}
+                        title={`${demo.name} — Live Demo`}
+                        className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-200 ${
+                          interacting === activeDemo ? "pointer-events-auto" : "pointer-events-none"
+                        }`}
+                        loading="lazy"
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                      />
+                    ) : (
+                      <div 
+                        onClick={() => setInteracting(activeDemo)}
+                        className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                      >
+                        <div className="h-12 w-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3 group-hover:scale-110 transition-transform">
+                          <MousePointer2 size={18} />
+                        </div>
+                        <span className="font-sans font-bold text-sm text-text-primary mb-1">
+                          {demo.name}
+                        </span>
+                        <span className="font-mono text-[10px] text-accent uppercase tracking-widest font-bold">
+                          Tap / Click to Explore Live Demo ↗
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Hover-only scroll badge */}
+                    {interacting !== activeDemo && hoveringDemo && (
+                      <AnimatePresence>
+                        <motion.button
+                          initial={{ opacity: 0, scale: 0.85 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.85 }}
+                          transition={{ duration: 0.15 }}
+                          onClick={() => setInteracting(activeDemo)}
+                          className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
+                        >
+                          <MousePointer2 size={12} className="text-accent" />
+                          Scroll & explore
+                        </motion.button>
+                      </AnimatePresence>
+                    )}
+
+                    {/* Active: stop-scrolling escape */}
+                    {interacting === activeDemo && (
+                      <button
+                        onClick={() => setInteracting(null)}
+                        className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
+                      >
+                        Done scrolling
+                      </button>
+                    )}
+
+                    {/* Bottom caption overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/85 via-black/40 to-transparent pt-12 pb-4 px-5 pointer-events-none z-10">
+                      <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest block mb-0.5">
+                        {demo.tag}
+                      </span>
+                      <p className="font-sans font-bold text-white text-sm leading-tight">
+                        {demo.name}
+                      </p>
+                      <p className="font-sans text-white/65 text-xs mt-0.5">
+                        {demo.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card footer */}
+                  <div className="px-5 py-3 border-t border-border/40 bg-bg-secondary/95 flex items-center justify-between gap-4">
+                    <span className="font-sans text-xs text-text-secondary truncate">
+                      Like this style? We can build it for your business.
+                    </span>
+                    <a
+                      href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20like%20the%20${encodeURIComponent(demo.name)}%20style.%20Can%20you%20build%20something%20similar%20for%20me?`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 font-mono text-[10px] font-bold text-accent-gold hover:text-accent-gold-light uppercase tracking-widest flex items-center gap-1.5 transition-colors"
+                    >
+                      Get this style <ArrowRight size={10} />
+                    </a>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
           </div>
         </div>

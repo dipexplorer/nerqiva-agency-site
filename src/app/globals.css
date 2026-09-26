@@ -20,14 +20,14 @@
   --text-tertiary: #A1A1AA;   /* Quiet labels                              */
   --text-inverted: #FFFFFF;
 
-  /* ── Accent: Architectural Obsidian + Warm Luxury Gold ─────── */
-  --accent:        #18181B;   /* Deep obsidian for primary buttons & tabs  */
-  --accent-mid:    #27272A;   /* Hover state                               */
-  --accent-light:  #3F3F46;   /* Light obsidian                            */
-  --accent-gold:   #CA8A04;   /* Warm luxury amber gold for highlights     */
-  --accent-gold-light: #EAB308;
-  --accent-glow:      rgba(202, 138, 4, 0.12);
-  --accent-glow-soft: rgba(202, 138, 4, 0.04);
+  /* ── Accent: Deep Indigo + Muted Luxury Gold ─────── */
+  --accent:        #4C1D95;   /* Deep Indigo for primary buttons, active tabs & highlights */
+  --accent-mid:    #5B21B6;   /* Hover state */
+  --accent-light:  #7C3AED;   /* Light indigo */
+  --accent-gold:   #C9A227;   /* Muted luxury gold for icons & secondary highlights */
+  --accent-gold-light: #D9B338;
+  --accent-glow:      rgba(76, 29, 149, 0.12);
+  --accent-glow-soft: rgba(76, 29, 149, 0.04);
 
   /* ── Borders ─────────────────────────────────────────────── */
   --border:      rgba(9, 9, 11, 0.08);
