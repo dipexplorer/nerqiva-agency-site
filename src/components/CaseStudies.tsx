@@ -79,28 +79,38 @@ export default function CaseStudies() {
                   {/* Interactive Live Viewport Frame */}
                   {project.demoUrl ? (
                     <div className="w-full h-72 bg-bg-secondary relative overflow-hidden border-b border-border/40">
-                      {/* Live Iframe — loaded on demand when user taps/clicks */}
-                      {activeIframeId === project.id ? (
-                        <iframe
-                          src={project.demoUrl}
-                          title={`${project.name} Live Flagship Preview`}
-                          className="absolute inset-0 w-full h-full border-none bg-white z-10 pointer-events-auto"
-                          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                          loading="lazy"
-                        />
-                      ) : (
+                      {/* Live Iframe — ALWAYS rendered in background so website is visible */}
+                      <iframe
+                        src={project.demoUrl}
+                        title={`${project.name} Live Flagship Preview`}
+                        className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-90"
+                        }`}
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                        loading="lazy"
+                      />
+
+                      {/* Translucent glass blur overlay when not active — website stays visible under blur */}
+                      {activeIframeId !== project.id && (
                         <div 
                           onClick={() => setActiveIframeId(project.id)}
-                          className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-bg-secondary z-20 group/overlay p-6 text-center"
+                          className="absolute inset-0 bg-black/25 dark:bg-black/35 backdrop-blur-xs hover:backdrop-blur-none hover:bg-black/15 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer z-20 group/overlay p-6 text-center"
                         >
-                          <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest border border-border/80 shadow-2xl group-hover/overlay:scale-105 transition-transform duration-200 rounded flex items-center gap-2 mb-2">
-                            <Sparkles size={12} className="text-accent" />
+                          <div className="bg-bg-primary/95 dark:bg-zinc-900/95 text-text-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest border border-white/20 shadow-2xl group-hover/overlay:scale-105 transition-transform duration-200 rounded flex items-center gap-2 backdrop-blur-md">
+                            <Sparkles size={12} className="text-accent-gold" />
                             <span>Click / Tap to Scroll Live Site</span>
                           </div>
-                          <span className="font-sans text-xs text-text-secondary">
-                            Interactive live preview loads on tap
-                          </span>
                         </div>
+                      )}
+
+                      {/* Active mode escape button */}
+                      {activeIframeId === project.id && (
+                        <button
+                          onClick={() => setActiveIframeId(null)}
+                          className="absolute top-3 right-3 z-30 bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer border border-white/20 backdrop-blur-md transition-colors"
+                        >
+                          Done scrolling ✕
+                        </button>
                       )}
                       
                       {/* Top Badges */}

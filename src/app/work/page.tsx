@@ -164,16 +164,22 @@ export default function WorkPage() {
                           loading="lazy"
                         />
                         
-                        {activeIframeId !== project.id && (
+                        {activeIframeId !== project.id ? (
                           <div 
                             onClick={() => setActiveIframeId(project.id)}
-                            className="absolute inset-0 bg-black/45 backdrop-blur-xs flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/35 z-20 group/overlay"
+                            className="absolute inset-0 bg-black/25 dark:bg-black/35 backdrop-blur-xs hover:backdrop-blur-none hover:bg-black/15 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 z-20 group/overlay"
                           >
-                            <div className="bg-bg-primary/95 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-border-dark shadow-xl group-hover/overlay:scale-105 transition-transform duration-200" style={{ borderRadius: '3px' }}>
-                              <span className="md:inline hidden">Click to Interact / Scroll</span>
-                              <span className="inline md:hidden">Tap to Interact / Scroll</span>
+                            <div className="bg-bg-primary/95 dark:bg-zinc-900/95 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-xl group-hover/overlay:scale-105 transition-transform duration-200 backdrop-blur-md" style={{ borderRadius: '3px' }}>
+                              <span>Click / Tap to Scroll Live Site</span>
                             </div>
                           </div>
+                        ) : (
+                          <button
+                            onClick={() => setActiveIframeId(null)}
+                            className="absolute top-3 right-3 z-30 bg-black/80 hover:bg-black text-white px-3 py-1 rounded-full shadow-lg font-sans font-semibold text-[10px] cursor-pointer border border-white/20 backdrop-blur-md transition-colors"
+                          >
+                            Done scrolling ✕
+                          </button>
                         )}
                         
                         {/* Top Badge overlay */}

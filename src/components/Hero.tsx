@@ -218,59 +218,39 @@ export default function Hero() {
                   onMouseEnter={() => setHoveringDemo(true)}
                   onMouseLeave={() => setHoveringDemo(false)}
                 >
-                  {/* Defer loading iframe until user interacts or on desktop hover */}
-                  {interacting === activeDemo || hoveringDemo ? (
-                    <iframe
-                      key={activeDemo}
-                      src={demo.demoUrl}
-                      title={`${demo.name} — Live Demo`}
-                      className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-200 ${
-                        interacting === activeDemo ? "pointer-events-auto" : "pointer-events-none"
-                      }`}
-                      loading="lazy"
-                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                    />
-                  ) : (
+                  {/* Iframe is ALWAYS loaded in background so preview is never blank */}
+                  <iframe
+                    key={activeDemo}
+                    src={demo.demoUrl}
+                    title={`${demo.name} — Live Demo`}
+                    className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
+                      interacting === activeDemo ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-90"
+                    }`}
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                  />
+
+                  {/* Translucent glass blur overlay when not interacting — website stays visible under blur */}
+                  {interacting !== activeDemo && (
                     <div 
                       onClick={() => setInteracting(activeDemo)}
-                      className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                      className="absolute inset-0 bg-black/25 dark:bg-black/35 backdrop-blur-xs hover:backdrop-blur-none hover:bg-black/15 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer z-20 group/overlay"
                     >
-                      <div className="h-12 w-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3 group-hover:scale-110 transition-transform">
-                        <MousePointer2 size={18} />
+                      <div className="bg-bg-primary/90 dark:bg-zinc-900/90 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-2xl backdrop-blur-md rounded group-hover/overlay:scale-105 transition-transform duration-200 flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>Click / Tap to Scroll Live Site</span>
+                        <MousePointer2 size={12} className="text-accent-gold" />
                       </div>
-                      <span className="font-sans font-bold text-sm text-text-primary mb-1">
-                        {demo.name}
-                      </span>
-                      <span className="font-mono text-[10px] text-accent uppercase tracking-widest font-bold">
-                        Tap / Click to Explore Live Demo ↗
-                      </span>
                     </div>
                   )}
 
-                  {/* Hover-only scroll badge (top-right corner, small) */}
-                  {interacting !== activeDemo && hoveringDemo && (
-                    <AnimatePresence>
-                      <motion.button
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.85 }}
-                        transition={{ duration: 0.15 }}
-                        onClick={() => setInteracting(activeDemo)}
-                        className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
-                      >
-                        <MousePointer2 size={12} className="text-accent" />
-                        Scroll & explore
-                      </motion.button>
-                    </AnimatePresence>
-                  )}
-
-                  {/* Active: stop-scrolling escape */}
+                  {/* Active mode: Done scrolling escape pill */}
                   {interacting === activeDemo && (
                     <button
                       onClick={() => setInteracting(null)}
-                      className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
+                      className="absolute top-3 right-3 z-30 bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer border border-white/20 backdrop-blur-md transition-colors"
                     >
-                      Done scrolling
+                      Done scrolling ✕
                     </button>
                   )}
 
