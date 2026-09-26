@@ -75,7 +75,7 @@ export default function Hero() {
               }}
             >
               Your competitors get more clients because they{" "}
-              <em className="not-italic text-accent-gold">
+              <em className="not-italic bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">
                 show up, respond fast, and look credible online.
               </em>
             </h1>

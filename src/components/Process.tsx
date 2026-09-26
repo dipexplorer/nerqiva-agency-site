@@ -48,7 +48,7 @@ export default function Process() {
               <div className="flex flex-col gap-2 mb-6">
                 <span className="label-eyebrow text-accent">OUR METHODOLOGY</span>
                 <h2 className="font-sans font-extrabold text-text-primary text-3xl leading-tight tracking-tight">
-                  A process built for <span className="text-accent">clarity</span> and results.
+                  A process built for <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">clarity</span> and results.
                 </h2>
               </div>
 
@@ -82,7 +82,7 @@ export default function Process() {
             <div className="block lg:hidden max-w-md mb-8">
               <span className="label-eyebrow text-accent">OUR METHODOLOGY</span>
               <h2 className="font-sans font-extrabold text-text-primary leading-tight mt-2 mb-4" style={{ fontSize: "clamp(2rem, 3.5vw, 2.75rem)" }}>
-                A process built for <span className="text-accent">clarity</span> and results.
+                A process built for <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">clarity</span> and results.
               </h2>
               <p className="text-text-secondary text-sm leading-relaxed">
                 We follow a structured roadmap designed to align objectives, speed up iteration, and verify production quality.

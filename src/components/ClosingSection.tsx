@@ -19,7 +19,7 @@ export default function ClosingSection() {
           className="font-sans font-extrabold text-text-primary leading-[1.1] mb-5 tracking-tight"
           style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
         >
-          Tell us about your business and we'll show you what's possible.
+          Tell us about your business and we'll show you <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">what's possible.</span>
         </h2>
 
         {/* Subtext */}

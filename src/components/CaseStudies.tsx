@@ -34,7 +34,7 @@ export default function CaseStudies() {
               <div className="h-px w-8 bg-accent/30 hidden sm:block" />
             </div>
             <h2 className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight" style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.4rem)" }}>
-              High-Ticket Implementations & <span className="text-accent-gold">Digital Flagships.</span>
+              High-Ticket Implementations & <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">Digital Flagships.</span>
             </h2>
           </div>
           <div className="md:col-span-5">

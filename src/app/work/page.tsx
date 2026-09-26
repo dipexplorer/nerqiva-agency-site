@@ -57,7 +57,7 @@ export default function WorkPage() {
             className="font-sans font-extrabold text-text-primary leading-[1.08] mb-6 tracking-tight"
             style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.25rem)", letterSpacing: "-0.03em" }}
           >
-            Crafted for <span className="text-accent">Impact.</span>
+            Crafted for <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">Impact.</span>
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-normal">
             Explore our collection of live interactive website themes, luxury portfolios, and custom digital systems. Click any demo below to test-drive the live website directly in your browser.

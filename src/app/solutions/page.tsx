@@ -66,7 +66,7 @@ export default function SolutionsPage() {
           </div>
           <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
-            High-converting websites built to grow your business.
+            High-converting websites built to <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">grow your business.</span>
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
             We build simple, fast, and stunning websites for local business owners. Delivered live in **24 Hours** with zero technical headache.
