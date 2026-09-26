@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Inbox } from "lucide-react";
+import { ArrowRight, Inbox, Sparkles } from "lucide-react";
 import { PROJECTS } from "../../data/projects";
 import ClosingSection from "../../components/ClosingSection";
 
@@ -154,38 +154,76 @@ export default function WorkPage() {
                       <div 
                         className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-white/5"
                       >
-                        <iframe
-                          src={project.demoUrl}
-                          title={`${project.name} Live Preview`}
-                          className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                            activeIframeId === project.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-90"
-                          }`}
-                          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                          loading="lazy"
-                        />
-                        
-                        {activeIframeId !== project.id ? (
+                        {activeIframeId === project.id ? (
+                          <>
+                            {/* Crystal-Clear Live Iframe — Zero Blur, Full Interactivity */}
+                            <iframe
+                              src={project.demoUrl}
+                              title={`${project.name} Live Preview`}
+                              className="absolute inset-0 w-full h-full border-none bg-white z-10 pointer-events-auto"
+                              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                            />
+                            
+                            {/* Floating Exit Button */}
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setActiveIframeId(null); }}
+                              className="absolute top-3 right-3 z-30 bg-black/90 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
+                            >
+                              Close Live Preview ✕
+                            </button>
+                          </>
+                        ) : (
+                          /* Rich Architectural Showcase Card — Zero Lag, Ultra Clean */
                           <div 
                             onClick={() => setActiveIframeId(project.id)}
-                            className="absolute inset-0 bg-black/25 dark:bg-black/35 backdrop-blur-xs hover:backdrop-blur-none hover:bg-black/15 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 z-20 group/overlay"
+                            className="absolute inset-0 bg-linear-to-br from-zinc-900 via-bg-secondary to-zinc-950 flex flex-col justify-between p-6 cursor-pointer group select-none overflow-hidden"
                           >
-                            <div className="bg-bg-primary/95 dark:bg-zinc-900/95 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-xl group-hover/overlay:scale-105 transition-transform duration-200 backdrop-blur-md" style={{ borderRadius: '3px' }}>
-                              <span>Click / Tap to Scroll Live Site</span>
+                            {/* Ambient Gold Glow */}
+                            <div 
+                              aria-hidden
+                              className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent-gold/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500"
+                            />
+
+                            {/* Top Badges Bar */}
+                            <div className="w-full flex items-center justify-between z-10">
+                              <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-emerald-500/10 text-emerald-400 border-emerald-500/20 flex items-center gap-1.5">
+                                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                PROJECT_{project.number}
+                              </span>
+                              <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest border border-white/10 px-2 py-0.5 rounded bg-black/40">
+                                {project.category}
+                              </span>
+                            </div>
+
+                            {/* Center Info & CTA */}
+                            <div className="my-auto z-10 flex flex-col items-center text-center gap-2.5 max-w-sm mx-auto">
+                              <div className="h-10 w-10 rounded-full bg-accent-gold/10 border border-accent-gold/30 flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:bg-accent-gold group-hover:text-bg-primary transition-all duration-300 shadow-lg">
+                                <Sparkles size={16} />
+                              </div>
+
+                              <div>
+                                <h4 className="font-sans font-extrabold text-text-primary text-lg tracking-tight mb-0.5">
+                                  {project.name}
+                                </h4>
+                                <p className="font-sans text-text-secondary text-xs leading-relaxed line-clamp-2">
+                                  {project.tagline}
+                                </p>
+                              </div>
+
+                              <div className="mt-1 bg-accent text-white dark:text-bg-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest rounded shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform duration-200 flex items-center gap-2 border border-accent">
+                                <span>Launch Live Interactive Site</span>
+                                <ArrowRight size={12} />
+                              </div>
+                            </div>
+
+                            {/* Bottom Footer Tags */}
+                            <div className="w-full flex items-center justify-center gap-4 z-10 font-mono text-[9px] text-text-tertiary uppercase tracking-wider border-t border-white/5 pt-2">
+                              <span>100% Mobile Optimized</span>
+                              <span>•</span>
+                              <span>Live Preview</span>
                             </div>
                           </div>
-                        ) : (
-                          <button
-                            onClick={() => setActiveIframeId(null)}
-                            className="absolute top-3 right-3 z-30 bg-black/80 hover:bg-black text-white px-3 py-1 rounded-full shadow-lg font-sans font-semibold text-[10px] cursor-pointer border border-white/20 backdrop-blur-md transition-colors"
-                          >
-                            Done scrolling ✕
-                          </button>
                         )}
-                        
-                        {/* Top Badge overlay */}
-                        <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs pointer-events-none z-30">
-                          PROJECT_{project.number}
-                        </div>
                       </div>
                     ) : (
                       <div className={`w-full h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>

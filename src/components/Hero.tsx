@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, CheckCircle, MousePointer2 } from "lucide-react";
+import { ArrowRight, ExternalLink, CheckCircle, MousePointer2, Sparkles } from "lucide-react";
 
 const DEMO_SHOWCASES = [
   {
@@ -215,57 +215,78 @@ export default function Hero() {
                 <div
                   className="relative w-full overflow-hidden bg-bg-secondary"
                   style={{ height: "360px" }}
-                  onMouseEnter={() => setHoveringDemo(true)}
-                  onMouseLeave={() => setHoveringDemo(false)}
                 >
-                  {/* Iframe is ALWAYS loaded in background so preview is never blank */}
-                  <iframe
-                    key={activeDemo}
-                    src={demo.demoUrl}
-                    title={`${demo.name} — Live Demo`}
-                    className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                      interacting === activeDemo ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-90"
-                    }`}
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                  />
-
-                  {/* Translucent glass blur overlay when not interacting — website stays visible under blur */}
-                  {interacting !== activeDemo && (
+                  {interacting === activeDemo ? (
+                    <>
+                      {/* Crystal-Clear Live Iframe — Zero Blur, Full Interactivity */}
+                      <iframe
+                        key={activeDemo}
+                        src={demo.demoUrl}
+                        title={`${demo.name} — Live Demo`}
+                        className="absolute inset-0 w-full h-full border-none bg-white z-10 pointer-events-auto"
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                      />
+                      
+                      {/* Floating Exit Button */}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
+                        className="absolute top-3 right-3 z-30 bg-black/90 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
+                      >
+                        Close Live Preview ✕
+                      </button>
+                    </>
+                  ) : (
+                    /* Rich Architectural Showcase Card — Zero Lag, Ultra Clean */
                     <div 
                       onClick={() => setInteracting(activeDemo)}
-                      className="absolute inset-0 bg-black/25 dark:bg-black/35 backdrop-blur-xs hover:backdrop-blur-none hover:bg-black/15 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer z-20 group/overlay"
+                      className="absolute inset-0 bg-linear-to-br from-zinc-900 via-bg-secondary to-zinc-950 flex flex-col justify-between p-6 cursor-pointer group select-none overflow-hidden"
                     >
-                      <div className="bg-bg-primary/90 dark:bg-zinc-900/90 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-white/20 shadow-2xl backdrop-blur-md rounded group-hover/overlay:scale-105 transition-transform duration-200 flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span>Click / Tap to Scroll Live Site</span>
-                        <MousePointer2 size={12} className="text-accent-gold" />
+                      {/* Ambient Gold Glow */}
+                      <div 
+                        aria-hidden
+                        className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent-gold/15 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500"
+                      />
+
+                      {/* Top Bar */}
+                      <div className="w-full flex items-center justify-between z-10">
+                        <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-emerald-500/10 text-emerald-400 border-emerald-500/20 flex items-center gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          READY TO TEST
+                        </span>
+                        <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest">
+                          {demo.tag}
+                        </span>
+                      </div>
+
+                      {/* Center Info & CTA */}
+                      <div className="my-auto z-10 flex flex-col items-center text-center gap-2.5 max-w-sm mx-auto">
+                        <div className="h-11 w-11 rounded-full bg-accent-gold/10 border border-accent-gold/30 flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:bg-accent-gold group-hover:text-bg-primary transition-all duration-300 shadow-lg">
+                          <Sparkles size={18} />
+                        </div>
+
+                        <div>
+                          <h4 className="font-sans font-extrabold text-text-primary text-lg tracking-tight mb-1">
+                            {demo.name}
+                          </h4>
+                          <p className="font-sans text-text-secondary text-xs leading-relaxed line-clamp-2">
+                            {demo.description}
+                          </p>
+                        </div>
+
+                        <div className="mt-1 bg-accent text-white dark:text-bg-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest rounded shadow-lg shadow-accent/20 group-hover:scale-105 transition-transform duration-200 flex items-center gap-2 border border-accent">
+                          <span>Launch Live Interactive Site</span>
+                          <ArrowRight size={13} />
+                        </div>
+                      </div>
+
+                      {/* Bottom Footer Tags */}
+                      <div className="w-full flex items-center justify-center gap-4 z-10 font-mono text-[9px] text-text-tertiary uppercase tracking-wider border-t border-white/5 pt-2.5">
+                        <span>100% Mobile Optimized</span>
+                        <span>•</span>
+                        <span>Instant WhatsApp Booking</span>
                       </div>
                     </div>
                   )}
-
-                  {/* Active mode: Done scrolling escape pill */}
-                  {interacting === activeDemo && (
-                    <button
-                      onClick={() => setInteracting(null)}
-                      className="absolute top-3 right-3 z-30 bg-black/80 hover:bg-black text-white px-3 py-1.5 rounded-full shadow-lg font-sans font-semibold text-xs cursor-pointer border border-white/20 backdrop-blur-md transition-colors"
-                    >
-                      Done scrolling ✕
-                    </button>
-                  )}
-
-                  {/* Bottom caption — always visible, no dark scrim on top of iframe */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/85 via-black/40 to-transparent pt-12 pb-4 px-5 pointer-events-none z-10">
-                    <span className="font-mono text-[9px] text-white/50 uppercase tracking-widest block mb-0.5">
-                      {demo.tag}
-                    </span>
-                    <p className="font-sans font-bold text-white text-sm leading-tight">
-                      {demo.name}
-                    </p>
-                    <p className="font-sans text-white/65 text-xs mt-0.5">
-                      {demo.description}
-                    </p>
-                  </div>
                 </div>
 
                 {/* Card footer */}
