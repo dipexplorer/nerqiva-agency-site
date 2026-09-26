@@ -99,7 +99,7 @@ export default function SolutionBuilder() {
                 onClick={() => setSelected(opt.id)}
                 className={`px-5 py-3 font-sans text-sm font-bold transition-all duration-200 border cursor-pointer rounded-full ${
                   isActive
-                    ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 shadow-md"
+                    ? "bg-[#4C1D95] text-white border-[#4C1D95] shadow-md dark:bg-zinc-100 dark:text-zinc-950 dark:border-zinc-100"
                     : "bg-zinc-100/90 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
                 }`}
               >
@@ -128,7 +128,7 @@ export default function SolutionBuilder() {
                 <h3 className="font-sans text-text-primary text-xl font-bold leading-snug mb-4">
                   {active.outcome}
                 </h3>
-                <p className="font-sans text-sm font-bold text-amber-600 dark:text-amber-400 mt-2">
+                <p className="font-sans text-sm font-bold text-[#4C1D95] dark:text-[#C4B5FD] mt-2">
                   {active.price}
                 </p>
               </div>
@@ -138,7 +138,7 @@ export default function SolutionBuilder() {
                   href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20interested%20in:%20${encodeURIComponent(active.label)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-sans text-sm font-bold transition-all duration-300 rounded-xl shadow-lg hover:scale-[1.01]"
+                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-[#4C1D95] hover:bg-[#3B0764] text-white font-sans text-sm font-bold transition-all duration-300 rounded-xl shadow-lg shadow-[#4C1D95]/20 hover:scale-[1.01]"
                 >
                   <span>{active.cta}</span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -157,8 +157,8 @@ export default function SolutionBuilder() {
               <div className="flex flex-col gap-4">
                 {active.includes.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="shrink-0 h-5 w-5 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mt-0.5">
-                      <span className="font-mono text-[10px] text-amber-600 dark:text-amber-400 font-extrabold">{i + 1}</span>
+                    <div className="shrink-0 h-5 w-5 rounded-full bg-[#4C1D95]/10 border border-[#4C1D95]/20 flex items-center justify-center mt-0.5">
+                      <span className="font-mono text-[10px] text-[#4C1D95] dark:text-[#C4B5FD] font-extrabold">{i + 1}</span>
                     </div>
                     <span className="font-sans text-sm text-text-secondary leading-normal font-medium">
                       {item}

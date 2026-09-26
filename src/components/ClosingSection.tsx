@@ -19,7 +19,7 @@ export default function ClosingSection() {
           className="font-sans font-extrabold text-text-primary leading-[1.1] mb-5 tracking-tight"
           style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
         >
-          Tell us about your business and we'll show you <span className="text-gold-gradient font-black">what's possible.</span>
+          Tell us about your business and we'll show you <span className="text-[#4C1D95] dark:text-[#C4B5FD] font-black">what's possible.</span>
         </h2>
 
         {/* Subtext */}
@@ -32,7 +32,7 @@ export default function ClosingSection() {
           href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20see%20what%20you%20can%20do%20for%20my%20business."
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 px-10 py-4.5 font-sans text-base font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded-xl shadow-xl shadow-zinc-950/15 dark:shadow-white/10 hover:scale-[1.01] mb-4"
+          className="group w-full sm:w-auto bg-[#4C1D95] hover:bg-[#3B0764] text-white px-10 py-4.5 font-sans text-base font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded-xl shadow-xl shadow-[#4C1D95]/25 hover:scale-[1.01] mb-4"
         >
           <span>Let's talk — WhatsApp us</span>
           <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

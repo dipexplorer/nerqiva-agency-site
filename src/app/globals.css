@@ -20,14 +20,14 @@
   --text-tertiary: #A1A1AA;   /* Quiet labels                              */
   --text-inverted: #FFFFFF;
 
-  /* ── Accent: Architectural Obsidian + Warm Luxury Gold ─────── */
-  --accent:        #18181B;   /* Deep obsidian for primary buttons & tabs  */
-  --accent-mid:    #27272A;   /* Hover state                               */
-  --accent-light:  #3F3F46;   /* Light obsidian                            */
-  --accent-gold:   #CA8A04;   /* Warm luxury amber gold for highlights     */
-  --accent-gold-light: #EAB308;
-  --accent-glow:      rgba(202, 138, 4, 0.12);
-  --accent-glow-soft: rgba(202, 138, 4, 0.04);
+  /* ── Accent: Locked Indigo #4C1D95 + Muted Gold #C9A227 ─────── */
+  --accent:        #4C1D95;   /* Deep indigo for primary buttons & highlights */
+  --accent-mid:    #3B0764;   /* Deep indigo hover                            */
+  --accent-light:  #6D28D9;   /* Medium indigo                                */
+  --accent-gold:   #C9A227;   /* Muted gold for secondary accents & icons     */
+  --accent-gold-light: #D97706;
+  --accent-glow:      rgba(76, 29, 149, 0.15);
+  --accent-glow-soft: rgba(76, 29, 149, 0.05);
 
   /* ── Borders ─────────────────────────────────────────────── */
   --border:      rgba(9, 9, 11, 0.08);
@@ -47,13 +47,13 @@
   --text-tertiary: #71717A;
   --text-inverted: #09090B;
 
-  --accent:        #F4F4F5;
-  --accent-mid:    #E4E4E7;
-  --accent-light:  #D4D4D8;
+  --accent:        #A78BFA;   /* Light indigo for dark mode accents */
+  --accent-mid:    #8B5CF6;
+  --accent-light:  #C4B5FD;
   --accent-gold:   #EAB308;
 
-  --accent-glow:      rgba(234, 179, 8, 0.20);
-  --accent-glow-soft: rgba(234, 179, 8, 0.10);
+  --accent-glow:      rgba(167, 139, 250, 0.20);
+  --accent-glow-soft: rgba(167, 139, 250, 0.10);
 
   --border:      rgba(255, 255, 255, 0.08);
   --border-dark: rgba(255, 255, 255, 0.15);
@@ -193,20 +193,12 @@ h1, h2 { font-family: var(--font-display); }
 /* Indigo glow */
 .glow-accent { box-shadow: 0 0 40px 0 rgba(59, 7, 100, 0.20); }
 
-/* Gradient text — Luxury Amber Gold with fallback */
-.text-gold-gradient {
-  color: #B45309;
-  background: linear-gradient(135deg, #92400E 0%, #D97706 50%, #CA8A04 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Indigo emphasis text — locked brand accent #4C1D95 */
+.text-indigo-highlight {
+  color: #4C1D95;
 }
-.dark .text-gold-gradient {
-  color: #FACC15;
-  background: linear-gradient(135deg, #FEF08A 0%, #FACC15 50%, #EAB308 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.dark .text-indigo-highlight {
+  color: #C4B5FD;
 }
 
 /* Luxury card surface */

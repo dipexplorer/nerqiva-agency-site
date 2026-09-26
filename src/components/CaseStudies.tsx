@@ -34,7 +34,7 @@ export default function CaseStudies() {
               <div className="h-px w-8 bg-accent/30 hidden sm:block" />
             </div>
             <h2 className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight" style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.4rem)" }}>
-              High-Ticket Implementations & <span className="text-gold-gradient font-black">Digital Flagships.</span>
+              High-Ticket Implementations & <span className="text-[#4C1D95] dark:text-[#C4B5FD] font-black">Digital Flagships.</span>
             </h2>
           </div>
           <div className="md:col-span-5">
@@ -52,7 +52,7 @@ export default function CaseStudies() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4.5 py-2 font-mono text-[11px] uppercase tracking-widest font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                 selectedCategory === cat
-                  ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 shadow-md"
+                  ? "bg-[#4C1D95] text-white border-[#4C1D95] shadow-md dark:bg-zinc-100 dark:text-zinc-950 dark:border-zinc-100"
                   : "bg-zinc-100/80 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >

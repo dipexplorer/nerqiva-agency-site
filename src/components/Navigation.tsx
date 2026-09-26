@@ -89,7 +89,7 @@ export default function Navigation() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="px-5 py-2.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded hover:bg-accent-mid transition-colors shadow-lg shadow-accent/20"
+              className="px-5 py-2.5 bg-[#4C1D95] hover:bg-[#3B0764] text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded-lg transition-colors shadow-md shadow-[#4C1D95]/20"
             >
               Start a Project
             </Link>
@@ -145,7 +145,7 @@ export default function Navigation() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-accent text-white dark:text-bg-primary font-mono text-xs font-bold uppercase tracking-widest rounded text-center shadow-lg shadow-accent/20"
+            className="px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-[#4C1D95] hover:bg-[#3B0764] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-lg text-center shadow-md shadow-[#4C1D95]/20"
           >
             Start a Project
           </Link>
