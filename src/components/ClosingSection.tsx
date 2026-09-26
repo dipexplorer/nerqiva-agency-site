@@ -1,50 +1,46 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 export default function ClosingSection() {
   return (
-    <section className="relative py-32 border-t border-border/40 bg-transparent flex flex-col items-center justify-center text-center">
-      <div className="section-container relative z-20 w-full flex flex-col items-center max-w-3xl">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="h-px w-8 bg-accent/40" />
-          <span className="label-eyebrow">Ready to build something useful?</span>
-          <div className="h-px w-8 bg-accent/40" />
-        </div>
+    <section className="relative py-24 border-t border-border/30 bg-transparent flex flex-col items-center justify-center text-center overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/8 blur-[140px] pointer-events-none rounded-full" />
 
+      <div className="section-container relative z-10 flex flex-col items-center max-w-2xl">
+        {/* Eyebrow */}
+        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-text-tertiary mb-6 block">
+          Ready to get more clients?
+        </span>
+
+        {/* Headline */}
         <h2
-          className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
-          style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.03em" }}
+          className="font-sans font-extrabold text-text-primary leading-[1.1] mb-5 tracking-tight"
+          style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
         >
-          Tell us the problem.
+          Tell us about your business and we'll show you what's possible.
         </h2>
 
-        <p className="text-text-secondary text-lg leading-relaxed mb-12 max-w-lg">
-          We&apos;ll figure out exactly what should be built — and what shouldn&apos;t.
+        {/* Subtext */}
+        <p className="text-text-secondary text-base leading-relaxed mb-10 max-w-md">
+          No commitment, no pressure. Send us a WhatsApp message with your business type and we'll send you the most relevant demo — plus a rough idea of what it would cost to build for you.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-          <Link
-            href="/contact"
-            className="group relative w-full sm:w-auto bg-accent text-white px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:bg-accent-mid transition-all duration-200 cursor-pointer overflow-hidden flex items-center justify-center gap-3"
-            style={{ borderRadius: "4px", boxShadow: "0 4px 24px rgba(124,58,237,0.3)" }}
-          >
-            <span className="relative z-10">Start a Project</span>
-            <ArrowRight size={15} className="relative z-10 group-hover:translate-x-1.5 transition-transform duration-200" />
-          </Link>
+        {/* Single CTA */}
+        <a
+          href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20see%20what%20you%20can%20do%20for%20my%20business."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group w-full sm:w-auto bg-accent text-white px-10 py-4 font-sans text-base font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded shadow-lg shadow-accent/25 mb-4"
+        >
+          <span>Let's talk — WhatsApp us</span>
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </a>
 
-          <a
-            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20for%20my%20business."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group w-full sm:w-auto bg-emerald-600 text-white px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest hover:bg-emerald-700 transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20"
-            style={{ borderRadius: "4px" }}
-          >
-            <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
-            <span>Chat on WhatsApp</span>
-          </a>
-        </div>
+        <p className="font-sans text-xs text-text-tertiary">
+          Usually reply within a few hours during business hours.
+        </p>
       </div>
     </section>
   );

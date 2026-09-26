@@ -1,165 +1,198 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { PROJECTS } from "../data/projects";
+import { ArrowRight, ExternalLink, Sparkles, Smartphone, Zap, ShieldCheck } from "lucide-react";
+import { PROJECTS, Project } from "../data/projects";
+
+const CATEGORIES = ["ALL", "Beauty & Bridal", "Photography Studio", "Fitness & Wellness"];
 
 export default function CaseStudies() {
-  const featuredProjects = PROJECTS.filter((p) => p.featured);
+  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [activeIframeId, setActiveIframeId] = useState<string | null>(null);
 
+  const filteredProjects = PROJECTS.filter((p) => {
+    if (selectedCategory === "ALL") return p.featured;
+    return p.category === selectedCategory || p.type.includes(selectedCategory);
+  });
+
   return (
-    <section id="work" className="py-32 bg-transparent border-t border-white/5 bg-grid-dots">
-      <div className="section-container">
+    <section id="case-studies" className="py-28 bg-transparent border-t border-border/30 relative">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-accent/5 blur-[160px] pointer-events-none rounded-full" />
+
+      <div className="section-container relative z-10">
         
-        {/* Editorial Header */}
-        <div className="grid md:grid-cols-12 gap-8 mb-20">
-          <div className="md:col-span-6">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-accent" />
-              <span className="label-eyebrow text-accent">OUR CAPABILITIES</span>
+        {/* Section Header */}
+        <div className="grid md:grid-cols-12 gap-8 mb-16 items-end">
+          <div className="md:col-span-7">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] bg-accent/10 border border-accent/20 text-accent rounded">
+                CLIENT FLAGSHIPS & PROOF OF WORK
+              </span>
+              <div className="h-px w-8 bg-accent/30 hidden sm:block" />
             </div>
-            <h2 className="font-sans font-extrabold text-text-primary leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
-              Featured <span className="text-accent">Implementations.</span>
+            <h2 className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight" style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.4rem)" }}>
+              High-Ticket Implementations & <span className="text-accent-gold">Digital Flagships.</span>
             </h2>
           </div>
-          <div className="md:col-span-6 flex items-end">
-            <p className="text-text-secondary text-base leading-relaxed max-w-md">
-              This is a featured live design concept illustrating a base version. We customize and scale this with advanced functionality tailored exactly to your business.
+          <div className="md:col-span-5">
+            <p className="text-text-secondary text-base leading-relaxed">
+              Explore our live bespoke builds engineered for luxury MUAs, photographers, and studios. Each system includes sub-300ms speed, 1-click WhatsApp lead routing, and custom visual identity.
             </p>
           </div>
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
-          {featuredProjects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative glass-panel overflow-hidden flex flex-col justify-between hover:border-accent/60 hover:shadow-[0_12px_32px_rgba(124,58,237,0.12)] transition-all duration-300"
-              style={{ borderRadius: "4px" }}
-              onMouseLeave={() => setActiveIframeId(null)}
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-2.5 mb-12 border-b border-border/20 pb-4">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest font-bold border transition-all duration-300 cursor-pointer rounded ${
+                selectedCategory === cat
+                  ? "bg-accent border-accent text-white shadow-md shadow-accent/20"
+                  : "bg-bg-secondary/70 text-text-secondary border-border/40 hover:border-accent/30 hover:text-text-primary"
+              }`}
             >
-              <div>
-                {/* Visual Header / Accent Gradient / Screenshot */}
-                {project.projectType === "demo" && project.demoUrl ? (
-                  <div 
-                    className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-white/5"
-                  >
-                    <iframe
-                      src={project.demoUrl}
-                      title={`${project.name} Live Preview`}
-                      className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                        activeIframeId === project.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-90"
-                      }`}
-                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                      loading="lazy"
-                    />
-                    
-                    {activeIframeId !== project.id && (
-                      <div 
-                        onClick={() => setActiveIframeId(project.id)}
-                        className="absolute inset-0 bg-black/45 backdrop-blur-xs flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/35 z-20 group/overlay"
-                      >
-                        <div className="bg-bg-primary/95 text-text-primary px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest border border-border-dark shadow-xl group-hover/overlay:scale-105 transition-transform duration-200" style={{ borderRadius: '3px' }}>
-                          <span className="md:inline hidden">Click to Interact / Scroll</span>
-                          <span className="inline md:hidden">Tap to Interact / Scroll</span>
-                        </div>
-                      </div>
-                    )}
-                    
-                    {/* Top Badge overlay - disabled pointer events so it doesn't block iframe scrolling */}
-                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs pointer-events-none z-30">
-                      PROJECT_{project.number}
-                    </div>
-                  </div>
-                ) : (
-                  <div className={`w-full h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
-                    {/* Decorative Blueprint Graph Grid overlay */}
-                    <div className="absolute inset-0 opacity-15 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '16px 16px' }} />
-                    
-                    {/* Digital system model representation (SVG) */}
-                    <svg className="w-16 h-16 text-white/30 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="8" rx="1" />
-                      <rect x="2" y="14" width="20" height="8" rx="1" />
-                      <line x1="6" y1="6" x2="6.01" y2="6" />
-                      <line x1="6" y1="18" x2="6.01" y2="18" />
-                    </svg>
-
-                    {/* Top Badge overlay */}
-                    <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded-[2px] backdrop-blur-xs">
-                      PROJECT_{project.number}
-                    </div>
-                  </div>
-                )}
-
-              {/* Content Block */}
-              <div className="p-8 pb-0">
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                  <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-[2px] font-bold border ${
-                    project.projectType === "demo"
-                      ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                      : "bg-accent/10 text-accent border-accent/20"
-                  }`}>
-                    {project.projectType === "demo" ? "DEMO THEME" : "CLIENT PROJECT"}
-                  </span>
-                  <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest font-semibold">
-                    {project.type}
-                  </span>
-                </div>
-
-                <h3 className="font-sans font-extrabold text-2xl text-text-primary mb-3 group-hover:text-accent transition-colors duration-200">
-                  {project.projectType === "demo" && project.demoUrl ? (
-                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                      {project.name}
-                    </a>
-                  ) : (
-                    <Link href={`/work/${project.slug}`}>
-                      {project.name}
-                    </Link>
-                  )}
-                </h3>
-
-                <p className="text-text-secondary text-sm leading-relaxed mb-6 font-light line-clamp-2">
-                  {project.tagline}
-                </p>
-              </div>
-
-              {/* Minimal Action Footer */}
-              <div className="px-8 pb-8">
-                <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                  <span className="font-mono text-[8px] text-text-tertiary uppercase tracking-wider font-semibold">
-                    100% MOBILE OPTIMIZED
-                  </span>
-                  {project.projectType === "demo" && project.demoUrl ? (
-                    <a 
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
-                    >
-                      Website Preview
-                      <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
-                    </a>
-                  ) : (
-                    <Link 
-                      href={`/work/${project.slug}`}
-                      className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
-                    >
-                      Website Preview
-                      <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-            </motion.div>
+              {cat === "ALL" ? "All Flagships" : cat}
+            </button>
           ))}
+        </div>
+
+        {/* Project Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="group relative glass-panel overflow-hidden flex flex-col justify-between border border-border/50 hover:border-accent/60 hover:shadow-[0_16px_40px_rgba(202,138,4,0.12)] transition-all duration-300 rounded backdrop-blur-2xl"
+                onMouseLeave={() => setActiveIframeId(null)}
+              >
+                <div>
+                  {/* Interactive Live Viewport Frame */}
+                  {project.demoUrl ? (
+                    <div className="w-full h-72 bg-bg-secondary relative overflow-hidden border-b border-border/40">
+                      {/* Live Iframe */}
+                      <iframe
+                        src={project.demoUrl}
+                        title={`${project.name} Live Flagship Preview`}
+                        className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-85"
+                        }`}
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                        loading="lazy"
+                      />
+                      
+                      {/* Overlay Prompt for Interaction */}
+                      {activeIframeId !== project.id && (
+                        <div 
+                          onClick={() => setActiveIframeId(project.id)}
+                          className="absolute inset-0 bg-black/55 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/40 z-20 group/overlay"
+                        >
+                          <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest border border-border/80 shadow-2xl group-hover/overlay:scale-105 transition-transform duration-200 rounded flex items-center gap-2">
+                            <Sparkles size={12} className="text-accent" />
+                            <span>Click / Tap to Scroll Live Site</span>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-4 left-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/60 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30 flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        FLAGSHIP_{project.number}
+                      </div>
+
+                      <div className="absolute top-4 right-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/60 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30">
+                        {project.category}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className={`w-full h-56 bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center border-b border-border/40`}>
+                      <div className="absolute top-4 left-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/80 bg-black/50 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md">
+                        FLAGSHIP_{project.number}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Content Block */}
+                  <div className="p-7">
+                    <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                      <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-accent/10 text-accent border-accent/20">
+                        BESPOKE DIGITAL SYSTEM
+                      </span>
+                      <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[9px] font-bold tracking-widest">
+                        <Zap size={10} />
+                        <span>SUB-300MS LATENCY</span>
+                      </div>
+                    </div>
+
+                    <h3 className="font-sans font-extrabold text-2xl text-text-primary mb-2 group-hover:text-accent transition-colors duration-200">
+                      {project.demoUrl ? (
+                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                          {project.name}
+                          <ExternalLink size={16} className="text-text-tertiary group-hover:text-accent transition-colors" />
+                        </a>
+                      ) : (
+                        <Link href={`/work/${project.slug}`}>
+                          {project.name}
+                        </Link>
+                      )}
+                    </h3>
+
+                    <p className="text-text-secondary text-sm leading-relaxed mb-5 font-normal line-clamp-2">
+                      {project.tagline}
+                    </p>
+
+                    {/* Tech Stack Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.stack.map((tech) => (
+                        <span key={tech} className="font-mono text-[9px] font-semibold text-text-tertiary bg-bg-secondary border border-border/40 px-2 py-0.5 rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action Footer */}
+                <div className="px-7 pb-7 pt-0 border-t border-border/20 mt-auto">
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="flex items-center gap-1.5 text-text-tertiary font-mono text-[9px] tracking-wider uppercase font-semibold">
+                      <Smartphone size={12} className="text-accent" />
+                      <span>100% Mobile Conversion</span>
+                    </div>
+
+                    {project.demoUrl ? (
+                      <a 
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
+                      >
+                        <span>Launch Live Flagship</span>
+                        <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                      </a>
+                    ) : (
+                      <Link 
+                        href={`/work/${project.slug}`}
+                        className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
+                      >
+                        <span>View Details</span>
+                        <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
       </div>

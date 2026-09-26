@@ -1,101 +1,103 @@
 @import "tailwindcss";
 
-/* ============================================
-   NERQIVA — Design System v2
-   Light palette | Purple accent
-   ============================================ */
+/* ============================================================
+   NERQIVA — Design System v5
+   Palette: White & Ink · Accent: Deep Ruby #9B111E
+   Fonts:   Fraunces (display h1/h2) · DM Sans (body) · DM Mono (labels)
+   ============================================================ */
 
 :root {
-  /* Warm/Soft White Backgrounds (Light default) */
-  --bg-primary: #FBFBFC;
-  --bg-secondary: #F5F5F7;
-  --bg-card: rgba(255, 255, 255, 0.65);
-  --bg-dark: #000000;
-  --bg-dark-card: #0A0A0E;
+  /* ── Backgrounds ─────────────────────────────────────────── */
+  --bg-primary:    #FFFFFF;   /* Pure white — clean, architectural        */
+  --bg-secondary:  #F4F4F5;   /* Light zinc surface                        */
+  --bg-card:       #FAFAFA;
+  --bg-dark:       #09090B;
+  --bg-dark-card:  #18181B;
 
-  /* Typography (Apple Charcoal / Slate) */
-  --text-primary: #1D1D1F;
-  --text-secondary: #86868B;
-  --text-tertiary: #76767B;
-  --text-inverted: #F7F6F3;
+  /* ── Typography ─────────────────────────────────────────── */
+  --text-primary:  #09090B;   /* Deep obsidian ink                         */
+  --text-secondary:#52525B;   /* Zinc gray — 5.7:1 on white, WCAG AA       */
+  --text-tertiary: #A1A1AA;   /* Quiet labels                              */
+  --text-inverted: #FFFFFF;
 
-  /* Accent (Apple Purple / Indigo) */
-  --accent: #7C3AED;
-  --accent-light: #A78BFA;
-  --accent-mid: #8B5CF6;
-  --accent-glow: rgba(124, 58, 237, 0.05);
-  --accent-glow-soft: rgba(139, 92, 246, 0.03);
+  /* ── Accent: Architectural Obsidian + Warm Luxury Gold ─────── */
+  --accent:        #18181B;   /* Deep obsidian for primary buttons & tabs  */
+  --accent-mid:    #27272A;   /* Hover state                               */
+  --accent-light:  #3F3F46;   /* Light obsidian                            */
+  --accent-gold:   #CA8A04;   /* Warm luxury amber gold for highlights     */
+  --accent-gold-light: #EAB308;
+  --accent-glow:      rgba(202, 138, 4, 0.12);
+  --accent-glow-soft: rgba(202, 138, 4, 0.04);
 
-  /* Subtle Light Borders */
-  --border: rgba(0, 0, 0, 0.06);
-  --border-dark: rgba(0, 0, 0, 0.12);
+  /* ── Borders ─────────────────────────────────────────────── */
+  --border:      rgba(9, 9, 11, 0.08);
+  --border-dark: rgba(9, 9, 11, 0.16);
+}
 
-  /* Semantic */
+/* ── Dark Mode ───────────────────────────────────────────── */
+.dark {
+  --bg-primary:   #09090B;
+  --bg-secondary: #18181B;
+  --bg-card:      #27272A;
+  --bg-dark:      #050506;
+  --bg-dark-card: #09090B;
+
+  --text-primary:  #F4F4F5;
+  --text-secondary:#A1A1AA;
+  --text-tertiary: #71717A;
+  --text-inverted: #09090B;
+
+  --accent:        #F4F4F5;
+  --accent-mid:    #E4E4E7;
+  --accent-light:  #D4D4D8;
+  --accent-gold:   #EAB308;
+
+  --accent-glow:      rgba(234, 179, 8, 0.20);
+  --accent-glow-soft: rgba(234, 179, 8, 0.10);
+
+  --border:      rgba(255, 255, 255, 0.08);
+  --border-dark: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Semantic aliases ─────────────────────────────────────── */
+:root {
   --foreground: var(--text-primary);
   --background: var(--bg-primary);
 }
 
-/* Dark Mode Overrides for Specific Sections */
-.dark {
-  --bg-primary: #0A0A0E;
-  --bg-secondary: #121218;
-  --bg-card: rgba(18, 18, 24, 0.45);
-  --bg-dark: #000000;
-  --bg-dark-card: #08080C;
-
-  --text-primary: #F7F6F3;
-  --text-secondary: #9C99AB;
-  --text-tertiary: #868399;
-  --text-inverted: #1D1D1F;
-
-  --accent-glow: rgba(124, 58, 237, 0.15);
-  --accent-glow-soft: rgba(139, 92, 246, 0.08);
-
-  --border: rgba(255, 255, 255, 0.08);
-  --border-dark: rgba(255, 255, 255, 0.15);
-}
-
-/* ============================================
+/* ============================================================
    Tailwind Theme Extension
-   ============================================ */
+   ============================================================ */
 @theme {
-  /* Backgrounds mapped to CSS Variables */
-  --color-bg-primary: var(--bg-primary);
+  --color-bg-primary:   var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
-  --color-bg-card: var(--bg-card);
-  --color-bg-dark: var(--bg-dark);
+  --color-bg-card:      var(--bg-card);
+  --color-bg-dark:      var(--bg-dark);
   --color-bg-dark-card: var(--bg-dark-card);
 
-  /* Text mapped to CSS Variables */
-  --color-text-primary: var(--text-primary);
+  --color-text-primary:   var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-text-tertiary: var(--text-tertiary);
-  --color-text-inverted: var(--text-inverted);
+  --color-text-tertiary:  var(--text-tertiary);
+  --color-text-inverted:  var(--text-inverted);
 
-  /* Accent mapped to CSS Variables */
-  --color-accent: var(--accent);
+  --color-accent:       var(--accent);
+  --color-accent-mid:   var(--accent-mid);
   --color-accent-light: var(--accent-light);
-  --color-accent-mid: var(--accent-mid);
+  --color-accent-gold:  var(--accent-gold);
 
-  /* Borders mapped to CSS Variables */
-  --color-border: var(--border);
+  --color-border:      var(--border);
   --color-border-dark: var(--border-dark);
 
-  /* Fonts */
-  --font-sans: var(--font-jakarta), sans-serif;
-  --font-mono: var(--font-space-grotesk), monospace;
+  --font-display: var(--font-display), Georgia, serif;
+  --font-sans:    var(--font-sans), system-ui, sans-serif;
+  --font-mono:    var(--font-mono), "Courier New", monospace;
 }
 
-/* ============================================
+/* ============================================================
    Base Reset
-   ============================================ */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--bg-primary);
@@ -106,166 +108,106 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ============================================
-   Custom Scrollbar
-   ============================================ */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
+/* Display headings use the editorial serif */
+h1, h2 { font-family: var(--font-display); }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-::-webkit-scrollbar-thumb {
-  background: #C4C0D8;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-}
-
-
-/* ============================================
+/* ============================================================
    Selection
-   ============================================ */
-::selection {
-  background: var(--accent);
-  color: white;
-}
+   ============================================================ */
+::selection { background: var(--accent); color: var(--text-inverted); }
 
-/* ============================================
+/* ============================================================
    Animations
-   ============================================ */
+   ============================================================ */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 @keyframes float-up {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
-
 @keyframes float-down {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(8px); }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
 }
-
 @keyframes pulse-soft {
   0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  50%       { opacity: 1; }
 }
-
 @keyframes shimmer {
-  0% { background-position: -200% center; }
+  0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes draw-line {
   from { stroke-dashoffset: 1000; }
-  to { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 0; }
 }
-
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  to   { transform: rotate(360deg); }
 }
-
 @keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
-.animate-float-up { animation: float-up 5s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.55s ease forwards; }
+.animate-float-up   { animation: float-up 5s ease-in-out infinite; }
 .animate-float-down { animation: float-down 6s ease-in-out infinite; }
 .animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
-.animate-fade-in-up { animation: fade-in-up 0.7s ease forwards; }
-.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+.animate-spin-slow  { animation: spin-slow 12s linear infinite; }
 
-/* ============================================
-   Utility Classes
-   ============================================ */
+/* ============================================================
+   Surface Classes
+   ============================================================ */
 
-/* Frosted glass (light) */
-.glass-light {
-  background: rgba(247, 246, 243, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
+/* Crisp card — solid boundary, no blur. Use for content cards. */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-/* Frosted glass (dark) */
-.glass-dark {
-  background: rgba(12, 12, 16, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+/* Glass panel — reserved only for the demo browser chrome
+   and overlay elements sitting against imagery. Not a general card. */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.60);
+}
+.dark .glass-panel {
+  background: rgba(28, 26, 23, 0.85);
+  border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* Purple accent glow */
-.glow-accent {
-  box-shadow: 0 0 40px 0 rgba(124, 58, 237, 0.2);
-}
+/* Indigo glow */
+.glow-accent { box-shadow: 0 0 40px 0 rgba(59, 7, 100, 0.20); }
 
-/* Eyebrow label style */
-.label-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-}
-
-/* Gradient text purple */
-.text-gradient-purple {
-  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%);
-  background-size: 200% auto;
+/* Gradient text — indigo */
+.text-gradient-accent {
+  background: linear-gradient(135deg, #3B0764 0%, #7C3AED 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Glass Panel Utility (New) */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 4px; /* Standardized to 4px (rounded-sm) */
-}
-
-/* Blueprint Dot Grid Background */
+/* Dot grid */
 .bg-grid-dots {
   background-image: radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-size: 28px 28px;
 }
 
-/* Blueprint Technical Coordinate Labels */
-.blueprint-coord {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-tertiary);
-  letter-spacing: 0.08em;
-  user-select: none;
-}
-
-/* Watermark Mask for Canvas Container */
-.watermark-mask {
-  mask-image: linear-gradient(to top, transparent 0%, transparent 12%, black 20%);
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, transparent 12%, black 20%);
-}
-
-/* Section max width */
+/* Section container */
 .section-container {
   max-width: 1280px;
   margin-left: auto;
@@ -273,7 +215,6 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-
 @media (min-width: 768px) {
   .section-container {
     padding-left: 3rem;
@@ -281,24 +222,21 @@ body {
   }
 }
 
-/* ============================================
+/* ============================================================
    Reduced Motion
-   ============================================ */
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 }
 
-/* ============================================
-   Keyboard Navigation Accessibility Focus
-   ============================================ */
+/* ============================================================
+   Focus Accessibility
+   ============================================================ */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,

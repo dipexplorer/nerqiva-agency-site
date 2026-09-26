@@ -98,7 +98,7 @@ export default function Navigation() {
           {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 text-text-secondary hover:text-text-primary transition-colors"
+            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -108,18 +108,19 @@ export default function Navigation() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-8 glass-panel transition-all duration-400 md:hidden ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-6 glass-panel transition-all duration-400 md:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-5 right-6 p-3 text-text-secondary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          className="absolute top-5 right-6 p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          aria-label="Close menu"
         >
           <X size={24} />
         </button>
 
-        <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 mb-6">
+        <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 mb-4">
           <BrandLogo className="h-12 w-12" />
           <span className="font-mono text-2xl font-bold tracking-widest text-text-primary">NERQIVA</span>
         </Link>
@@ -129,7 +130,7 @@ export default function Navigation() {
             key={item.label}
             href={item.href}
             onClick={() => setIsOpen(false)}
-            className={`w-48 text-center py-3.5 font-mono text-sm font-semibold uppercase tracking-widest transition-all duration-200 border rounded ${
+            className={`w-64 text-center py-3.5 px-4 min-h-[44px] flex items-center justify-center font-mono text-xs font-semibold uppercase tracking-widest transition-all duration-200 border rounded ${
               isActive(item.href) 
                 ? "text-accent border-accent/40 bg-accent/5" 
                 : "text-text-secondary hover:text-accent border-border/40 hover:border-accent/40"
@@ -144,7 +145,7 @@ export default function Navigation() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="px-8 py-3.5 bg-accent text-white font-mono text-xs font-bold uppercase tracking-widest rounded text-center shadow-lg shadow-accent/20"
+            className="px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-accent text-white font-mono text-xs font-bold uppercase tracking-widest rounded text-center shadow-lg shadow-accent/20"
           >
             Start a Project
           </Link>

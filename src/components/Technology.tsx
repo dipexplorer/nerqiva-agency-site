@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+import { Zap, Smartphone, MessageSquare, ShieldCheck } from "lucide-react";
+
 const CATEGORIES = [
   {
     id: "frontend",
@@ -97,7 +99,7 @@ export default function Technology() {
           <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
             <div>
               <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
-                ⚡
+                <Zap size={18} />
               </div>
               <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
                 1-Second Load Speed
@@ -113,8 +115,8 @@ export default function Technology() {
 
           <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
             <div>
-              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mb-5 font-extrabold text-lg">
-                📱
+              <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
+                <Smartphone size={18} />
               </div>
               <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
                 100% Mobile Optimized
@@ -123,15 +125,15 @@ export default function Technology() {
                 Designed mobile-first. Large, tap-friendly buttons, legible typography, and zero auto-zooming glitches when filling forms.
               </p>
             </div>
-            <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-500 font-bold mt-6">
+            <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-bold mt-6">
               Tailwind CSS & Responsive Layouts
             </span>
           </div>
 
           <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
             <div>
-              <div className="h-10 w-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 mb-5 font-extrabold text-lg">
-                🟢
+              <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
+                <MessageSquare size={18} />
               </div>
               <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
                 Instant WhatsApp Lead Routing
@@ -140,7 +142,7 @@ export default function Technology() {
                 Zero friction contact. When a potential client clicks your booking or contact button, it immediately opens a pre-filled WhatsApp message.
               </p>
             </div>
-            <span className="font-mono text-[9px] uppercase tracking-wider text-emerald-500 font-bold mt-6">
+            <span className="font-mono text-[9px] uppercase tracking-wider text-accent font-bold mt-6">
               1-Click Direct Messaging
             </span>
           </div>
@@ -148,7 +150,7 @@ export default function Technology() {
           <div className="glass-panel p-8 border border-border/40 rounded-[4px] shadow-lg flex flex-col justify-between">
             <div>
               <div className="h-10 w-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 font-extrabold text-lg">
-                🔒
+                <ShieldCheck size={18} />
               </div>
               <h3 className="font-sans font-bold text-xl text-text-primary mb-2">
                 99.9% Reliable & Secure
