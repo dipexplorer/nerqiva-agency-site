@@ -34,7 +34,7 @@ export default function CaseStudies() {
               <div className="h-px w-8 bg-accent/30 hidden sm:block" />
             </div>
             <h2 className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight" style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.4rem)" }}>
-              High-Ticket Implementations & <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">Digital Flagships.</span>
+              High-Ticket Implementations & <span className="text-gold-gradient font-black">Digital Flagships.</span>
             </h2>
           </div>
           <div className="md:col-span-5">
@@ -50,10 +50,10 @@ export default function CaseStudies() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest font-bold border transition-all duration-300 cursor-pointer rounded ${
+              className={`px-4.5 py-2 font-mono text-[11px] uppercase tracking-widest font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                 selectedCategory === cat
-                  ? "bg-accent border-accent text-white dark:text-bg-primary shadow-md shadow-accent/20"
-                  : "bg-bg-secondary/70 text-text-secondary border-border/40 hover:border-accent/30 hover:text-text-primary"
+                  ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 shadow-md"
+                  : "bg-zinc-100/80 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >
               {cat === "ALL" ? "All Flagships" : cat}
@@ -72,38 +72,35 @@ export default function CaseStudies() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative glass-panel overflow-hidden flex flex-col justify-between border border-border/50 hover:border-accent/60 hover:shadow-[0_16px_40px_rgba(202,138,4,0.12)] transition-all duration-300 rounded backdrop-blur-2xl"
+                className="group relative card-luxury overflow-hidden flex flex-col justify-between border border-zinc-200/90 dark:border-zinc-800 hover:border-amber-500/50 dark:hover:border-amber-500/50 hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white dark:bg-zinc-900"
                 onMouseLeave={() => setActiveIframeId(null)}
               >
                 <div>
                   {/* Interactive Live Viewport Frame */}
                   {project.demoUrl ? (
-                    <div className="w-full h-72 bg-bg-secondary relative overflow-hidden border-b border-border/40">
-                      {/* Live Iframe — ALWAYS rendered in background so real website shines through frosted glass */}
+                    <div className="w-full h-72 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden border-b border-zinc-200/80 dark:border-zinc-800">
+                      {/* Live Iframe — ALWAYS rendered crisp and clean */}
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Flagship Preview`}
-                        className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-95 z-0"
+                        className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-300 ${
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
                         }`}
                         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                         loading="lazy"
                       />
 
-                      {/* Pristine Frosted Glass Overlay with Apple-grade Capsule Badge */}
+                      {/* Pristine Glass Overlay with Floating Pill */}
                       {activeIframeId !== project.id && (
                         <div 
                           onClick={() => setActiveIframeId(project.id)}
-                          className="absolute inset-0 bg-white/50 dark:bg-zinc-950/60 backdrop-blur-[3px] hover:bg-white/30 dark:hover:bg-zinc-950/40 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer z-20 group/overlay select-none"
+                          className="absolute inset-0 bg-black/10 dark:bg-black/30 hover:bg-black/5 dark:hover:bg-black/20 backdrop-blur-[1.5px] transition-all duration-300 flex flex-col items-center justify-end pb-6 px-6 text-center cursor-pointer z-20 group/overlay select-none"
                         >
-                          <div className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-200 dark:border-zinc-700/80 shadow-2xl backdrop-blur-xl rounded-full group-hover/overlay:scale-105 transition-transform duration-200 flex items-center gap-2.5">
+                          <div className="bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-200/90 dark:border-zinc-700/90 shadow-2xl backdrop-blur-2xl rounded-full group-hover/overlay:scale-105 transition-all duration-200 flex items-center gap-2.5">
                             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                            <span>Click / Tap to Scroll Live Site</span>
+                            <span>Tap to Scroll Live Site</span>
                             <Sparkles size={13} className="text-amber-500 dark:text-amber-400 shrink-0" />
                           </div>
-                          <span className="font-sans text-xs font-semibold text-zinc-600 dark:text-zinc-400 mt-2.5 drop-shadow-xs">
-                            Interactive live preview loads on tap
-                          </span>
                         </div>
                       )}
 
@@ -111,7 +108,7 @@ export default function CaseStudies() {
                       {activeIframeId === project.id && (
                         <button
                           onClick={(e) => { e.stopPropagation(); setActiveIframeId(null); }}
-                          className="absolute top-3 right-3 z-30 bg-black/85 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
+                          className="absolute top-3 right-3 z-30 bg-zinc-900/90 hover:bg-zinc-900 text-white px-4 py-2 rounded-full shadow-2xl font-mono text-[10px] font-extrabold uppercase tracking-widest cursor-pointer border border-zinc-700 backdrop-blur-md transition-all flex items-center gap-1.5"
                         >
                           Done scrolling ✕
                         </button>

@@ -19,11 +19,11 @@ export default function ClosingSection() {
           className="font-sans font-extrabold text-text-primary leading-[1.1] mb-5 tracking-tight"
           style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", letterSpacing: "-0.03em" }}
         >
-          Tell us about your business and we'll show you <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">what's possible.</span>
+          Tell us about your business and we'll show you <span className="text-gold-gradient font-black">what's possible.</span>
         </h2>
 
         {/* Subtext */}
-        <p className="text-text-secondary text-base leading-relaxed mb-10 max-w-md">
+        <p className="text-text-secondary text-base leading-relaxed mb-10 max-w-md font-normal">
           No commitment, no pressure. Send us a WhatsApp message with your business type and we'll send you the most relevant demo — plus a rough idea of what it would cost to build for you.
         </p>
 
@@ -32,10 +32,10 @@ export default function ClosingSection() {
           href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20see%20what%20you%20can%20do%20for%20my%20business."
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-full sm:w-auto bg-accent text-white dark:text-bg-primary px-10 py-4 font-sans text-base font-bold hover:bg-accent-mid transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded shadow-lg shadow-accent/25 mb-4"
+          className="group w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 px-10 py-4.5 font-sans text-base font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-3 rounded-xl shadow-xl shadow-zinc-950/15 dark:shadow-white/10 hover:scale-[1.01] mb-4"
         >
           <span>Let's talk — WhatsApp us</span>
-          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
         </a>
 
         <p className="font-sans text-xs text-text-tertiary">

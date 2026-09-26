@@ -97,10 +97,10 @@ export default function SolutionBuilder() {
               <button
                 key={opt.id}
                 onClick={() => setSelected(opt.id)}
-                className={`px-5 py-3 font-sans text-sm font-semibold transition-all duration-200 border cursor-pointer rounded ${
+                className={`px-5 py-3 font-sans text-sm font-bold transition-all duration-200 border cursor-pointer rounded-full ${
                   isActive
-                    ? "bg-accent text-white dark:text-bg-primary border-accent shadow-md shadow-accent/20"
-                    : "bg-bg-secondary/80 text-text-secondary border-border/40 hover:border-accent/30 hover:text-text-primary"
+                    ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 shadow-md"
+                    : "bg-zinc-100/90 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
                 }`}
               >
                 {opt.label}
@@ -117,18 +117,18 @@ export default function SolutionBuilder() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22 }}
-            className="grid md:grid-cols-2 gap-0 border border-border/50 glass-panel overflow-hidden shadow-2xl rounded backdrop-blur-xl"
+            className="grid md:grid-cols-2 gap-0 border border-zinc-200/90 dark:border-zinc-800 card-luxury bg-white dark:bg-zinc-900 overflow-hidden shadow-2xl rounded-2xl"
           >
             {/* Left: Outcome description */}
-            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-border/40 flex flex-col justify-between">
+            <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-zinc-200/80 dark:border-zinc-800 flex flex-col justify-between">
               <div>
-                <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary mb-3 block">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-text-tertiary mb-3 block">
                   {active.forWho}
                 </span>
                 <h3 className="font-sans text-text-primary text-xl font-bold leading-snug mb-4">
                   {active.outcome}
                 </h3>
-                <p className="font-sans text-sm font-semibold text-accent mt-2">
+                <p className="font-sans text-sm font-bold text-amber-600 dark:text-amber-400 mt-2">
                   {active.price}
                 </p>
               </div>
@@ -138,29 +138,29 @@ export default function SolutionBuilder() {
                   href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20interested%20in:%20${encodeURIComponent(active.label)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-accent text-white dark:text-bg-primary font-sans text-sm font-bold hover:bg-accent-mid transition-all duration-300 rounded shadow-lg shadow-accent/20"
+                  className="group inline-flex items-center gap-2.5 w-full justify-center py-4 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 font-sans text-sm font-bold transition-all duration-300 rounded-xl shadow-lg hover:scale-[1.01]"
                 >
                   <span>{active.cta}</span>
-                  <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
-                <p className="text-center font-mono text-[9px] text-text-tertiary mt-2 tracking-wider">
+                <p className="text-center font-mono text-[9px] text-text-tertiary mt-2.5 tracking-wider font-semibold">
                   Opens WhatsApp — no forms, no waiting
                 </p>
               </div>
             </div>
 
             {/* Right: What's included */}
-            <div className="p-8 md:p-10 bg-bg-secondary/30">
+            <div className="p-8 md:p-10 bg-zinc-50/70 dark:bg-zinc-900/50">
               <span className="font-sans text-xs font-bold text-text-primary block mb-5 uppercase tracking-wide">
                 What's included:
               </span>
               <div className="flex flex-col gap-4">
                 {active.includes.map((item, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <div className="shrink-0 h-5 w-5 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center mt-0.5">
-                      <span className="font-mono text-[9px] text-accent font-extrabold">{i + 1}</span>
+                    <div className="shrink-0 h-5 w-5 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center mt-0.5">
+                      <span className="font-mono text-[10px] text-amber-600 dark:text-amber-400 font-extrabold">{i + 1}</span>
                     </div>
-                    <span className="font-sans text-sm text-text-secondary leading-normal">
+                    <span className="font-sans text-sm text-text-secondary leading-normal font-medium">
                       {item}
                     </span>
                   </div>

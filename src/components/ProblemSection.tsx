@@ -93,22 +93,22 @@ export default function ProblemSection() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
           {/* Left: Problem Selector */}
-          <div className="lg:col-span-5 flex flex-col border-l border-border/30">
-            {PROBLEMS.map((problem, i) => {
+          <div className="lg:col-span-5 flex flex-col border-l border-zinc-200 dark:border-zinc-800">
+            {PROBLEMS.map((problem) => {
               const isActive = activeId === problem.id;
               return (
                 <button
                   key={problem.id}
                   onMouseEnter={() => setActiveId(problem.id)}
                   onClick={() => setActiveId(problem.id)}
-                  className={`group flex items-center justify-between text-left py-4 pl-6 border-l-2 ml-[-2px] transition-all duration-200 cursor-pointer min-h-[56px] ${
+                  className={`group flex items-center justify-between text-left py-4 pl-6 border-l-2 ml-[-2px] transition-all duration-200 cursor-pointer min-h-[60px] rounded-r-xl ${
                     isActive
-                      ? "border-accent text-text-primary bg-accent/5"
-                      : "border-transparent text-text-secondary hover:text-text-primary hover:border-accent/30"
+                      ? "border-amber-500 text-text-primary bg-amber-500/5 dark:bg-amber-500/10"
+                      : "border-transparent text-text-secondary hover:text-text-primary hover:border-zinc-300 dark:hover:border-zinc-700"
                   }`}
                 >
                   <div className="flex flex-col gap-0.5">
-                    <span className={`font-sans text-sm font-semibold ${isActive ? "text-text-primary" : ""}`}>
+                    <span className={`font-sans text-sm font-bold ${isActive ? "text-text-primary" : ""}`}>
                       {problem.label}
                     </span>
                     <span className="font-sans text-xs text-text-tertiary font-normal line-clamp-1">
@@ -117,8 +117,8 @@ export default function ProblemSection() {
                   </div>
                   <ArrowRight
                     size={14}
-                    className={`text-text-tertiary shrink-0 ml-4 transition-all duration-200 ${
-                      isActive ? "text-accent opacity-100 translate-x-0" : "opacity-0 -translate-x-1"
+                    className={`shrink-0 ml-4 transition-all duration-200 ${
+                      isActive ? "text-amber-600 dark:text-amber-400 opacity-100 translate-x-0" : "text-text-tertiary opacity-0 -translate-x-1"
                     }`}
                   />
                 </button>
@@ -128,7 +128,7 @@ export default function ProblemSection() {
 
           {/* Right: Problem Detail */}
           <div className="lg:col-span-7">
-            <div className="glass-panel border border-border/50 overflow-hidden shadow-xl rounded backdrop-blur-xl min-h-[380px]">
+            <div className="card-luxury border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xl rounded-2xl min-h-[380px]">
               
               <div className="p-8">
                 <AnimatePresence mode="wait">
@@ -151,7 +151,7 @@ export default function ProblemSection() {
                     </div>
 
                     {/* Real cost — stated plainly */}
-                    <div className="bg-red-500/10 border border-red-500/20 rounded p-4">
+                    <div className="bg-red-500/10 dark:bg-red-500/15 border border-red-500/20 rounded-xl p-4">
                       <p className="text-xs text-red-700 dark:text-red-400 font-semibold leading-snug">
                         {activeProblem.realCost}
                       </p>
@@ -162,11 +162,11 @@ export default function ProblemSection() {
                       <span className="font-sans text-xs font-bold text-text-tertiary block mb-2.5 uppercase tracking-wider">
                         What we fix:
                       </span>
-                      <div className="space-y-2">
+                      <div className="space-y-2.5">
                         {activeProblem.wefix.map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
-                            <CheckCircle size={13} className="shrink-0 text-accent-gold mt-0.5" />
-                            <span className="text-sm text-text-secondary leading-normal">
+                            <CheckCircle size={15} className="shrink-0 text-amber-600 dark:text-amber-400 mt-0.5" />
+                            <span className="text-sm text-text-secondary leading-normal font-medium">
                               {item}
                             </span>
                           </div>
@@ -180,12 +180,12 @@ export default function ProblemSection() {
                         href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20need%20help%20with:%20${encodeURIComponent(activeProblem.label)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group font-sans text-sm font-bold text-accent hover:text-accent-mid flex items-center gap-2 transition-colors"
+                        className="group font-sans text-sm font-bold text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 flex items-center gap-2 transition-colors"
                       >
                         {activeProblem.cta}
                         <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                       </a>
-                      <span className="font-mono text-[9px] text-text-tertiary tracking-wider uppercase">
+                      <span className="font-mono text-[9px] text-text-tertiary tracking-wider uppercase font-bold">
                         Free to ask
                       </span>
                     </div>
