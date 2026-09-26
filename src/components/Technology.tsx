@@ -74,7 +74,7 @@ export default function Technology() {
   const active = CATEGORIES.find((c) => c.id === activeId);
 
   return (
-    <section id="tech" className="py-32 bg-transparent relative border-t border-white/5 bg-grid-dots">
+    <section id="tech" className="py-16 sm:py-32 bg-transparent relative border-t border-white/5 bg-grid-dots">
       <div className="section-container">
         
         {/* Header */}

@@ -64,7 +64,7 @@ export default function ProblemSection() {
   const activeProblem = PROBLEMS.find((p) => p.id === activeId) || PROBLEMS[0];
 
   return (
-    <section id="problems" className="py-24 bg-transparent relative border-t border-border/30">
+    <section id="problems" className="py-16 sm:py-24 bg-transparent relative border-t border-border/30">
       <div className="section-container">
         
         {/* Header */}

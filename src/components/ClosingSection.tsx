@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function ClosingSection() {
   return (
-    <section className="relative py-24 border-t border-border/30 bg-transparent flex flex-col items-center justify-center text-center overflow-hidden">
+    <section className="relative py-16 sm:py-24 border-t border-border/30 bg-transparent flex flex-col items-center justify-center text-center overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/8 blur-[140px] pointer-events-none rounded-full" />
 

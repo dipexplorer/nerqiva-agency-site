@@ -29,7 +29,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="about" className="py-32 bg-transparent relative border-t border-border/30">
+    <section id="about" className="py-16 sm:py-32 bg-transparent relative border-t border-border/30">
       <div className="section-container">
         
         {/* Header */}

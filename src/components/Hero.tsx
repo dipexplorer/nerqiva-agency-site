@@ -66,12 +66,11 @@ export default function Hero() {
           {/* ── Left column ─────────────────────────────────────────── */}
           <div className="lg:col-span-6 flex flex-col">
 
-            {/* Headline — no eyebrow, tighter size so it stays above fold */}
+            {/* Headline — responsive font size scaling for 320px–1440px viewports */}
             <h1
-              className="animate-fade-in-up font-display font-black text-text-primary leading-[1.1] mb-4"
+              className="animate-fade-in-up font-display font-black text-text-primary text-2xl sm:text-4xl lg:text-[3.1rem] leading-[1.15] sm:leading-[1.1] tracking-tight mb-4"
               style={{
-                fontSize: "clamp(1.9rem, 3.6vw, 3.1rem)",
-                letterSpacing: "-0.032em",
+                letterSpacing: "-0.03em",
                 animationFillMode: "both",
               }}
             >
@@ -214,38 +213,54 @@ export default function Hero() {
                 {/* FIX 2: iframe fully visible by default — no dark scrim on load.
                     Scroll affordance only appears on hover as a small corner badge. */}
                 <div
-                  className="relative w-full overflow-hidden"
+                  className="relative w-full overflow-hidden bg-bg-secondary"
                   style={{ height: "360px" }}
                   onMouseEnter={() => setHoveringDemo(true)}
                   onMouseLeave={() => setHoveringDemo(false)}
                 >
-                  <iframe
-                    key={activeDemo}
-                    src={demo.demoUrl}
-                    title={`${demo.name} — Live Demo`}
-                    className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-200 ${
-                      interacting === activeDemo ? "pointer-events-auto" : "pointer-events-none"
-                    }`}
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-                  />
+                  {/* Defer loading iframe until user interacts or on desktop hover */}
+                  {interacting === activeDemo || hoveringDemo ? (
+                    <iframe
+                      key={activeDemo}
+                      src={demo.demoUrl}
+                      title={`${demo.name} — Live Demo`}
+                      className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-200 ${
+                        interacting === activeDemo ? "pointer-events-auto" : "pointer-events-none"
+                      }`}
+                      loading="lazy"
+                      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                    />
+                  ) : (
+                    <div 
+                      onClick={() => setInteracting(activeDemo)}
+                      className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center p-6 text-center cursor-pointer group"
+                    >
+                      <div className="h-12 w-12 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3 group-hover:scale-110 transition-transform">
+                        <MousePointer2 size={18} />
+                      </div>
+                      <span className="font-sans font-bold text-sm text-text-primary mb-1">
+                        {demo.name}
+                      </span>
+                      <span className="font-mono text-[10px] text-accent uppercase tracking-widest font-bold">
+                        Tap / Click to Explore Live Demo ↗
+                      </span>
+                    </div>
+                  )}
 
                   {/* Hover-only scroll badge (top-right corner, small) */}
-                  {interacting !== activeDemo && (
+                  {interacting !== activeDemo && hoveringDemo && (
                     <AnimatePresence>
-                      {hoveringDemo && (
-                        <motion.button
-                          initial={{ opacity: 0, scale: 0.85 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.85 }}
-                          transition={{ duration: 0.15 }}
-                          onClick={() => setInteracting(activeDemo)}
-                          className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
-                        >
-                          <MousePointer2 size={12} className="text-accent" />
-                          Scroll & explore
-                        </motion.button>
-                      )}
+                      <motion.button
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.85 }}
+                        transition={{ duration: 0.15 }}
+                        onClick={() => setInteracting(activeDemo)}
+                        className="absolute top-3 right-3 z-30 bg-white/90 backdrop-blur-sm text-bg-dark px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 font-sans font-semibold text-xs cursor-pointer hover:bg-white transition-colors"
+                      >
+                        <MousePointer2 size={12} className="text-accent" />
+                        Scroll & explore
+                      </motion.button>
                     </AnimatePresence>
                   )}
 

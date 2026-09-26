@@ -18,7 +18,7 @@ export default function CaseStudies() {
   });
 
   return (
-    <section id="case-studies" className="py-28 bg-transparent border-t border-border/30 relative">
+    <section id="case-studies" className="py-16 sm:py-28 bg-transparent border-t border-border/30 relative">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-accent/5 blur-[160px] pointer-events-none rounded-full" />
 
@@ -79,37 +79,37 @@ export default function CaseStudies() {
                   {/* Interactive Live Viewport Frame */}
                   {project.demoUrl ? (
                     <div className="w-full h-72 bg-bg-secondary relative overflow-hidden border-b border-border/40">
-                      {/* Live Iframe */}
-                      <iframe
-                        src={project.demoUrl}
-                        title={`${project.name} Live Flagship Preview`}
-                        className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-85"
-                        }`}
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                        loading="lazy"
-                      />
-                      
-                      {/* Overlay Prompt for Interaction */}
-                      {activeIframeId !== project.id && (
+                      {/* Live Iframe — loaded on demand when user taps/clicks */}
+                      {activeIframeId === project.id ? (
+                        <iframe
+                          src={project.demoUrl}
+                          title={`${project.name} Live Flagship Preview`}
+                          className="absolute inset-0 w-full h-full border-none bg-white z-10 pointer-events-auto"
+                          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                          loading="lazy"
+                        />
+                      ) : (
                         <div 
                           onClick={() => setActiveIframeId(project.id)}
-                          className="absolute inset-0 bg-black/55 backdrop-blur-[2px] flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-black/40 z-20 group/overlay"
+                          className="absolute inset-0 bg-gradient-to-br from-bg-secondary via-bg-card to-bg-secondary flex flex-col items-center justify-center cursor-pointer transition-all duration-300 hover:bg-bg-secondary z-20 group/overlay p-6 text-center"
                         >
-                          <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest border border-border/80 shadow-2xl group-hover/overlay:scale-105 transition-transform duration-200 rounded flex items-center gap-2">
+                          <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest border border-border/80 shadow-2xl group-hover/overlay:scale-105 transition-transform duration-200 rounded flex items-center gap-2 mb-2">
                             <Sparkles size={12} className="text-accent" />
                             <span>Click / Tap to Scroll Live Site</span>
                           </div>
+                          <span className="font-sans text-xs text-text-secondary">
+                            Interactive live preview loads on tap
+                          </span>
                         </div>
                       )}
                       
                       {/* Top Badges */}
-                      <div className="absolute top-4 left-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/60 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30 flex items-center gap-1.5">
+                      <div className="absolute top-4 left-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/70 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30 flex items-center gap-1.5">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                         FLAGSHIP_{project.number}
                       </div>
 
-                      <div className="absolute top-4 right-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/60 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30">
+                      <div className="absolute top-4 right-4 font-mono text-[9px] font-bold uppercase tracking-widest text-white/90 bg-black/70 border border-white/10 px-2.5 py-1 rounded backdrop-blur-md pointer-events-none z-30">
                         {project.category}
                       </div>
                     </div>

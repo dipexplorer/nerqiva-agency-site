@@ -68,7 +68,7 @@ export default function SolutionBuilder() {
   const active = WHAT_WE_BUILD.find((o) => o.id === selected) || WHAT_WE_BUILD[0];
 
   return (
-    <section id="solutions" className="py-24 bg-transparent relative border-t border-border/30">
+    <section id="solutions" className="py-16 sm:py-24 bg-transparent relative border-t border-border/30">
       <div className="section-container">
         
         {/* Header */}
