@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ExternalLink, CheckCircle, MousePointer2 } from "lucide-react";
+import HeroFlowLine from "./HeroFlowLine";
 
 const DEMO_SHOWCASES = [
   {
@@ -58,6 +59,7 @@ export default function Hero() {
 
   return (
     <section className="relative w-full bg-transparent overflow-hidden border-b border-border/20">
+      <HeroFlowLine />
       <div className="section-container relative z-10 w-full pt-16 pb-10 lg:pt-20 lg:pb-14">
 
         {/* ─── Main grid ───────────────────────────────────────────────── */}
