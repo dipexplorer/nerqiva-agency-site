@@ -216,76 +216,43 @@ export default function Hero() {
                   className="relative w-full overflow-hidden bg-bg-secondary"
                   style={{ height: "360px" }}
                 >
-                  {interacting === activeDemo ? (
-                    <>
-                      {/* Crystal-Clear Live Iframe — Zero Blur, Full Interactivity */}
-                      <iframe
-                        key={activeDemo}
-                        src={demo.demoUrl}
-                        title={`${demo.name} — Live Demo`}
-                        className="absolute inset-0 w-full h-full border-none bg-white z-10 pointer-events-auto"
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                      />
-                      
-                      {/* Floating Exit Button */}
-                      <button
-                        onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
-                        className="absolute top-3 right-3 z-30 bg-black/90 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
-                      >
-                        Close Live Preview ✕
-                      </button>
-                    </>
-                  ) : (
-                    /* Rich Architectural Showcase Card — Zero Lag, Ultra Clean */
+                  {/* Live Iframe — ALWAYS loaded in background so real website shines through frosted glass */}
+                  <iframe
+                    key={activeDemo}
+                    src={demo.demoUrl}
+                    title={`${demo.name} — Live Demo`}
+                    className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
+                      interacting === activeDemo ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-95 z-0"
+                    }`}
+                    loading="lazy"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+                  />
+
+                  {/* Pristine Frosted Glass Overlay with Apple-grade Capsule Badge */}
+                  {interacting !== activeDemo && (
                     <div 
                       onClick={() => setInteracting(activeDemo)}
-                      className="absolute inset-0 bg-bg-secondary/70 dark:bg-zinc-900/90 flex flex-col justify-between p-6 cursor-pointer group select-none overflow-hidden"
+                      className="absolute inset-0 bg-white/50 dark:bg-zinc-950/60 backdrop-blur-[3px] hover:bg-white/30 dark:hover:bg-zinc-950/40 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer z-20 group/overlay select-none"
                     >
-                      {/* Ambient Gold Glow */}
-                      <div 
-                        aria-hidden
-                        className="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-accent-gold/10 blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-500"
-                      />
-
-                      {/* Top Bar */}
-                      <div className="w-full flex items-center justify-between z-10">
-                        <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 flex items-center gap-1.5">
-                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-                          READY TO TEST
-                        </span>
-                        <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest">
-                          {demo.tag}
-                        </span>
+                      <div className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-200 dark:border-zinc-700/80 shadow-2xl backdrop-blur-xl rounded-full group-hover/overlay:scale-105 transition-transform duration-200 flex items-center gap-2.5">
+                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                        <span>Click / Tap to Scroll Live Site</span>
+                        <MousePointer2 size={13} className="text-amber-500 dark:text-amber-400 shrink-0" />
                       </div>
-
-                      {/* Center Info & CTA */}
-                      <div className="my-auto z-10 flex flex-col items-center text-center gap-2.5 max-w-sm mx-auto">
-                        <div className="h-11 w-11 rounded-full bg-accent-gold/10 border border-accent-gold/30 flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:bg-accent-gold group-hover:text-bg-primary transition-all duration-300 shadow-sm">
-                          <Sparkles size={18} />
-                        </div>
-
-                        <div>
-                          <h4 className="font-sans font-extrabold text-text-primary text-lg tracking-tight mb-1">
-                            {demo.name}
-                          </h4>
-                          <p className="font-sans text-text-secondary text-xs leading-relaxed line-clamp-2">
-                            {demo.description}
-                          </p>
-                        </div>
-
-                        <div className="mt-1 bg-accent text-white dark:text-bg-primary px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-widest rounded shadow-md group-hover:scale-105 transition-transform duration-200 flex items-center gap-2 border border-accent">
-                          <span>Launch Live Interactive Site</span>
-                          <ArrowRight size={13} />
-                        </div>
-                      </div>
-
-                      {/* Bottom Footer Tags */}
-                      <div className="w-full flex items-center justify-center gap-4 z-10 font-mono text-[9px] text-text-tertiary uppercase tracking-wider border-t border-border/30 pt-2.5">
-                        <span>100% Mobile Optimized</span>
-                        <span>•</span>
-                        <span>Instant WhatsApp Booking</span>
-                      </div>
+                      <span className="font-sans text-xs font-semibold text-zinc-600 dark:text-zinc-400 mt-2.5 drop-shadow-xs">
+                        Interactive live preview loads on tap
+                      </span>
                     </div>
+                  )}
+
+                  {/* Active Mode Exit Button */}
+                  {interacting === activeDemo && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
+                      className="absolute top-3 right-3 z-30 bg-black/85 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
+                    >
+                      Done scrolling ✕
+                    </button>
                   )}
                 </div>
 
