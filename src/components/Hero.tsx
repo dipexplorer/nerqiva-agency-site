@@ -101,7 +101,7 @@ export default function Hero() {
               {TOP_SERVICES.map((item) => (
                 <span
                   key={item}
-                  className="font-mono text-[11px] font-medium text-text-secondary bg-zinc-100/90 dark:bg-zinc-800/80 border border-zinc-200/90 dark:border-zinc-700/60 px-3.5 py-1.5 rounded-full tracking-wide shadow-2xs"
+                  className="font-mono text-[11px] font-semibold text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/70 px-3.5 py-1.5 rounded-full tracking-wide shadow-xs"
                 >
                   {item}
                 </span>
@@ -117,7 +117,7 @@ export default function Hero() {
                 href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20a%20free%20audit%20of%20my%20business%20online%20presence."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 px-8 py-4 font-sans text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 rounded-xl shadow-xl shadow-zinc-950/15 dark:shadow-white/10 hover:scale-[1.01]"
+                className="group w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-950 px-8 py-4 font-sans text-sm font-extrabold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 rounded-xl shadow-xl shadow-zinc-950/20 dark:shadow-white/10 hover:scale-[1.02]"
               >
                 <span>Get a free audit of my business</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
@@ -125,7 +125,7 @@ export default function Hero() {
 
               <a
                 href="#case-studies"
-                className="w-full sm:w-auto text-text-secondary hover:text-text-primary bg-zinc-100/80 dark:bg-zinc-800/50 hover:bg-zinc-200/80 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 px-6 py-4 font-sans text-sm font-semibold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 rounded-xl"
+                className="w-full sm:w-auto bg-transparent text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white border border-zinc-300 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500 hover:bg-zinc-100/60 dark:hover:bg-zinc-800/60 px-6 py-4 font-sans text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 rounded-xl"
               >
                 Browse live demos
               </a>
@@ -154,10 +154,10 @@ export default function Hero() {
                 <button
                   key={d.id}
                   onClick={() => { setActiveDemo(d.id as DemoId); setInteracting(null); }}
-                  className={`px-4 py-2.5 font-sans text-xs font-bold border transition-all duration-200 cursor-pointer rounded-full ${
+                  className={`px-4.5 py-2.5 font-sans text-xs font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                     activeDemo === d.id
                       ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 shadow-md"
-                      : "bg-zinc-100/90 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-300 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                      : "bg-zinc-100 text-zinc-600 border-zinc-200/80 hover:bg-zinc-200/70 hover:text-zinc-900 dark:bg-zinc-800/70 dark:text-zinc-400 dark:border-zinc-700/60 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
                   }`}
                 >
                   {d.label}
@@ -187,7 +187,7 @@ export default function Hero() {
                 className="relative z-10 card-luxury overflow-hidden border border-zinc-200/90 dark:border-zinc-800 rounded-2xl bg-white dark:bg-zinc-900 shadow-2xl"
               >
                 {/* Browser bar */}
-                <div className="px-4 py-3 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/90 flex items-center justify-between gap-3">
+                <div className="px-4 py-3 border-b border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/90 dark:bg-zinc-900/90 flex items-center justify-between gap-3">
                   <div className="flex gap-1.5 shrink-0">
                     <span className="h-3 w-3 rounded-full bg-red-400/80" />
                     <span className="h-3 w-3 rounded-full bg-amber-400/80" />
