@@ -65,8 +65,8 @@ export default function InteractiveGridBackground() {
           const dx = mouse.x - x;
           const dy = mouse.y - y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 180;
-          const intensity = dist < maxDist ? 1 - dist / maxDist : 0;
+          const maxDist = 200;
+          const intensity = dist < maxDist ? 1 - Math.pow(dist / maxDist, 1.5) : 0; // Smoother falloff
 
           // Base dot
           ctx.beginPath();
@@ -78,10 +78,10 @@ export default function InteractiveGridBackground() {
             // Highlighted dot
             ctx.beginPath();
             ctx.arc(x, y, dotSize + intensity * 1.5, 0, Math.PI * 2);
-            ctx.fillStyle = `${accentColor}${intensity * 0.85})`;
+            ctx.fillStyle = `${accentColor}${intensity * 0.9})`;
             ctx.fill();
 
-            // Horizontal connector
+            // Connectors with softer opacity
             if (i < cols - 1) {
               const rightX = (i + 1) * gridSize;
               const rightDist = Math.sqrt((mouse.x - rightX) ** 2 + (mouse.y - y) ** 2);
@@ -89,13 +89,12 @@ export default function InteractiveGridBackground() {
                 ctx.beginPath();
                 ctx.moveTo(x, y);
                 ctx.lineTo(rightX, y);
-                ctx.strokeStyle = `${accentColor}${intensity * 0.18})`;
+                ctx.strokeStyle = `${accentColor}${intensity * 0.15})`;
                 ctx.lineWidth = 1;
                 ctx.stroke();
               }
             }
 
-            // Vertical connector
             if (j < rows - 1) {
               const bottomY = (j + 1) * gridSize;
               const bottomDist = Math.sqrt((mouse.x - x) ** 2 + (mouse.y - bottomY) ** 2);
@@ -103,7 +102,7 @@ export default function InteractiveGridBackground() {
                 ctx.beginPath();
                 ctx.moveTo(x, y);
                 ctx.lineTo(x, bottomY);
-                ctx.strokeStyle = `${accentColor}${intensity * 0.18})`;
+                ctx.strokeStyle = `${accentColor}${intensity * 0.15})`;
                 ctx.lineWidth = 1;
                 ctx.stroke();
               }

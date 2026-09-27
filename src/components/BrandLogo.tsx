@@ -9,7 +9,7 @@ export default function BrandLogo({ className = "h-8 w-8" }: { className?: strin
       <div className="hidden dark:block relative w-full h-full">
         <Image
           src="/brand/logo-1.png"
-          alt="NERQIVA"
+          alt="NERQIVA Studio Official Logo"
           fill
           sizes="64px"
           style={{
@@ -25,7 +25,7 @@ export default function BrandLogo({ className = "h-8 w-8" }: { className?: strin
       <div className="block dark:hidden relative w-full h-full">
         <Image
           src="/brand/logo-2.png"
-          alt="NERQIVA"
+          alt="NERQIVA Studio Official Logo"
           fill
           sizes="64px"
           style={{

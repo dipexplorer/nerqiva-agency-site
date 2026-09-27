@@ -1,6 +1,14 @@
-"use client";
-
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "404 - Page Not Found",
+  description: "The page you are looking for does not exist or has been moved.",
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function NotFound() {
   return (
@@ -16,13 +24,13 @@ export default function NotFound() {
       <div className="flex items-center gap-4">
         <Link
           href="/"
-          className="px-6 py-3 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors duration-200 cursor-pointer rounded"
+          className="btn-primary"
         >
           Back Home
         </Link>
         <Link
           href="/work"
-          className="px-6 py-3 bg-transparent border border-border-dark text-text-secondary font-mono text-[10px] font-bold uppercase tracking-widest hover:border-accent/40 hover:text-text-primary transition-colors duration-200 cursor-pointer rounded"
+          className="btn-secondary"
         >
           Explore Work
         </Link>

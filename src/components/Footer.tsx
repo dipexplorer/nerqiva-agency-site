@@ -2,7 +2,7 @@
 
 import BrandLogo from "./BrandLogo";
 import Link from "next/link";
-import { Mail, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp, MapPin, Phone, ExternalLink } from "lucide-react";
 
 // Custom SVG Icons to avoid dependency version problems
 const GitHubIcon = ({ size = 16 }: { size?: number }) => (
@@ -48,8 +48,16 @@ const CAPABILITIES_LINKS = [
 const STUDIO_LINKS = [
   { label: "Selected Work", href: "/work" },
   { label: "Our Process", href: "/process" },
+  { label: "North Guwahati HQ", href: "/locations/north-guwahati" },
   { label: "Brand Philosophy", href: "/about" },
   { label: "Start a Project", href: "/contact" },
+];
+
+const SERVICE_AREAS = [
+  { label: "North Guwahati", href: "/locations/north-guwahati" },
+  { label: "Rudreswar", href: "/locations/north-guwahati#rudreswar" },
+  { label: "Guwahati City", href: "/locations/north-guwahati#guwahati" },
+  { label: "Assam & India", href: "/locations/north-guwahati#assam" },
 ];
 
 const RESOURCES_LINKS = [
@@ -67,23 +75,57 @@ export default function Footer() {
         {/* Rich Footer Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
           
-          {/* Column 1: Brand details */}
-          <div className="col-span-2 lg:col-span-4 flex flex-col gap-5">
+          {/* Column 1: Brand details & Exact Local Address */}
+          <div className="col-span-2 lg:col-span-4 flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <BrandLogo className="h-7 w-7 opacity-90" />
               <span className="font-mono text-sm font-bold tracking-widest text-text-primary">
-                NERQIVA
+                NERQIVA STUDIO
               </span>
             </div>
             <p className="text-xs leading-relaxed max-w-sm text-text-secondary">
-              We investigate operational bottlenecks and engineer custom software systems built for business leverage, precision, and scale.
+              High-converting website design, 1-click WhatsApp lead routing, and custom web systems delivered in 24 Hours.
             </p>
-            <div className="flex items-center gap-4 text-text-secondary mt-2">
+
+            {/* Exact Verified Local NAP */}
+            <div className="p-3.5 rounded-xl bg-bg-card border border-border/70 space-y-2 mt-1">
+              <div className="flex items-start gap-2 text-xs text-text-secondary">
+                <MapPin size={14} className="text-accent shrink-0 mt-0.5" />
+                <span className="font-sans leading-snug">
+                  Baruah Souk, North Guwahati, Rudreswar, Guwahati, Assam 781030
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-text-secondary">
+                <Phone size={13} className="text-emerald-500 shrink-0" />
+                <a href="tel:+918724932985" className="font-mono font-semibold text-text-primary hover:text-accent transition-colors">
+                  +91 87249 32985
+                </a>
+              </div>
+              <div className="pt-2 border-t border-border/30 flex items-center justify-between gap-2 flex-wrap">
+                <Link
+                  href="/locations/north-guwahati"
+                  className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-accent hover:underline uppercase tracking-wider"
+                >
+                  North Guwahati HQ →
+                </Link>
+                <a
+                  href="https://share.google/6KKUdxiR4zdUDuAnT"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-text-tertiary hover:text-accent uppercase tracking-wider"
+                >
+                  <ExternalLink size={11} />
+                  Google Maps
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 text-text-secondary mt-1">
               <a 
                 href="https://github.com/dipexplorer" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-accent transition-colors animate-fade-in"
+                className="hover:text-accent transition-colors"
                 aria-label="GitHub"
               >
                 <GitHubIcon size={16} />
@@ -143,10 +185,28 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4: Resources & Legal */}
+          {/* Column 4: Service Areas */}
           <div className="col-span-1 lg:col-span-2 flex flex-col">
             <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Legal
+              Service Areas
+            </h4>
+            <div className="flex flex-col gap-4">
+              {SERVICE_AREAS.map((link, idx) => (
+                <Link
+                  key={idx}
+                  href={link.href}
+                  className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
+                >
+                  <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 5: Legal & Enquiries */}
+          <div className="col-span-1 lg:col-span-2 flex flex-col">
+            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
+              Legal & Info
             </h4>
             <div className="flex flex-col gap-4">
               {RESOURCES_LINKS.map((link, idx) => (
@@ -163,45 +223,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 5: Immediate Contact Info */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col">
-            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Enquiries
-            </h4>
-            <div className="flex flex-col gap-4">
-              <a
-                href="mailto:nerqiva.studio@gmail.com"
-                className="font-sans text-sm font-medium text-text-primary hover:text-accent transition-colors duration-200 flex items-center gap-2 group"
-              >
-                <Mail size={14} className="text-accent shrink-0 group-hover:scale-110 transition-transform" />
-                nerqiva.studio@gmail.com
-              </a>
-              <div className="font-sans text-sm font-medium text-text-secondary">
-                +91 87249 32985
-              </div>
-              <a
-                href="https://nerqiva.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-sans text-sm font-medium text-text-secondary hover:text-accent transition-colors duration-200"
-              >
-                nerqiva.vercel.app
-              </a>
-              <div className="flex items-center gap-2.5 mt-1">
-                <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
-                <span className="font-sans text-xs text-text-secondary font-medium tracking-wide">
-                  Initial consultation free
-                </span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <p className="font-sans text-xs text-text-secondary">
-            © {new Date().getFullYear()} NERQIVA — Digital Systems Studio
+            © {new Date().getFullYear()} NERQIVA Studio — Baruah Souk,{" "}
+            <Link href="/locations/north-guwahati" className="hover:text-accent underline font-medium">
+              North Guwahati, Rudreswar, Guwahati
+            </Link>
+            , Assam 781030
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}

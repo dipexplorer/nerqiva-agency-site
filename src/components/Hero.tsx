@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ExternalLink, CheckCircle2, MousePointer2, Sparkles } from "lucide-react";
+import HeroFlowLine from "./HeroFlowLine";
 
 const DEMO_SHOWCASES = [
   {
@@ -55,6 +56,7 @@ export default function Hero() {
 
   return (
     <section className="relative w-full bg-transparent overflow-hidden border-b border-border/20">
+      <HeroFlowLine />
       <div className="section-container relative z-10 w-full pt-16 pb-12 lg:pt-22 lg:pb-16">
 
         {/* ─── Main grid ───────────────────────────────────────────────── */}
@@ -63,11 +65,15 @@ export default function Hero() {
           {/* ── Left column ─────────────────────────────────────────── */}
           <div className="lg:col-span-6 flex flex-col">
 
-            {/* Top Eyebrow Badge */}
-            <div className="animate-fade-in-up mb-4 flex items-center gap-2">
-              <span className="px-3.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] bg-[#4C1D95]/10 border border-[#4C1D95]/20 text-[#4C1D95] dark:text-[#C4B5FD] dark:bg-[#4C1D95]/30 rounded-full flex items-center gap-1.5 shadow-2xs">
-                <Sparkles size={11} className="text-[#4C1D95] dark:text-[#C4B5FD]" />
+            {/* Top Eyebrow Badge & Live Availability Ticker */}
+            <div className="animate-fade-in-up mb-4 flex items-center gap-2 flex-wrap">
+              <span className="px-3.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] bg-accent/10 border border-accent/20 text-accent dark:text-accent-light dark:bg-accent/20 rounded-full flex items-center gap-1.5 shadow-2xs">
+                <Sparkles size={11} className="text-accent dark:text-accent-light" />
                 DIGITAL SYSTEMS & WEBSITES
+              </span>
+              <span className="px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Accepting 2 New Clients
               </span>
             </div>
 
@@ -80,7 +86,7 @@ export default function Hero() {
               }}
             >
               Your competitors get more clients because they{" "}
-              <em className="not-italic text-[#4C1D95] dark:text-[#C4B5FD] font-black">
+              <em className="not-italic text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-light dark:from-accent-light dark:to-accent font-black">
                 show up, respond fast, and look credible online.
               </em>
             </h1>
@@ -110,24 +116,24 @@ export default function Hero() {
 
             {/* Primary & Secondary CTAs — Strict Hierarchy */}
             <div
-              className="animate-fade-in-up flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8"
+              className="animate-fade-in-up flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 mb-8"
               style={{ animationDelay: "270ms", animationFillMode: "both" }}
             >
-              {/* PRIMARY CTA: Solid Filled Indigo #4C1D95 */}
+              {/* PRIMARY CTA: Premium btn-primary */}
               <a
                 href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20a%20free%20audit%20of%20my%20business%20online%20presence."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group w-full sm:w-auto bg-[#4C1D95] hover:bg-[#3B0764] text-white px-8 py-4 font-sans text-sm font-extrabold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2.5 rounded-xl shadow-xl shadow-[#4C1D95]/25 hover:scale-[1.02]"
+                className="btn-primary w-full sm:w-auto"
               >
                 <span>Get a free audit of my business</span>
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
               </a>
 
-              {/* SECONDARY CTA: Outline / Ghost Style Only */}
+              {/* SECONDARY CTA: Premium btn-secondary */}
               <a
                 href="#case-studies"
-                className="w-full sm:w-auto bg-transparent text-[#4C1D95] hover:bg-[#4C1D95]/10 dark:text-[#C4B5FD] dark:hover:bg-[#4C1D95]/30 border-2 border-[#4C1D95] dark:border-[#A78BFA] px-6 py-4 font-sans text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 rounded-xl"
+                className="btn-secondary w-full sm:w-auto"
               >
                 Browse live demos
               </a>
@@ -158,7 +164,7 @@ export default function Hero() {
                   onClick={() => { setActiveDemo(d.id as DemoId); setInteracting(null); }}
                   className={`px-4.5 py-2.5 font-sans text-xs font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                     activeDemo === d.id
-                      ? "bg-[#4C1D95] text-white border-[#4C1D95] shadow-md dark:bg-zinc-100 dark:text-zinc-950 dark:border-zinc-100"
+                      ? "bg-accent text-white border-accent shadow-md dark:text-zinc-950"
                       : "bg-zinc-100 text-zinc-700 border-zinc-200/90 hover:bg-zinc-200/80 hover:text-zinc-900 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800"
                   }`}
                 >
@@ -245,7 +251,7 @@ export default function Hero() {
                   {interacting === activeDemo && (
                     <button
                       onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
-                      className="absolute top-3 right-3 z-30 bg-[#4C1D95] hover:bg-[#3B0764] text-white px-4 py-2 rounded-full shadow-2xl font-mono text-[10px] font-extrabold uppercase tracking-widest cursor-pointer transition-all flex items-center gap-1.5"
+                      className="absolute top-3 right-3 z-30 btn-primary shadow-2xl font-mono text-[10px] font-extrabold uppercase tracking-widest cursor-pointer transition-all flex items-center gap-1.5"
                     >
                       Done scrolling ✕
                     </button>

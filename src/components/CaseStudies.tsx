@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Sparkles, Smartphone, Zap, ShieldCheck } from "lucide-react";
-import { PROJECTS, Project } from "../data/projects";
+import { ArrowRight, ExternalLink, Sparkles, Smartphone, Zap } from "lucide-react";
+import { PROJECTS } from "../data/projects";
 
 const CATEGORIES = ["ALL", "Beauty & Bridal", "Photography Studio", "Fitness & Wellness"];
 
@@ -34,7 +34,7 @@ export default function CaseStudies() {
               <div className="h-px w-8 bg-accent/30 hidden sm:block" />
             </div>
             <h2 className="font-sans font-extrabold text-text-primary leading-[1.08] tracking-tight" style={{ fontSize: "clamp(2.2rem, 4.2vw, 3.4rem)" }}>
-              High-Ticket Implementations & <span className="text-[#4C1D95] dark:text-[#C4B5FD] font-black">Digital Flagships.</span>
+              High-Ticket Implementations & <span className="text-accent dark:text-accent-light font-black">Digital Flagships.</span>
             </h2>
           </div>
           <div className="md:col-span-5">
@@ -52,8 +52,8 @@ export default function CaseStudies() {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4.5 py-2 font-mono text-[11px] uppercase tracking-widest font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                 selectedCategory === cat
-                  ? "bg-[#4C1D95] text-white border-[#4C1D95] shadow-md dark:bg-zinc-100 dark:text-zinc-950 dark:border-zinc-100"
-                  : "bg-zinc-100/80 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700/60 hover:border-zinc-400 dark:hover:border-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  ? "bg-accent text-white border-accent shadow-md dark:text-bg-primary"
+                  : "bg-bg-secondary text-text-secondary border-border hover:border-accent/40 hover:text-text-primary"
               }`}
             >
               {cat === "ALL" ? "All Flagships" : cat}
@@ -72,14 +72,14 @@ export default function CaseStudies() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group relative card-luxury overflow-hidden flex flex-col justify-between border border-zinc-200/90 dark:border-zinc-800 hover:border-amber-500/50 dark:hover:border-amber-500/50 hover:shadow-2xl transition-all duration-300 rounded-2xl bg-white dark:bg-zinc-900"
+                className="group relative card-luxury overflow-hidden flex flex-col justify-between border border-border hover:border-accent/50 hover:shadow-2xl transition-all duration-300 rounded-2xl bg-bg-card"
                 onMouseLeave={() => setActiveIframeId(null)}
               >
                 <div>
                   {/* Interactive Live Viewport Frame */}
                   {project.demoUrl ? (
-                    <div className="w-full h-72 bg-zinc-100 dark:bg-zinc-950 relative overflow-hidden border-b border-zinc-200/80 dark:border-zinc-800">
-                      {/* Live Iframe — ALWAYS rendered crisp and clean */}
+                    <div className="w-full h-72 bg-bg-secondary relative overflow-hidden border-b border-border/60">
+                      {/* Live Iframe */}
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Flagship Preview`}
@@ -90,13 +90,13 @@ export default function CaseStudies() {
                         loading="lazy"
                       />
 
-                      {/* Pristine Glass Overlay with Floating Pill */}
+                      {/* Glass Overlay */}
                       {activeIframeId !== project.id && (
                         <div 
                           onClick={() => setActiveIframeId(project.id)}
                           className="absolute inset-0 bg-black/10 dark:bg-black/30 hover:bg-black/5 dark:hover:bg-black/20 backdrop-blur-[1.5px] transition-all duration-300 flex flex-col items-center justify-end pb-6 px-6 text-center cursor-pointer z-20 group/overlay select-none"
                         >
-                          <div className="bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-200/90 dark:border-zinc-700/90 shadow-2xl backdrop-blur-2xl rounded-full group-hover/overlay:scale-105 transition-all duration-200 flex items-center gap-2.5">
+                          <div className="bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-border/90 shadow-2xl backdrop-blur-2xl rounded-full group-hover/overlay:scale-105 transition-all duration-200 flex items-center gap-2.5">
                             <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                             <span>Tap to Scroll Live Site</span>
                             <Sparkles size={13} className="text-amber-500 dark:text-amber-400 shrink-0" />
@@ -138,7 +138,7 @@ export default function CaseStudies() {
                       <span className="font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded font-bold border bg-accent/10 text-accent border-accent/20">
                         BESPOKE DIGITAL SYSTEM
                       </span>
-                      <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[9px] font-bold tracking-widest">
+                      <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-mono text-[9px] font-bold tracking-widest">
                         <Zap size={10} />
                         <span>SUB-300MS LATENCY</span>
                       </div>

@@ -1,9 +1,22 @@
-"use client";
-
-import Head from "next/head";
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ClosingSection from "../../components/ClosingSection";
+
+export const metadata: Metadata = {
+  title: "Services & Solutions | High-Converting Business Websites",
+  description:
+    "Explore NERQIVA's services: high-converting business websites, 1-click WhatsApp lead routing, Google Maps local search optimization, and custom client portals.",
+  alternates: {
+    canonical: "/solutions",
+  },
+  openGraph: {
+    title: "Services & Solutions | High-Converting Business Websites | NERQIVA",
+    description:
+      "Explore NERQIVA's services: high-converting business websites, 1-click WhatsApp lead routing, and Google Maps local SEO.",
+    url: "https://nerqiva.vercel.app/solutions",
+  },
+};
 
 const SOLUTIONS_DETAIL = [
   {
@@ -53,107 +66,145 @@ const SOLUTIONS_DETAIL = [
 ];
 
 export default function SolutionsPage() {
+  const solutionsSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nerqiva.vercel.app"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services & Solutions",
+            "item": "https://nerqiva.vercel.app/solutions"
+          }
+        ]
+      },
+      ...SOLUTIONS_DETAIL.map((sol) => ({
+        "@type": "Service",
+        "serviceType": sol.title,
+        "name": sol.title,
+        "description": sol.problem,
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "NERQIVA Studio",
+          "url": "https://nerqiva.vercel.app"
+        },
+        "areaServed": ["North Guwahati", "Rudreswar", "Guwahati", "Assam", "India"],
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "price": "Contact for quote",
+          "priceCurrency": "INR"
+        }
+      }))
+    ]
+  };
+
   return (
-    <>
-      <Head>
-        <title>Services & Solutions | NERQIVA</title>
-      </Head>
-      <div className="pt-32 relative z-20">
-        <div className="section-container mb-24 max-w-4xl">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="h-px w-8 bg-accent/40" />
-            <span className="label-eyebrow">OUR SERVICES</span>
-          </div>
-          <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
-            High-converting websites built to <span className="bg-linear-to-r from-amber-600 via-amber-500 to-yellow-600 dark:from-amber-400 dark:via-yellow-300 dark:to-amber-500 bg-clip-text text-transparent font-black">grow your business.</span>
-          </h1>
-          <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
-            We build simple, fast, and stunning websites for local business owners. Delivered live in **24 Hours** with zero technical headache.
-          </p>
+    <div className="pt-32 relative z-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
+      />
+      <div className="section-container mb-24 max-w-4xl">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-px w-8 bg-accent/40" />
+          <span className="label-eyebrow">OUR SERVICES</span>
         </div>
+        <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
+            style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
+          High-converting websites built to <span className="bg-linear-to-r from-accent via-accent-light to-accent-gold bg-clip-text text-transparent font-black">grow your business.</span>
+        </h1>
+        <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
+          We build simple, fast, and stunning websites for local business owners. Delivered live in <strong className="font-semibold text-text-primary">24 Hours</strong> with zero technical headache.
+        </p>
+      </div>
 
-        <div className="section-container mb-32 max-w-5xl">
-          <div className="flex flex-col gap-16">
-            {SOLUTIONS_DETAIL.map((sol) => (
-              <div 
-                key={sol.id} 
-                id={sol.id}
-                className={`glass-panel p-8 md:p-12 relative overflow-hidden bg-linear-to-br ${sol.gradient}`}
-                style={{ borderRadius: "4px" }}
-              >
-                <div className="relative z-10 grid md:grid-cols-12 gap-8 lg:gap-12">
-                  <div className="md:col-span-7 space-y-6">
-                    <div>
-                      <h2 className="font-sans font-bold text-2xl md:text-3xl text-text-primary mb-2">
-                        {sol.title}
-                      </h2>
-                      <p className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
-                        {sol.subtitle}
-                      </p>
-                    </div>
-
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                      {sol.problem}
+      <div className="section-container mb-32 max-w-5xl">
+        <div className="flex flex-col gap-16">
+          {SOLUTIONS_DETAIL.map((sol) => (
+            <div 
+              key={sol.id} 
+              id={sol.id}
+              className={`card-luxury p-8 md:p-12 relative overflow-hidden bg-linear-to-br ${sol.gradient}`}
+            >
+              <div className="relative z-10 grid md:grid-cols-12 gap-8 lg:gap-12">
+                <div className="md:col-span-7 space-y-6">
+                  <div>
+                    <h2 className="font-sans font-bold text-2xl md:text-3xl text-text-primary mb-2">
+                      {sol.title}
+                    </h2>
+                    <p className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
+                      {sol.subtitle}
                     </p>
-
-                    <div className="pt-4 border-t border-border/40">
-                      <h3 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-2">
-                        What We Build
-                      </h3>
-                      <p className="text-text-secondary text-sm leading-relaxed">
-                        {sol.whatWeBuild}
-                      </p>
-                    </div>
                   </div>
 
-                  <div className="md:col-span-5 flex flex-col justify-between gap-8 md:border-l md:border-border/40 md:pl-8 lg:pl-12">
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                          When It Makes Sense
-                        </h4>
-                        <p className="text-xs text-text-secondary leading-relaxed">
-                          {sol.whenItMakesSense}
-                        </p>
-                      </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {sol.problem}
+                  </p>
 
-                      <div>
-                        <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                          Delivery Speed
-                        </h4>
-                        <p className="text-xs text-emerald-400 font-semibold leading-relaxed">
-                          ⚡ {sol.engagement}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                          Your Result
-                        </h4>
-                        <p className="text-xs text-text-secondary leading-relaxed">
-                          {sol.expectations}
-                        </p>
-                      </div>
-                    </div>
-
-                    <Link
-                      href={`/contact?service=${sol.id}`}
-                      className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15"
-                      style={{ borderRadius: "4px" }}
-                    >
-                      Get Started in 24 Hours
-                      <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                  <div className="pt-4 border-t border-border/40">
+                    <h3 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-2">
+                      What We Build
+                    </h3>
+                    <p className="text-text-secondary text-sm leading-relaxed">
+                      {sol.whatWeBuild}
+                    </p>
                   </div>
                 </div>
+
+                <div className="md:col-span-5 flex flex-col justify-between gap-8 md:border-l md:border-border/40 md:pl-8 lg:pl-12">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
+                        When It Makes Sense
+                      </h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {sol.whenItMakesSense}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
+                        Delivery Speed
+                      </h4>
+                      <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold leading-relaxed">
+                        ⚡ {sol.engagement}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
+                        Your Result
+                      </h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {sol.expectations}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Link
+                    href={`/contact?service=${sol.id}`}
+                    className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15 rounded-xl"
+                  >
+                    Get Started in 24 Hours
+                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-        
-        <ClosingSection />
       </div>
-    </>
+      
+      <ClosingSection />
+    </div>
   );
 }

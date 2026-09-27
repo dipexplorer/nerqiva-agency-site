@@ -10,8 +10,13 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const project = PROJECTS.find((p) => p.slug === params.slug);
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
   
   if (!project) {
     return {
@@ -22,6 +27,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${project.name} | NERQIVA Studio Case Study`,
     description: project.tagline,
+    alternates: {
+      canonical: `/work/${project.slug}`,
+    },
     openGraph: {
       title: `${project.name} | NERQIVA Studio Case Study`,
       description: project.tagline,
@@ -36,8 +44,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const projectIndex = PROJECTS.findIndex((p) => p.slug === params.slug);
+export default async function CaseStudyPage({ params }: PageProps) {
+  const { slug } = await params;
+  const projectIndex = PROJECTS.findIndex((p) => p.slug === slug);
 
   if (projectIndex === -1) {
     notFound();
@@ -45,8 +54,51 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   const project = PROJECTS[projectIndex];
 
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nerqiva.vercel.app"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Selected Work",
+            "item": "https://nerqiva.vercel.app/work"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": project.name,
+            "item": `https://nerqiva.vercel.app/work/${project.slug}`
+          }
+        ]
+      },
+      {
+        "@type": "CreativeWork",
+        "name": project.name,
+        "description": project.tagline,
+        "url": project.demoUrl || `https://nerqiva.vercel.app/work/${project.slug}`,
+        "creator": {
+          "@type": "Organization",
+          "name": "NERQIVA Studio"
+        }
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <div className="pt-32 relative z-20 pb-24">
         {/* Minimal Header */}
         <div className="section-container max-w-6xl mb-10">

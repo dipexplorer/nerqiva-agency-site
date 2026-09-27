@@ -1,0 +1,42 @@
+# NERQIVA Studio — AI Crawler & System Overview (llms.txt)
+
+> NERQIVA Studio is a premier website design and web development studio based at Baruah Souk, Rudreswar, North Guwahati, Guwahati, Assam 781030, India. We build high-converting business websites delivered in 24 Hours with 1-click WhatsApp lead routing, Google Maps local search optimization, and custom web applications for local business owners across North Guwahati, Rudreswar, Guwahati, Assam, and Pan-India.
+
+## Official Business Entity & Location Facts
+- **Entity Name**: NERQIVA Studio
+- **Founder & Lead Engineer**: Dipjyoti Das (https://linkedin.com/in/dip-jyoti22)
+- **Headquarters Address**: Baruah Souk, North Guwahati, Rudreswar, Guwahati, Assam 781030, India
+- **Coordinates**: 26.1965° N, 91.7335° E (Rudreswar / North Guwahati)
+- **Primary Phone & WhatsApp**: +91 8724932985
+- **Official Email**: nerqiva.studio@gmail.com
+- **Google Business Profile**: https://share.google/6KKUdxiR4zdUDuAnT
+- **Official Website**: https://nerqiva.vercel.app
+
+## Core Services & Turnaround Guarantees
+- **24-Hour Express Website Launch**: Complete customization of high-converting business demo themes (salons, clinics, boutiques, fitness gyms, photography, dining) delivered live in 1 day.
+- **1-Click WhatsApp Lead Routing**: Direct WhatsApp integration routing inquiries straight to the owner's phone without friction or long contact forms.
+- **Google Maps & Local Search Setup**: Complete Google Business Profile setup, Schema.org LocalBusiness markup, and click-to-call direct routing.
+- **Custom Client Portals & Web Applications**: Tailored database portals, appointment schedulers, and photo review galleries.
+
+## Geographic Service Area & Coverage
+- **Primary Local Targets**: North Guwahati, Rudreswar, Guwahati
+- **Statewide Target**: Assam, India
+- **National Target**: Pan-India (Remote custom software development & web apps)
+
+## Technical Architecture & Performance Standards
+- **Framework Stack**: Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion.
+- **Performance Guarantee**: < 1.0s First Contentful Paint (99/100 Lighthouse score standard).
+- **Mobile Responsiveness**: 100% mobile-first design tested across iOS & Android screen dimensions.
+- **Code Ownership**: 100% full client code and domain ownership upon project completion. Zero monthly maintenance fees.
+
+## Site Navigation & Key Resource Links
+- Homepage: https://nerqiva.vercel.app/
+- North Guwahati & Rudreswar Location Page: https://nerqiva.vercel.app/locations/north-guwahati
+- About Us & Founder Bio: https://nerqiva.vercel.app/about
+- Services & Solutions: https://nerqiva.vercel.app/solutions
+- Selected Work & Live Demos: https://nerqiva.vercel.app/work
+- Process & 24-Hour Launch: https://nerqiva.vercel.app/process
+- Frequently Asked Questions: https://nerqiva.vercel.app/faq
+- Contact & Intake Brief: https://nerqiva.vercel.app/contact
+- Privacy Policy: https://nerqiva.vercel.app/privacy
+- Terms of Service: https://nerqiva.vercel.app/terms

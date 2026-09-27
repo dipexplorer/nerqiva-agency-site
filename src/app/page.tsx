@@ -5,6 +5,7 @@ import CaseStudies from "../components/CaseStudies";
 import Process from "../components/Process";
 import Technology from "../components/Technology";
 import WhyUs from "../components/WhyUs";
+import FounderSection from "../components/FounderSection";
 import ClosingSection from "../components/ClosingSection";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Process />
       <Technology />
       <WhyUs />
+      <FounderSection />
       <ClosingSection />
     </>
   );

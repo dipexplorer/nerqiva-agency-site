@@ -26,20 +26,24 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NERQIVA Studio | Premium Web Engineering & Digital Growth Systems",
+  title: {
+    default: "NERQIVA Studio | High-Converting Websites & Digital Systems",
+    template: "%s | NERQIVA Studio",
+  },
   description:
     "NERQIVA is a specialized digital systems studio. We engineer high-converting web applications, automate operational workflows, and build premium digital experiences that turn traffic into qualified leads.",
   keywords: [
-    "Digital Systems Studio",
-    "Web Application Development",
+    "North Guwahati Website Design",
+    "Rudreswar Web Developer",
+    "Guwahati Website Design Agency",
+    "Assam Web Design Studio",
+    "24 Hour Express Website Launch",
+    "1-Click WhatsApp Lead Routing",
+    "Google Maps Local Search Optimization",
+    "Next.js Development Agency Assam",
+    "Custom Web Application Development",
     "High Converting Website Design",
-    "Workflow Automation Agency",
-    "Next.js Development Agency",
-    "Custom Web Systems",
-    "Business Process Automation",
-    "Lead Generation Websites",
-    "Software Development Firm",
-    "UI/UX Design Studio"
+    "UI/UX Design Studio India",
   ],
   authors: [{ name: "NERQIVA Studio" }],
   metadataBase: new URL("https://nerqiva.vercel.app"),
@@ -47,9 +51,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "NERQIVA Studio | Premium Web Engineering & Digital Growth Systems",
+    title: "NERQIVA Studio | High-Converting Websites & Digital Systems",
     description:
-      "We engineer high-converting web applications and automate operational workflows. Accelerate your business growth with our premium digital experiences.",
+      "We build high-converting business websites delivered in 24 Hours with 1-click WhatsApp lead routing and Google Maps local SEO for North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
     type: "website",
     locale: "en_US",
     url: "https://nerqiva.vercel.app",
@@ -59,15 +63,15 @@ export const metadata: Metadata = {
         url: "/icon.png",
         width: 800,
         height: 800,
-        alt: "NERQIVA Studio Logo",
+        alt: "NERQIVA Studio Official Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NERQIVA Studio | Premium Web Engineering",
+    title: "NERQIVA Studio | High-Converting Websites in 24 Hours",
     description:
-      "We engineer high-converting web applications and automate operational workflows. Turn traffic into qualified leads.",
+      "Stunning websites with 1-click WhatsApp lead routing & local SEO for North Guwahati, Rudreswar, Guwahati, and Assam.",
     images: ["/icon.png"],
   },
   robots: {
@@ -99,16 +103,93 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "NERQIVA Studio",
-    "url": "https://nerqiva.vercel.app",
-    "logo": "https://nerqiva.vercel.app/icon.png",
-    "description": "We engineer high-converting web applications, automate operational workflows, and build premium digital experiences.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "IN"
-    },
-    "priceRange": "$$"
+    "@graph": [
+      {
+        "@type": ["ProfessionalService", "LocalBusiness"],
+        "@id": "https://nerqiva.vercel.app/#localbusiness",
+        "name": "NERQIVA Studio",
+        "url": "https://nerqiva.vercel.app",
+        "logo": "https://nerqiva.vercel.app/icon.png",
+        "image": "https://nerqiva.vercel.app/icon.png",
+        "description": "High-converting business website design, 1-click WhatsApp lead routing, Google Maps local search optimization, and custom web systems delivered in 24 Hours.",
+        "telephone": "+91-8724932985",
+        "email": "nerqiva.studio@gmail.com",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Baruah Souk, Rudreswar",
+          "addressLocality": "North Guwahati",
+          "addressRegion": "Assam",
+          "postalCode": "781030",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "26.1965",
+          "longitude": "91.7335"
+        },
+        "areaServed": [
+          "North Guwahati",
+          "Rudreswar",
+          "Guwahati",
+          "Assam",
+          "India"
+        ],
+        "hasMap": "https://share.google/6KKUdxiR4zdUDuAnT",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/dip-jyoti22",
+          "https://github.com/dipexplorer",
+          "https://dip-jyoti22.vercel.app/"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://nerqiva.vercel.app/#organization",
+        "name": "NERQIVA Studio",
+        "url": "https://nerqiva.vercel.app",
+        "logo": "https://nerqiva.vercel.app/icon.png",
+        "founder": {
+          "@type": "Person",
+          "name": "Dipjyoti Das",
+          "jobTitle": "Founder & Lead Engineer",
+          "sameAs": [
+            "https://linkedin.com/in/dip-jyoti22",
+            "https://github.com/dipexplorer"
+          ]
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-8724932985",
+          "contactType": "customer service",
+          "email": "nerqiva.studio@gmail.com",
+          "areaServed": ["IN"],
+          "availableLanguage": ["English", "Assamese", "Hindi"]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://nerqiva.vercel.app/#website",
+        "url": "https://nerqiva.vercel.app",
+        "name": "NERQIVA Studio",
+        "inLanguage": "en-US",
+        "publisher": {
+          "@id": "https://nerqiva.vercel.app/#organization"
+        }
+      }
+    ]
   };
 
   return (

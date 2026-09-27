@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================================
    NERQIVA — Design System v5
@@ -277,4 +278,122 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+
+/* ============================================================
+   LOCKED CUSTOM BUTTON SYSTEM (PREMIUM PURPLE BRAND)
+   ============================================================ */
+
+/* Primary Button — Ultra Premium Brand Glow */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF !important;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+  border-radius: 9999px !important;
+  box-shadow: 0 4px 15px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent-mid));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  border-radius: 9999px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.dark .btn-primary {
+  color: #050505 !important;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.dark .btn-primary::before {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+}
+
+.dark .btn-primary:hover {
+  box-shadow: 0 8px 30px var(--accent-glow), 0 0 15px var(--accent-glow), inset 0 1px 1px #FFF;
+  border-color: #FFFFFF;
+}
+
+/* Secondary Button — Ultra Premium Outline */
+.btn-secondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent) !important;
+  background: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--accent);
+  white-space: nowrap;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-glow-soft);
+  color: var(--accent-mid) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+.dark .btn-secondary {
+  color: var(--accent-light) !important;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark .btn-secondary:hover {
+  background: var(--accent-glow-soft);
+  border-color: var(--accent-light);
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow-soft);
 }

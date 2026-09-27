@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { label: "Demo Websites", href: "/work" },
   { label: "Services", href: "/solutions" },
   { label: "How It Works", href: "/process" },
+  { label: "North Guwahati", href: "/locations/north-guwahati" },
   { label: "About Us", href: "/about" },
 ];
 
@@ -89,7 +90,8 @@ export default function Navigation() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="px-5 py-2.5 bg-[#4C1D95] hover:bg-[#3B0764] text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded-lg transition-colors shadow-md shadow-[#4C1D95]/20"
+              className="btn-primary"
+              style={{ padding: "0.6rem 1.25rem", fontSize: "0.65rem", borderRadius: "8px" }}
             >
               Start a Project
             </Link>
@@ -145,7 +147,8 @@ export default function Navigation() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-[#4C1D95] hover:bg-[#3B0764] text-white font-mono text-xs font-bold uppercase tracking-widest rounded-lg text-center shadow-md shadow-[#4C1D95]/20"
+            className="btn-primary"
+            style={{ padding: "0.85rem 2rem", fontSize: "0.75rem", borderRadius: "8px" }}
           >
             Start a Project
           </Link>
