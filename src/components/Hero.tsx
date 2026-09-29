@@ -80,7 +80,7 @@ export default function Hero() {
         <path d="M-20,250 C120,80 280,300 420,100" stroke="#4C1D95" strokeWidth="0.5" />
       </svg>
 
-      <div className="relative z-10 w-full max-w-[340px] sm:max-w-md mx-auto mt-4">
+      <div className={`relative z-10 w-full mx-auto mt-4 ${isMobile ? 'max-w-[340px]' : 'max-w-full lg:max-w-[600px] xl:max-w-[700px]'}`}>
         {/* Layered Back Card (Dark Theme) */}
         <div 
           className="absolute inset-0 bg-[#121212] border border-[#2A2A2A] rounded-2xl shadow-2xl opacity-90" 
@@ -133,39 +133,51 @@ export default function Hero() {
             </div>
 
             {/* Iframe Viewport */}
-            <div className="relative w-full h-[320px] sm:h-[400px] bg-white">
+            <div className={`relative w-full bg-white ${isMobile ? 'h-[320px]' : 'h-[380px] lg:h-[420px]'}`}>
               <iframe
                 src={demo.demoUrl}
                 title={`${demo.name} Demo`}
                 className={`absolute inset-0 w-full h-full border-none transition-opacity duration-300 ${
-                  interacting === activeDemo ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
+                  interacting === activeDemo && !isMobile ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
                 }`}
                 loading="lazy"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
               />
 
-              {/* Floating WhatsApp Button */}
-              <div className="absolute right-3 top-[60%] z-20 h-10 w-10 sm:h-12 sm:w-12 bg-emerald-500 rounded-full shadow-lg flex items-center justify-center">
-                <MessageCircle size={20} className="text-white fill-white" />
-              </div>
+              {/* Mobile Full Overlay (Prevents Scroll Trapping) */}
+              {isMobile && (
+                <a
+                  href={demo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-8 cursor-pointer"
+                  aria-label="Open live demo in new tab"
+                >
+                  <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-border shadow-xl backdrop-blur-md rounded-full flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                    <span>Open Live Demo</span>
+                    <ExternalLink size={12} className="text-[#4C1D95] shrink-0" />
+                  </div>
+                </a>
+              )}
 
-              {/* Tap to Scroll Badge */}
-              {interacting !== activeDemo && (
+              {/* Desktop Tap to Scroll Badge */}
+              {!isMobile && interacting !== activeDemo && (
                 <button 
                   onClick={() => setInteracting(activeDemo)}
-                  className="absolute right-3 bottom-3 z-20 bg-white/95 backdrop-blur-md px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-black/5 shadow-md flex items-center gap-1.5 sm:gap-2 min-h-[36px] sm:min-h-[44px] hover:scale-105 transition-transform"
+                  className="hidden sm:flex absolute right-4 bottom-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-md items-center gap-2 min-h-[44px] hover:scale-105 transition-transform cursor-pointer"
                 >
-                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                  <span className="font-mono text-[8px] sm:text-[9px] font-bold uppercase tracking-widest text-[#111]">TAP TO SCROLL</span>
-                  <MousePointer2 size={10} className="text-[#4C1D95] shrink-0" />
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[#111]">TAP TO SCROLL</span>
+                  <MousePointer2 size={12} className="text-[#4C1D95] shrink-0" />
                 </button>
               )}
               
-              {/* Exit Interaction Badge */}
-              {interacting === activeDemo && (
+              {/* Desktop Exit Interaction Badge */}
+              {!isMobile && interacting === activeDemo && (
                 <button
                   onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
-                  className="hidden sm:flex absolute top-3 right-3 z-30 bg-[#4C1D95] text-white shadow-xl px-4 py-2 rounded-full font-mono text-[10px] font-extrabold uppercase tracking-widest transition-transform hover:scale-105 items-center gap-1.5"
+                  className="hidden sm:flex absolute top-4 right-4 z-30 bg-[#4C1D95] text-white shadow-xl px-5 py-2.5 rounded-full font-mono text-[10px] font-extrabold uppercase tracking-widest transition-transform hover:scale-105 items-center gap-1.5 cursor-pointer"
                 >
                   Done ✕
                 </button>
