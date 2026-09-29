@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import BrandLogo from "./BrandLogo";
 import Link from "next/link";
 import { Mail, ArrowUp, MapPin, Phone, ExternalLink } from "lucide-react";
@@ -68,6 +69,8 @@ const RESOURCES_LINKS = [
 ];
 
 export default function Footer() {
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
   return (
     <footer className="border-t border-border/40 bg-bg-secondary/40 backdrop-blur-md py-16 text-text-primary relative z-20">
       <div className="section-container">
@@ -149,79 +152,36 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Capabilities */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col">
-            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Capabilities
-            </h4>
-            <div className="flex flex-col gap-4">
-              {CAPABILITIES_LINKS.map((link, idx) => (
-                <Link
-                  key={idx}
-                  href={link.href}
-                  className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
-                >
-                  <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-                </Link>
-              ))}
+          {/* Link Columns (Mobile Accordion / Desktop Grid) */}
+          {[
+            { title: "Capabilities", id: "cap", links: CAPABILITIES_LINKS },
+            { title: "Studio", id: "studio", links: STUDIO_LINKS },
+            { title: "Service Areas", id: "areas", links: SERVICE_AREAS },
+            { title: "Legal & Info", id: "legal", links: RESOURCES_LINKS },
+          ].map((col) => (
+            <div key={col.id} className="col-span-2 lg:col-span-2 flex flex-col border-b border-border/20 lg:border-none">
+              <h4 
+                onClick={() => setOpenSection(openSection === col.id ? null : col.id)}
+                className="font-sans text-xs uppercase tracking-wider font-semibold py-4 lg:py-0 lg:mb-6 text-text-primary/90 flex justify-between items-center cursor-pointer lg:cursor-auto"
+              >
+                {col.title}
+                <span className="lg:hidden text-text-tertiary text-lg leading-none">{openSection === col.id ? '−' : '+'}</span>
+              </h4>
+              <div className={`${openSection === col.id ? 'flex' : 'hidden'} lg:flex flex-col gap-4 pb-4 lg:pb-0`}>
+                {col.links.map((link: any, idx: number) => (
+                  <Link
+                    key={idx}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
+                  >
+                    <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Column 3: Studio */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col">
-            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Studio
-            </h4>
-            <div className="flex flex-col gap-4">
-              {STUDIO_LINKS.map((link, idx) => (
-                <Link
-                  key={idx}
-                  href={link.href}
-                  className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
-                >
-                  <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 4: Service Areas */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col">
-            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Service Areas
-            </h4>
-            <div className="flex flex-col gap-4">
-              {SERVICE_AREAS.map((link, idx) => (
-                <Link
-                  key={idx}
-                  href={link.href}
-                  className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
-                >
-                  <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Column 5: Legal & Enquiries */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col">
-            <h4 className="font-sans text-xs uppercase tracking-wider font-semibold mb-6 text-text-primary/90">
-              Legal & Info
-            </h4>
-            <div className="flex flex-col gap-4">
-              {RESOURCES_LINKS.map((link, idx) => (
-                <Link
-                  key={idx}
-                  href={link.href}
-                  target={link.external ? "_blank" : undefined}
-                  rel={link.external ? "noopener noreferrer" : undefined}
-                  className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
-                >
-                  <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
+          ))}
 
         </div>
 
