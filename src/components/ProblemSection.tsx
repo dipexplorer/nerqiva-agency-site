@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, XCircle, Sparkles } from "lucide-react";
 
 const PROBLEMS = [
   {
@@ -103,12 +103,12 @@ export default function ProblemSection() {
                   onClick={() => setActiveId(problem.id)}
                   className={`group flex items-center justify-between text-left py-4 pl-6 border-l-2 ml-[-2px] transition-all duration-200 cursor-pointer min-h-[64px] rounded-r-xl ${
                     isActive
-                      ? "border-accent text-text-primary bg-accent/10 dark:bg-accent/20 font-semibold"
+                      ? "border-accent text-text-primary bg-accent/10 font-semibold"
                       : "border-transparent text-text-secondary hover:text-text-primary hover:border-border"
                   }`}
                 >
                   <div className="flex flex-col gap-0.5">
-                    <span className={`font-sans text-sm font-bold ${isActive ? "text-accent dark:text-accent-light" : ""}`}>
+                    <span className={`font-sans text-sm font-bold ${isActive ? "text-accent" : ""}`}>
                       {problem.label}
                     </span>
                     <span className="font-sans text-xs text-text-tertiary font-normal line-clamp-1">
@@ -118,7 +118,7 @@ export default function ProblemSection() {
                   <ArrowRight
                     size={14}
                     className={`shrink-0 ml-4 transition-all duration-200 ${
-                      isActive ? "text-accent dark:text-accent-light opacity-100 translate-x-0" : "text-text-tertiary opacity-0 -translate-x-1"
+                      isActive ? "text-accent opacity-100 translate-x-0" : "text-text-tertiary opacity-0 -translate-x-1"
                     }`}
                   />
                 </button>
@@ -151,20 +151,32 @@ export default function ProblemSection() {
                     </div>
 
                     {/* Real cost & Visual Before vs After Diff Badge */}
-                    <div className="grid sm:grid-cols-2 gap-3 my-1">
-                      <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3.5 flex flex-col justify-between">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-red-600 dark:text-red-400 block mb-1">
-                          ❌ Current Old Setup
-                        </span>
-                        <p className="text-xs text-text-secondary font-medium leading-relaxed">
+                    <div className="grid sm:grid-cols-2 gap-3 my-2">
+                      {/* Old Way */}
+                      <div className="bg-bg-secondary/50 border border-border/80 rounded-xl p-4 flex flex-col justify-between hover:border-border transition-colors shadow-sm">
+                        <div className="flex items-center gap-1.5 mb-2.5">
+                          <XCircle size={13} className="text-text-tertiary" />
+                          <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-text-secondary">
+                            Current Old Setup
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-text-secondary font-medium leading-relaxed">
                           {activeProblem.realCost}
                         </p>
                       </div>
-                      <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3.5 flex flex-col justify-between">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block mb-1">
-                          ⚡ NERQIVA Solution
-                        </span>
-                        <p className="text-xs text-emerald-950 dark:text-emerald-200 font-semibold leading-relaxed">
+                      
+                      {/* Nerqiva Solution */}
+                      <div className="bg-linear-to-br from-[#4C1D95]/5 to-[#4C1D95]/10 border border-[#4C1D95]/20 rounded-xl p-4 flex flex-col justify-between hover:border-[#4C1D95]/40 transition-colors shadow-sm relative overflow-hidden">
+                        {/* Subtle gold glow behind solution */}
+                        <div className="absolute top-0 right-0 -mr-4 -mt-4 w-16 h-16 bg-[#C9A227]/10 blur-[20px] rounded-full pointer-events-none" aria-hidden="true" />
+                        
+                        <div className="flex items-center gap-1.5 mb-2.5 relative z-10">
+                          <Sparkles size={13} className="text-[#C9A227]" />
+                          <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[#4C1D95]">
+                            Nerqiva Solution
+                          </span>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-[#4C1D95] font-bold leading-relaxed relative z-10">
                           Guaranteed instant fix with zero monthly maintenance overhead.
                         </p>
                       </div>
@@ -178,7 +190,7 @@ export default function ProblemSection() {
                       <div className="space-y-2">
                         {activeProblem.wefix.map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
-                            <CheckCircle size={15} className="shrink-0 text-accent-gold dark:text-accent-gold mt-0.5" />
+                            <CheckCircle size={15} className="shrink-0 text-[#C9A227] mt-0.5" />
                             <span className="text-sm text-text-secondary leading-normal font-medium">
                               {item}
                             </span>
@@ -193,10 +205,10 @@ export default function ProblemSection() {
                         href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20need%20help%20with:%20${encodeURIComponent(activeProblem.label)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group font-sans text-sm font-bold text-accent dark:text-accent-light hover:underline flex items-center gap-2 transition-colors"
+                        className="group font-mono text-[11px] font-extrabold text-[#4C1D95] uppercase tracking-widest flex items-center gap-1.5 transition-colors hover:text-[#5B21B6]"
                       >
                         <span>{activeProblem.cta}</span>
-                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                       </a>
                       <span className="font-mono text-[9px] text-text-tertiary tracking-wider uppercase font-bold">
                         Free to ask

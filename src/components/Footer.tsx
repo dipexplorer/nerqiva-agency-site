@@ -264,7 +264,7 @@ export default function Footer() {
             className="flex sm:hidden font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm w-full justify-center mt-2"
           >
             Back to Top 
-            <ArrowUpRight size={14} className="rotate-[-45deg]" />
+            <ArrowUpRight size={14} className="-rotate-45" />
           </button>
           
           <button
@@ -272,7 +272,7 @@ export default function Footer() {
             className="hidden sm:flex font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm"
           >
             Back to Top 
-            <ArrowUpRight size={14} className="rotate-[-45deg]" />
+            <ArrowUpRight size={14} className="-rotate-45" />
           </button>
         </div>
       </div>

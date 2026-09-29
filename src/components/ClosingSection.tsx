@@ -56,7 +56,7 @@ export default function ClosingSection() {
         </div>
 
         {/* Interactive Category Pills Selector */}
-        <div className="flex sm:flex-wrap overflow-x-auto sm:overflow-visible justify-start sm:justify-center snap-x snap-mandatory sm:snap-none gap-2 mb-6 w-full max-w-2xl px-1 sm:px-0 pb-1 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <div className="flex sm:flex-wrap overflow-x-auto sm:overflow-visible justify-start sm:justify-center snap-x snap-mandatory sm:snap-none gap-2 mb-6 w-full max-w-2xl px-1 sm:px-0 pb-1 scrollbar-none">
           {SERVICE_OPTIONS.map((item) => {
             const isSelected = selectedService.id === item.id;
             return (
