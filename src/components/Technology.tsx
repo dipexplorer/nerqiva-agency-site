@@ -13,7 +13,7 @@ export default function Technology() {
       <div className="section-container relative z-10">
         
         {/* Compact Header */}
-        <div className="max-w-2xl mb-10">
+        <div className="max-w-2xl mb-8 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-accent dark:text-accent-light text-[11px] font-mono font-bold tracking-wider uppercase mb-3">
             <CheckCircle2 size={12} className="text-accent dark:text-accent-light" />
             <span>ENGINEERING STANDARDS</span>
@@ -27,13 +27,21 @@ export default function Technology() {
               and maximum conversion.
             </span>
           </h2>
-          <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
+          <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal mb-6 sm:mb-0">
             We don&apos;t just write code — we guarantee tangible visual and performance standards for your business.
           </p>
+
+          {/* Mobile Swipe Hint */}
+          <div className="flex md:hidden items-center text-text-tertiary font-mono text-[10px] tracking-wider uppercase mt-4 px-1">
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              Swipe to view standards
+            </span>
+          </div>
         </div>
 
         {/* 4 Feature Cards with Integrated Mini Visual Interfaces */}
-        <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
+        <div className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none md:grid-cols-2 gap-4 md:gap-5 lg:gap-6 -mx-4 px-4 md:mx-0 md:px-0 pb-6 md:pb-0 no-scrollbar">
           
           {/* CARD 1: 1-Second Load Speed */}
           <motion.div
@@ -41,7 +49,7 @@ export default function Technology() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4 }}
-            className="group card-luxury p-6 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+            className="w-[85vw] md:w-auto shrink-0 snap-center group card-luxury p-5 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -88,7 +96,7 @@ export default function Technology() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: 0.08 }}
-            className="group card-luxury p-6 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+            className="w-[85vw] md:w-auto shrink-0 snap-center group card-luxury p-5 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -135,7 +143,7 @@ export default function Technology() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: 0.16 }}
-            className="group card-luxury p-6 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+            className="w-[85vw] md:w-auto shrink-0 snap-center group card-luxury p-5 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
@@ -180,7 +188,7 @@ export default function Technology() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.4, delay: 0.24 }}
-            className="group card-luxury p-6 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+            className="w-[85vw] md:w-auto shrink-0 snap-center group card-luxury p-5 sm:p-7 border border-border/80 bg-bg-card hover:border-accent/40 rounded-2xl shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
           >
             <div>
               <div className="flex items-center justify-between mb-4">
