@@ -157,12 +157,12 @@ export default function Hero() {
           <div className="lg:col-span-6 w-full flex flex-col gap-4 relative">
 
             {/* Category Selector Tabs */}
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 overflow-x-auto snap-x scrollbar-none pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0 sm:flex-wrap">
               {DEMO_SHOWCASES.map((d) => (
                 <button
                   key={d.id}
                   onClick={() => { setActiveDemo(d.id as DemoId); setInteracting(null); }}
-                  className={`px-4.5 py-2.5 font-sans text-xs font-bold border transition-all duration-200 cursor-pointer rounded-full ${
+                  className={`snap-start shrink-0 px-4.5 py-2.5 font-sans text-xs font-bold border transition-all duration-200 cursor-pointer rounded-full ${
                     activeDemo === d.id
                       ? "bg-accent text-white border-accent shadow-md dark:text-zinc-950"
                       : "bg-zinc-100 text-zinc-700 border-zinc-200/90 hover:bg-zinc-200/80 hover:text-zinc-900 dark:bg-zinc-800/80 dark:text-zinc-300 dark:border-zinc-700 dark:hover:bg-zinc-800"
@@ -235,11 +235,11 @@ export default function Hero() {
                     sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                   />
 
-                  {/* Corner Badge ONLY — Unobtrusive bottom-right position (NEVER centered blocking preview) */}
+                  {/* Desktop Interactive Toggle */}
                   {interacting !== activeDemo && (
                     <button 
                       onClick={() => setInteracting(activeDemo)}
-                      className="absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-4 py-2 font-mono text-[10px] font-extrabold uppercase tracking-wider border border-zinc-300/90 dark:border-zinc-700 shadow-xl backdrop-blur-md rounded-full hover:scale-105 transition-all duration-200 flex items-center gap-2 cursor-pointer select-none"
+                      className="hidden sm:flex absolute bottom-4 right-4 z-20 bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-4 py-2 font-mono text-[10px] font-extrabold uppercase tracking-wider border border-zinc-300/90 dark:border-zinc-700 shadow-xl backdrop-blur-md rounded-full hover:scale-105 transition-all duration-200 items-center gap-2 cursor-pointer select-none"
                     >
                       <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                       <span>Tap to Scroll</span>
@@ -247,11 +247,25 @@ export default function Hero() {
                     </button>
                   )}
 
-                  {/* Exit Interactive Mode Button */}
+                  {/* Mobile Link Out (Prevents Scroll Trap) */}
+                  <a
+                    href={demo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-end pb-8"
+                  >
+                    <div className="bg-white/95 dark:bg-zinc-900/95 text-zinc-900 dark:text-zinc-100 px-5 py-2.5 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-300/90 dark:border-zinc-700 shadow-xl backdrop-blur-md rounded-full flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span>Open Live Demo</span>
+                      <ExternalLink size={12} className="text-[#4C1D95] dark:text-[#C4B5FD] shrink-0" />
+                    </div>
+                  </a>
+
+                  {/* Exit Interactive Mode Button (Desktop Only) */}
                   {interacting === activeDemo && (
                     <button
                       onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
-                      className="absolute top-3 right-3 z-30 btn-primary shadow-2xl font-mono text-[10px] font-extrabold uppercase tracking-widest cursor-pointer transition-all flex items-center gap-1.5"
+                      className="hidden sm:flex absolute top-3 right-3 z-30 btn-primary shadow-2xl font-mono text-[10px] font-extrabold uppercase tracking-widest cursor-pointer transition-all items-center gap-1.5"
                     >
                       Done scrolling ✕
                     </button>
@@ -259,8 +273,8 @@ export default function Hero() {
                 </div>
 
                 {/* Light Footer Bar */}
-                <div className="px-5 py-3.5 border-t border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/90 dark:bg-zinc-900/90 flex items-center justify-between gap-4">
-                  <span className="font-sans text-xs font-medium text-zinc-700 dark:text-zinc-400 truncate">
+                <div className="px-5 py-3.5 border-t border-zinc-200/80 dark:border-zinc-800 bg-zinc-100/90 dark:bg-zinc-900/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                  <span className="font-sans text-xs font-medium text-zinc-700 dark:text-zinc-400 truncate w-full sm:w-auto">
                     Like this design? We can build it tailored for your brand.
                   </span>
                   <a

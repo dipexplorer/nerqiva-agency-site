@@ -15,9 +15,11 @@ export default function Loader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Skip on revisits
+    // Skip on revisits or mobile devices
     const seen = sessionStorage.getItem("nq_seen");
-    if (seen) {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    
+    if (seen || isMobile) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(false);
       return;
