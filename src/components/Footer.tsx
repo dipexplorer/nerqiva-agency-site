@@ -3,7 +3,8 @@
 import { useState } from "react";
 import BrandLogo from "./BrandLogo";
 import Link from "next/link";
-import { Mail, ArrowUp, MapPin, Phone, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Phone, ExternalLink, ChevronDown, ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Custom SVG Icons to avoid dependency version problems
 const GitHubIcon = ({ size = 16 }: { size?: number }) => (
@@ -71,135 +72,207 @@ const RESOURCES_LINKS = [
 export default function Footer() {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
-  return (
-    <footer className="border-t border-border/40 bg-bg-secondary/40 backdrop-blur-md py-16 text-text-primary relative z-20">
-      <div className="section-container">
-        
-        {/* Rich Footer Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
-          
-          {/* Column 1: Brand details & Exact Local Address */}
-          <div className="col-span-2 lg:col-span-4 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <BrandLogo className="h-7 w-7 opacity-90" />
-              <span className="font-mono text-sm font-bold tracking-widest text-text-primary">
-                NERQIVA STUDIO
-              </span>
-            </div>
-            <p className="text-xs leading-relaxed max-w-sm text-text-secondary">
-              High-converting website design, 1-click WhatsApp lead routing, and custom web systems delivered in 24 Hours.
-            </p>
+  const toggleSection = (id: string) => {
+    setOpenSection((prev) => (prev === id ? null : id));
+  };
 
-            {/* Exact Verified Local NAP */}
-            <div className="p-3.5 rounded-xl bg-bg-card border border-border/70 space-y-2 mt-1">
-              <div className="flex items-start gap-2 text-xs text-text-secondary">
-                <MapPin size={14} className="text-accent shrink-0 mt-0.5" />
-                <span className="font-sans leading-snug">
-                  Baruah Souk, North Guwahati, Rudreswar, Guwahati, Assam 781030
+  return (
+    <footer className="border-t border-border/40 bg-bg-primary overflow-hidden relative z-20 pt-12 sm:pt-20 pb-8 sm:pb-12">
+      {/* Background Ambience */}
+      <div 
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/8 rounded-[100%] blur-[100px] pointer-events-none"
+        aria-hidden="true"
+      />
+      
+      <div className="section-container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12">
+          
+          {/* Column 1: Brand details & Premium Local Widget */}
+          <div className="col-span-1 lg:col-span-4 flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
+              <Link href="/" className="flex items-center gap-3 w-fit group">
+                <BrandLogo className="h-8 w-8 opacity-100 group-hover:scale-105 transition-transform" />
+                <span className="font-mono text-lg font-black tracking-widest text-text-primary">
+                  NERQIVA <span className="text-text-tertiary">STUDIO</span>
                 </span>
+              </Link>
+              <p className="text-sm leading-relaxed max-w-sm text-text-secondary font-medium">
+                High-converting website design, 1-click WhatsApp lead routing, and custom web systems delivered in 24 Hours.
+              </p>
+            </div>
+
+            {/* Premium Local NAP Widget */}
+            <div className="p-5 rounded-2xl bg-bg-card border border-border/60 shadow-lg shadow-black/5 hover:border-accent/30 hover:shadow-accent/5 transition-all duration-300 flex flex-col gap-4">
+              <div className="flex items-start gap-3">
+                <div className="p-2 rounded-lg bg-accent/10 text-accent shrink-0 mt-0.5">
+                  <MapPin size={16} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-sans font-semibold text-text-primary text-sm mb-1">
+                    Headquarters
+                  </span>
+                  <span className="text-xs text-text-secondary leading-relaxed">
+                    Baruah Souk, North Guwahati,<br />
+                    Rudreswar, Guwahati, Assam 781030
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-xs text-text-secondary">
-                <Phone size={13} className="text-emerald-500 shrink-0" />
-                <a href="tel:+918724932985" className="font-mono font-semibold text-text-primary hover:text-accent transition-colors">
-                  +91 87249 32985
+              
+              <div className="h-px w-full bg-border/40" />
+              
+              <div className="flex items-center justify-between gap-2">
+                <a href="tel:+918724932985" className="flex items-center gap-2 group cursor-pointer">
+                  <div className="p-1.5 rounded-md bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
+                    <Phone size={13} />
+                  </div>
+                  <span className="font-mono text-xs font-bold text-text-primary group-hover:text-emerald-600 transition-colors">
+                    +91 87249 32985
+                  </span>
                 </a>
-              </div>
-              <div className="pt-2 border-t border-border/30 flex items-center justify-between gap-2 flex-wrap">
-                <Link
-                  href="/locations/north-guwahati"
-                  className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-accent hover:underline uppercase tracking-wider"
-                >
-                  North Guwahati HQ →
-                </Link>
+                
                 <a
                   href="https://share.google/6KKUdxiR4zdUDuAnT"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-mono text-[10px] font-bold text-text-tertiary hover:text-accent uppercase tracking-wider"
+                  className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-text-tertiary hover:text-accent uppercase tracking-wider group"
                 >
-                  <ExternalLink size={11} />
-                  Google Maps
+                  MAPS <ExternalLink size={12} className="group-hover:-mt-0.5 group-hover:ml-0.5 transition-all" />
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center gap-4 text-text-secondary mt-1">
+            {/* Premium Social Links */}
+            <div className="flex items-center gap-3 mt-2">
               <a 
                 href="https://github.com/dipexplorer" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
+                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-accent hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 hover:-translate-y-1"
                 aria-label="GitHub"
               >
-                <GitHubIcon size={16} />
+                <GitHubIcon size={18} />
               </a>
               <a 
                 href="https://linkedin.com/in/dip-jyoti22" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
+                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-lg hover:shadow-[#0A66C2]/20 transition-all duration-300 hover:-translate-y-1"
                 aria-label="LinkedIn"
               >
-                <LinkedInIcon size={16} />
+                <LinkedInIcon size={18} />
               </a>
               <a 
                 href="mailto:nerqiva.studio@gmail.com"
-                className="hover:text-accent transition-colors"
+                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-emerald-600 hover:border-emerald-600 hover:shadow-lg hover:shadow-emerald-600/20 transition-all duration-300 hover:-translate-y-1"
                 aria-label="Email"
               >
-                <Mail size={16} />
+                <Mail size={18} />
               </a>
             </div>
           </div>
 
-          {/* Link Columns (Mobile Accordion / Desktop Grid) */}
-          {[
-            { title: "Capabilities", id: "cap", links: CAPABILITIES_LINKS },
-            { title: "Studio", id: "studio", links: STUDIO_LINKS },
-            { title: "Service Areas", id: "areas", links: SERVICE_AREAS },
-            { title: "Legal & Info", id: "legal", links: RESOURCES_LINKS },
-          ].map((col) => (
-            <div key={col.id} className="col-span-2 lg:col-span-2 flex flex-col border-b border-border/20 lg:border-none">
-              <h4 
-                onClick={() => setOpenSection(openSection === col.id ? null : col.id)}
-                className="font-sans text-xs uppercase tracking-wider font-semibold py-4 lg:py-0 lg:mb-6 text-text-primary/90 flex justify-between items-center cursor-pointer lg:cursor-auto"
-              >
-                {col.title}
-                <span className="lg:hidden text-text-tertiary text-lg leading-none">{openSection === col.id ? '−' : '+'}</span>
-              </h4>
-              <div className={`${openSection === col.id ? 'flex' : 'hidden'} lg:flex flex-col gap-4 pb-4 lg:pb-0`}>
-                {col.links.map((link: any, idx: number) => (
-                  <Link
-                    key={idx}
-                    href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    rel={link.external ? "noopener noreferrer" : undefined}
-                    className="font-sans text-sm text-text-secondary hover:text-text-primary transition-all duration-200 flex items-center group"
+          {/* Link Columns (Smooth Animated Mobile Accordion / Desktop Grid) */}
+          <div className="col-span-1 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-8 lg:gap-10">
+            {[
+              { title: "Capabilities", id: "cap", links: CAPABILITIES_LINKS },
+              { title: "Studio", id: "studio", links: STUDIO_LINKS },
+              { title: "Service Areas", id: "areas", links: SERVICE_AREAS },
+              { title: "Legal & Info", id: "legal", links: RESOURCES_LINKS },
+            ].map((col) => {
+              const isOpen = openSection === col.id;
+              
+              return (
+                <div key={col.id} className="flex flex-col border-b border-border/30 sm:border-none">
+                  {/* Mobile Accordion Header */}
+                  <button 
+                    onClick={() => toggleSection(col.id)}
+                    className="w-full text-left font-sans text-xs uppercase tracking-widest font-extrabold py-4 sm:py-0 sm:mb-5 text-text-primary flex justify-between items-center sm:cursor-auto cursor-pointer group"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform">{link.label}</span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+                    <span className="group-hover:text-accent transition-colors sm:group-hover:text-text-primary">{col.title}</span>
+                    <ChevronDown 
+                      size={16} 
+                      className={`sm:hidden text-text-tertiary transition-transform duration-300 ${isOpen ? "rotate-180 text-accent" : ""}`} 
+                    />
+                  </button>
+                  
+                  {/* Desktop List (always visible on sm+) */}
+                  <div className="hidden sm:flex flex-col gap-3">
+                    {col.links.map((link: any, idx: number) => (
+                      <Link
+                        key={idx}
+                        href={link.href}
+                        target={link.external ? "_blank" : undefined}
+                        rel={link.external ? "noopener noreferrer" : undefined}
+                        className="font-sans text-[13px] text-text-secondary hover:text-accent transition-all duration-200 flex items-center group w-fit"
+                      >
+                        <span className="group-hover:translate-x-1.5 transition-transform flex items-center gap-1.5 font-medium">
+                          {link.label}
+                          {link.external && <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                  
+                  {/* Mobile Animated Accordion (hidden on sm+) */}
+                  <div className="sm:hidden">
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                          animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
+                          exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                          transition={{ duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] }}
+                          className="overflow-hidden flex flex-col gap-3"
+                        >
+                          {col.links.map((link: any, idx: number) => (
+                            <Link
+                              key={idx}
+                              href={link.href}
+                              target={link.external ? "_blank" : undefined}
+                              rel={link.external ? "noopener noreferrer" : undefined}
+                              className="font-sans text-[13px] text-text-secondary hover:text-accent transition-all duration-200 flex items-center group w-fit"
+                            >
+                              <span className="group-hover:translate-x-1.5 transition-transform flex items-center gap-1.5 font-medium">
+                                {link.label}
+                                {link.external && <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
+                              </span>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-border/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="font-sans text-xs text-text-secondary">
-            © {new Date().getFullYear()} NERQIVA Studio — Baruah Souk,{" "}
-            <Link href="/locations/north-guwahati" className="hover:text-accent underline font-medium">
-              North Guwahati, Rudreswar, Guwahati
-            </Link>
-            , Assam 781030
+        <div className="pt-6 border-t border-border/30 flex flex-col-reverse sm:flex-row items-center justify-between gap-5">
+          <p className="font-sans text-[11px] sm:text-xs text-text-tertiary text-center sm:text-left leading-relaxed">
+            © {new Date().getFullYear()} NERQIVA Studio. Handcrafted in <br className="sm:hidden" />
+            <Link href="/locations/north-guwahati" className="hover:text-accent font-semibold transition-colors">
+              North Guwahati, Assam 781030
+            </Link>.
           </p>
+          
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="font-sans text-xs text-text-secondary hover:text-text-primary transition-all flex items-center gap-1.5 cursor-pointer group"
+            className="flex sm:hidden font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm w-full justify-center mt-2"
           >
-            Back to top 
-            <ArrowUp size={12} className="group-hover:-translate-y-0.5 transition-transform" />
+            Back to Top 
+            <ArrowUpRight size={14} className="rotate-[-45deg]" />
+          </button>
+          
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="hidden sm:flex font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm"
+          >
+            Back to Top 
+            <ArrowUpRight size={14} className="rotate-[-45deg]" />
           </button>
         </div>
       </div>
