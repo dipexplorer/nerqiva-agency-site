@@ -182,14 +182,6 @@ export default function CaseStudies() {
  {project.tagline}
  </p>
 
- {/* Tech Stack Badges */}
- <div className="flex flex-wrap gap-1.5 mb-4 sm:mb-6">
- {project.stack.map((tech) => (
- <span key={tech} className="font-mono text-[8px] sm:text-[9px] font-semibold text-text-tertiary bg-bg-secondary border border-border/40 px-2 py-0.5 rounded">
- {tech}
- </span>
- ))}
- </div>
  </div>
  </div>
 
