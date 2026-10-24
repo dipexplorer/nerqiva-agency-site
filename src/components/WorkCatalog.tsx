@@ -1,175 +1,128 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Inbox, Sparkles } from "lucide-react";
+import { ArrowRight, Inbox, CheckCircle2, MousePointer2, ExternalLink } from "lucide-react";
 import { PROJECTS } from "../data/projects";
 import ClosingSection from "./ClosingSection";
 
+const CATEGORY_TABS = [
+  { id: "all", label: "All Flagships" },
+  { id: "beauty", label: "Beauty & Bridal", match: ["Beauty & Bridal", "Luxury Bridal", "Studio & Academy"] },
+  { id: "studios", label: "Photography & Studios", match: ["Photography Studio", "Luxury Wedding Photography"] },
+  { id: "fitness", label: "Fitness & Training", match: ["Fitness & Wellness"] },
+];
+
 export default function WorkCatalog() {
-  const [activeType, setActiveType] = useState<"all" | "client" | "demo">("all");
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   const [activeIframeId, setActiveIframeId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const typeParam = params.get("type");
-      if (typeParam === "client" || typeParam === "all" || typeParam === "demo") {
-        setActiveType(typeParam);
-      }
-    }
-  }, []);
-
-  const handleTypeChange = (type: "all" | "client" | "demo") => {
-    setActiveType(type);
-    setActiveCategory("All");
-  };
-
-  const filteredByType = PROJECTS.filter((project) => {
-    if (activeType === "all") return true;
-    return project.projectType === activeType;
-  });
-
-  const availableCategories = ["All", ...Array.from(new Set(filteredByType.map((p) => p.category)))];
-
-  const filteredProjects = filteredByType.filter((project) => {
-    if (activeCategory === "All") return true;
-    return project.category === activeCategory;
+  const filteredProjects = PROJECTS.filter((project) => {
+    if (activeCategory === "all") return true;
+    const tab = CATEGORY_TABS.find((t) => t.id === activeCategory);
+    return tab?.match ? tab.match.includes(project.category) : true;
   });
 
   return (
-    <div className="pt-32 relative z-20">
+    <div className="pt-28 sm:pt-36 relative z-20">
       
-      {/* Page Header */}
-      <div className="section-container mb-16 max-w-4xl">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="label-eyebrow text-emerald-400">SELECTED PORTFOLIO & LIVE DEMOS</span>
-        </div>
+      {/* Page Header: Pure Typographic Authority without AI Kicker */}
+      <div className="section-container mb-14 sm:mb-20 max-w-4xl">
         <h1 
-          className="font-sans font-extrabold text-text-primary leading-[1.08] mb-6 tracking-tight"
+          className="font-serif text-text-primary leading-[1.08] mb-6 tracking-tight"
           style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.25rem)", letterSpacing: "-0.03em" }}
         >
-          Crafted for <span className="bg-linear-to-r from-accent via-accent-light to-accent-gold bg-clip-text text-transparent font-black">Impact.</span>
+          Crafted for <span className="italic font-normal text-accent">commercial impact</span>.
         </h1>
-        <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-normal">
-          Explore our collection of live interactive website themes, luxury portfolios, and custom digital systems. Click any demo below to test-drive the live website directly in your browser.
+        <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+          Explore our portfolio of live interactive digital flagships, luxury boutique lookbooks, and high-converting local client funnels. Click any flagship to test-drive directly in your browser.
         </p>
       </div>
 
       {/* Filter Controls Bar */}
-      <div className="section-container mb-12 max-w-5xl">
-        <div className="flex flex-col gap-6 border-b border-border/40 pb-8">
-          
-          {/* Primary Type Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => handleTypeChange("all")}
-              className={`px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer rounded-full ${
-                activeType === "all"
-                  ? "bg-accent text-white dark:text-bg-primary shadow-lg shadow-accent/25 border border-accent"
-                  : "glass-panel text-text-secondary hover:text-text-primary border border-border/40 hover:border-accent/40"
-              }`}
-            >
-              All Work ({PROJECTS.length})
-            </button>
+      <div className="section-container mb-12 sm:mb-16 max-w-5xl">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pb-6 border-b border-border/40">
+          {CATEGORY_TABS.map((tab) => {
+            const isSelected = activeCategory === tab.id;
+            const count = tab.id === "all" 
+              ? PROJECTS.length 
+              : PROJECTS.filter((p) => tab.match?.includes(p.category)).length;
 
-            <button
-              onClick={() => handleTypeChange("demo")}
-              className={`px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-widest transition-all duration-200 flex items-center gap-2 cursor-pointer rounded-full ${
-                activeType === "demo"
-                  ? "bg-emerald-600 text-white shadow-lg shadow-emerald-600/25 border border-emerald-500"
-                  : "glass-panel text-text-secondary hover:text-text-primary border border-border/40 hover:border-emerald-500/40"
-              }`}
-            >
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              Live Demo Themes ({PROJECTS.filter((p) => p.projectType === "demo").length})
-            </button>
-
-            <button
-              onClick={() => handleTypeChange("client")}
-              className={`px-5 py-2.5 text-xs font-mono font-bold uppercase tracking-widest transition-all duration-200 cursor-pointer rounded-full ${
-                activeType === "client"
-                  ? "bg-accent text-white dark:text-bg-primary shadow-lg shadow-accent/25 border border-accent"
-                  : "glass-panel text-text-secondary hover:text-text-primary border border-border/40 hover:border-accent/40"
-              }`}
-            >
-              Client Systems ({PROJECTS.filter((p) => p.projectType === "client").length})
-            </button>
-          </div>
-
-          {/* Sub-Category Filter Tags */}
-          {availableCategories.length > 2 && (
-            <div className="flex flex-wrap items-center gap-2 pt-2">
-              <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest font-bold mr-2">
-                Category:
-              </span>
-              {availableCategories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-3 py-1.5 text-[11px] font-sans font-semibold rounded transition-all duration-150 cursor-pointer ${
-                    activeCategory === category
-                      ? "bg-text-primary text-bg-primary shadow-sm"
-                      : "text-text-secondary hover:text-text-primary bg-bg-secondary/40 hover:bg-bg-secondary/70 border border-border/20"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          )}
-
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveCategory(tab.id)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 font-mono text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer border flex items-center gap-2 ${
+                  isSelected
+                    ? "bg-accent text-white border-accent shadow-xs"
+                    : "bg-bg-card text-text-secondary border-border/70 hover:border-accent/40 hover:text-text-primary"
+                }`}
+              >
+                <span>{tab.label}</span>
+                <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
+                  isSelected ? "bg-white/20 text-white" : "bg-bg-secondary text-text-tertiary"
+                }`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
       
       {/* Project Interactive Grid */}
-      <div className="section-container mb-32 max-w-5xl">
+      <div className="section-container mb-24 sm:mb-32 max-w-5xl">
         {filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
             {filteredProjects.map((project, i) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative glass-panel rounded-2xl overflow-hidden flex flex-col justify-between hover:border-accent/60 hover:shadow-[0_12px_32px_rgba(124,58,237,0.12)] transition-all duration-300"
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative card-luxury p-0 rounded-2xl overflow-hidden flex flex-col justify-between bg-bg-card border border-border/70 hover:border-accent/50 hover:shadow-lg transition-all duration-300"
                 onMouseLeave={() => setActiveIframeId(null)}
               >
                 <div>
-                  {/* Visual Header / Accent Gradient / Screenshot */}
+                  {/* Live Iframe Viewport (Crisp, High-Fidelity) */}
                   {project.projectType === "demo" && project.demoUrl ? (
-                    <div 
-                      className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-white/5"
-                    >
-                      {/* Live Iframe */}
+                    <div className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-border/40">
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Preview`}
                         className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-95 z-0"
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
                         }`}
                         sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                         loading="lazy"
                       />
 
-                      {/* Frosted Glass Overlay */}
+                      {/* Clean Overlay Controls */}
                       {activeIframeId !== project.id && (
-                        <div 
-                          onClick={() => setActiveIframeId(project.id)}
-                          className="absolute inset-0 bg-white/50 dark:bg-zinc-950/60 backdrop-blur-[3px] hover:bg-white/30 dark:hover:bg-zinc-950/40 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center cursor-pointer z-20 group/overlay select-none"
-                        >
-                          <div className="bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 px-6 py-3 font-mono text-[11px] font-extrabold uppercase tracking-widest border border-zinc-200 dark:border-zinc-700/80 shadow-2xl backdrop-blur-xl rounded-full group-hover/overlay:scale-105 transition-transform duration-200 flex items-center gap-2.5">
-                            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                            <span>Click / Tap to Scroll Live Site</span>
-                            <Sparkles size={13} className="text-amber-500 dark:text-amber-400 shrink-0" />
+                        <div className="absolute inset-0 bg-transparent hover:bg-black/5 dark:hover:bg-black/15 transition-all duration-300 flex flex-col items-center justify-end pb-4 sm:pb-5 px-4 text-center z-20 group/overlay select-none">
+                          {/* Mobile Direct Tap Link */}
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="sm:hidden bg-bg-primary/95 text-text-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider border border-border shadow-lg rounded-full flex items-center gap-2"
+                          >
+                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                            <span>Open Live Demo</span>
+                            <ExternalLink size={11} className="text-accent shrink-0" />
+                          </a>
+
+                          {/* Desktop Tap to Scroll Pill */}
+                          <div
+                            onClick={() => setActiveIframeId(project.id)}
+                            className="hidden sm:flex bg-bg-primary/95 text-text-primary px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-wider border border-border shadow-xl backdrop-blur-md rounded-full group-hover/overlay:scale-105 transition-all duration-200 items-center gap-2 cursor-pointer"
+                          >
+                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                            <span>Tap to Scroll</span>
+                            <MousePointer2 size={12} className="text-accent shrink-0" />
                           </div>
-                          <span className="font-sans text-xs font-semibold text-zinc-600 dark:text-zinc-400 mt-2.5 drop-shadow-xs">
-                            Interactive live preview loads on tap
-                          </span>
                         </div>
                       )}
 
@@ -177,50 +130,38 @@ export default function WorkCatalog() {
                       {activeIframeId === project.id && (
                         <button
                           onClick={(e) => { e.stopPropagation(); setActiveIframeId(null); }}
-                          className="absolute top-3 right-3 z-30 bg-black/85 hover:bg-black text-white px-3.5 py-1.5 rounded-full shadow-2xl font-mono text-[10px] font-bold uppercase tracking-widest cursor-pointer border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5"
+                          className="absolute top-3 right-3 z-30 btn-primary shadow-xl font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-all items-center gap-1.5 py-1.5 px-3"
                         >
                           Done scrolling ✕
                         </button>
                       )}
                       
-                      {/* Top Badge overlay */}
-                      <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded backdrop-blur-xs pointer-events-none z-30">
-                        PROJECT_{project.number}
+                      {/* Curated Taxonomy Chip */}
+                      <div className="absolute top-3.5 left-3.5 font-mono text-[9px] font-bold uppercase tracking-wider text-white bg-black/75 border border-white/15 px-2.5 py-1 rounded-full backdrop-blur-md pointer-events-none z-30 flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Curated Build · {project.number}
                       </div>
                     </div>
                   ) : (
-                    <div className={`w-full h-48 bg-linear-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
-                      <div className="absolute inset-0 opacity-15 mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '16px 16px' }} />
-                      
-                      <svg className="w-16 h-16 text-white/30 group-hover:scale-105 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="2" width="20" height="8" rx="1" />
-                        <rect x="2" y="14" width="20" height="8" rx="1" />
-                        <line x1="6" y1="6" x2="6.01" y2="6" />
-                        <line x1="6" y1="18" x2="6.01" y2="18" />
-                      </svg>
-
-                      <div className="absolute top-4 left-4 font-mono text-[8px] font-bold uppercase tracking-widest text-white/70 bg-black/40 border border-white/5 px-2 py-0.5 rounded backdrop-blur-xs">
-                        PROJECT_{project.number}
+                    <div className="w-full h-48 bg-bg-secondary relative overflow-hidden flex items-center justify-center border-b border-border/40">
+                      <div className="absolute top-3.5 left-3.5 font-mono text-[9px] font-bold uppercase tracking-wider text-text-secondary bg-bg-card border border-border px-2.5 py-1 rounded-full">
+                        Curated Build · {project.number}
                       </div>
                     </div>
                   )}
 
                   {/* Content Block */}
-                  <div className="p-8 pb-4">
-                    <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                      <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded font-bold border ${
-                        project.projectType === "demo"
-                          ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-                          : "bg-accent/10 text-accent border-accent/20"
-                      }`}>
-                        {project.projectType === "demo" ? "DEMO THEME" : "CLIENT PROJECT"}
+                  <div className="p-7 sm:p-8 pb-4">
+                    <div className="flex items-center justify-between gap-3 mb-3.5">
+                      <span className="font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded font-bold border bg-accent/10 text-accent border-accent/20">
+                        Live Flagship
                       </span>
-                      <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-widest font-semibold">
-                        {project.type}
+                      <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">
+                        {project.category}
                       </span>
                     </div>
 
-                    <h3 className="font-sans font-extrabold text-2xl text-text-primary mb-3 group-hover:text-accent transition-colors duration-200">
+                    <h3 className="font-sans font-bold text-2xl text-text-primary mb-2.5 tracking-tight group-hover:text-accent transition-colors duration-200">
                       {project.projectType === "demo" && project.demoUrl ? (
                         <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                           {project.name}
@@ -232,7 +173,7 @@ export default function WorkCatalog() {
                       )}
                     </h3>
 
-                    <p className="text-text-secondary text-sm leading-relaxed mb-4 font-light line-clamp-2">
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4 font-normal line-clamp-2">
                       {project.tagline}
                     </p>
                   </div>
@@ -240,28 +181,30 @@ export default function WorkCatalog() {
 
                 <div>
                   {/* Action Footer */}
-                  <div className="px-8 pb-8">
-                    <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                      <span className="font-mono text-[8px] text-text-tertiary uppercase tracking-wider font-semibold">
-                        100% MOBILE OPTIMIZED
-                      </span>
+                  <div className="px-7 sm:px-8 pb-7">
+                    <div className="flex items-center justify-between border-t border-border/40 pt-5">
+                      <div className="flex items-center gap-1.5 font-mono text-[10px] text-accent-gold font-semibold uppercase tracking-wider">
+                        <CheckCircle2 size={13} className="text-accent-gold shrink-0" />
+                        <span>Sub-300ms Verified</span>
+                      </div>
+                      
                       {project.projectType === "demo" && project.demoUrl ? (
                         <a 
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
+                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent-mid font-mono uppercase tracking-wider font-bold transition-colors group/link"
                         >
-                          Website Preview
-                          <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                          <span>Launch Flagship</span>
+                          <ArrowRight size={13} className="group-hover/link:translate-x-1 transition-transform" />
                         </a>
                       ) : (
                         <Link 
                           href={`/work/${project.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-text-primary font-mono uppercase tracking-widest font-bold transition-colors group/link"
+                          className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent-mid font-mono uppercase tracking-wider font-bold transition-colors group/link"
                         >
-                          Website Preview
-                          <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
+                          <span>View Details</span>
+                          <ArrowRight size={13} className="group-hover/link:translate-x-1 transition-transform" />
                         </Link>
                       )}
                     </div>
@@ -270,6 +213,61 @@ export default function WorkCatalog() {
 
               </motion.div>
             ))}
+
+            {/* 8th Slot: Architectural Commission Card (Eliminates the Orphan Void in 2-Col Grid) */}
+            {activeCategory === "all" && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="card-luxury border border-dashed border-accent/40 bg-accent/5 rounded-2xl p-7 sm:p-9 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-6">
+                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
+                      Custom Commission · 08
+                    </span>
+                    <span className="font-mono text-[9px] text-accent-gold font-bold uppercase tracking-wider">
+                      Accepting Q2 Projects
+                    </span>
+                  </div>
+
+                  <h3 className="font-serif font-bold text-2xl sm:text-3xl text-text-primary mb-3.5 tracking-tight">
+                    Commission Your Digital Flagship
+                  </h3>
+                  
+                  <p className="text-text-secondary text-sm leading-relaxed mb-6 font-normal">
+                    Have an established salon, studio, or clinic ready to outperform local competitors? We engineer custom bespoke systems delivered in 24–48 hours with 100% IP ownership.
+                  </p>
+
+                  <div className="space-y-2.5 mb-8">
+                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
+                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
+                      <span>Engineered specifically for your price tier &amp; clientele</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
+                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
+                      <span>Direct 1-tap WhatsApp lead funnel integration</span>
+                    </div>
+                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
+                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
+                      <span>100% code ownership, zero monthly software lock-in</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="https://wa.me/918724932985?text=Hi%20NERQIVA!%20I'm%20ready%20to%20commission%20a%20digital%20flagship%20for%20my%20business."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full flex items-center justify-center gap-2"
+                >
+                  <span>Commission Your Flagship</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+            )}
           </div>
         ) : (
           <div className="card-luxury p-16 flex flex-col items-center justify-center text-center max-w-2xl mx-auto border border-border/40 rounded-2xl">
@@ -278,16 +276,13 @@ export default function WorkCatalog() {
             </div>
             <h3 className="font-sans font-bold text-lg text-text-primary mb-2">No projects found</h3>
             <p className="text-text-secondary text-sm leading-relaxed max-w-sm mb-6">
-              No matching projects under the &ldquo;{activeCategory}&rdquo; category.
+              No matching projects in this category.
             </p>
             <button
-              onClick={() => {
-                setActiveType("all");
-                setActiveCategory("All");
-              }}
-              className="px-5 py-2.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest rounded hover:bg-accent-mid transition-colors shadow-md cursor-pointer"
+              onClick={() => setActiveCategory("all")}
+              className="px-5 py-2.5 bg-accent text-white font-mono text-[10px] font-bold uppercase tracking-widest rounded-full hover:bg-accent-mid transition-colors shadow-xs cursor-pointer"
             >
-              Clear all filters
+              Clear filter
             </button>
           </div>
         )}

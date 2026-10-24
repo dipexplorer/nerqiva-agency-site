@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import ClosingSection from "../../components/ClosingSection";
 
 export const metadata: Metadata = {
@@ -21,48 +20,52 @@ export const metadata: Metadata = {
 const SOLUTIONS_DETAIL = [
   {
     id: "website",
+    index: "01",
+    tag: "Core Digital Flagship",
     title: "High-Converting Business Websites",
-    subtitle: "For local businesses whose current website looks outdated or fails to get leads.",
-    problem: "Many customers pass over great local salons, studios, or clinics because their websites load slowly or look unprofessional on mobile. If visitors don't trust your site, they won't call you.",
-    whenItMakesSense: "When you want a premium website that builds instant trust, looks stunning on phones, and highlights your work without costing a fortune.",
-    whatWeBuild: "Ultra-fast, mobile-optimized business websites. We write clear text, display high-resolution photo galleries, and add 1-click contact buttons.",
-    engagement: "Choose a demo theme today, share your photos & text, and go live in 24 Hours!",
-    expectations: "A blistering-fast website that impresses your clients and drives inquiries directly to your phone.",
-    gradient: "from-blue-500/5 to-cyan-500/5",
+    subtitle: "Architected for local studios, clinics, and service providers who need immediate digital credibility and client acquisition.",
+    problem: "Many local businesses lose high-ticket clients because their websites load slowly, break on modern mobile viewports, or look outdated. If first-time visitors don't feel immediate confidence, they leave and book a competitor.",
+    whatWeBuild: "Bespoke Next.js edge web flagships engineered with sub-300ms loading speeds, mobile-first typography, curated service portfolios, and zero-friction 1-click booking actions.",
+    whenItMakesSense: "When your current site fails to generate high-value inquiries, or you are launching a premium brand that requires undeniable digital authority.",
+    deliverySLA: "24-Hour Public Cutover",
+    expectations: "A blazingly fast digital storefront that validates your pricing, builds immediate client trust, and turns visits into direct phone & WhatsApp conversations.",
   },
   {
     id: "whatsapp",
-    title: "Instant WhatsApp Lead Flow",
-    subtitle: "For businesses who want instant inquiries without complicated email forms.",
-    problem: "Customers on mobile phones don't like filling out long contact forms and waiting 2 days for a reply. They want quick answers on WhatsApp.",
-    whenItMakesSense: "When you want every website visitor to easily contact you on WhatsApp with 1 tap, automatically sending their service request.",
-    whatWeBuild: "Smart WhatsApp integration buttons with pre-filled inquiry messages so customers can book appointments or ask prices instantly.",
-    engagement: "Configured and connected to your WhatsApp number in under 2 hours.",
-    expectations: "Instant customer messages delivered directly to your phone while they are browsing your website.",
-    gradient: "from-emerald-500/5 to-teal-500/5",
+    index: "02",
+    tag: "Lead Capture & Funnel",
+    title: "Instant WhatsApp Booking Flow",
+    subtitle: "Engineered for local service businesses that need direct, frictionless customer intake.",
+    problem: "Modern clients browse on smartphones and refuse to fill out 8-field contact forms only to wait 48 hours for an email response. They want answers and booking confirmation immediately.",
+    whatWeBuild: "One-tap direct WhatsApp integration buttons pre-configured with industry-specific inquiry templates, automated service query triggers, and direct mobile routing.",
+    whenItMakesSense: "When you want every high-intent website visitor connected to your business WhatsApp in under 3 seconds with zero friction.",
+    deliverySLA: "Integrated & Tested in 2 Hours",
+    expectations: "Immediate inbound inquiries arriving directly on your phone with service context already filled in, ready to close.",
   },
   {
     id: "local-seo",
-    title: "Google Maps & Local Search Setup",
-    subtitle: "For stores and local services wanting to get found by nearby customers.",
-    problem: "When people in your city search 'best salon near me' or 'wedding photographer in town', if your Google listing and website aren't linked, you lose business to competitors.",
-    whenItMakesSense: "When you want to dominate local search results in your city and make it easy for clients to find your location.",
-    whatWeBuild: "Integrated Google Maps widgets, click-to-call phone buttons, customer review highlights, and local SEO tag setup.",
-    engagement: "Included standard with every website launch.",
-    expectations: "Higher local visibility, easy directions for clients, and more direct phone calls.",
-    gradient: "from-purple-500/5 to-pink-500/5",
+    index: "03",
+    tag: "Local Search Authority",
+    title: "Google Maps & Local Search Visibility",
+    subtitle: "Built for storefronts and regional service providers seeking dominant local search placement.",
+    problem: "When local clients search 'best salon near me' or 'physiotherapy clinic in Guwahati', businesses without structured local SEO metadata and linked Google profiles lose the booking immediately.",
+    whatWeBuild: "Structured LocalBusiness schema.org data integration, linked Google Maps verification widgets, direct click-to-call mobile buttons, and local geotag optimization.",
+    whenItMakesSense: "When you need nearby customers searching on Google to find your exact location, operating hours, and booking channel before your competitors.",
+    deliverySLA: "Included with Every Deployment",
+    expectations: "Higher regional search ranking, clear turn-by-turn directions for new clients, and steady inbound phone call volume.",
   },
   {
     id: "custom-portals",
+    index: "04",
+    tag: "Operational Systems",
     title: "Custom Client Portals & Schedulers",
-    subtitle: "For businesses needing online appointment booking or client photo galleries.",
-    problem: "Managing client bookings, sending photo previews manually, or tracking customer invoices via chat messages wastes hours of your day.",
-    whenItMakesSense: "When you need a clean online portal for clients to view their photos, book appointment slots, or pay invoices online.",
-    whatWeBuild: "Simple, easy-to-use customer portals, online scheduling tools, and private photo gallery review pages.",
-    engagement: "Built and tailored to your exact business workflow in 1-2 days.",
-    expectations: "Saved admin hours every day with automated client booking and file previews.",
-    gradient: "from-amber-500/5 to-orange-500/5",
-  }
+    subtitle: "Designed for studios, fitness clubs, and consultants needing automated client self-service.",
+    problem: "Manually coordinating appointment calendars, emailing photo review links, or tracking unpaid service invoices through fragmented chat threads wastes dozens of operational hours each week.",
+    whatWeBuild: "Lightweight client access portals, automated booking calendars with slot locking, client gallery proofing pages, and invoice status dashboards.",
+    whenItMakesSense: "When client booking volume outgrows manual messaging and you need an automated, professional system to run appointments.",
+    deliverySLA: "Delivered in 24 to 48 Hours",
+    expectations: "Automated calendar scheduling, organized client intake, and hours of administrative overhead eliminated every single day.",
+  },
 ];
 
 export default function SolutionsPage() {
@@ -76,15 +79,15 @@ export default function SolutionsPage() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://nerqiva.vercel.app"
+            "item": "https://nerqiva.vercel.app",
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Services & Solutions",
-            "item": "https://nerqiva.vercel.app/solutions"
-          }
-        ]
+            "item": "https://nerqiva.vercel.app/solutions",
+          },
+        ],
       },
       ...SOLUTIONS_DETAIL.map((sol) => ({
         "@type": "Service",
@@ -94,116 +97,137 @@ export default function SolutionsPage() {
         "provider": {
           "@type": "LocalBusiness",
           "name": "NERQIVA Studio",
-          "url": "https://nerqiva.vercel.app"
+          "url": "https://nerqiva.vercel.app",
         },
         "areaServed": ["North Guwahati", "Rudreswar", "Guwahati", "Assam", "India"],
         "offers": {
           "@type": "Offer",
           "availability": "https://schema.org/InStock",
           "price": "Contact for quote",
-          "priceCurrency": "INR"
-        }
-      }))
-    ]
+          "priceCurrency": "INR",
+        },
+      })),
+    ],
   };
 
   return (
-    <div className="pt-32 relative z-20">
+    <div className="pt-28 sm:pt-36 relative z-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
       />
-      <div className="section-container mb-24 max-w-4xl">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="h-px w-8 bg-accent/40" />
-          <span className="label-eyebrow">OUR SERVICES</span>
-        </div>
-        <h1 className="font-sans font-extrabold text-text-primary leading-[1.1] mb-6 tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}>
-          High-converting websites built to <span className="bg-linear-to-r from-accent via-accent-light to-accent-gold bg-clip-text text-transparent font-black">grow your business.</span>
+
+      {/* Page Header: Pure Typographic Authority without AI Kicker */}
+      <div className="section-container mb-16 sm:mb-24 max-w-4xl">
+        <h1
+          className="font-serif text-text-primary leading-[1.12] mb-6 tracking-tight"
+          style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.03em" }}
+        >
+          High-converting websites built to{" "}
+          <span className="italic font-normal text-accent">grow your business</span>.
         </h1>
-        <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-light">
-          We build simple, fast, and stunning websites for local business owners. Delivered live in <strong className="font-semibold text-text-primary">24 Hours</strong> with zero technical headache.
+        <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+          We build bespoke, fast, and conversion-focused digital systems for local business owners. Delivered live in{" "}
+          <strong className="font-semibold text-text-primary">24 Hours</strong> with zero ongoing hostage fees.
         </p>
       </div>
 
-      <div className="section-container mb-32 max-w-5xl">
-        <div className="flex flex-col gap-16">
+      {/* Services List: Architectural Cards */}
+      <div className="section-container mb-24 sm:mb-32 max-w-5xl">
+        <div className="flex flex-col gap-10 sm:gap-14">
           {SOLUTIONS_DETAIL.map((sol) => (
-            <div 
-              key={sol.id} 
+            <div
+              key={sol.id}
               id={sol.id}
-              className={`card-luxury p-8 md:p-12 relative overflow-hidden bg-linear-to-br ${sol.gradient}`}
+              className="card-luxury p-7 sm:p-10 md:p-12 relative overflow-hidden bg-bg-card border border-border/70 rounded-2xl shadow-xs transition-all duration-300"
             >
               <div className="relative z-10 grid md:grid-cols-12 gap-8 lg:gap-12">
+                {/* Left Column: Title, Subtitle, Problem & Deliverables */}
                 <div className="md:col-span-7 space-y-6">
                   <div>
-                    <h2 className="font-sans font-bold text-2xl md:text-3xl text-text-primary mb-2">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <span className="font-mono text-[10px] font-bold text-accent uppercase tracking-widest px-2.5 py-1 rounded-md bg-accent/10 border border-accent/20">
+                        {sol.tag}
+                      </span>
+                      <span className="font-mono text-xs text-text-tertiary">
+                        {sol.index}
+                      </span>
+                    </div>
+
+                    <h2 className="font-sans font-bold text-2xl sm:text-3xl text-text-primary mb-2.5 tracking-tight">
                       {sol.title}
                     </h2>
-                    <p className="text-xs font-mono text-accent uppercase tracking-wider font-semibold">
+                    <p className="text-sm text-text-secondary leading-relaxed font-normal">
                       {sol.subtitle}
                     </p>
                   </div>
 
-                  <p className="text-text-secondary text-sm leading-relaxed">
+                  <p className="text-text-secondary text-sm leading-relaxed font-normal">
                     {sol.problem}
                   </p>
 
                   <div className="pt-4 border-t border-border/40">
-                    <h3 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-2">
+                    <h3 className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-2">
                       What We Build
                     </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed">
+                    <p className="text-text-secondary text-sm leading-relaxed font-normal">
                       {sol.whatWeBuild}
                     </p>
                   </div>
                 </div>
 
-                <div className="md:col-span-5 flex flex-col justify-between gap-8 md:border-l md:border-border/40 md:pl-8 lg:pl-12">
-                  <div className="space-y-6">
+                {/* Right Column: Spec Sheet & Dynamic WhatsApp Action */}
+                <div className="md:col-span-5 flex flex-col justify-between gap-8 pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-border/40 md:pl-8 lg:pl-10">
+                  <div className="space-y-5">
                     <div>
-                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                        When It Makes Sense
+                      <h4 className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-1.5">
+                        Ideal Use Case
                       </h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">
+                      <p className="text-xs text-text-secondary leading-relaxed font-normal">
                         {sol.whenItMakesSense}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                        Delivery Speed
+                      <h4 className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-1.5">
+                        Delivery Timeline
                       </h4>
-                      <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold leading-relaxed">
-                        ⚡ {sol.engagement}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 size={13} className="text-accent-gold shrink-0" />
+                        <span className="text-xs font-mono font-semibold text-text-primary">
+                          {sol.deliverySLA}
+                        </span>
+                      </div>
                     </div>
 
                     <div>
-                      <h4 className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-                        Your Result
+                      <h4 className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-1.5">
+                        Commercial Outcome
                       </h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">
+                      <p className="text-xs text-text-secondary leading-relaxed font-normal">
                         {sol.expectations}
                       </p>
                     </div>
                   </div>
 
-                  <Link
-                    href={`/contact?service=${sol.id}`}
-                    className="group flex items-center justify-center gap-2.5 py-3.5 bg-accent text-white dark:text-bg-primary font-mono text-[10px] font-bold uppercase tracking-widest hover:bg-accent-mid transition-colors shadow-lg shadow-accent/15 rounded-xl"
+                  <a
+                    href={`https://wa.me/918724932985?text=${encodeURIComponent(
+                      `Hi NERQIVA! I'd like to get started with ${sol.title}. Please send me relevant live demos and details.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary w-full flex items-center justify-center gap-2 text-xs"
                   >
-                    Get Started in 24 Hours
-                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                    <span>Get Started in 24h</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform shrink-0" />
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      
+
       <ClosingSection />
     </div>
   );
