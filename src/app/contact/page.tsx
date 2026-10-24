@@ -1,21 +1,27 @@
 import { Metadata } from "next";
 import ContactForm from "../../components/ContactForm";
+import ClosingSection from "../../components/ClosingSection";
 
 export const metadata: Metadata = {
-  title: "Start a Project Brief | Free 24-Hour Scoping Diagnostic",
+  title: "Start a Project Diagnostic | NERQIVA Studio",
   description:
-    "Tell us about your business goals and bottlenecks. Submit a project intake brief to get direct WhatsApp demo links, pricing, and 24-hour launch scoping.",
+    "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links within 24 hours.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Start a Project Brief | NERQIVA Studio",
+    title: "Start a Project Diagnostic | NERQIVA Studio",
     description:
-      "Submit a project intake brief to get direct WhatsApp demo links, pricing, and 24-hour launch scoping.",
+      "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links within 24 hours.",
     url: "https://nerqiva.vercel.app/contact",
   },
 };
 
 export default function ContactPage() {
-  return <ContactForm />;
+  return (
+    <div className="pt-32 relative z-20">
+      <ContactForm />
+      <ClosingSection />
+    </div>
+  );
 }
