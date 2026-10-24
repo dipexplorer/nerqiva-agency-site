@@ -48,9 +48,9 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     id: "launch",
     number: "05",
-    title: "Domain Cutover & Lead Launch",
+    title: "Domain Cutover & Launch",
     tagline: "Public launch with guaranteed 24-hour turnaround",
-    timeframe: "24 Hours Total",
+    timeframe: "24 Hours",
     description: "We bind your custom domain with enterprise SSL, configure global edge caching, and execute final DNS cutover. Your flagship starts capturing customer inquiries immediately.",
     details: ["Instant SSL & Custom Domain", "Direct Inbound Lead Flow", "Google Maps & Search Indexing", "Managed Serverless Hosting"],
   },

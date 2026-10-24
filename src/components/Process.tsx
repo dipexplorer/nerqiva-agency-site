@@ -6,7 +6,11 @@ import { Clock, CheckCircle2, ArrowRight, ArrowLeft, ChevronDown } from "lucide-
 import { PROCESS_STEPS, ProcessStep } from "../data/process";
 import Link from "next/link";
 
-export default function Process() {
+interface ProcessProps {
+  hideHeader?: boolean;
+}
+
+export default function Process({ hideHeader = false }: ProcessProps) {
   const [activeIdx, setActiveIdx] = useState(0);
 
   const activeStep = PROCESS_STEPS[activeIdx] || PROCESS_STEPS[0];
@@ -81,7 +85,7 @@ export default function Process() {
       </div>
 
       {/* Desktop Navigation Controls Footer */}
-      {!isMobile && (
+      {!isMobile ? (
         <div className="pt-6 border-t border-border/40 flex items-center justify-between gap-4 flex-wrap mt-auto">
           <button
             onClick={handlePrev}
@@ -125,25 +129,60 @@ export default function Process() {
             </Link>
           )}
         </div>
+      ) : (
+        <div className="pt-4 border-t border-border/40 mt-4 flex items-center justify-between gap-3">
+          {activeIdx > 0 && (
+            <button
+              onClick={handlePrev}
+              className="inline-flex items-center gap-1.5 px-3 py-2 font-mono text-xs font-semibold rounded-lg border border-border/60 text-text-secondary hover:text-text-primary bg-bg-card cursor-pointer"
+            >
+              <ArrowLeft size={13} /> Prev
+            </button>
+          )}
+          {activeIdx < PROCESS_STEPS.length - 1 ? (
+            <button
+              onClick={handleNext}
+              className="btn-primary ml-auto inline-flex items-center gap-1.5 px-4 py-2 font-mono text-xs font-semibold rounded-lg transition-all cursor-pointer"
+            >
+              Next Step <ArrowRight size={13} />
+            </button>
+          ) : (
+            <Link
+              href="/contact"
+              className="btn-primary w-full justify-center inline-flex items-center gap-2 px-4 py-2.5 font-mono text-xs font-semibold rounded-lg transition-all"
+            >
+              Commission Your Flagship <ArrowRight size={13} />
+            </Link>
+          )}
+        </div>
       )}
     </div>
   );
 
   return (
-    <section id="process" className="py-20 sm:py-28 bg-bg-primary text-text-primary border-t border-border/45 relative z-10">
+    <section
+      id="process"
+      className={
+        hideHeader
+          ? "pb-12 sm:pb-20 bg-bg-primary text-text-primary relative z-10"
+          : "py-20 sm:py-28 bg-bg-primary text-text-primary border-t border-border/45 relative z-10"
+      }
+    >
       <div className="section-container relative">
-        {/* Header Section: Pure Typographic Authority without Kicker or Gradient Text */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
-          <h2
-            className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
-            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
-          >
-            A deployment process engineered for <span className="italic font-normal">clarity</span>.
-          </h2>
-          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
-            From architecture selection to live domain cutover in 24 hours. Clear milestones, transparent deliverables, and zero technical friction.
-          </p>
-        </div>
+        {/* Header Section: Conditionally displayed when embedded on pages without their own H1 */}
+        {!hideHeader && (
+          <div className="max-w-3xl mb-12 sm:mb-16">
+            <h2
+              className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
+            >
+              A deployment process engineered for <span className="italic font-normal">clarity</span>.
+            </h2>
+            <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
+              From architecture selection to live domain cutover in 24 hours. Clear milestones, transparent deliverables, and zero technical friction.
+            </p>
+          </div>
+        )}
 
         {/* Main Interactive Layout: Desktop 2-Column Grid vs Mobile Vertical Accordion */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
