@@ -8,11 +8,10 @@ import BrandLogo from "./BrandLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Demo Websites", href: "/work" },
+  { label: "Live Demos", href: "/work" },
   { label: "Services", href: "/solutions" },
   { label: "How It Works", href: "/process" },
-  { label: "North Guwahati", href: "/locations/north-guwahati" },
-  { label: "About Us", href: "/about" },
+  { label: "About", href: "/about" },
 ];
 
 export default function Navigation() {
@@ -50,26 +49,26 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
           scrolled
-            ? "glass-panel rounded-none border-border/40 py-3 shadow-md"
+            ? "glass-panel rounded-none border-border/40 py-3 shadow-sm"
             : "bg-transparent border-transparent py-5"
         }`}
       >
         <div className="section-container flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <BrandLogo className="h-10 w-10" />
-            <span className="font-mono text-xl font-bold tracking-widest text-text-primary group-hover:text-accent transition-colors duration-300">
+            <BrandLogo className="h-9 w-9" />
+            <span className="font-mono text-lg font-bold tracking-widest text-text-primary group-hover:text-accent transition-colors duration-300">
               NERQIVA
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-8">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`font-mono text-[11px] font-medium uppercase tracking-widest transition-colors duration-200 relative group ${
+                className={`font-mono text-xs font-semibold uppercase tracking-wider transition-colors duration-200 relative group py-1 ${
                   isActive(item.href)
                     ? "text-accent"
                     : "text-text-secondary hover:text-text-primary"
@@ -77,7 +76,7 @@ export default function Navigation() {
               >
                 {item.label}
                 <span
-                  className={`absolute -bottom-0.5 left-0 h-px bg-accent transition-all duration-300 ${
+                  className={`absolute -bottom-0.5 left-0 h-0.5 bg-accent transition-all duration-300 ${
                     isActive(item.href) ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -90,8 +89,7 @@ export default function Navigation() {
             <ThemeToggle />
             <Link
               href="/contact"
-              className="btn-primary"
-              style={{ padding: "0.6rem 1.25rem", fontSize: "0.65rem", borderRadius: "8px" }}
+              className="btn-primary py-2 px-5 text-xs font-mono font-bold tracking-wider"
             >
               Start a Project
             </Link>
@@ -100,7 +98,7 @@ export default function Navigation() {
           {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors"
+            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -110,20 +108,20 @@ export default function Navigation() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-6 glass-panel transition-all duration-400 md:hidden ${
+        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-6 glass-panel transition-all duration-300 md:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-5 right-6 p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          className="absolute top-5 right-6 p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
           aria-label="Close menu"
         >
           <X size={24} />
         </button>
 
         <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 mb-4">
-          <BrandLogo className="h-12 w-12" />
+          <BrandLogo className="h-11 w-11" />
           <span className="font-mono text-2xl font-bold tracking-widest text-text-primary">NERQIVA</span>
         </Link>
 
@@ -132,10 +130,10 @@ export default function Navigation() {
             key={item.label}
             href={item.href}
             onClick={() => setIsOpen(false)}
-            className={`w-64 text-center py-3.5 px-4 min-h-[44px] flex items-center justify-center font-mono text-xs font-semibold uppercase tracking-widest transition-all duration-200 border rounded ${
+            className={`w-64 text-center py-3.5 px-4 min-h-[44px] flex items-center justify-center font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border rounded-lg ${
               isActive(item.href) 
-                ? "text-accent border-accent/40 bg-accent/5" 
-                : "text-text-secondary hover:text-accent border-border/40 hover:border-accent/40"
+                ? "text-accent border-accent/40 bg-accent/5 font-bold" 
+                : "text-text-secondary hover:text-text-primary border-border hover:border-accent/30"
             }`}
           >
             {item.label}
@@ -147,8 +145,7 @@ export default function Navigation() {
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="btn-primary"
-            style={{ padding: "0.85rem 2rem", fontSize: "0.75rem", borderRadius: "8px" }}
+            className="btn-primary py-3 px-7 text-xs font-mono font-bold tracking-wider"
           >
             Start a Project
           </Link>

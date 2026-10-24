@@ -2,293 +2,306 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
-import { PROCESS_STEPS } from "../data/process";
+import { Clock, CheckCircle2, ArrowRight, ArrowLeft, ChevronDown } from "lucide-react";
+import { PROCESS_STEPS, ProcessStep } from "../data/process";
 import Link from "next/link";
 
 export default function Process() {
- const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(0);
 
- const activeStep = PROCESS_STEPS[activeIdx];
+  const activeStep = PROCESS_STEPS[activeIdx] || PROCESS_STEPS[0];
 
- const handleNext = () => {
- if (activeIdx < PROCESS_STEPS.length - 1) {
- setActiveIdx((prev) => prev + 1);
- }
- };
+  const handleNext = () => {
+    if (activeIdx < PROCESS_STEPS.length - 1) {
+      setActiveIdx((prev) => prev + 1);
+    }
+  };
 
- const handlePrev = () => {
- if (activeIdx > 0) {
- setActiveIdx((prev) => prev - 1);
- }
- };
+  const handlePrev = () => {
+    if (activeIdx > 0) {
+      setActiveIdx((prev) => prev - 1);
+    }
+  };
 
- const renderStepContent = (step: typeof PROCESS_STEPS[0], isMobile: boolean = false) => (
- <div className={`card-luxury relative overflow-hidden bg-bg-card/90 border border-border/70 shadow-2xl flex flex-col justify-between ${isMobile ? 'p-5 sm:p-6 min-h-0' : 'p-6 sm:p-10 min-h-[460px] rounded-2xl'}`}>
- 
- {/* Background ambient glow */}
- <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 blur-[100px] pointer-events-none rounded-full" />
+  const renderStepContent = (step: ProcessStep, isMobile: boolean = false) => (
+    <div
+      className={`card-luxury relative overflow-hidden bg-bg-card border border-border/70 shadow-sm flex flex-col justify-between ${
+        isMobile ? "p-4 sm:p-6 min-h-0 border-0 bg-transparent shadow-none" : "p-8 sm:p-10 min-h-[440px] rounded-2xl"
+      }`}
+    >
+      <div>
+        {/* Step Top Bar: Monospace Step Counter & Timeframe */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-border/40">
+          <div className="flex items-center gap-3">
+            <span className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/30 text-accent font-mono font-bold text-xs flex items-center justify-center shrink-0">
+              {step.number}
+            </span>
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-bold block">
+                Milestone {step.number} of {PROCESS_STEPS.length}
+              </span>
+              <p className="text-xs sm:text-sm text-text-secondary font-sans mt-0.5">
+                {step.tagline}
+              </p>
+            </div>
+          </div>
 
- <div>
- {/* Step Top Bar Badge */}
- <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-border/30">
- <div className="flex items-center gap-3">
- <span className="w-9 h-9 rounded-full bg-accent/10 border border-accent/30 text-accent font-mono font-extrabold text-sm flex items-center justify-center shadow-xs shrink-0">
- {step.number}
- </span>
- <div>
- <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-bold block">
- STEP {step.number} OF {PROCESS_STEPS.length}
- </span>
- <span className="font-mono text-[10px] sm:text-xs text-text-tertiary font-medium">
- [{step.tagline}]
- </span>
- </div>
- </div>
+          <span className="font-mono text-[10px] sm:text-xs text-text-secondary bg-bg-secondary border border-border/60 px-3 py-1 rounded-full font-medium flex items-center gap-1.5 shrink-0">
+            <Clock size={12} className="text-accent-gold shrink-0" />
+            <span>Turnaround: {step.timeframe}</span>
+          </span>
+        </div>
 
- <span className="font-mono text-[9px] sm:text-xs text-emerald-600 bg-emerald-500/10 border border-emerald-500/30 px-2 sm:px-3 py-1 rounded-full font-bold flex items-center gap-1.5 shrink-0">
- ⏱ <span className="hidden sm:inline">Timeframe: </span>{step.timeframe}
- </span>
- </div>
+        {/* Step Title & Description */}
+        <h3 className="font-sans font-bold text-xl sm:text-2xl text-text-primary mb-3 tracking-tight">
+          {step.title}
+        </h3>
 
- {/* Step Title & Description */}
- <h3 className="font-sans font-extrabold text-xl sm:text-3xl text-text-primary mb-3 tracking-tight">
- {step.title}
- </h3>
- 
- <p className="text-text-secondary text-xs sm:text-base leading-relaxed mb-6 font-light max-w-2xl">
- {step.description}
- </p>
+        <p className="text-text-secondary text-sm sm:text-base leading-relaxed mb-8 font-normal max-w-2xl">
+          {step.description}
+        </p>
 
- {/* Key Deliverable Pills */}
- <div className="mb-6">
- <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold block mb-2">
- Key Deliverables & Specifications
- </span>
- <div className="flex flex-wrap gap-2">
- {step.details.map((det, idx) => (
- <span
- key={idx}
- className="px-2.5 sm:px-3 py-1 bg-bg-secondary text-text-secondary border border-border/40 rounded-md font-mono text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold select-none flex items-center gap-1.5"
- >
- <CheckCircle2 size={12} className="text-emerald-500 shrink-0" />
- {det}
- </span>
- ))}
- </div>
- </div>
+        {/* Key Deliverables */}
+        <div className="mb-6">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold block mb-3">
+            Verified Deliverables & Specifications
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {step.details.map((det, idx) => (
+              <span
+                key={idx}
+                className="px-3 py-1.5 bg-bg-secondary text-text-primary border border-border/50 rounded-lg font-mono text-[10px] sm:text-[11px] font-medium select-none flex items-center gap-2 shadow-2xs"
+              >
+                <CheckCircle2 size={13} className="text-accent-gold shrink-0" />
+                {det}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
 
- </div>
+      {/* Desktop Navigation Controls Footer */}
+      {!isMobile && (
+        <div className="pt-6 border-t border-border/40 flex items-center justify-between gap-4 flex-wrap mt-auto">
+          <button
+            onClick={handlePrev}
+            disabled={activeIdx === 0}
+            className={`inline-flex items-center gap-1.5 px-4 py-2 font-mono text-xs font-semibold rounded-lg border transition-all cursor-pointer ${
+              activeIdx === 0
+                ? "opacity-30 border-border/30 text-text-tertiary cursor-not-allowed"
+                : "border-border/60 text-text-secondary hover:text-text-primary hover:border-accent/40 bg-bg-card"
+            }`}
+          >
+            <ArrowLeft size={13} /> Previous Step
+          </button>
 
- {/* Step Navigation Controls Footer */}
- {!isMobile && (
- <div className="pt-4 border-t border-border/30 flex items-center justify-between gap-4 flex-wrap">
- <button
- onClick={handlePrev}
- disabled={activeIdx === 0}
- className={`inline-flex items-center gap-1.5 px-4 py-2 font-mono text-[10px] uppercase font-bold rounded-lg border transition-all cursor-pointer ${
- activeIdx === 0
- ? "opacity-30 border-border/30 text-text-tertiary cursor-not-allowed"
- : "border-border/60 text-text-secondary hover:text-text-primary hover:border-accent/50 bg-bg-card"
- }`}
- >
- <ArrowLeft size={12} /> Previous Step
- </button>
+          {/* Stepper Progress Bar */}
+          <div className="flex items-center gap-1.5">
+            {PROCESS_STEPS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIdx(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  i === activeIdx ? "w-8 bg-accent" : "w-2.5 bg-border/70 hover:bg-text-tertiary"
+                }`}
+                aria-label={`Go to step ${i + 1}`}
+              />
+            ))}
+          </div>
 
- {/* Progress Indicators Dots */}
- <div className="flex items-center gap-1.5">
- {PROCESS_STEPS.map((_, i) => (
- <button
- key={i}
- onClick={() => setActiveIdx(i)}
- className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
- i === activeIdx ? "w-6 bg-accent" : "w-2 bg-border/60 hover:bg-text-tertiary"
- }`}
- aria-label={`Go to step ${i + 1}`}
- />
- ))}
- </div>
+          {activeIdx < PROCESS_STEPS.length - 1 ? (
+            <button
+              onClick={handleNext}
+              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs font-semibold rounded-lg transition-all cursor-pointer"
+            >
+              Next Step: {PROCESS_STEPS[activeIdx + 1].title} <ArrowRight size={13} />
+            </button>
+          ) : (
+            <Link
+              href="/contact"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-2.5 font-mono text-xs font-semibold rounded-lg transition-all"
+            >
+              Commission Your Flagship <ArrowRight size={13} />
+            </Link>
+          )}
+        </div>
+      )}
+    </div>
+  );
 
- {activeIdx < PROCESS_STEPS.length - 1 ? (
- <button
- onClick={handleNext}
- className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-accent hover:bg-accent-mid text-text-inverted font-mono text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all shadow-md shadow-accent/20 cursor-pointer"
- >
- Next Step: {PROCESS_STEPS[activeIdx + 1].title} <ArrowRight size={12} />
- </button>
- ) : (
- <Link
- href="/contact"
- className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-[10px] font-bold uppercase tracking-wider rounded-lg transition-all shadow-md shadow-emerald-500/20"
- >
- Start Your 24-Hour Launch <ArrowRight size={12} />
- </Link>
- )}
- </div>
- )}
- </div>
- );
+  return (
+    <section id="process" className="py-20 sm:py-28 bg-bg-primary text-text-primary border-t border-border/45 relative z-10">
+      <div className="section-container relative">
+        {/* Header Section: Pure Typographic Authority without Kicker or Gradient Text */}
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <h2
+            className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
+          >
+            A deployment process engineered for <span className="italic font-normal">clarity</span>.
+          </h2>
+          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
+            From architecture selection to live domain cutover in 24 hours. Clear milestones, transparent deliverables, and zero technical friction.
+          </p>
+        </div>
 
- return (
- <section id="process" className="py-20 sm:py-28 bg-bg-primary text-text-primary border-t border-border/45 relative z-10">
- <div className="section-container relative">
- 
- {/* Header Section */}
- <div className="max-w-3xl mb-10 sm:mb-12">
- <div className="flex items-center gap-2 mb-3">
- <Sparkles size={14} className="text-accent" />
- <span className="label-eyebrow text-accent">OUR METHODOLOGY</span>
- </div>
- <h2 
- className="font-sans font-extrabold text-text-primary leading-[1.15] mb-4 tracking-tight"
- style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
- >
- A process built for <span className="bg-linear-to-r from-accent via-accent-light to-accent-gold bg-clip-text text-transparent font-black">clarity</span> and results.
- </h2>
- <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-light">
- No endless waiting. Select a step below to see exactly how we turn your business details into a live website in 24 Hours.
- </p>
- </div>
+        {/* Main Interactive Layout: Desktop 2-Column Grid vs Mobile Vertical Accordion */}
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+          {/* Desktop Left Column: Interactive Milestone Tabs */}
+          <div className="hidden lg:flex col-span-4 flex-col gap-2.5 w-full">
+            <div className="flex items-center justify-between px-1 mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold">
+                Deployment Milestones ({activeIdx + 1}/{PROCESS_STEPS.length})
+              </span>
+              <span className="font-mono text-[10px] text-accent font-medium">
+                Interactive Walkthrough
+              </span>
+            </div>
 
- {/* Main Interactive Layout: Desktop Side-by-Side Grid vs Mobile Vertical Accordion */}
- <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
- 
- {/* 
- Desktop Left Column: Interactive Step Selector Tabs 
- Visible only on large screens
- */}
- <div className="hidden lg:flex col-span-4 flex-col gap-3">
- <div className="flex items-center justify-between px-1 mb-1">
- <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold">
- Methodology Steps ({activeIdx + 1}/{PROCESS_STEPS.length})
- </span>
- <span className="font-mono text-[10px] text-accent font-semibold">
- Click step to view
- </span>
- </div>
+            <div className="flex flex-col gap-2">
+              {PROCESS_STEPS.map((step, idx) => {
+                const isCurrent = idx === activeIdx;
+                return (
+                  <button
+                    key={step.id}
+                    onClick={() => setActiveIdx(idx)}
+                    className={`p-3.5 sm:p-4 rounded-xl text-left font-mono transition-all duration-200 cursor-pointer border flex items-center justify-between gap-3 w-full ${
+                      isCurrent
+                        ? "bg-accent/10 border-accent text-text-primary shadow-xs ring-1 ring-accent/30"
+                        : "bg-bg-card border-border/60 text-text-secondary hover:border-border-hover hover:text-text-primary hover:bg-bg-card/90"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`w-7 h-7 rounded-lg text-xs font-mono font-bold flex items-center justify-center border shrink-0 transition-colors ${
+                          isCurrent
+                            ? "bg-accent text-white border-accent shadow-xs"
+                            : "bg-bg-secondary text-text-tertiary border-border/60"
+                        }`}
+                      >
+                        {step.number}
+                      </span>
+                      <span
+                        className={`font-sans text-xs sm:text-sm tracking-tight truncate ${
+                          isCurrent ? "font-bold text-text-primary" : "font-medium text-text-secondary"
+                        }`}
+                      >
+                        {step.title}
+                      </span>
+                    </div>
 
- <div className="flex flex-col gap-2">
- {PROCESS_STEPS.map((step, idx) => {
- const isCurrent = idx === activeIdx;
- return (
- <button
- key={step.id}
- onClick={() => setActiveIdx(idx)}
- className={`p-4 rounded-xl text-left font-mono transition-all duration-200 cursor-pointer border flex items-center justify-between gap-3 w-full ${
- isCurrent
- ? "bg-accent/10 border-accent text-accent shadow-md shadow-accent/10 translate-x-1"
- : "bg-bg-card/70 border-border/50 text-text-secondary hover:border-accent/40 hover:text-text-primary hover:bg-bg-card"
- }`}
- >
- <div className="flex items-center gap-3 min-w-0">
- <span className={`w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center border shrink-0 transition-colors ${
- isCurrent
- ? "bg-accent text-text-inverted border-accent"
- : "bg-bg-secondary text-text-tertiary border-border/60"
- }`}>
- {step.number}
- </span>
- <span className="font-sans text-xs font-bold tracking-tight truncate">
- {step.title}
- </span>
- </div>
+                    <span
+                      className={`text-[10px] font-mono px-2 py-0.5 rounded border font-medium shrink-0 ${
+                        isCurrent
+                          ? "text-accent bg-accent/10 border-accent/30"
+                          : "text-text-tertiary bg-bg-secondary border-border/40"
+                      }`}
+                    >
+                      {step.timeframe}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
 
- <span className="text-[9px] font-mono text-emerald-600 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-bold shrink-0">
- {step.timeframe}
- </span>
- </button>
- );
- })}
- </div>
- </div>
+          {/* Desktop Right Column: Single Active Milestone Showcase Card */}
+          <div className="hidden lg:block col-span-8 w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIdx}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
+                {renderStepContent(activeStep)}
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
- {/* 
- Desktop Right Column: Single Active Step Display Card 
- Visible only on large screens
- */}
- <div className="hidden lg:block col-span-8 w-full">
- <AnimatePresence mode="wait">
- <motion.div
- key={activeIdx}
- initial={{ opacity: 0, y: 10 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -10 }}
- transition={{ duration: 0.3 }}
- >
- {renderStepContent(activeStep)}
- </motion.div>
- </AnimatePresence>
- </div>
+          {/* Mobile Vertical Accordion Layout */}
+          <div className="lg:hidden flex flex-col gap-3 w-full">
+            <div className="flex items-center justify-between px-1 mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold">
+                Deployment Milestones
+              </span>
+              <span className="font-mono text-[10px] text-accent font-medium">
+                Tap to expand
+              </span>
+            </div>
 
- {/* 
- Mobile Vertical Accordion Layout
- Visible only on small/medium screens
- */}
- <div className="lg:hidden flex flex-col gap-3 w-full -mx-4 px-4 sm:mx-0 sm:px-0">
- <div className="flex items-center justify-between px-1 mb-1">
- <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold">
- Methodology Steps
- </span>
- <span className="font-mono text-[9px] text-accent font-semibold">
- Tap to expand
- </span>
- </div>
+            {PROCESS_STEPS.map((step, idx) => {
+              const isCurrent = idx === activeIdx;
+              return (
+                <div key={step.id} className="flex flex-col">
+                  <button
+                    onClick={() => setActiveIdx(isCurrent ? -1 : idx)}
+                    className={`p-3.5 sm:p-4 rounded-xl text-left font-mono transition-all duration-200 cursor-pointer border flex items-center justify-between gap-3 w-full ${
+                      isCurrent
+                        ? "bg-accent/10 border-accent text-text-primary ring-1 ring-accent/30 rounded-b-none"
+                        : "bg-bg-card border-border/60 text-text-secondary hover:border-border-hover hover:text-text-primary"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`w-7 h-7 rounded-lg text-xs font-mono font-bold flex items-center justify-center border shrink-0 transition-colors ${
+                          isCurrent
+                            ? "bg-accent text-white border-accent shadow-xs"
+                            : "bg-bg-secondary text-text-tertiary border-border/60"
+                        }`}
+                      >
+                        {step.number}
+                      </span>
+                      <span
+                        className={`font-sans text-xs sm:text-sm tracking-tight truncate ${
+                          isCurrent ? "font-bold text-text-primary" : "font-medium text-text-secondary"
+                        }`}
+                      >
+                        {step.title}
+                      </span>
+                    </div>
 
- {PROCESS_STEPS.map((step, idx) => {
- const isCurrent = idx === activeIdx;
- return (
- <div key={step.id} className="flex flex-col gap-2">
- <button
- onClick={() => setActiveIdx(isCurrent ? -1 : idx)}
- className={`p-3.5 sm:p-4 rounded-xl text-left font-mono transition-all duration-200 cursor-pointer border flex items-center justify-between gap-3 w-full ${
- isCurrent
- ? "bg-accent/10 border-accent text-accent shadow-md shadow-accent/10"
- : "bg-bg-card border-border/50 text-text-secondary hover:border-accent/40"
- }`}
- >
- <div className="flex items-center gap-3 min-w-0">
- <span className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full text-[10px] sm:text-xs font-bold flex items-center justify-center border shrink-0 transition-colors ${
- isCurrent
- ? "bg-accent text-text-inverted border-accent"
- : "bg-bg-secondary text-text-tertiary border-border/60"
- }`}>
- {step.number}
- </span>
- <span className="font-sans text-xs font-bold tracking-tight truncate">
- {step.title}
- </span>
- </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <span
+                        className={`text-[9px] font-mono px-2 py-0.5 rounded border font-medium ${
+                          isCurrent
+                            ? "text-accent bg-accent/10 border-accent/30"
+                            : "text-text-tertiary bg-bg-secondary border-border/40"
+                        }`}
+                      >
+                        {step.timeframe}
+                      </span>
+                      <ChevronDown
+                        size={15}
+                        className={`text-text-tertiary transition-transform duration-200 ${
+                          isCurrent ? "rotate-180 text-accent" : ""
+                        }`}
+                      />
+                    </div>
+                  </button>
 
- <div className="flex items-center gap-2">
- <span className="text-[8px] sm:text-[9px] font-mono text-emerald-600 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded font-bold shrink-0">
- {step.timeframe}
- </span>
- </div>
- </button>
-
- <AnimatePresence>
- {isCurrent && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- transition={{ duration: 0.3, ease: "easeInOut" }}
- className="overflow-hidden"
- >
- <div className="pt-1 pb-2">
- {renderStepContent(step, true)}
- </div>
- </motion.div>
- )}
- </AnimatePresence>
- </div>
- );
- })}
- </div>
-
- </div>
-
- </div>
- </section>
- );
+                  <AnimatePresence>
+                    {isCurrent && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden border-x border-b border-accent rounded-b-xl bg-bg-card shadow-sm"
+                      >
+                        <div className="p-4 sm:p-5">
+                          {renderStepContent(step, true)}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

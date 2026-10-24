@@ -2,19 +2,31 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle, XCircle, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, XCircle, ChevronDown } from "lucide-react";
 
-const PROBLEMS = [
+interface ProblemItem {
+  id: string;
+  label: string;
+  subtitle: string;
+  detail: string;
+  realCost: string;
+  solutionSummary: string;
+  wefix: string[];
+  cta: string;
+}
+
+const PROBLEMS: ProblemItem[] = [
   {
     id: "invisible",
     label: "Nobody can find you online",
     subtitle: "Your competitors show up on Google. You don't.",
-    detail: "When someone searches \u201cbest bridal makeup artist near me\u201d or \u201csalon in [your city],\u201d your business doesn't come up. That customer books someone else — not because your work is worse, but because they can't find you.",
-    realCost: "You're missing walk-in and discovery customers every single day without knowing it.",
+    detail: "When someone searches \u201cbest bridal makeup artist near me\u201d or \u201cfitness studio in Guwahati,\u201d your business doesn't appear. That high-value customer books someone else — not because your craft is worse, but because you were invisible at the exact moment they were ready to spend.",
+    realCost: "You lose high-intent local discovery searches every day to whoever holds the top 3 spots on Google Maps.",
+    solutionSummary: "Verified Google Business profile, local search indexation, and a verified map presence.",
     wefix: [
-      "Your website and Google Business profile set up properly",
-      "Shows up when locals search for your service type",
-      "Connected to Google Maps with your real address and hours"
+      "Google Business Profile verified and calibrated for local search ranking",
+      "Fast-loading digital storefront optimized for high-intent local keywords",
+      "Accurate Google Maps location pin, operating hours, and direct call/book links"
     ],
     cta: "Fix my Google visibility"
   },
@@ -22,103 +34,113 @@ const PROBLEMS = [
     id: "dms",
     label: "You lose customers in your DMs",
     subtitle: "By the time you reply, they've already booked someone else.",
-    detail: "A potential client messages you on Instagram at 10pm asking for pricing. You see it the next morning. They booked another studio at 11pm. This happens more than you think — and there's an easy fix.",
-    realCost: "Delayed replies are the #1 reason warm leads go cold in service businesses.",
+    detail: "A potential client reaches out on Instagram at 10 PM inquiring about bridal rates or private sessions. You see it the next morning. They already confirmed with a competitor at 10:30 PM. In high-ticket services, speed and immediacy determine who wins the deal.",
+    realCost: "Delayed manual replies are the #1 reason warm leads go cold and choose faster competitors.",
+    solutionSummary: "Instant 1-tap WhatsApp booking button and 24/7 automated inquiry response.",
     wefix: [
-      "1-tap WhatsApp button on your website so clients reach you instantly",
-      "Automated first reply sent immediately — even when you're asleep",
-      "Pricing page and service catalog visible without having to DM first"
+      "Prominent 1-tap WhatsApp booking button accessible from every page",
+      "Automated greeting and intake questions so leads are handled even outside working hours",
+      "Transparent package guide and pricing visible without needing a protracted DM exchange"
     ],
-    cta: "Stop losing DM leads"
+    cta: "Stop losing DM inquiries"
   },
   {
     id: "mobile",
     label: "Your website looks bad on phones",
-    subtitle: "Most of your visitors are on mobile. Is it embarrassing?",
-    detail: "Open your current website on a phone. Does it load slowly? Do buttons look tiny and hard to tap? Does the text look squished? Your clients notice — even if they don't say anything. A website that looks unprofessional makes your work look cheaper.",
-    realCost: "A bad mobile experience makes you look less credible, even if your actual work is excellent.",
+    subtitle: "Most of your visitors are on mobile. Is it turning them away?",
+    detail: "Over 85% of your clients find you on their phone. If your site takes 5 seconds to load, has tiny unreadable text, or squished buttons, it creates an immediate perception of low quality. A clunky mobile experience damages your brand before you ever get to speak with them.",
+    realCost: "A frustrating mobile experience erodes credibility instantly, making premium pricing harder to justify.",
+    solutionSummary: "Ultra-responsive mobile-first design engineered for speed, thumb interaction, and aesthetic elegance.",
     wefix: [
-      "Loads fast on any phone, even on slower internet connections",
-      "Buttons are easy to tap — no pinching or zooming required",
-      "Looks professional, clean, and matches the quality of your work"
+      "Sub-second load times optimized for local 4G/5G mobile connections",
+      "Generous touch targets and intuitive navigation — no pinching or horizontal zooming",
+      "Editorial visual design that communicates the real luxury quality of your work"
     ],
-    cta: "Make my site mobile-ready"
+    cta: "Modernize my mobile experience"
   },
   {
     id: "bookings",
     label: "No easy way for clients to book",
-    subtitle: "If booking you takes effort, some clients simply won't bother.",
-    detail: "Your current setup requires clients to DM you, wait for a reply, share details back-and-forth, and manually coordinate a date. Every extra step is a chance for them to lose interest or get distracted. High-value clients especially expect the process to be simple.",
-    realCost: "Complex booking processes filter out busy, high-paying clients who have less patience for friction.",
+    subtitle: "If booking takes effort, busy clients simply won't bother.",
+    detail: "When booking requires multi-day back-and-forth messaging, sending photos, asking for payment details, and manual coordination, clients lose momentum. High-paying clients especially expect a smooth, organized booking flow that respects their time.",
+    realCost: "Friction-heavy booking processes filter out busy, high-paying clients who won't tolerate inconvenience.",
+    solutionSummary: "Streamlined 1-step direct inquiry funnel straight to your WhatsApp or appointment calendar.",
     wefix: [
-      "Clear pricing and packages visible upfront — no 'DM for rates'",
-      "One-step inquiry form that lands straight in your WhatsApp or inbox",
-      "Optional calendar link for clients to self-book a consultation slot"
+      "Upfront package breakdowns and deliverables that eliminate awkward negotiation",
+      "Structured inquiry form that captures date, service, and requirements in one single submission",
+      "Direct routing into your personal WhatsApp with pre-filled consultation details"
     ],
-    cta: "Simplify my bookings"
+    cta: "Streamline my client bookings"
   }
 ];
 
 export default function ProblemSection() {
   const [activeId, setActiveId] = useState<string>("invisible");
+  const [mobileExpandedId, setMobileExpandedId] = useState<string | null>("invisible");
   const activeProblem = PROBLEMS.find((p) => p.id === activeId) || PROBLEMS[0];
 
   return (
-    <section id="problems" className="py-16 sm:py-24 bg-transparent relative border-t border-border/30">
+    <section id="problems" className="py-20 sm:py-28 bg-transparent relative border-t border-border/30">
       <div className="section-container">
         
-        {/* Header */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-16 items-end">
+        {/* Editorial Section Header: No cheesy kicker label */}
+        <div className="grid lg:grid-cols-12 gap-8 mb-14 items-end">
           <div className="lg:col-span-8">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-text-tertiary">
-                Common problems we fix
-              </span>
-            </div>
             <h2
-              className="font-sans font-extrabold text-text-primary leading-[1.1] tracking-tight"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+              className="font-display font-black text-text-primary text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.15] tracking-tight"
+              style={{ letterSpacing: "-0.03em" }}
             >
-              Sound familiar?
+              Where local businesses{" "}
+              <span className="font-serif italic font-normal text-accent">
+                silently lose clients.
+              </span>
             </h2>
           </div>
           <div className="lg:col-span-4">
             <p className="text-text-secondary text-base leading-relaxed">
-              These are the most common reasons local businesses don't get as many clients as they should. Click any problem to see how we fix it.
+              These are the four operational bottlenecks that prevent reputable local businesses from capturing the client volume they deserve.
             </p>
           </div>
         </div>
 
-        {/* Two-Column Problem Explorer */}
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        {/* ── Desktop View (Two-Column Explorer) ────────────────────────── */}
+        <div className="hidden lg:grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
-          {/* Left: Problem Selector */}
-          <div className="lg:col-span-5 flex flex-col border-l border-border/60">
+          {/* Left: Problem Selector Cards (No 2px border-left hack, high-contrast typography) */}
+          <div className="lg:col-span-5 flex flex-col gap-2.5">
             {PROBLEMS.map((problem) => {
               const isActive = activeId === problem.id;
               return (
                 <button
                   key={problem.id}
-                  onMouseEnter={() => setActiveId(problem.id)}
                   onClick={() => setActiveId(problem.id)}
-                  className={`group flex items-center justify-between text-left py-4 pl-6 border-l-2 ml-[-2px] transition-all duration-200 cursor-pointer min-h-[64px] rounded-r-xl ${
+                  className={`group w-full flex items-center justify-between text-left p-4.5 rounded-xl transition-all duration-200 cursor-pointer border ${
                     isActive
-                      ? "border-accent text-text-primary bg-accent/10 font-semibold"
-                      : "border-transparent text-text-secondary hover:text-text-primary hover:border-border"
+                      ? "bg-bg-card border-border shadow-sm text-text-primary"
+                      : "bg-transparent border-transparent text-text-secondary hover:bg-bg-secondary/70 hover:text-text-primary"
                   }`}
+                  aria-selected={isActive}
+                  role="tab"
                 >
-                  <div className="flex flex-col gap-0.5">
-                    <span className={`font-sans text-sm font-bold ${isActive ? "text-accent" : ""}`}>
-                      {problem.label}
-                    </span>
-                    <span className="font-sans text-xs text-text-tertiary font-normal line-clamp-1">
-                      {problem.subtitle}
-                    </span>
+                  <div className="flex items-start gap-3">
+                    <span 
+                      className={`mt-1.5 w-2 h-2 rounded-full shrink-0 transition-all duration-200 ${
+                        isActive ? "bg-accent scale-110" : "bg-border-dark group-hover:bg-text-tertiary"
+                      }`} 
+                    />
+                    <div className="flex flex-col gap-0.5">
+                      <span className={`font-sans text-sm font-bold tracking-tight ${isActive ? "text-accent" : "text-text-primary"}`}>
+                        {problem.label}
+                      </span>
+                      <span className="font-sans text-xs text-text-secondary font-normal line-clamp-1">
+                        {problem.subtitle}
+                      </span>
+                    </div>
                   </div>
                   <ArrowRight
                     size={14}
-                    className={`shrink-0 ml-4 transition-all duration-200 ${
-                      isActive ? "text-accent opacity-100 translate-x-0" : "text-text-tertiary opacity-0 -translate-x-1"
+                    className={`shrink-0 ml-3 transition-all duration-200 ${
+                      isActive ? "text-accent opacity-100 translate-x-0" : "text-text-tertiary opacity-0 -translate-x-1 group-hover:opacity-60"
                     }`}
                   />
                 </button>
@@ -126,23 +148,22 @@ export default function ProblemSection() {
             })}
           </div>
 
-          {/* Right: Problem Detail Container with Stable Height */}
+          {/* Right: Problem Detail Container */}
           <div className="lg:col-span-7">
             <div className="card-luxury border border-border bg-bg-card overflow-hidden shadow-xl rounded-2xl min-h-[460px] flex flex-col justify-between">
-              
               <div className="p-7 sm:p-8 flex-1 flex flex-col justify-between">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeProblem.id}
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
+                    exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
-                    className="flex flex-col gap-5 h-full justify-between"
+                    className="flex flex-col gap-6 h-full justify-between"
                   >
                     {/* Problem Description */}
                     <div>
-                      <h3 className="font-sans font-bold text-xl sm:text-2xl text-text-primary mb-2 tracking-tight">
+                      <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary mb-2.5 tracking-tight">
                         {activeProblem.label}
                       </h3>
                       <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
@@ -150,47 +171,44 @@ export default function ProblemSection() {
                       </p>
                     </div>
 
-                    {/* Real cost & Visual Before vs After Diff Badge */}
-                    <div className="grid sm:grid-cols-2 gap-3 my-2">
-                      {/* Old Way */}
-                      <div className="bg-bg-secondary/50 border border-border/80 rounded-xl p-4 flex flex-col justify-between hover:border-border transition-colors shadow-sm">
-                        <div className="flex items-center gap-1.5 mb-2.5">
-                          <XCircle size={13} className="text-text-tertiary" />
-                          <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-text-secondary">
-                            Current Old Setup
+                    {/* Before vs After Contrast (Tailored per problem, zero infomercial spam) */}
+                    <div className="grid sm:grid-cols-2 gap-3.5 my-1">
+                      {/* Current Obstacle */}
+                      <div className="bg-bg-secondary/60 border border-border rounded-xl p-4 flex flex-col justify-between shadow-2xs">
+                        <div className="flex items-center gap-1.5 mb-2">
+                          <XCircle size={14} className="text-rose-500 shrink-0" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-text-secondary">
+                            Without NERQIVA
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-text-secondary font-medium leading-relaxed">
+                        <p className="text-xs text-text-secondary font-medium leading-relaxed">
                           {activeProblem.realCost}
                         </p>
                       </div>
                       
-                      {/* Nerqiva Solution */}
-                      <div className="bg-linear-to-br from-[#4C1D95]/5 to-[#4C1D95]/10 border border-[#4C1D95]/20 rounded-xl p-4 flex flex-col justify-between hover:border-[#4C1D95]/40 transition-colors shadow-sm relative overflow-hidden">
-                        {/* Subtle gold glow behind solution */}
-                        <div className="absolute top-0 right-0 -mr-4 -mt-4 w-16 h-16 bg-[#C9A227]/10 blur-[20px] rounded-full pointer-events-none" aria-hidden="true" />
-                        
-                        <div className="flex items-center gap-1.5 mb-2.5 relative z-10">
-                          <Sparkles size={13} className="text-[#C9A227]" />
-                          <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-[#4C1D95]">
-                            Nerqiva Solution
+                      {/* Tailored Solution */}
+                      <div className="bg-accent/5 border border-accent/20 rounded-xl p-4 flex flex-col justify-between shadow-2xs">
+                        <div className="flex items-center gap-1.5 mb-2">
+                          <CheckCircle2 size={14} className="text-accent shrink-0" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-accent">
+                            With NERQIVA
                           </span>
                         </div>
-                        <p className="text-[11px] sm:text-xs text-[#4C1D95] font-bold leading-relaxed relative z-10">
-                          Guaranteed instant fix with zero monthly maintenance overhead.
+                        <p className="text-xs text-text-primary font-medium leading-relaxed">
+                          {activeProblem.solutionSummary}
                         </p>
                       </div>
                     </div>
 
-                    {/* What we fix */}
+                    {/* What we fix Checklist */}
                     <div>
-                      <span className="font-sans text-xs font-bold text-text-tertiary block mb-2.5 uppercase tracking-wider">
-                        What we fix:
+                      <span className="font-mono text-[11px] font-bold text-text-tertiary block mb-3 uppercase tracking-wider">
+                        Engineered Fixes:
                       </span>
-                      <div className="space-y-2">
+                      <div className="space-y-2.5">
                         {activeProblem.wefix.map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2.5">
-                            <CheckCircle size={15} className="shrink-0 text-[#C9A227] mt-0.5" />
+                            <CheckCircle2 size={15} className="shrink-0 text-accent-gold mt-0.5" />
                             <span className="text-sm text-text-secondary leading-normal font-medium">
                               {item}
                             </span>
@@ -199,19 +217,19 @@ export default function ProblemSection() {
                       </div>
                     </div>
 
-                    {/* CTA */}
-                    <div className="pt-4 border-t border-border/40 flex items-center justify-between">
+                    {/* Action Bar */}
+                    <div className="pt-5 border-t border-border/40 flex items-center justify-between">
                       <a
-                        href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20need%20help%20with:%20${encodeURIComponent(activeProblem.label)}`}
+                        href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20fixing:%20${encodeURIComponent(activeProblem.label)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group font-mono text-[11px] font-extrabold text-[#4C1D95] uppercase tracking-widest flex items-center gap-1.5 transition-colors hover:text-[#5B21B6]"
+                        className="btn-primary py-2.5 px-5 text-xs font-mono font-bold tracking-wider inline-flex items-center gap-2"
                       >
                         <span>{activeProblem.cta}</span>
-                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight size={13} />
                       </a>
-                      <span className="font-mono text-[9px] text-text-tertiary tracking-wider uppercase font-bold">
-                        Free to ask
+                      <span className="font-mono text-[10px] text-text-secondary tracking-wider uppercase font-semibold">
+                        Free Consultation
                       </span>
                     </div>
                   </motion.div>
@@ -220,6 +238,117 @@ export default function ProblemSection() {
             </div>
           </div>
 
+        </div>
+
+        {/* ── Mobile View (Interactive Accordion — Solves Off-Screen Disconnect) ── */}
+        <div className="block lg:hidden space-y-3">
+          {PROBLEMS.map((problem) => {
+            const isExpanded = mobileExpandedId === problem.id;
+            return (
+              <div 
+                key={problem.id}
+                className="border border-border rounded-xl bg-bg-card overflow-hidden transition-all duration-200 shadow-sm"
+              >
+                {/* Accordion Trigger */}
+                <button
+                  onClick={() => setMobileExpandedId(isExpanded ? null : problem.id)}
+                  className="w-full flex items-center justify-between p-4.5 text-left cursor-pointer"
+                  aria-expanded={isExpanded}
+                >
+                  <div className="flex items-start gap-3 pr-2">
+                    <span 
+                      className={`mt-1 w-2 h-2 rounded-full shrink-0 transition-all ${
+                        isExpanded ? "bg-accent" : "bg-border-dark"
+                      }`} 
+                    />
+                    <div className="flex flex-col gap-0.5">
+                      <span className={`font-sans text-sm font-bold leading-tight ${isExpanded ? "text-accent" : "text-text-primary"}`}>
+                        {problem.label}
+                      </span>
+                      <span className="font-sans text-xs text-text-secondary font-normal line-clamp-1">
+                        {problem.subtitle}
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronDown 
+                    size={18} 
+                    className={`shrink-0 text-text-secondary transition-transform duration-200 ${
+                      isExpanded ? "rotate-180 text-accent" : ""
+                    }`} 
+                  />
+                </button>
+
+                {/* Inline Expanded Content */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.22, ease: "easeOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4.5 pb-5 pt-1 border-t border-border/40 flex flex-col gap-4">
+                        <p className="text-text-secondary text-sm leading-relaxed mt-2">
+                          {problem.detail}
+                        </p>
+
+                        {/* Contrast Boxes */}
+                        <div className="flex flex-col gap-2.5">
+                          <div className="bg-bg-secondary/70 border border-border rounded-lg p-3">
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <XCircle size={13} className="text-rose-500 shrink-0" />
+                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-text-secondary">
+                                Without NERQIVA
+                              </span>
+                            </div>
+                            <p className="text-xs text-text-secondary font-medium">
+                              {problem.realCost}
+                            </p>
+                          </div>
+
+                          <div className="bg-accent/5 border border-accent/20 rounded-lg p-3">
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <CheckCircle2 size={13} className="text-accent shrink-0" />
+                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-accent">
+                                With NERQIVA
+                              </span>
+                            </div>
+                            <p className="text-xs text-text-primary font-medium">
+                              {problem.solutionSummary}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Checklist */}
+                        <div className="space-y-2 mt-1">
+                          {problem.wefix.map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <CheckCircle2 size={14} className="shrink-0 text-accent-gold mt-0.5" />
+                              <span className="text-xs text-text-secondary font-medium">
+                                {item}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Mobile CTA */}
+                        <a
+                          href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20fixing:%20${encodeURIComponent(problem.label)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary w-full py-3 text-xs font-mono font-bold tracking-wider inline-flex items-center justify-center gap-2 mt-2"
+                        >
+                          <span>{problem.cta}</span>
+                          <ArrowRight size={13} />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
       </div>
