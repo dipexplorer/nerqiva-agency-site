@@ -140,18 +140,13 @@ export default function TermsPage() {
 
       {/* Plain-English Executive Summary */}
       <div className="section-container mb-20 max-w-5xl">
-        <div className="card-luxury p-7 sm:p-9 rounded-2xl bg-bg-card border border-border/70 shadow-sm">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-bold block mb-1">
-                Executive Overview
-              </span>
-              <h2 className="font-serif font-bold text-xl sm:text-2xl text-text-primary">
-                Plain-English Summary of Commitments
-              </h2>
-            </div>
-            <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-widest text-accent-gold font-bold bg-accent-gold/10 border border-accent-gold/25 px-2.5 py-1 rounded-full">
-              Client Protection
+        <div className="card-luxury p-6 sm:p-9 rounded-2xl bg-bg-card border border-border/70 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-border/40">
+            <h2 className="font-serif font-bold text-xl sm:text-2xl text-text-primary">
+              Plain-English summary of commitments
+            </h2>
+            <span className="self-start sm:self-center font-mono text-[10px] tracking-wider text-accent-gold font-bold bg-accent-gold/10 border border-accent-gold/25 px-2.5 py-1 rounded-full">
+              Client Protection Standard
             </span>
           </div>
 
@@ -159,7 +154,7 @@ export default function TermsPage() {
             {SUMMARY_POINTS.map((pt, idx) => {
               const IconComp = pt.icon;
               return (
-                <div key={idx} className="p-4 rounded-xl bg-bg-secondary/60 border border-border/50 flex flex-col justify-between">
+                <div key={idx} className="p-4 sm:p-5 rounded-xl bg-bg-secondary/60 border border-border/50 flex flex-col justify-between">
                   <div>
                     <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3">
                       <IconComp size={16} />
@@ -178,69 +173,67 @@ export default function TermsPage() {
         </div>
       </div>
 
-      {/* Complete Legal Clauses Stack */}
-      <div className="section-container mb-24 max-w-5xl space-y-5">
-        <div className="mb-8">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold block mb-2">
-            Contractual Provisions
-          </span>
+      {/* Complete Legal Clauses 2-Column Grid */}
+      <div className="section-container mb-24 max-w-5xl">
+        <div className="mb-10 max-w-2xl">
           <h2
             className="font-serif text-text-primary leading-[1.15] tracking-tight"
             style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", letterSpacing: "-0.03em" }}
           >
-            Operational Terms & Commercial <span className="italic font-normal text-accent">Clauses</span>
+            Operational terms & commercial <span className="italic font-normal text-accent">clauses</span>.
           </h2>
+          <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal mt-2">
+            Every website build is delivered under transparent, legally binding provisions with zero ongoing lock-in.
+          </p>
         </div>
 
-        {TERMS_CLAUSES.map((clause) => (
-          <div
-            key={clause.number}
-            className="card-luxury p-7 sm:p-9 rounded-2xl bg-bg-card border border-border/70 hover:border-accent/40 transition-colors shadow-2xs"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-border/40">
-              <div className="flex items-center gap-3">
-                <span className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/30 text-accent font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                  {clause.number}
-                </span>
-                <h3 className="font-sans font-bold text-lg sm:text-xl text-text-primary tracking-tight">
-                  {clause.title}
-                </h3>
-              </div>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold bg-bg-secondary px-2.5 py-1 rounded border border-border/50 self-start sm:self-center">
-                {clause.tag}
-              </span>
-            </div>
+        <div className="grid md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
+          {TERMS_CLAUSES.map((clause) => (
+            <div
+              key={clause.number}
+              className="card-luxury p-6 sm:p-7 rounded-2xl bg-bg-card border border-border/70 hover:border-accent/40 transition-colors shadow-2xs flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3.5 pb-3 border-b border-border/40">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-6 h-6 rounded-md bg-accent/10 border border-accent/25 text-accent font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                      {clause.number}
+                    </span>
+                    <h3 className="font-sans font-bold text-base sm:text-lg text-text-primary tracking-tight">
+                      {clause.title}
+                    </h3>
+                  </div>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold bg-bg-secondary px-2 py-0.5 rounded border border-border/50 shrink-0">
+                    {clause.tag}
+                  </span>
+                </div>
 
-            <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
-              {clause.content}
-            </p>
-          </div>
-        ))}
+                <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed font-normal">
+                  {clause.content}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Clarification & Inquiries Card */}
       <div className="section-container mb-28 max-w-5xl">
-        <div className="p-8 sm:p-10 rounded-2xl bg-bg-card border border-border/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
+        <div className="card-luxury p-7 sm:p-10 rounded-2xl bg-bg-card border border-border/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
           <div className="space-y-2 max-w-xl">
-            <div className="flex items-center gap-2">
-              <HelpCircle size={15} className="text-accent shrink-0" />
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
-                Have specific contractual requirements?
-              </span>
-            </div>
             <h3 className="font-serif font-bold text-xl sm:text-2xl text-text-primary">
-              Custom Scopes & Enterprise Agreements
+              Custom scopes & enterprise agreements
             </h3>
-            <p className="text-text-secondary text-sm leading-relaxed font-normal">
-              Need custom service level agreements, specific NDA terms, or tailored corporate billing? We accommodate custom client agreements for specialized clinics, private studios, and enterprise practices.
+            <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-normal">
+              Need tailored service level agreements, specific NDA documentation, or corporate procurement billing? We accommodate custom client agreements for specialized clinics, private studios, and enterprise practices.
             </p>
           </div>
 
           <a
-            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20inquire%20about%20your%20project%20terms."
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20inquire%20about%20custom%20project%20terms."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 px-6 py-3 font-mono text-xs font-semibold rounded-lg shrink-0 shadow-sm"
+            className="btn-primary inline-flex items-center gap-2 px-6 py-3 font-mono text-xs font-semibold rounded-lg shrink-0 shadow-sm whitespace-nowrap"
           >
             <span>Inquire via WhatsApp</span>
             <ArrowRight size={14} />
