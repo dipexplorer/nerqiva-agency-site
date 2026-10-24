@@ -1,129 +1,251 @@
-"use client";
-
+import { Metadata } from "next";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowLeft, Scale, GitPullRequest, Code, ShieldCheck, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ShieldCheck, Clock, FileText, ArrowRight, HelpCircle, Code, Lock } from "lucide-react";
 import ClosingSection from "../../components/ClosingSection";
 
-const TERMS_SECTIONS = [
+export const metadata: Metadata = {
+  title: "Terms of Service & Client Agreement | NERQIVA Studio",
+  description:
+    "Review our transparent, business-friendly terms governing 24-hour website launches, 100% code and asset ownership, payment milestones, and quality standards.",
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title: "Terms of Service & Client Agreement | NERQIVA Studio",
+    description:
+      "Clear, transparent commercial terms: 100% asset ownership, 24-hour launch SLA, zero monthly lock-in retainers.",
+    url: "https://nerqiva.vercel.app/terms",
+  },
+};
+
+const SUMMARY_POINTS = [
+  {
+    title: "100% Asset Ownership",
+    desc: "You own all custom code, design assets, and domain DNS upon final settlement with zero lock-in.",
+    icon: Code,
+  },
+  {
+    title: "Zero Monthly Retainers",
+    desc: "Fixed one-time project investment. No mandatory maintenance contracts or hidden monthly fees.",
+    icon: Lock,
+  },
+  {
+    title: "24-Hour Express SLA",
+    desc: "Private mobile preview link delivered within 24 hours of complete asset intake receipt.",
+    icon: Clock,
+  },
+  {
+    title: "Direct Founder Channel",
+    desc: "Direct communication with the principal engineer building your system via WhatsApp.",
+    icon: ShieldCheck,
+  },
+];
+
+const TERMS_CLAUSES = [
   {
     number: "01",
-    code: "AGREEMENT_SCOPE",
-    title: "Service Scope & Agreements",
-    icon: GitPullRequest,
-    body: "By submitting a project inquiry, selecting a demo theme, or commissioning a website build with NERQIVA, you agree to these operational terms. Every project scope, deliverable schedule, and pricing agreement is clearly detailed before work begins. No unexpected or hidden fees will ever be added to your invoice.",
+    tag: "ENGAGEMENT PROTOCOL",
+    title: "Scope of Engagement & Project Intake",
+    content:
+      "Work commences upon mutual written agreement via project brief submission, WhatsApp scoping confirmation, or initial deposit. Every engagement defines a specific scope of deliverables, agreed feature tiers, and pricing before engineering begins. Turnaround guarantees are conditioned on the prompt provision of essential client assets, including branding logos, high-resolution photography, service menus/pricing, and WhatsApp target coordinates.",
   },
   {
     number: "02",
-    code: "100_PERCENT_OWNERSHIP",
-    title: "100% Code & Asset Ownership",
-    icon: Code,
-    body: "Upon completion of your website and final payment, you receive 100% full ownership of all custom code, design files, images, and content created for your business. NERQIVA retains zero proprietary locks, zero monthly software license hooks, and zero ongoing access restrictions to your live website.",
+    tag: "INTELLECTUAL PROPERTY",
+    title: "Complete Code, Domain & Asset Handover",
+    content:
+      "Upon completion of the project and full settlement of the agreed invoice, the client receives 100% unrestricted ownership of all bespoke code, design styling, customized layouts, and digital assets created for the project. NERQIVA retains zero proprietary vendor locks, zero software license fees, and zero ongoing access restrictions. Underlying open-source frameworks (Next.js, React, Tailwind CSS) remain governed by their respective standard open-source licenses (MIT/Apache 2.0).",
   },
   {
     number: "03",
-    code: "GUARANTEE_SPEED",
-    title: "24-Hour Launch Guarantee & Quality Standards",
-    icon: ShieldCheck,
-    body: "We build websites according to rigorous mobile-first, high-speed performance standards. Once all required text, photos, and branding assets are received from you, we guarantee your live website preview link will be ready within 24 Hours. We perform thorough mobile phone tests prior to connecting your domain.",
-  }
+    tag: "DELIVERY & SLA",
+    title: "24-Hour Turnaround Protocol & Staging Verification",
+    content:
+      "Our guaranteed 24-hour turnaround begins immediately once all agreed business assets, brand colors, and copy requirements are received in full. Within this window, NERQIVA provides a fully functional private staging preview URL for direct client verification on mobile and desktop hardware. Public domain cutover and live DNS propagation are executed immediately following client staging approval.",
+  },
+  {
+    number: "04",
+    tag: "COMMERCIALS & PAYMENT",
+    title: "Transparent Commercials & Payment Milestones",
+    content:
+      "All standard website builds are fixed, one-time commercial investments. Unless specifically agreed otherwise in writing, payments follow a standard milestone structure: a 50% mobilization deposit upon project initiation, with the remaining 50% balance payable upon client staging verification prior to final live domain cutover. Invoices are issued electronically and payable via standard digital methods (UPI, Net Banking, or Direct Bank Transfer).",
+  },
+  {
+    number: "05",
+    tag: "CONTENT & INDEMNITY",
+    title: "Client Content, Trademarks & Warranties",
+    content:
+      "The client warrants that all logos, imagery, trade names, copywriting, and media provided to NERQIVA for inclusion in the website are owned by the client or legally licensed for commercial publication. The client agrees to indemnify and hold harmless NERQIVA Studio against any third-party copyright, trademark, or intellectual property claims resulting from materials furnished by the client.",
+  },
+  {
+    number: "06",
+    tag: "REVISIONS & SCOPE",
+    title: "Staging Verification & Launch Revision Scope",
+    content:
+      "Prior to public domain cutover, the client is granted a private staging review period to audit layout fidelity, contact links, and mobile responsiveness. The build package includes complimentary fine-tuning of typography, spacing, imagery placement, and business coordinates. Substantial architectural additions, new third-party integrations, or major scope expansions requested after initial scoping will be itemized as transparent supplementary milestones.",
+  },
+  {
+    number: "07",
+    tag: "INFRASTRUCTURE & APIS",
+    title: "Edge Hosting, Domain DNS & Third-Party Dependencies",
+    content:
+      "NERQIVA provisions websites on modern serverless edge architecture (Vercel Edge Network / Cloudflare CDN) featuring automated SSL certificate management and global caching. Domain name registration and ongoing annual renewals remain the direct legal property and responsibility of the client. Third-party platform policies (including WhatsApp Business, Meta, and Google Business Profiles) remain subject to their respective terms and service availability.",
+  },
+  {
+    number: "08",
+    tag: "LEGAL JURISDICTION",
+    title: "Limitation of Liability & Governing Law",
+    content:
+      "To the maximum extent permitted by applicable law, NERQIVA Studio's cumulative financial liability for any direct, indirect, or incidental claim arising out of or related to our services shall be strictly limited to the total fees actually paid by the client for the specific project engagement. These terms shall be governed by and construed in accordance with the laws of India, with exclusive jurisdiction resting in the competent courts of Guwahati, Assam.",
+  },
 ];
 
 export default function TermsPage() {
   return (
     <div className="pt-32 relative z-20">
-      
-      {/* Hero Section */}
-      <div className="section-container mb-20 max-w-4xl">
+      {/* Hero Header */}
+      <div className="section-container mb-14 sm:mb-16 max-w-4xl">
         <Link 
           href="/" 
-          className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest font-bold text-text-secondary hover:text-accent transition-colors mb-12"
+          className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-text-secondary hover:text-accent transition-colors mb-8 group"
         >
-          <ArrowLeft size={12} /> Back to Home
+          <ArrowLeft size={13} className="transition-transform group-hover:-translate-x-0.5" /> Back to Home
         </Link>
 
-        <div className="flex items-center gap-3 mb-6">
-          <Scale size={16} className="text-accent" />
-          <span className="label-eyebrow text-accent">TERMS OF SERVICE</span>
-        </div>
-
-        <h1 className="font-sans font-extrabold text-text-primary leading-[1.08] mb-6 tracking-tight"
-            style={{ fontSize: "clamp(2.5rem, 5vw, 4.25rem)", letterSpacing: "-0.03em" }}>
-          Terms of <span className="bg-linear-to-r from-accent via-accent-light to-accent-gold bg-clip-text text-transparent font-black">Service.</span>
+        <h1
+          className="font-serif text-text-primary leading-[1.12] mb-6 tracking-tight"
+          style={{ fontSize: "clamp(2.5rem, 5vw, 4.25rem)", letterSpacing: "-0.03em" }}
+        >
+          Terms of <span className="italic font-normal text-accent">Service</span>.
         </h1>
-        <p className="text-text-secondary text-lg leading-relaxed max-w-2xl font-normal">
-          Review our clear, business-friendly terms governing project deliverables, code ownership transfer, and launch guarantees.
+
+        <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal mb-8">
+          Clear, business-friendly terms governing our engineering deliverables, 100% intellectual property transfer, 24-hour launch commitments, and commercial standards.
         </p>
-        <div className="mt-6 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-text-tertiary">
-          <span className="px-2.5 py-1 rounded bg-bg-card border border-border/80 font-bold text-text-secondary">
-            DOCUMENT: NE-TMS-2026
+
+        {/* Document Metadata Pill */}
+        <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-text-tertiary">
+          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 font-bold text-text-secondary shadow-2xs">
+            Document: NERQIVA-TOS-2026
           </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          <span>EFFECTIVE DATE: SEPTEMBER 2026</span>
+          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 text-text-secondary shadow-2xs flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+            Effective: September 2026
+          </span>
+          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 text-text-secondary shadow-2xs">
+            Jurisdiction: Guwahati, Assam
+          </span>
         </div>
       </div>
 
-      {/* Dynamic Section Blocks with Motion Scroll Reveal */}
-      <div className="section-container mb-32 max-w-4xl space-y-6">
-        {TERMS_SECTIONS.map((section, index) => {
-          const Icon = section.icon;
-          return (
-            <motion.div 
-              key={section.number}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="card-luxury p-8 md:p-10 relative overflow-hidden group hover:border-accent/40 transition-all duration-300 shadow-sm rounded-2xl bg-bg-card border border-border/80"
-            >
-              {/* Visual coordinate background decoration */}
-              <div className="absolute top-4 right-6 font-mono text-[9px] text-text-tertiary select-none opacity-40">
-                REF_[{section.code}]
-              </div>
+      {/* Plain-English Executive Summary */}
+      <div className="section-container mb-20 max-w-5xl">
+        <div className="card-luxury p-7 sm:p-9 rounded-2xl bg-bg-card border border-border/70 shadow-sm">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b border-border/40">
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-accent font-bold block mb-1">
+                Executive Overview
+              </span>
+              <h2 className="font-serif font-bold text-xl sm:text-2xl text-text-primary">
+                Plain-English Summary of Commitments
+              </h2>
+            </div>
+            <span className="hidden sm:inline-block font-mono text-[9px] uppercase tracking-widest text-accent-gold font-bold bg-accent-gold/10 border border-accent-gold/25 px-2.5 py-1 rounded-full">
+              Client Protection
+            </span>
+          </div>
 
-              <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
-                <div className="shrink-0 flex items-center justify-center">
-                  <div className="h-12 w-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-105 transition-transform duration-300">
-                    <Icon size={20} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {SUMMARY_POINTS.map((pt, idx) => {
+              const IconComp = pt.icon;
+              return (
+                <div key={idx} className="p-4 rounded-xl bg-bg-secondary/60 border border-border/50 flex flex-col justify-between">
+                  <div>
+                    <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3">
+                      <IconComp size={16} />
+                    </div>
+                    <h3 className="font-sans font-bold text-sm text-text-primary mb-1">
+                      {pt.title}
+                    </h3>
                   </div>
-                </div>
-
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[10px] text-accent font-bold">
-                      {section.number} //
-                    </span>
-                    <h2 className="font-sans font-bold text-xl md:text-2xl text-text-primary">
-                      {section.title}
-                    </h2>
-                  </div>
-                  <p className="text-text-secondary text-sm md:text-base leading-relaxed font-sans">
-                    {section.body}
+                  <p className="text-text-secondary text-xs leading-relaxed font-normal mt-2">
+                    {pt.desc}
                   </p>
                 </div>
-              </div>
-            </motion.div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
 
-      {/* Standard Scoping Disclaimer */}
-      <div className="section-container mb-32 max-w-4xl">
-        <motion.div 
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="border-t border-border/40 pt-10 flex flex-col md:flex-row items-start justify-between gap-6"
-        >
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
-            <CheckCircle2 size={16} />
-            <span className="font-mono text-[9px] uppercase tracking-widest font-bold">Transparent Client Terms</span>
+      {/* Complete Legal Clauses Stack */}
+      <div className="section-container mb-24 max-w-5xl space-y-5">
+        <div className="mb-8">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold block mb-2">
+            Contractual Provisions
+          </span>
+          <h2
+            className="font-serif text-text-primary leading-[1.15] tracking-tight"
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.5rem)", letterSpacing: "-0.03em" }}
+          >
+            Operational Terms & Commercial <span className="italic font-normal text-accent">Clauses</span>
+          </h2>
+        </div>
+
+        {TERMS_CLAUSES.map((clause) => (
+          <div
+            key={clause.number}
+            className="card-luxury p-7 sm:p-9 rounded-2xl bg-bg-card border border-border/70 hover:border-accent/40 transition-colors shadow-2xs"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-border/40">
+              <div className="flex items-center gap-3">
+                <span className="w-7 h-7 rounded-lg bg-accent/10 border border-accent/30 text-accent font-mono font-bold text-xs flex items-center justify-center shrink-0">
+                  {clause.number}
+                </span>
+                <h3 className="font-sans font-bold text-lg sm:text-xl text-text-primary tracking-tight">
+                  {clause.title}
+                </h3>
+              </div>
+              <span className="font-mono text-[9px] uppercase tracking-widest text-text-tertiary font-bold bg-bg-secondary px-2.5 py-1 rounded border border-border/50 self-start sm:self-center">
+                {clause.tag}
+              </span>
+            </div>
+
+            <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
+              {clause.content}
+            </p>
           </div>
-          <p className="text-xs text-text-tertiary leading-relaxed max-w-lg font-sans">
-            These terms govern general studio interactions. Specific client website builds and domain configurations are bound by your approved project brief and invoice terms.
-          </p>
-        </motion.div>
+        ))}
+      </div>
+
+      {/* Clarification & Inquiries Card */}
+      <div className="section-container mb-28 max-w-5xl">
+        <div className="p-8 sm:p-10 rounded-2xl bg-bg-card border border-border/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
+          <div className="space-y-2 max-w-xl">
+            <div className="flex items-center gap-2">
+              <HelpCircle size={15} className="text-accent shrink-0" />
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
+                Have specific contractual requirements?
+              </span>
+            </div>
+            <h3 className="font-serif font-bold text-xl sm:text-2xl text-text-primary">
+              Custom Scopes & Enterprise Agreements
+            </h3>
+            <p className="text-text-secondary text-sm leading-relaxed font-normal">
+              Need custom service level agreements, specific NDA terms, or tailored corporate billing? We accommodate custom client agreements for specialized clinics, private studios, and enterprise practices.
+            </p>
+          </div>
+
+          <a
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20inquire%20about%20your%20project%20terms."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2 px-6 py-3 font-mono text-xs font-semibold rounded-lg shrink-0 shadow-sm"
+          >
+            <span>Inquire via WhatsApp</span>
+            <ArrowRight size={14} />
+          </a>
+        </div>
       </div>
 
       <ClosingSection />
