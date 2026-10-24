@@ -109,7 +109,7 @@ export default function WorkCatalog() {
                             rel="noopener noreferrer"
                             className="sm:hidden bg-bg-primary/95 text-text-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider border border-border shadow-lg rounded-full flex items-center gap-2"
                           >
-                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                            <span className="h-2 w-2 rounded-full bg-accent animate-pulse shrink-0" />
                             <span>Open Live Demo</span>
                             <ExternalLink size={11} className="text-accent shrink-0" />
                           </a>
@@ -119,7 +119,7 @@ export default function WorkCatalog() {
                             onClick={() => setActiveIframeId(project.id)}
                             className="hidden sm:flex bg-bg-primary/95 text-text-primary px-5 py-2 font-mono text-[11px] font-bold uppercase tracking-wider border border-border shadow-xl backdrop-blur-md rounded-full group-hover/overlay:scale-105 transition-all duration-200 items-center gap-2 cursor-pointer"
                           >
-                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                            <span className="h-2 w-2 rounded-full bg-accent animate-pulse shrink-0" />
                             <span>Tap to Scroll</span>
                             <MousePointer2 size={12} className="text-accent shrink-0" />
                           </div>
