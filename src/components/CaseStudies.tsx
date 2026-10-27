@@ -11,6 +11,7 @@ const CATEGORIES = ["ALL", "Healthcare & Diagnostics", "Beauty & Bridal", "Photo
 export default function CaseStudies() {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
   const [activeIframeId, setActiveIframeId] = useState<string | null>(null);
+  const [iframeLoaded, setIframeLoaded] = useState<Record<string, boolean>>({});
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (selectedCategory === "ALL") return p.featured;
@@ -99,8 +100,15 @@ export default function CaseStudies() {
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Flagship Preview`}
-                        className={`absolute inset-0 w-full h-full border-none transition-all duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10 bg-white" : "pointer-events-none opacity-100 z-5"
+                        onLoad={() => setIframeLoaded((prev) => ({ ...prev, [project.id]: true }))}
+                        className={`absolute inset-0 w-full h-full border-none transition-opacity duration-500 ${
+                          !project.gallery?.[0] || iframeLoaded[project.id]
+                            ? "opacity-100"
+                            : "opacity-0"
+                        } ${
+                          activeIframeId === project.id
+                            ? "pointer-events-auto z-10 bg-white"
+                            : "pointer-events-none z-[5]"
                         }`}
                         loading="lazy"
                       />
