@@ -90,13 +90,22 @@ export default function WorkCatalog() {
                   {/* Live Iframe Viewport (Crisp, High-Fidelity) */}
                   {project.demoUrl ? (
                     <div className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-border/40">
+                      {/* Real UI Poster / Instant High-Res Visual */}
+                      {project.gallery?.[0] && (
+                        <img
+                          src={project.gallery[0]}
+                          alt={`${project.name} UI Preview`}
+                          className="absolute inset-0 w-full h-full object-cover object-top z-0"
+                          loading="lazy"
+                        />
+                      )}
+
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Preview`}
-                        className={`absolute inset-0 w-full h-full border-none bg-white transition-opacity duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
+                        className={`absolute inset-0 w-full h-full border-none transition-opacity duration-300 ${
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10 bg-white" : "pointer-events-none opacity-100 z-5"
                         }`}
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                         loading="lazy"
                       />
 

@@ -85,14 +85,23 @@ export default function CaseStudies() {
                   {/* Interactive Live Viewport Frame */}
                   {project.demoUrl ? (
                     <div className="w-full h-56 sm:h-72 bg-bg-secondary relative overflow-hidden border-b border-border/50">
-                      {/* Live Iframe */}
+                      {/* Real UI Poster / Instant High-Res Visual */}
+                      {project.gallery?.[0] && (
+                        <img
+                          src={project.gallery[0]}
+                          alt={`${project.name} UI Preview`}
+                          className="absolute inset-0 w-full h-full object-cover object-top z-0"
+                          loading="lazy"
+                        />
+                      )}
+
+                      {/* Live Interactive Iframe */}
                       <iframe
                         src={project.demoUrl}
                         title={`${project.name} Live Flagship Preview`}
-                        className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-300 ${
-                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
+                        className={`absolute inset-0 w-full h-full border-none transition-all duration-300 ${
+                          activeIframeId === project.id ? "pointer-events-auto opacity-100 z-10 bg-white" : "pointer-events-none opacity-100 z-5"
                         }`}
-                        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
                         loading="lazy"
                       />
 
