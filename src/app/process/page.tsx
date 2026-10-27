@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "How It Works | 24-Hour Express Launch | NERQIVA",
     description:
       "Simple 4-step process: Select theme, share photos & text, review live preview on your phone, and go live in 1 day.",
-    url: "https://nerqiva.vercel.app/process",
+    url: "https://www.nerqivastudio.in/process",
   },
 };
 
@@ -29,13 +29,13 @@ export default function ProcessPage() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://nerqiva.vercel.app"
+            "item": "https://www.nerqivastudio.in"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "How It Works",
-            "item": "https://nerqiva.vercel.app/process"
+            "item": "https://www.nerqivastudio.in/process"
           }
         ]
       },

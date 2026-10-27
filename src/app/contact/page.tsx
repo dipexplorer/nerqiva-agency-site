@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Start a Project Diagnostic | NERQIVA Studio",
     description:
       "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links within 24 hours.",
-    url: "https://nerqiva.vercel.app/contact",
+    url: "https://www.nerqivastudio.in/contact",
   },
 };
 

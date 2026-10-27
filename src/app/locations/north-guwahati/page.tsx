@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Website Design & Development in North Guwahati & Rudreswar | NERQIVA",
     description:
       "Stunning local business websites delivered in 24 Hours with 1-click WhatsApp lead routing. Office at Baruah Souk, Rudreswar, North Guwahati.",
-    url: "https://nerqiva.vercel.app/locations/north-guwahati",
+    url: "https://www.nerqivastudio.in/locations/north-guwahati",
   },
 };
 
@@ -34,11 +34,11 @@ export default function NorthGuwahatiLocationPage() {
     "@graph": [
       {
         "@type": ["ProfessionalService", "LocalBusiness"],
-        "@id": "https://nerqiva.vercel.app/locations/north-guwahati/#localbusiness",
+        "@id": "https://www.nerqivastudio.in/locations/north-guwahati/#localbusiness",
         "name": "NERQIVA Studio — North Guwahati & Rudreswar",
-        "url": "https://nerqiva.vercel.app/locations/north-guwahati",
-        "logo": "https://nerqiva.vercel.app/icon.png",
-        "image": "https://nerqiva.vercel.app/icon.png",
+        "url": "https://www.nerqivastudio.in/locations/north-guwahati",
+        "logo": "https://www.nerqivastudio.in/icon.png",
+        "image": "https://www.nerqivastudio.in/icon.png",
         "description": "Premier website design studio based at Baruah Souk, Rudreswar, North Guwahati. Specialized in 24-Hour express website launches, WhatsApp lead routing, and Google Maps local SEO.",
         "telephone": "+91-8724932985",
         "email": "nerqiva.studio@gmail.com",
@@ -72,19 +72,19 @@ export default function NorthGuwahatiLocationPage() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://nerqiva.vercel.app"
+            "item": "https://www.nerqivastudio.in"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Locations",
-            "item": "https://nerqiva.vercel.app/locations/north-guwahati"
+            "item": "https://www.nerqivastudio.in/locations/north-guwahati"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "North Guwahati & Rudreswar",
-            "item": "https://nerqiva.vercel.app/locations/north-guwahati"
+            "item": "https://www.nerqivastudio.in/locations/north-guwahati"
           }
         ]
       }

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Terms of Service & Client Agreement | NERQIVA Studio",
     description:
       "Clear, transparent commercial terms: 100% asset ownership, 24-hour launch SLA, zero monthly lock-in retainers.",
-    url: "https://nerqiva.vercel.app/terms",
+    url: "https://www.nerqivastudio.in/terms",
   },
 };
 

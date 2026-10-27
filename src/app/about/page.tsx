@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "About Us | 24-Hour Express Digital Studio | NERQIVA",
     description:
       "Stunning, high-converting websites for local businesses delivered in 24 Hours. Learn about our core principles and team.",
-    url: "https://nerqiva.vercel.app/about",
+    url: "https://www.nerqivastudio.in/about",
   },
 };
 

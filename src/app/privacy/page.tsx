@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Privacy & Data Protection Policy | NERQIVA Studio",
     description:
       "Zero invasive tracking pixels, 100% client data ownership, and strict compliance with India's DPDP Act 2023.",
-    url: "https://nerqiva.vercel.app/privacy",
+    url: "https://www.nerqivastudio.in/privacy",
   },
 };
 

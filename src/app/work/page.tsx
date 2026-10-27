@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Selected Work & Live Website Demos | NERQIVA Studio",
     description:
       "Explore NERQIVA's portfolio of live interactive website themes for salons, beauty studios, luxury bridal boutiques, and local services.",
-    url: "https://nerqiva.vercel.app/work",
+    url: "https://www.nerqivastudio.in/work",
   },
 };
 

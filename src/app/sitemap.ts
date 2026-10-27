@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { PROJECTS } from "../data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nerqiva.vercel.app";
+  const baseUrl = "https://www.nerqivastudio.in";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {

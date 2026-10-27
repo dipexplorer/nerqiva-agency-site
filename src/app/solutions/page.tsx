@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Services & Solutions | High-Converting Business Websites | NERQIVA",
     description:
       "Explore NERQIVA's services: high-converting business websites, 1-click WhatsApp lead routing, and Google Maps local SEO.",
-    url: "https://nerqiva.vercel.app/solutions",
+    url: "https://www.nerqivastudio.in/solutions",
   },
 };
 
@@ -79,13 +79,13 @@ export default function SolutionsPage() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://nerqiva.vercel.app",
+            "item": "https://www.nerqivastudio.in",
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Services & Solutions",
-            "item": "https://nerqiva.vercel.app/solutions",
+            "item": "https://www.nerqivastudio.in/solutions",
           },
         ],
       },
@@ -97,7 +97,7 @@ export default function SolutionsPage() {
         "provider": {
           "@type": "LocalBusiness",
           "name": "NERQIVA Studio",
-          "url": "https://nerqiva.vercel.app",
+          "url": "https://www.nerqivastudio.in",
         },
         "areaServed": ["North Guwahati", "Rudreswar", "Guwahati", "Assam", "India"],
         "offers": {

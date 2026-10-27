@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     "UI/UX Design Studio India",
   ],
   authors: [{ name: "NERQIVA Studio" }],
-  metadataBase: new URL("https://nerqiva.vercel.app"),
+  metadataBase: new URL("https://www.nerqivastudio.in"),
   alternates: {
     canonical: "/",
   },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
       "We build high-converting business websites delivered in 24 Hours with 1-click WhatsApp lead routing and Google Maps local SEO for North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
     type: "website",
     locale: "en_US",
-    url: "https://nerqiva.vercel.app",
+    url: "https://www.nerqivastudio.in",
     siteName: "NERQIVA Studio",
     images: [
       {
@@ -106,11 +106,11 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": ["ProfessionalService", "LocalBusiness"],
-        "@id": "https://nerqiva.vercel.app/#localbusiness",
+        "@id": "https://www.nerqivastudio.in/#localbusiness",
         "name": "NERQIVA Studio",
-        "url": "https://nerqiva.vercel.app",
-        "logo": "https://nerqiva.vercel.app/icon.png",
-        "image": "https://nerqiva.vercel.app/icon.png",
+        "url": "https://www.nerqivastudio.in",
+        "logo": "https://www.nerqivastudio.in/icon.png",
+        "image": "https://www.nerqivastudio.in/icon.png",
         "description": "High-converting business website design, 1-click WhatsApp lead routing, Google Maps local search optimization, and custom web systems delivered in 24 Hours.",
         "telephone": "+91-8724932985",
         "email": "nerqiva.studio@gmail.com",
@@ -157,10 +157,10 @@ export default function RootLayout({
       },
       {
         "@type": "Organization",
-        "@id": "https://nerqiva.vercel.app/#organization",
+        "@id": "https://www.nerqivastudio.in/#organization",
         "name": "NERQIVA Studio",
-        "url": "https://nerqiva.vercel.app",
-        "logo": "https://nerqiva.vercel.app/icon.png",
+        "url": "https://www.nerqivastudio.in",
+        "logo": "https://www.nerqivastudio.in/icon.png",
         "founder": {
           "@type": "Person",
           "name": "Dipjyoti Das",
@@ -181,12 +181,12 @@ export default function RootLayout({
       },
       {
         "@type": "WebSite",
-        "@id": "https://nerqiva.vercel.app/#website",
-        "url": "https://nerqiva.vercel.app",
+        "@id": "https://www.nerqivastudio.in/#website",
+        "url": "https://www.nerqivastudio.in",
         "name": "NERQIVA Studio",
         "inLanguage": "en-US",
         "publisher": {
-          "@id": "https://nerqiva.vercel.app/#organization"
+          "@id": "https://www.nerqivastudio.in/#organization"
         }
       }
     ]

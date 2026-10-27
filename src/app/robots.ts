@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/'],
     },
-    sitemap: 'https://nerqiva.vercel.app/sitemap.xml',
+    sitemap: 'https://www.nerqivastudio.in/sitemap.xml',
+    host: 'https://www.nerqivastudio.in',
   };
 }
