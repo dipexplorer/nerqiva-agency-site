@@ -218,6 +218,19 @@ export default function ContactForm() {
       return;
     }
     setStatus("loading");
+
+    // 1. Persist lead on server and dispatch background email notification
+    try {
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }).catch((err) => console.error("Silent background lead sync error:", err));
+    } catch (err) {
+      console.error("Lead sync error:", err);
+    }
+
+    // 2. Open WhatsApp with full pre-written brief
     const message = formatBriefMessage();
     const waUrl = `https://wa.me/918724932985?text=${encodeURIComponent(message)}`;
     window.open(waUrl, "_blank");
@@ -233,6 +246,19 @@ export default function ContactForm() {
       return;
     }
     setStatus("loading");
+
+    // 1. Persist lead on server and dispatch background email notification
+    try {
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }).catch((err) => console.error("Silent background lead sync error:", err));
+    } catch (err) {
+      console.error("Lead sync error:", err);
+    }
+
+    // 2. Launch default email client
     try {
       const subject = encodeURIComponent(`Project Brief: ${formData.name} — ${formData.business || "Inquiry"}`);
       const body = encodeURIComponent(formatBriefMessage());
@@ -291,47 +317,17 @@ export default function ContactForm() {
           Answer 3 brief questions to receive a fixed-price engineering proposal, architecture recommendation, and direct WhatsApp demo within 24 hours.
         </p>
 
-        {/* Document Status Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 font-mono text-[10px] uppercase tracking-widest text-text-tertiary">
-          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 font-bold text-text-secondary shadow-2xs">
-            Document: NERQIVA-BRF-2026
-          </span>
-          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 text-text-secondary shadow-2xs flex items-center gap-1.5">
-            <Clock size={11} className="text-accent" />
-            24-Hour SLA
-          </span>
-          <span className="px-3 py-1 rounded-full bg-bg-card border border-border/80 text-text-secondary shadow-2xs flex items-center gap-1.5">
-            <FileCheck size={11} className="text-accent-gold" />
-            DPDP Act 2023 Compliant
-          </span>
-        </div>
-      </div>
-
-      {/* Direct WhatsApp Quick Contact Callout */}
-      <div className="mb-10 p-4 sm:p-5 rounded-2xl bg-bg-card border border-border/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-2xs">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-accent/10 border border-accent/25 flex items-center justify-center text-accent shrink-0">
-            <MessageSquare size={17} />
-          </div>
-          <div>
-            <p className="font-sans font-bold text-xs sm:text-sm text-text-primary">
-              Prefer an immediate technical consultation?
-            </p>
-            <p className="text-text-secondary text-xs font-normal">
-              Skip the questionnaire and message our lead architect directly on WhatsApp.
-            </p>
-          </div>
-        </div>
-
-        <a
-          href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20project%20directly."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary inline-flex items-center gap-2 px-4 py-2 font-mono text-[11px] font-semibold rounded-lg shrink-0 whitespace-nowrap self-stretch sm:self-auto justify-center"
-        >
-          <span>Chat on WhatsApp</span>
-          <ArrowRight size={13} />
-        </a>
+        <p className="mt-3 text-xs text-text-tertiary font-mono">
+          Prefer immediate consultation?{" "}
+          <a
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20project%20directly."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-primary underline font-medium hover:text-accent transition-colors"
+          >
+            Chat directly on WhatsApp &rarr;
+          </a>
+        </p>
       </div>
 
       {/* Stepper Progress Bar */}
@@ -826,7 +822,7 @@ export default function ContactForm() {
                       className="btn-primary py-3.5 px-5 font-mono text-xs font-semibold rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <MessageSquare size={14} />
-                      <span>Transmit via WhatsApp (Fastest)</span>
+                      <span>{status === "loading" ? "Logging Brief..." : "Transmit via WhatsApp (Fastest)"}</span>
                     </button>
 
                     <button
@@ -836,7 +832,7 @@ export default function ContactForm() {
                       className="px-5 py-3.5 bg-bg-secondary/70 border border-border/80 text-text-primary hover:border-accent hover:text-accent font-mono text-xs font-semibold rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Mail size={14} />
-                      <span>Transmit via Email Client</span>
+                      <span>{status === "loading" ? "Logging Brief..." : "Transmit via Email Client"}</span>
                     </button>
                   </div>
                 </motion.div>
@@ -846,40 +842,42 @@ export default function ContactForm() {
         </AnimatePresence>
       </div>
 
-      {/* Studio Coordinates & Response SLA Card */}
-      <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-bg-card border border-border/70 grid sm:grid-cols-3 gap-6 shadow-2xs">
-        <div className="space-y-1">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary font-bold block">
+      {/* Studio Coordinates & Communication Desk */}
+      <div className="mt-14 pt-8 border-t border-border/60 grid sm:grid-cols-3 gap-6">
+        <div>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary block mb-1">
             Direct Studio Desk
           </span>
-          <p className="font-sans font-bold text-sm text-text-primary">WhatsApp / Phone</p>
+          <p className="font-sans font-semibold text-sm text-text-primary">WhatsApp / Phone</p>
           <a
-            href="https://wa.me/918724932985"
-            className="text-accent text-xs font-mono font-medium hover:underline block"
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20project%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-mono text-text-secondary hover:text-accent transition-colors inline-block mt-0.5"
           >
             +91 87249 32985
           </a>
         </div>
 
-        <div className="space-y-1">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary font-bold block">
-            Architecture Inquiries
+        <div>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary block mb-1">
+            Executive Inquiries
           </span>
-          <p className="font-sans font-bold text-sm text-text-primary">Direct Email</p>
+          <p className="font-sans font-semibold text-sm text-text-primary">Studio Email</p>
           <a
             href="mailto:nerqiva.studio@gmail.com"
-            className="text-accent text-xs font-mono font-medium hover:underline block"
+            className="text-xs font-mono text-text-secondary hover:text-accent transition-colors inline-block mt-0.5"
           >
             nerqiva.studio@gmail.com
           </a>
         </div>
 
-        <div className="space-y-1">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary font-bold block">
+        <div>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-text-tertiary block mb-1">
             Geographic Base
           </span>
-          <p className="font-sans font-bold text-sm text-text-primary">North Guwahati / Assam</p>
-          <span className="text-text-secondary text-xs font-mono block">Pan-India Remote Sprints</span>
+          <p className="font-sans font-semibold text-sm text-text-primary">North Guwahati / Assam</p>
+          <span className="text-text-tertiary text-xs font-mono block mt-0.5">Pan-India Remote Sprints</span>
         </div>
       </div>
     </div>

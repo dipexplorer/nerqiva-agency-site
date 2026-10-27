@@ -7,6 +7,15 @@ import HeroFlowLine from "./HeroFlowLine";
 
 const DEMO_SHOWCASES = [
   {
+    id: "healthcare",
+    label: "Healthcare & Labs",
+    name: "LabLink Guwahati",
+    description: "Doorstep diagnostic platform — 1,797+ tests, cold-chain phlebotomy & instant booking",
+    url: "https://www.lablinkguwahati.in/",
+    demoUrl: "https://www.lablinkguwahati.in/",
+    tag: "Healthcare & Diagnostics",
+  },
+  {
     id: "beauty",
     label: "Salons & MUAs",
     name: "Aura Beauty",
@@ -41,7 +50,7 @@ const TOP_SERVICES = [
   "High-Converting Mobile Funnel",
 ];
 
-type DemoId = "beauty" | "gym" | "bridal";
+type DemoId = "healthcare" | "beauty" | "gym" | "bridal";
 
 interface HeroSubProps {
   activeDemo: DemoId;
@@ -430,7 +439,7 @@ function MobileHero({ activeDemo, setActiveDemo }: HeroSubProps) {
 }
 
 export default function Hero() {
-  const [activeDemo, setActiveDemo] = useState<DemoId>("beauty");
+  const [activeDemo, setActiveDemo] = useState<DemoId>("healthcare");
   const [interacting, setInteracting] = useState<string | null>(null);
 
   return (

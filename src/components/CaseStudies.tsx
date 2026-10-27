@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink, MousePointer2, CheckCircle2 } from "lucide-react";
 import { PROJECTS } from "../data/projects";
 
-const CATEGORIES = ["ALL", "Beauty & Bridal", "Photography Studio", "Fitness & Wellness"];
+const CATEGORIES = ["ALL", "Healthcare & Diagnostics", "Beauty & Bridal", "Photography Studio", "Fitness & Wellness"];
 
 export default function CaseStudies() {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
@@ -36,7 +36,7 @@ export default function CaseStudies() {
           </div>
           <div className="md:col-span-5">
             <p className="text-text-secondary text-base leading-relaxed">
-              Explore our live bespoke builds engineered for luxury MUAs, photographers, and studios. Each system includes sub-second speed, 1-click WhatsApp lead routing, and custom visual identity.
+              Explore our live bespoke builds engineered for healthcare providers, luxury MUAs, photographers, and studios. Each system includes sub-second speed, 1-click WhatsApp lead routing, and custom visual identity.
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function CaseStudies() {
                   <div className="p-6 sm:p-7">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                       <span className="font-mono text-[9px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold border bg-accent/10 text-accent border-accent/20">
-                        Bespoke System
+                        {project.projectType === "client" ? "Live Client Platform" : "Bespoke System"}
                       </span>
                       <span className="font-mono text-[9px] text-accent-gold font-bold uppercase tracking-wider">
                         Verified Mobile Speed

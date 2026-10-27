@@ -167,7 +167,12 @@ export default function NorthGuwahatiLocationPage() {
                   <Phone size={15} className="text-accent-gold shrink-0" />
                   <span>
                     <strong className="text-text-primary font-medium">Direct WhatsApp:</strong>{" "}
-                    <a href="tel:+918724932985" className="font-mono font-bold text-accent hover:underline">
+                    <a
+                      href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20based%20in%20Guwahati/Assam%20and%20would%20like%20to%20discuss%20a%20project."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono font-bold text-accent hover:underline"
+                    >
                       +91 87249 32985
                     </a>
                   </span>

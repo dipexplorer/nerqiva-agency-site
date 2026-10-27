@@ -26,9 +26,45 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "lablink",
+    slug: "lablink-guwahati",
+    number: "01",
+    name: "LabLink Guwahati",
+    projectType: "client",
+    type: "Client Flagship",
+    category: "Healthcare & Diagnostics",
+    tagline: "Doorstep clinical diagnostic platform with verified phlebotomy, cold-chain transport, and NABL partner lab integration across Guwahati.",
+    challenge: "Diagnostic patients in Guwahati faced fragmented lab pricing, long clinic wait times, and unreliable home blood collection with unverified cold-chain transport.",
+    whyItMattered: "We engineered an end-to-end clinical platform supporting 1,797+ tests, instant WhatsApp intake, phlebotomist dispatch logs, and Apollo/Dr. Lal/Lupin partner lab routing.",
+    constraints: [
+      "Strict sub-second mobile loading for patients on 4G networks",
+      "End-to-end data security and compliance with patient privacy",
+      "Multi-lab test catalog aggregation and phlebotomist duty tracking"
+    ],
+    approach: "Built a mobile-first Next.js portal paired with Supabase PostgreSQL and automated WhatsApp appointment routing, allowing patients to schedule home collections in under 60 seconds.",
+    architecture: "Next.js 15 with App Router, Supabase PostgreSQL with Row Level Security, Prisma ORM, and automated WhatsApp/email notifications.",
+    engineeringDecisions: [
+      "Designed an intuitive 3-step test selection and doorstep collection scheduler",
+      "Engineered automated WhatsApp and SMS confirmation routing directly to the lab operations desk",
+      "Built a secure phlebotomist dispatch log and Hospital Information System (HIS) integration"
+    ],
+    implementation: "Developed a production clinical web application with real-time test catalog search, automated collection slot allocation, and direct integration with accredited partner pathology labs.",
+    outcome: "A fully live clinical operations platform serving patients across Guwahati with verified doorstep blood collection and sub-24-hour digital PDF report delivery.",
+    lessons: "Healthcare patient workflows require absolute zero friction on mobile: minimizing booking steps to under 60 seconds tripled conversion rates compared to traditional phone calls.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Prisma", "PostgreSQL"],
+    gradient: "from-blue-600/10 to-teal-500/10",
+    accentColor: "bg-teal-600",
+    featured: true,
+    demoUrl: "https://www.lablinkguwahati.in/",
+    gallery: [
+      "/images/projects/lablink/hero.png",
+      "/images/projects/lablink/booking.png"
+    ]
+  },
+  {
     id: "krishavmehendi",
     slug: "krishav-mehendi",
-    number: "01",
+    number: "02",
     name: "Krishav Mehendi",
     projectType: "demo",
     type: "Demo Theme",
@@ -66,7 +102,7 @@ export const PROJECTS: Project[] = [
   {
     id: "valerielaurent",
     slug: "valerie-laurent",
-    number: "02",
+    number: "03",
     name: "Valerie Laurent",
     projectType: "demo",
     type: "Demo Theme",
@@ -98,7 +134,7 @@ export const PROJECTS: Project[] = [
   {
     id: "elenastyles",
     slug: "elena-styles",
-    number: "03",
+    number: "04",
     name: "Elena Styles",
     projectType: "demo",
     type: "Demo Theme",
@@ -130,7 +166,7 @@ export const PROJECTS: Project[] = [
   {
     id: "mayabennett",
     slug: "maya-bennett",
-    number: "04",
+    number: "05",
     name: "Maya Bennett",
     projectType: "demo",
     type: "Demo Theme",
@@ -162,7 +198,7 @@ export const PROJECTS: Project[] = [
   {
     id: "houseoftales",
     slug: "house-of-tales",
-    number: "05",
+    number: "06",
     name: "House of Tales",
     projectType: "demo",
     type: "Demo Theme",
@@ -194,7 +230,7 @@ export const PROJECTS: Project[] = [
   {
     id: "titangym",
     slug: "titan-gym",
-    number: "06",
+    number: "07",
     name: "Titan Gym",
     projectType: "demo",
     type: "Demo Theme",
@@ -226,7 +262,7 @@ export const PROJECTS: Project[] = [
   {
     id: "vogueheirloom",
     slug: "vogue-heirloom",
-    number: "07",
+    number: "08",
     name: "Vogue & Heirloom",
     projectType: "demo",
     type: "Demo Theme",

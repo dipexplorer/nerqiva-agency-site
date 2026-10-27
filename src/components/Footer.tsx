@@ -122,7 +122,13 @@ export default function Footer() {
               <div className="h-px w-full bg-border/40" />
               
               <div className="flex items-center justify-between gap-2">
-                <a href="tel:+918724932985" className="flex items-center gap-2 group cursor-pointer">
+                <a
+                  href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20reaching%20out%20from%20your%20website%20to%20discuss%20a%20project%20for%20my%20business."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 group cursor-pointer"
+                  title="Direct WhatsApp Consultation"
+                >
                   <div className="p-1.5 rounded-md bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
                     <Phone size={13} />
                   </div>

@@ -9,6 +9,7 @@ import ClosingSection from "./ClosingSection";
 
 const CATEGORY_TABS = [
   { id: "all", label: "All Flagships" },
+  { id: "healthcare", label: "Healthcare & Diagnostics", match: ["Healthcare & Diagnostics", "Clinical & Diagnostics"] },
   { id: "beauty", label: "Beauty & Bridal", match: ["Beauty & Bridal", "Luxury Bridal", "Studio & Academy"] },
   { id: "studios", label: "Photography & Studios", match: ["Photography Studio", "Luxury Wedding Photography"] },
   { id: "fitness", label: "Fitness & Training", match: ["Fitness & Wellness"] },
@@ -87,7 +88,7 @@ export default function WorkCatalog() {
               >
                 <div>
                   {/* Live Iframe Viewport (Crisp, High-Fidelity) */}
-                  {project.projectType === "demo" && project.demoUrl ? (
+                  {project.demoUrl ? (
                     <div className="w-full h-64 bg-bg-secondary relative overflow-hidden border-b border-border/40">
                       <iframe
                         src={project.demoUrl}
@@ -154,7 +155,7 @@ export default function WorkCatalog() {
                   <div className="p-7 sm:p-8 pb-4">
                     <div className="flex items-center justify-between gap-3 mb-3.5">
                       <span className="font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded font-bold border bg-accent/10 text-accent border-accent/20">
-                        Live Flagship
+                        {project.projectType === "client" ? "Live Client Platform" : "Live Flagship"}
                       </span>
                       <span className="font-mono text-[10px] text-text-tertiary uppercase tracking-wider font-semibold">
                         {project.category}
@@ -162,7 +163,7 @@ export default function WorkCatalog() {
                     </div>
 
                     <h3 className="font-sans font-bold text-2xl text-text-primary mb-2.5 tracking-tight group-hover:text-accent transition-colors duration-200">
-                      {project.projectType === "demo" && project.demoUrl ? (
+                      {project.demoUrl ? (
                         <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                           {project.name}
                         </a>

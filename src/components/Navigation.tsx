@@ -140,15 +140,27 @@ export default function Navigation() {
           </Link>
         ))}
 
-        <div className="flex items-center gap-4 mt-4">
-          <ThemeToggle />
+        <div className="flex flex-col items-center gap-3 mt-4 w-64">
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="btn-primary py-3 px-7 text-xs font-mono font-bold tracking-wider"
+            className="btn-primary w-full py-3.5 text-center text-xs font-mono font-bold tracking-wider rounded-lg"
           >
             Start a Project
           </Link>
+          <a
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20project%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="w-full py-3 text-center text-xs font-mono font-semibold border border-border/80 text-text-secondary hover:text-accent rounded-lg flex items-center justify-center gap-2"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>WhatsApp (+91 87249 32985)</span>
+          </a>
+          <div className="pt-2">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </>
