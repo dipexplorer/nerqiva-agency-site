@@ -52,6 +52,7 @@ const STUDIO_LINKS = [
   { label: "Our Process", href: "/process" },
   { label: "North Guwahati HQ", href: "/locations/north-guwahati" },
   { label: "Brand Philosophy", href: "/about" },
+  { label: "FAQs & Answers", href: "/faq" },
   { label: "Start a Project", href: "/contact" },
 ];
 

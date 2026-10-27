@@ -101,8 +101,31 @@ const TERMS_CLAUSES = [
 ];
 
 export default function TermsPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.nerqivastudio.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Terms of Service",
+        "item": "https://www.nerqivastudio.in/terms",
+      },
+    ],
+  };
+
   return (
     <div className="pt-32 relative z-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Header */}
       <div className="section-container mb-14 sm:mb-16 max-w-4xl">
         <Link 

@@ -101,8 +101,31 @@ const PRIVACY_CLAUSES = [
 ];
 
 export default function PrivacyPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.nerqivastudio.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Privacy Policy",
+        "item": "https://www.nerqivastudio.in/privacy",
+      },
+    ],
+  };
+
   return (
     <div className="pt-32 relative z-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero Header */}
       <div className="section-container mb-14 sm:mb-16 max-w-4xl">
         <Link 

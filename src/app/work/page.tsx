@@ -17,5 +17,32 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  return <WorkCatalog />;
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.nerqivastudio.in",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Selected Work",
+        "item": "https://www.nerqivastudio.in/work",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <WorkCatalog />
+    </>
+  );
 }

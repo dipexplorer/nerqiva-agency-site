@@ -202,7 +202,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-[10px] text-text-tertiary hover:text-accent transition-colors flex items-center gap-1 shrink-0 hidden sm:flex"
+                  className="font-mono text-[10px] text-text-tertiary hover:text-accent transition-colors flex items-center gap-1 shrink-0 sm:flex"
                 >
                   <span>Fullscreen</span>
                   <ExternalLink size={10} />
