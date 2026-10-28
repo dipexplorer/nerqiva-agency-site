@@ -8,9 +8,9 @@ import BrandLogo from "./BrandLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Live Demos", href: "/work" },
+  { label: "Work", href: "/work" },
   { label: "Services", href: "/solutions" },
-  { label: "How It Works", href: "/process" },
+  { label: "Process", href: "/process" },
   { label: "About", href: "/about" },
 ];
 
@@ -54,13 +54,22 @@ export default function Navigation() {
         }`}
       >
         <div className="section-container flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <BrandLogo className="h-9 w-9" />
-            <span className="font-mono text-lg font-bold tracking-widest text-text-primary group-hover:text-accent transition-colors duration-300">
-              NERQIVA
-            </span>
-          </Link>
+          {/* Logo & Location Micro-Badge */}
+          <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center gap-3 group shrink-0">
+              <BrandLogo className="h-9 w-9" />
+              <span className="font-mono text-lg font-bold tracking-widest text-text-primary group-hover:text-accent transition-colors duration-300">
+                NERQIVA
+              </span>
+            </Link>
+
+            {/* Subtle Local Trust Badge */}
+            <div className="hidden lg:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-secondary/70 border border-border/60 font-mono text-[11px] text-text-secondary select-none">
+              <span className="font-semibold text-text-primary">Guwahati, IN</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-[10px] text-text-tertiary">Available for new projects</span>
+            </div>
+          </div>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
@@ -87,12 +96,14 @@ export default function Navigation() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
-            <Link
-              href="/contact"
-              className="btn-primary py-2 px-5 text-xs font-mono font-bold tracking-wider"
+            <a
+              href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20project%20for%20my%20business."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary py-2 px-4 text-xs font-mono font-bold tracking-wider flex items-center gap-2 shadow-sm"
             >
-              Start a Project
-            </Link>
+              <span>Start on WhatsApp</span>
+            </a>
           </div>
 
           {/* Mobile toggle */}
@@ -141,23 +152,22 @@ export default function Navigation() {
         ))}
 
         <div className="flex flex-col items-center gap-3 mt-4 w-64">
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="btn-primary w-full py-3.5 text-center text-xs font-mono font-bold tracking-wider rounded-lg"
-          >
-            Start a Project
-          </Link>
           <a
-            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20project%20for%20my%20business."
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20project%20for%20my%20business."
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsOpen(false)}
+            className="btn-primary w-full py-3.5 text-center text-xs font-mono font-bold tracking-wider rounded-lg flex items-center justify-center gap-2"
+          >
+            <span>Start on WhatsApp</span>
+          </a>
+          <Link
+            href="/contact"
+            onClick={() => setIsOpen(false)}
             className="w-full py-3 text-center text-xs font-mono font-semibold border border-border/80 text-text-secondary hover:text-accent rounded-lg flex items-center justify-center gap-2"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>WhatsApp (+91 87249 32985)</span>
-          </a>
+            <span>Submit Detailed Scope</span>
+          </Link>
           <div className="pt-2">
             <ThemeToggle />
           </div>

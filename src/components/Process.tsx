@@ -176,10 +176,10 @@ export default function Process({ hideHeader = false }: ProcessProps) {
               className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
               style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
             >
-              A deployment process engineered for <span className="italic font-normal">clarity</span>.
+              The 4-Day Sprint: From intake to <span className="italic font-normal">live revenue</span>.
             </h2>
             <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
-              From architecture selection to live domain cutover in 24 hours. Clear milestones, transparent deliverables, and zero technical friction.
+              No months-long agency delays or endless back-and-forth. Clear daily milestones, verified deliverables, and real phone testing before your live domain cutover.
             </p>
           </div>
         )}

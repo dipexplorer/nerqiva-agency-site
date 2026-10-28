@@ -15,9 +15,9 @@ export default function WhyUs() {
     {
       id: "speed",
       icon: <Zap size={18} className="text-accent" />,
-      title: "Guaranteed 24-Hour Deployment",
-      body: "No 8-week agency runarounds or endless scope creep. We operate with strict, transparent milestones to take your business from asset intake to verified live cutover in 24 hours.",
-      emphasis: "24-Hour SLA",
+      title: "Guaranteed 4-Day Sprint",
+      body: "No 8-week agency runarounds or endless scope creep. We operate with strict, transparent milestones to take your business from intake to verified live cutover in 4 days.",
+      emphasis: "4-Day SLA",
     },
     {
       id: "founder",

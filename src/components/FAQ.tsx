@@ -91,7 +91,7 @@ export default function FAQ() {
             Frequently asked <span className="italic font-normal text-accent">questions</span>.
           </h2>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
-            Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our 24-hour launch workflow.
+            Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our 4-Day Sprint launch workflow.
           </p>
         </div>
 

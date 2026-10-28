@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck } from "lucide-react";
 
 const SERVICE_OPTIONS = [
   { id: "clinic", label: "Dental & Healthcare", query: "Healthcare & Clinic" },
@@ -72,6 +72,26 @@ export default function ClosingSection() {
           <span>Inquire for {selectedService.label}</span>
           <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
         </a>
+
+        {/* Zero-Risk Staging Guarantee Card */}
+        <div className="mt-7 mb-4 max-w-xl w-full p-4.5 rounded-xl bg-bg-card border border-border/80 shadow-2xs flex items-start gap-3.5 text-left">
+          <div className="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-500 flex items-center justify-center shrink-0 mt-0.5">
+            <ShieldCheck size={18} />
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-emerald-600 font-bold">
+                Zero-Risk Staging Guarantee
+              </span>
+              <span className="font-mono text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 dark:text-emerald-400 font-semibold border border-emerald-500/20">
+                100% Verified
+              </span>
+            </div>
+            <p className="text-xs text-text-secondary leading-relaxed font-normal">
+              You receive a private mobile staging link to test on your own smartphone before DNS cutover. Test the speed, typography, and WhatsApp booking flow yourself. If it doesn&apos;t meet the exact standard agreed upon, you don&apos;t launch.
+            </p>
+          </div>
+        </div>
 
         <p className="font-sans text-xs text-text-tertiary font-normal px-4 text-center">
           Direct WhatsApp routing · Reply within 1–2 hours · Zero sales pressure

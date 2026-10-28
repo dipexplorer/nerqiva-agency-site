@@ -18,60 +18,60 @@ interface SolutionItem {
 
 const WHAT_WE_BUILD: SolutionItem[] = [
   {
+    id: "whatsapp",
+    label: "WhatsApp Lead Engine",
+    badge: "Direct Bookings",
+    icon: MessageSquare,
+    outcome: "Never lose a high-ticket client to a delayed reply. Inquiries from your site pre-fill service, date, and budget directly into your personal WhatsApp in 5 seconds.",
+    forWho: "Busy business owners, salons, clinics, and studios who cannot monitor Instagram DMs all day",
+    includes: [
+      "1-tap WhatsApp booking button placed strategically on every page",
+      "Pre-filled client inquiry text (service requested, target date, budget)",
+      "Instant push alerts to your phone the second an inquiry is submitted",
+      "Zero platform lock-in — connects directly to your existing WhatsApp or WhatsApp Business",
+    ],
+    price: "Modular Add-On · Zero Recurring Software Fees",
+    cta: "Set up my WhatsApp Lead Engine"
+  },
+  {
     id: "website",
-    label: "High-Converting Website",
-    badge: "24-Hour Delivery",
+    label: "Digital Flagship Storefront",
+    badge: "Sub-Second Speed",
     icon: Globe,
-    outcome: "A bespoke digital flagship that loads under 1 second, looks immaculate on phones, and turns visitors into high-paying clients.",
-    forWho: "Salons, private studios, medical clinics, bridal couturiers, and photographers",
+    outcome: "A bespoke, custom-coded digital storefront that loads in under 1 second on mobile phones, looks stunning, and turns Instagram scrollers into paying clients.",
+    forWho: "Salons, private studios, medical clinics, bridal artists, architects, and fitness gyms",
     includes: [
       "Custom visual design tailored precisely to your brand and price tier",
-      "Sub-second mobile performance — zero layout lag, clear typography, effortless tapping",
+      "Sub-second mobile performance — tested for speed on Jio & Airtel 4G networks",
       "Direct 1-tap WhatsApp booking button so warm leads reach you instantly",
       "Full local SEO technical setup ready for immediate Google indexing",
     ],
-    price: "One-Time Investment · Zero Monthly Software Fees",
+    price: "One-Time Investment · You Own 100% of the Code",
     cta: "Inquire about a custom website"
   },
   {
-    id: "whatsapp",
-    label: "WhatsApp Lead Automation",
-    badge: "Instant Alerts",
-    icon: MessageSquare,
-    outcome: "Never lose a high-ticket client to a delayed reply. Inquiries from your website trigger formatted WhatsApp notifications immediately — even at midnight.",
-    forWho: "Busy business owners and studio directors who cannot monitor DMs 24/7",
-    includes: [
-      "Instant WhatsApp alert to your personal phone the second a client inquires",
-      "Automated instant confirmation message sent to the client to set expectations",
-      "Client details (service requested, target date, budget) pre-formatted in chat",
-      "Zero platform lock-in — functions seamlessly on new or existing websites",
-    ],
-    price: "Modular Add-On · Compatible With Any Site",
-    cta: "Automate my lead capture"
-  },
-  {
     id: "google",
-    label: "Google & Maps Visibility",
-    badge: "Local Search",
+    label: "Local Search Engine",
+    badge: "Google Maps #1",
     icon: MapPin,
-    outcome: "Capture clients the exact moment they search for your service locally — dominating Google Maps and high-intent local search results.",
-    forWho: "Local service businesses that rely on walk-in or high-ticket discovery clients",
+    outcome: "Capture clients the exact moment they search for your service locally — dominating Google Maps and high-intent local search queries in your city.",
+    forWho: "Local service businesses that rely on walk-ins or high-ticket discovery clients",
     includes: [
-      "Google Business Profile calibrated and optimized for top local pack ranking",
+      "Google Business Profile verified and optimized for top local pack ranking",
       "Verified Google Maps listing with accurate location, photography, and business hours",
       "High-intent local keyword indexing across all primary service pages",
       "Review collection system to steadily compound verified social proof",
     ],
-    price: "Permanent One-Time Setup · You Own 100%",
-    cta: "Boost my Google ranking"
+    price: "Permanent One-Time Setup · Permanent Asset",
+    cta: "Dominate local Google search"
   },
   {
     id: "refresh",
-    label: "Legacy Website Redesign",
-    badge: "Speed & Polish",
+    label: "Legacy Website Overhaul",
+    badge: "Mobile Speed & Polish",
     icon: RefreshCw,
-    outcome: "If your current website feels slow, dated, or embarrassing to send clients to — we rebuild the frontend for modern speeds without starting from scratch.",
-    forWho: "Established businesses with outdated websites that perform poorly on mobile",
+    outcome: "If your current website feels slow, dated, or embarrassing to send clients to — we rebuild the frontend for modern mobile speeds without starting from scratch.",
+    forWho: "Established businesses with outdated WordPress or Wix websites that perform poorly on mobile",
     includes: [
       "Complete mobile UX overhaul — modern typography, layout rhythm, and responsive hierarchy",
       "Performance optimization targeting sub-2-second load times on mobile 4G/5G",

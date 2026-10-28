@@ -17,40 +17,26 @@ interface ProblemItem {
 
 const PROBLEMS: ProblemItem[] = [
   {
-    id: "invisible",
-    label: "Nobody can find you online",
-    subtitle: "Your competitors show up on Google. You don't.",
-    detail: "When someone searches \u201cbest bridal makeup artist near me\u201d or \u201cfitness studio in Guwahati,\u201d your business doesn't appear. That high-value customer books someone else — not because your craft is worse, but because you were invisible at the exact moment they were ready to spend.",
-    realCost: "You lose high-intent local discovery searches every day to whoever holds the top 3 spots on Google Maps.",
-    solutionSummary: "Verified Google Business profile, local search indexation, and a verified map presence.",
-    wefix: [
-      "Google Business Profile verified and calibrated for local search ranking",
-      "Fast-loading digital storefront optimized for high-intent local keywords",
-      "Accurate Google Maps location pin, operating hours, and direct call/book links"
-    ],
-    cta: "Fix my Google visibility"
-  },
-  {
     id: "dms",
-    label: "You lose customers in your DMs",
+    label: "You lose customers in your Instagram DMs",
     subtitle: "By the time you reply, they've already booked someone else.",
     detail: "A potential client reaches out on Instagram at 10 PM inquiring about bridal rates or private sessions. You see it the next morning. They already confirmed with a competitor at 10:30 PM. In high-ticket services, speed and immediacy determine who wins the deal.",
-    realCost: "Delayed manual replies are the #1 reason warm leads go cold and choose faster competitors.",
-    solutionSummary: "Instant 1-tap WhatsApp booking button and 24/7 automated inquiry response.",
+    realCost: "Client DMs at 11 PM → You reply next morning → They already booked your competitor.",
+    solutionSummary: "Client lands on site → Taps service → WhatsApp pre-fills service & budget → In your chat in 5 seconds.",
     wefix: [
       "Prominent 1-tap WhatsApp booking button accessible from every page",
-      "Automated greeting and intake questions so leads are handled even outside working hours",
+      "Pre-filled service context so leads arrive qualified and ready to confirm",
       "Transparent package guide and pricing visible without needing a protracted DM exchange"
     ],
     cta: "Stop losing DM inquiries"
   },
   {
     id: "mobile",
-    label: "Your website looks bad on phones",
-    subtitle: "Most of your visitors are on mobile. Is it turning them away?",
+    label: "Your website looks bad or loads slow on phones",
+    subtitle: "Over 85% of your visitors are on mobile. Is it turning them away?",
     detail: "Over 85% of your clients find you on their phone. If your site takes 5 seconds to load, has tiny unreadable text, or squished buttons, it creates an immediate perception of low quality. A clunky mobile experience damages your brand before you ever get to speak with them.",
-    realCost: "A frustrating mobile experience erodes credibility instantly, making premium pricing harder to justify.",
-    solutionSummary: "Ultra-responsive mobile-first design engineered for speed, thumb interaction, and aesthetic elegance.",
+    realCost: "Over 85% visit on mobile → Slow load or broken menu → Visitor bounces in 3 seconds.",
+    solutionSummary: "Sub-second mobile speed → Tested on Jio & Airtel 4G → Instant professional trust.",
     wefix: [
       "Sub-second load times optimized for local 4G/5G mobile connections",
       "Generous touch targets and intuitive navigation — no pinching or horizontal zooming",
@@ -59,12 +45,26 @@ const PROBLEMS: ProblemItem[] = [
     cta: "Modernize my mobile experience"
   },
   {
+    id: "invisible",
+    label: "Nobody can find your business on Google",
+    subtitle: "Your competitors show up on Google Maps. You don't.",
+    detail: "When someone searches \u201cbest bridal makeup artist near me\u201d or \u201cdental clinic in Guwahati,\u201d your business doesn't appear. That high-value customer books someone else — not because your craft is worse, but because you were invisible at the exact moment they were ready to spend.",
+    realCost: "Nearby clients search 'best clinic / salon near me' → Competitor appears #1 → You lose the booking.",
+    solutionSummary: "Structured Google Business Profile & Local Schema → High search ranking & 1-tap call/directions.",
+    wefix: [
+      "Google Business Profile verified and calibrated for local search ranking",
+      "Fast-loading digital storefront optimized for high-intent local keywords",
+      "Accurate Google Maps location pin, operating hours, and direct call/book links"
+    ],
+    cta: "Fix my Google visibility"
+  },
+  {
     id: "bookings",
-    label: "No easy way for clients to book",
+    label: "No easy way for clients to view packages & book",
     subtitle: "If booking takes effort, busy clients simply won't bother.",
     detail: "When booking requires multi-day back-and-forth messaging, sending photos, asking for payment details, and manual coordination, clients lose momentum. High-paying clients especially expect a smooth, organized booking flow that respects their time.",
-    realCost: "Friction-heavy booking processes filter out busy, high-paying clients who won't tolerate inconvenience.",
-    solutionSummary: "Streamlined 1-step direct inquiry funnel straight to your WhatsApp or appointment calendar.",
+    realCost: "Endless 'Price please' comments & back-and-forth messaging → 70% of prospective clients disappear.",
+    solutionSummary: "Transparent package menus & real client photos → Zero friction → Client arrives ready to confirm.",
     wefix: [
       "Upfront package breakdowns and deliverables that eliminate awkward negotiation",
       "Structured inquiry form that captures date, service, and requirements in one single submission",
@@ -75,8 +75,8 @@ const PROBLEMS: ProblemItem[] = [
 ];
 
 export default function ProblemSection() {
-  const [activeId, setActiveId] = useState<string>("invisible");
-  const [mobileExpandedId, setMobileExpandedId] = useState<string | null>("invisible");
+  const [activeId, setActiveId] = useState<string>("dms");
+  const [mobileExpandedId, setMobileExpandedId] = useState<string | null>("dms");
   const activeProblem = PROBLEMS.find((p) => p.id === activeId) || PROBLEMS[0];
 
   return (
@@ -171,14 +171,14 @@ export default function ProblemSection() {
                       </p>
                     </div>
 
-                    {/* Before vs After Contrast (Tailored per problem, zero infomercial spam) */}
+                    {/* Before vs After Contrast: The Current Leak vs The Nerqiva System */}
                     <div className="grid sm:grid-cols-2 gap-3.5 my-1">
                       {/* Current Obstacle */}
-                      <div className="bg-bg-secondary/60 border border-border rounded-xl p-4 flex flex-col justify-between shadow-2xs">
+                      <div className="bg-rose-500/4 border border-rose-500/20 rounded-xl p-4 flex flex-col justify-between shadow-2xs">
                         <div className="flex items-center gap-1.5 mb-2">
                           <XCircle size={14} className="text-rose-500 shrink-0" />
-                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-text-secondary">
-                            Without NERQIVA
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-rose-500">
+                            The Current Leak
                           </span>
                         </div>
                         <p className="text-xs text-text-secondary font-medium leading-relaxed">
@@ -187,11 +187,11 @@ export default function ProblemSection() {
                       </div>
                       
                       {/* Tailored Solution */}
-                      <div className="bg-accent/5 border border-accent/20 rounded-xl p-4 flex flex-col justify-between shadow-2xs">
+                      <div className="bg-emerald-500/4 border border-emerald-500/25 rounded-xl p-4 flex flex-col justify-between shadow-2xs">
                         <div className="flex items-center gap-1.5 mb-2">
-                          <CheckCircle2 size={14} className="text-accent shrink-0" />
-                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-accent">
-                            With NERQIVA
+                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+                            The Nerqiva System
                           </span>
                         </div>
                         <p className="text-xs text-text-primary font-medium leading-relaxed">
@@ -293,13 +293,13 @@ export default function ProblemSection() {
                           {problem.detail}
                         </p>
 
-                        {/* Contrast Boxes */}
+                        {/* Contrast Boxes: The Current Leak vs The Nerqiva System */}
                         <div className="flex flex-col gap-2.5">
-                          <div className="bg-bg-secondary/70 border border-border rounded-lg p-3">
+                          <div className="bg-rose-500/4 border border-rose-500/20 rounded-lg p-3">
                             <div className="flex items-center gap-1.5 mb-1">
                               <XCircle size={13} className="text-rose-500 shrink-0" />
-                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-text-secondary">
-                                Without NERQIVA
+                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-rose-500">
+                                The Current Leak
                               </span>
                             </div>
                             <p className="text-xs text-text-secondary font-medium">
@@ -307,11 +307,11 @@ export default function ProblemSection() {
                             </p>
                           </div>
 
-                          <div className="bg-accent/5 border border-accent/20 rounded-lg p-3">
+                          <div className="bg-emerald-500/4 border border-emerald-500/25 rounded-lg p-3">
                             <div className="flex items-center gap-1.5 mb-1">
-                              <CheckCircle2 size={13} className="text-accent shrink-0" />
-                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-accent">
-                                With NERQIVA
+                              <CheckCircle2 size={13} className="text-emerald-500 shrink-0" />
+                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-emerald-600">
+                                The Nerqiva System
                               </span>
                             </div>
                             <p className="text-xs text-text-primary font-medium">

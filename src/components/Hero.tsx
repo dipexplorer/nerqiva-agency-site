@@ -70,10 +70,17 @@ function DesktopHero({ activeDemo, setActiveDemo, interacting, setInteracting }:
           {/* Left Column: Value proposition & CTAs */}
           <div className="lg:col-span-6 flex flex-col">
             {/* Single quiet status pill */}
-            <div className="animate-fade-in-up mb-5 flex items-center gap-2">
+            <div className="animate-fade-in-up mb-4 flex items-center gap-2">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[11px] font-semibold text-text-secondary bg-bg-secondary border border-border rounded-full shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                Accepting 2 New Client Projects for Q2
+                Available for New Client Projects
+              </span>
+            </div>
+
+            {/* Eyebrow */}
+            <div className="animate-fade-in-up mb-3 flex items-center gap-2">
+              <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
+                Web Design &amp; Lead Systems for Local Businesses
               </span>
             </div>
 
@@ -82,11 +89,10 @@ function DesktopHero({ activeDemo, setActiveDemo, interacting, setInteracting }:
               className="animate-fade-in-up font-display font-black text-text-primary text-3xl sm:text-4xl lg:text-[3.25rem] leading-[1.12] tracking-tight mb-5"
               style={{ letterSpacing: "-0.03em", animationFillMode: "both" }}
             >
-              Your competitors win clients because they{" "}
+              We build websites that turn Instagram scrollers into{" "}
               <span className="font-serif italic font-normal text-accent">
-                show up, respond fast,
-              </span>{" "}
-              and look credible online.
+                paying clients.
+              </span>
             </h1>
 
             {/* Distilled Subheadline */}
@@ -94,7 +100,7 @@ function DesktopHero({ activeDemo, setActiveDemo, interacting, setInteracting }:
               className="animate-fade-in-up text-text-secondary text-base sm:text-lg leading-relaxed max-w-xl mb-6 font-normal"
               style={{ animationDelay: "120ms", animationFillMode: "both" }}
             >
-              We build bespoke high-converting websites, automated WhatsApp booking funnels, and verified Google search presence for ambitious local businesses — so clients find you, trust you, and book without friction.
+              Fast loading, custom-tailored on mobile, and connected directly to your WhatsApp. No slow agency retainers or bloated WordPress templates. Delivered live in days.
             </p>
 
             {/* Core Capability Tags */}
@@ -263,7 +269,14 @@ function MobileHero({ activeDemo, setActiveDemo }: HeroSubProps) {
           <div className="animate-fade-in-up mb-4 flex items-center gap-2">
             <span className="inline-flex items-center gap-2 px-3 py-1 font-mono text-[10px] font-semibold text-text-secondary bg-bg-secondary border border-border rounded-full shadow-2xs">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              Accepting 2 Clients for Q2
+              Available for New Client Projects
+            </span>
+          </div>
+
+          {/* Eyebrow */}
+          <div className="animate-fade-in-up mb-2 flex items-center">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-accent font-bold">
+              Web Design &amp; Lead Systems for Local Businesses
             </span>
           </div>
 
@@ -272,11 +285,10 @@ function MobileHero({ activeDemo, setActiveDemo }: HeroSubProps) {
             className="animate-fade-in-up font-display font-black text-text-primary text-[2.15rem] leading-[1.12] tracking-tight mb-4"
             style={{ letterSpacing: "-0.025em", animationFillMode: "both" }}
           >
-            Your competitors win clients because they{" "}
+            We build websites that turn Instagram scrollers into{" "}
             <span className="font-serif italic font-normal text-accent">
-              show up, respond fast,
-            </span>{" "}
-            and look credible online.
+              paying clients.
+            </span>
           </h1>
 
           {/* Clean Demo Preview Card (No fake rotated card, no fake SVG doodle lines) */}
@@ -379,7 +391,7 @@ function MobileHero({ activeDemo, setActiveDemo }: HeroSubProps) {
             className="animate-fade-in-up text-text-secondary text-[15px] leading-relaxed mb-6 font-normal mt-2"
             style={{ animationDelay: "100ms", animationFillMode: "both" }}
           >
-            We build bespoke high-converting websites, automated WhatsApp booking funnels, and verified Google search presence for ambitious local businesses — so clients find you, trust you, and book without friction.
+            Fast loading, custom-tailored on mobile, and connected directly to your WhatsApp. No slow agency retainers or bloated WordPress templates. Delivered live in days.
           </p>
 
           {/* Clean Capability Tags */}
