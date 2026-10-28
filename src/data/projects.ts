@@ -3,7 +3,7 @@ export interface Project {
   slug: string;
   number: string;
   name: string;
-  projectType: "demo" | "client";
+  projectType: "client" | "concept" | "framework";
   type: string;
   category: string;
   tagline: string;
@@ -31,26 +31,26 @@ export const PROJECTS: Project[] = [
     number: "01",
     name: "LabLink Guwahati",
     projectType: "client",
-    type: "Client Flagship",
+    type: "Client Work — Live Platform",
     category: "Healthcare & Diagnostics",
-    tagline: "Doorstep clinical diagnostic platform with verified phlebotomy, cold-chain transport, and NABL partner lab integration across Guwahati.",
-    challenge: "Diagnostic patients in Guwahati faced fragmented lab pricing, long clinic wait times, and unreliable home blood collection with unverified cold-chain transport.",
-    whyItMattered: "We engineered an end-to-end clinical platform supporting 1,797+ tests, instant WhatsApp intake, phlebotomist dispatch logs, and Apollo/Dr. Lal/Lupin partner lab routing.",
+    tagline: "Clinical diagnostic web application and doorstep sample booking portal for Guwahati patients.",
+    challenge: "Patients seeking home diagnostic blood tests in Guwahati experienced opaque pricing, phone-only scheduling, and lack of a structured digital booking flow.",
+    whyItMattered: "We engineered a clean, conversion-focused web portal with instant WhatsApp dispatch routing, mobile booking wizard, and search-optimized test directory.",
     constraints: [
-      "Strict sub-second mobile loading for patients on 4G networks",
-      "End-to-end data security and compliance with patient privacy",
-      "Multi-lab test catalog aggregation and phlebotomist duty tracking"
+      "Sub-second initial render on regional mobile networks",
+      "Frictionless 3-step test selection and address intake",
+      "Direct WhatsApp dispatch integration without mandatory account sign-up"
     ],
     approach: "Built a mobile-first Next.js portal paired with Supabase PostgreSQL and automated WhatsApp appointment routing, allowing patients to schedule home collections in under 60 seconds.",
-    architecture: "Next.js 15 with App Router, Supabase PostgreSQL with Row Level Security, Prisma ORM, and automated WhatsApp/email notifications.",
+    architecture: "Next.js 15 with App Router, Supabase PostgreSQL with Row Level Security, Prisma ORM, and automated WhatsApp notification routing.",
     engineeringDecisions: [
       "Designed an intuitive 3-step test selection and doorstep collection scheduler",
-      "Engineered automated WhatsApp and SMS confirmation routing directly to the lab operations desk",
-      "Built a secure phlebotomist dispatch log and Hospital Information System (HIS) integration"
+      "Engineered automated WhatsApp lead routing directly to the lab operations desk",
+      "Optimized static catalog search for instant test lookup without network latency"
     ],
-    implementation: "Developed a production clinical web application with real-time test catalog search, automated collection slot allocation, and direct integration with accredited partner pathology labs.",
-    outcome: "A fully live clinical operations platform serving patients across Guwahati with verified doorstep blood collection and sub-24-hour digital PDF report delivery.",
-    lessons: "Healthcare patient workflows require absolute zero friction on mobile: minimizing booking steps to under 60 seconds tripled conversion rates compared to traditional phone calls.",
+    implementation: "Developed a production clinical web application with real-time test catalog search, automated collection slot allocation, and direct WhatsApp dispatch to the local team.",
+    outcome: "A live, operational diagnostic web application providing patients across Guwahati with clear test information and instant doorstep booking via WhatsApp.",
+    lessons: "Patients booking medical tests on mobile prioritize clarity and speed over complex multi-step accounts. Direct WhatsApp handoff achieved immediate response times.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Prisma", "PostgreSQL"],
     gradient: "from-blue-600/10 to-teal-500/10",
     accentColor: "bg-teal-600",
@@ -66,10 +66,10 @@ export const PROJECTS: Project[] = [
     slug: "krishav-mehendi",
     number: "02",
     name: "Krishav Mehendi",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Beauty & Bridal",
-    tagline: "Premium digital experience concept for bridal and traditional mehendi designers.",
+    tagline: "NERQIVA Concept: Luxury bridal booking flow and portfolio showcase for henna artists.",
     challenge: "Traditional beauty and boutique services often lack a digital presence, relying entirely on word-of-mouth or social media. High-end clients expect a digital experience that reflects the same level of luxury and attention to detail as the service itself.",
     whyItMattered: "A premium interface acts as a 24/7 digital gallery and direct booking engine. By integrating beautiful interactive visuals and a seamless WhatsApp reservation flow, Krishav Mehendi elevates local artistry to a highly professional, commercial grade.",
     constraints: [
@@ -104,10 +104,10 @@ export const PROJECTS: Project[] = [
     slug: "valerie-laurent",
     number: "03",
     name: "Valerie Laurent",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Beauty & Bridal",
-    tagline: "High-end editorial and bridal makeup artistry portfolio.",
+    tagline: "NERQIVA Concept: High-end editorial and bridal makeup artistry portfolio.",
     challenge: "Luxury makeup artists often struggle to translate their sophisticated visual aesthetic into a digital platform that feels equally premium and performs flawlessly on mobile.",
     whyItMattered: "A striking portfolio acts as a direct conversion tool for high-end clientele. By combining immersive imagery with smooth transitions, it elevates the artist's brand above local competitors.",
     constraints: [
@@ -136,10 +136,10 @@ export const PROJECTS: Project[] = [
     slug: "elena-styles",
     number: "04",
     name: "Elena Styles",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Luxury Bridal",
-    tagline: "Personal luxury artistry portfolio with editorial print aesthetics.",
+    tagline: "NERQIVA Concept: Personal luxury artistry portfolio with editorial print aesthetics.",
     challenge: "High-fashion bridal artists need a digital presence that feels like a luxury magazine catalog rather than a standard booking page.",
     whyItMattered: "By rejecting dark charcoal aesthetics in favor of a warm cream and espresso-based palette, we created an interface that conveys femininity, professional trust, and premium bridal artistry.",
     constraints: [
@@ -168,10 +168,10 @@ export const PROJECTS: Project[] = [
     slug: "maya-bennett",
     number: "05",
     name: "Maya Bennett",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Studio & Academy",
-    tagline: "Modern beauty studio and academy booking platform.",
+    tagline: "NERQIVA Concept: Modern beauty studio and academy booking platform.",
     challenge: "Beauty academies struggle to balance dual objectives: booking individual bridal clients while simultaneously registering students for makeup courses.",
     whyItMattered: "We engineered a dual-funnel digital platform that seamlessly routes bridal inquiries and academy student registrations into organized WhatsApp flows.",
     constraints: [
@@ -200,10 +200,10 @@ export const PROJECTS: Project[] = [
     slug: "house-of-tales",
     number: "06",
     name: "House of Tales",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Photography Studio",
-    tagline: "Premium cinematic portfolio and booking platform for photography and production studios.",
+    tagline: "NERQIVA Concept: Premium cinematic portfolio and booking platform for photography and production studios.",
     challenge: "Photography studios often struggle to showcase high-resolution portfolios without significantly compromising website loading speeds and user experience.",
     whyItMattered: "An immersive, lightning-fast portfolio instantly captures high-end clients' attention, acting as a direct conversion tool for premium photography packages.",
     constraints: [
@@ -232,10 +232,10 @@ export const PROJECTS: Project[] = [
     slug: "titan-gym",
     number: "07",
     name: "Titan Gym",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Fitness & Wellness",
-    tagline: "High-performance athletic training center and boutique wellness concept.",
+    tagline: "NERQIVA Concept: High-performance athletic training center and boutique wellness concept.",
     challenge: "Premium gyms and wellness retreats often suffer from generic, template-driven websites that fail to communicate the intense, high-end nature of their physical facilities.",
     whyItMattered: "An aggressive, premium digital interface validates the high-ticket price of elite athletic coaching and bespoke recovery services before the client ever steps foot in the door.",
     constraints: [
@@ -264,10 +264,10 @@ export const PROJECTS: Project[] = [
     slug: "vogue-heirloom",
     number: "08",
     name: "Vogue & Heirloom",
-    projectType: "demo",
-    type: "Demo Theme",
+    projectType: "concept",
+    type: "Studio Concept",
     category: "Luxury Wedding Photography",
-    tagline: "High-end cinematic fine art wedding photography portfolio.",
+    tagline: "NERQIVA Concept: High-end cinematic fine art wedding photography portfolio.",
     challenge: "Luxury wedding photographers need a digital presence that feels like a high-fashion magazine, balancing emotional storytelling with premium service pricing.",
     whyItMattered: "An immersive, editorial-style portfolio positions the photographer as a luxury brand, filtering for high-ticket clients who value cinematic artistry over standard coverage.",
     constraints: [

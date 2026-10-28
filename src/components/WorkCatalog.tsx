@@ -198,7 +198,7 @@ export default function WorkCatalog() {
                         <span>Sub-300ms Verified</span>
                       </div>
                       
-                      {project.projectType === "demo" && project.demoUrl ? (
+                      {project.demoUrl ? (
                         <a 
                           href={project.demoUrl}
                           target="_blank"

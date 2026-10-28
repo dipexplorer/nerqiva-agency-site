@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NERQIVA Studio | High-Converting Websites & Digital Systems",
     description:
-      "We build high-converting business websites delivered in 24 Hours with 1-click WhatsApp lead routing and Google Maps local SEO for North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
+      "Digital infrastructure for businesses that cannot afford to look ordinary. Custom web applications, booking flows, and local search infrastructure.",
     type: "website",
     locale: "en_US",
     url: "https://www.nerqivastudio.in",
@@ -205,7 +205,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-bg-primary text-text-primary font-sans">
-        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
           <Loader />
           <InteractiveGridBackground />
           <Navigation />

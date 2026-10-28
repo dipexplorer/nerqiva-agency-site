@@ -2,14 +2,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================================
-   NERQIVA — Design System v5
-   Palette: White & Ink · Accent: Deep Ruby #9B111E
-   Fonts:   Fraunces (display h1/h2) · DM Sans (body) · DM Mono (labels)
+   NERQIVA — Design System v6 (Editorial Studio)
+   Palette: Deep Charcoal & Warm Off-White · Accent: Crimson (#E11D48)
+   Fonts:   Fraunces (display) · DM Sans (body) · DM Mono (utility)
    ============================================================ */
 
 :root {
   /* ── Backgrounds ─────────────────────────────────────────── */
-  --bg-primary:    #FFFFFF;   /* Pure white — clean, architectural        */
+  --bg-primary:    #FFFFFF;   /* Pure architectural white                  */
   --bg-secondary:  #F4F4F5;   /* Light zinc surface                        */
   --bg-card:       #FAFAFA;
   --bg-dark:       #09090B;
@@ -17,44 +17,44 @@
 
   /* ── Typography ─────────────────────────────────────────── */
   --text-primary:  #09090B;   /* Deep obsidian ink                         */
-  --text-secondary:#52525B;   /* Zinc gray — 5.7:1 on white, WCAG AA       */
+  --text-secondary:#52525B;   /* Zinc gray — WCAG AA compliant             */
   --text-tertiary: #A1A1AA;   /* Quiet labels                              */
   --text-inverted: #FFFFFF;
 
-  /* ── Accent: Locked Indigo #4C1D95 + Muted Gold #C9A227 ─────── */
-  --accent:        #4C1D95;   /* Deep indigo for primary buttons & highlights */
-  --accent-mid:    #3B0764;   /* Deep indigo hover                            */
-  --accent-light:  #6D28D9;   /* Medium indigo                                */
-  --accent-gold:   #C9A227;   /* Muted gold for secondary accents & icons     */
+  /* ── Accent: Controlled Crimson ───────────────────────────── */
+  --accent:        #BE123C;   /* Rich deep crimson                         */
+  --accent-mid:    #9F1239;   /* Crimson hover                             */
+  --accent-light:  #E11D48;   /* Medium crimson                            */
+  --accent-gold:   #C9A227;   /* Muted gold for secondary accents & icons  */
   --accent-gold-light: #D97706;
-  --accent-glow:      rgba(76, 29, 149, 0.15);
-  --accent-glow-soft: rgba(76, 29, 149, 0.05);
+  --accent-glow:      rgba(190, 18, 60, 0.15);
+  --accent-glow-soft: rgba(190, 18, 60, 0.05);
 
   /* ── Borders ─────────────────────────────────────────────── */
   --border:      rgba(9, 9, 11, 0.08);
   --border-dark: rgba(9, 9, 11, 0.16);
 }
 
-/* ── Dark Mode ───────────────────────────────────────────── */
+/* ── Dark Mode (Default Experience) ──────────────────────── */
 .dark {
-  --bg-primary:   #09090B;
-  --bg-secondary: #18181B;
-  --bg-card:      #27272A;
+  --bg-primary:   #09090B;   /* Deep charcoal black                       */
+  --bg-secondary: #121215;   /* Rich secondary dark                       */
+  --bg-card:      #18181B;   /* Architectural card surface                */
   --bg-dark:      #050506;
   --bg-dark-card: #09090B;
 
-  --text-primary:  #F4F4F5;
-  --text-secondary:#A1A1AA;
+  --text-primary:  #F4F4F5;   /* Warm off-white                            */
+  --text-secondary:#A1A1AA;   /* Muted zinc gray                           */
   --text-tertiary: #71717A;
   --text-inverted: #09090B;
 
-  --accent:        #A78BFA;   /* Light indigo for dark mode accents */
-  --accent-mid:    #8B5CF6;
-  --accent-light:  #C4B5FD;
+  --accent:        #E11D48;   /* Editorial crimson                         */
+  --accent-mid:    #BE123C;   /* Deep crimson hover                        */
+  --accent-light:  #FB7185;   /* Subtle highlight                          */
   --accent-gold:   #EAB308;
 
-  --accent-glow:      rgba(167, 139, 250, 0.20);
-  --accent-glow-soft: rgba(167, 139, 250, 0.10);
+  --accent-glow:      rgba(225, 29, 72, 0.20);
+  --accent-glow-soft: rgba(225, 29, 72, 0.08);
 
   --border:      rgba(255, 255, 255, 0.08);
   --border-dark: rgba(255, 255, 255, 0.15);
@@ -191,15 +191,17 @@ h1, h2 { font-family: var(--font-display); }
   border-color: rgba(255, 255, 255, 0.07);
 }
 
-/* Indigo glow */
-.glow-accent { box-shadow: 0 0 40px 0 rgba(59, 7, 100, 0.20); }
+/* Crimson glow */
+.glow-accent { box-shadow: 0 0 35px 0 rgba(225, 29, 72, 0.20); }
 
-/* Indigo emphasis text — locked brand accent #4C1D95 */
-.text-indigo-highlight {
-  color: #4C1D95;
+/* Crimson emphasis text */
+.text-indigo-highlight,
+.text-crimson-highlight {
+  color: #BE123C;
 }
-.dark .text-indigo-highlight {
-  color: #C4B5FD;
+.dark .text-indigo-highlight,
+.dark .text-crimson-highlight {
+  color: #FB7185;
 }
 
 /* Luxury card surface */
@@ -281,29 +283,29 @@ textarea:focus-visible {
 }
 
 /* ============================================================
-   LOCKED CUSTOM BUTTON SYSTEM (PREMIUM PURPLE BRAND)
+   EDITORIAL BUTTON SYSTEM (CRIMSON ACCENT & CLEAN CHARCOAL)
    ============================================================ */
 
-/* Primary Button — Ultra Premium Brand Glow */
+/* Primary Button — Editorial Crimson */
 .btn-primary {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.75rem;
+  padding: 0.75rem 1.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #FFFFFF !important;
-  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  background: var(--accent);
   border: 1px solid rgba(255, 255, 255, 0.15);
   white-space: nowrap;
   border-radius: 9999px !important;
-  box-shadow: 0 4px 15px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px var(--accent-glow);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   text-decoration: none;
   user-select: none;
@@ -311,89 +313,65 @@ textarea:focus-visible {
   z-index: 1;
 }
 
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-light), var(--accent-mid));
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 0.3s ease;
-  border-radius: 9999px;
-}
-
 .btn-primary:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
+  background: var(--accent-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .dark .btn-primary {
-  color: #050505 !important;
-  background: linear-gradient(135deg, var(--accent-light), var(--accent));
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 20px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.7);
-}
-
-.dark .btn-primary::before {
-  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  color: #FFFFFF !important;
+  background: #E11D48;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px var(--accent-glow);
 }
 
 .dark .btn-primary:hover {
-  box-shadow: 0 8px 30px var(--accent-glow), 0 0 15px var(--accent-glow), inset 0 1px 1px #FFF;
-  border-color: #FFFFFF;
+  background: #BE123C;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 24px var(--accent-glow);
 }
 
-/* Secondary Button — Ultra Premium Outline */
+/* Secondary Button — Minimal Hairline Outline */
 .btn-secondary {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.75rem;
+  padding: 0.75rem 1.75rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent) !important;
-  background: rgba(248, 250, 252, 0.8);
-  backdrop-filter: blur(8px);
-  border: 2px solid var(--accent);
+  color: var(--text-primary) !important;
+  background: transparent;
+  border: 1px solid var(--border-dark);
   white-space: nowrap;
   border-radius: 9999px !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   text-decoration: none;
   user-select: none;
-  overflow: hidden;
-  z-index: 1;
 }
 
 .btn-secondary:hover {
-  background: var(--accent-glow-soft);
-  color: var(--accent-mid) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-1px);
 }
 
 .dark .btn-secondary {
-  color: var(--accent-light) !important;
+  color: var(--text-primary) !important;
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border-color: var(--accent);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .dark .btn-secondary:hover {
-  background: var(--accent-glow-soft);
-  border-color: var(--accent-light);
-  color: #FFFFFF !important;
-  box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow-soft);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--accent);
+  color: var(--accent-light) !important;
 }
