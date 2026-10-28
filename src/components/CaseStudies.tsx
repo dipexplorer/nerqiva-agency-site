@@ -93,6 +93,10 @@ export default function CaseStudies() {
                           alt={`${project.name} UI Preview`}
                           className="absolute inset-0 w-full h-full object-cover object-top z-0"
                           loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                            setIframeLoaded((prev) => ({ ...prev, [project.id]: true }));
+                          }}
                         />
                       )}
 

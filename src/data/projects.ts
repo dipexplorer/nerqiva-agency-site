@@ -91,13 +91,7 @@ export const PROJECTS: Project[] = [
     gradient: "from-amber-600/10 to-emerald-600/10",
     accentColor: "bg-amber-600",
     featured: true,
-    demoUrl: "https://hennaart-nine.vercel.app/",
-    gallery: [
-      "/images/projects/krishav-mehendi/bridal.png",
-      "/images/projects/krishav-mehendi/arabic.png",
-      "/images/projects/krishav-mehendi/traditional.png",
-      "/images/projects/krishav-mehendi/minimal.png"
-    ]
+    demoUrl: "https://hennaart-nine.vercel.app/"
   },
   {
     id: "valerielaurent",
