@@ -42,5 +42,5 @@ next-env.d.ts
 
 # local agency artifacts & lead store
 brag-output/
-/data/
+data/
 
