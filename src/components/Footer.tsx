@@ -40,11 +40,11 @@ const LinkedInIcon = ({ size = 16 }: { size?: number }) => (
 );
 
 const CAPABILITIES = [
-  { label: "High-Converting Flagships", href: "/#case-studies" },
+  { label: "Selected Flagships Gallery", href: "/work" },
   { label: "Doorstep Clinical Diagnostics", href: "/work/lablink-guwahati" },
   { label: "Luxury Bridal & Henna Portfolios", href: "/work/krishav-mehendi" },
   { label: "Athletic & Wellness Systems", href: "/work/titan-gym" },
-  { label: "1-Tap WhatsApp Lead Engines", href: "/#process" },
+  { label: "1-Tap WhatsApp Lead Engines", href: "/solutions#whatsapp" },
 ];
 
 const STUDIO_LINKS = [

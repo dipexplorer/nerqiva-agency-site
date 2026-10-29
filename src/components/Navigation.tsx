@@ -8,10 +8,11 @@ import BrandLogo from "./BrandLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Selected Work", href: "/#case-studies" },
-  { label: "Anti-Agency", href: "/#manifesto" },
-  { label: "Build Flagship", href: "/#configurator" },
-  { label: "Founder", href: "/#founder" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/process" },
+  { label: "Solutions", href: "/solutions" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navigation() {
@@ -38,6 +39,11 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
+
   return (
     <>
       {/* Floating Luxury Control Bar */}
@@ -46,7 +52,7 @@ export default function Navigation() {
           className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3 rounded-full transition-all duration-300 pointer-events-auto ${
             scrolled
               ? "bg-bg-card/90 backdrop-blur-xl border border-border shadow-2xl"
-              : "bg-bg-card/70 backdrop-blur-md border border-border/60 shadow-lg"
+              : "bg-bg-card/75 backdrop-blur-md border border-border/60 shadow-lg"
           }`}
         >
           {/* Brand Monogram */}
@@ -57,18 +63,27 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Minimal Nav Links with Hover Micro-Dots */}
-          <div className="hidden md:flex items-center gap-7">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="font-mono text-xs font-semibold uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors flex items-center gap-1.5 group py-1"
-              >
-                <span className="w-1 h-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span>{item.label}</span>
-              </a>
-            ))}
+          {/* Minimal Nav Links with Active State & Hover Micro-Dots */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-7">
+            {NAV_ITEMS.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`font-mono text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 group py-1 ${
+                    active ? "text-text-primary font-bold" : "text-text-secondary hover:text-text-primary"
+                  }`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full bg-accent transition-all duration-200 ${
+                      active ? "opacity-100 scale-100" : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
+                    }`}
+                  />
+                  <span>{item.label}</span>
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right Actions & Live Availability */}
@@ -109,7 +124,7 @@ export default function Navigation() {
 
       {/* Mobile Full-Screen Overlay Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-bg-primary/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden">
+        <div className="fixed inset-0 z-50 bg-bg-primary/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto">
           <div className="flex items-center justify-between pb-6 border-b border-border">
             <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
               <BrandLogo className="h-7 w-7" />
@@ -125,24 +140,62 @@ export default function Navigation() {
             </button>
           </div>
 
-          <div className="flex flex-col gap-6 py-8">
-            {NAV_ITEMS.map((item, idx) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="font-display font-black text-3xl text-text-primary hover:text-accent transition-colors flex items-center justify-between"
-              >
-                <span>{item.label}</span>
-                <span className="font-mono text-xs text-text-tertiary">0{idx + 1}</span>
-              </a>
-            ))}
+          {/* Primary Route Links */}
+          <div className="flex flex-col gap-4 py-6">
+            {NAV_ITEMS.map((item, idx) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`font-display font-black text-2xl sm:text-3xl transition-colors flex items-center justify-between py-2 border-b border-border/30 ${
+                    active ? "text-accent" : "text-text-primary hover:text-accent"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="font-mono text-xs text-accent">0{idx + 1}</span>
+                    <span>{item.label}</span>
+                  </div>
+                  <ArrowUpRight size={18} className="text-text-tertiary" />
+                </Link>
+              );
+            })}
           </div>
 
+          {/* Interactive Tools & Quick Navigation */}
+          <div className="py-4 flex flex-col gap-2">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
+              Quick Shortcuts
+            </span>
+            <div className="grid grid-cols-2 gap-2">
+              <Link
+                href="/#configurator"
+                onClick={() => setIsOpen(false)}
+                className="p-3 rounded-xl bg-bg-card border border-border/80 text-left font-mono text-xs text-text-secondary hover:border-accent/40"
+              >
+                <span className="block text-accent font-bold mb-0.5">⚡ Builder</span>
+                <span className="text-[11px] text-text-tertiary">Configure Flagship</span>
+              </Link>
+              <Link
+                href="/#manifesto"
+                onClick={() => setIsOpen(false)}
+                className="p-3 rounded-xl bg-bg-card border border-border/80 text-left font-mono text-xs text-text-secondary hover:border-accent/40"
+              >
+                <span className="block text-accent font-bold mb-0.5">🚫 Manifesto</span>
+                <span className="text-[11px] text-text-tertiary">Why Anti-Agency</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Bottom Coordinates & Direct CTA */}
           <div className="pt-6 border-t border-border flex flex-col gap-3">
-            <div className="flex items-center gap-2 text-xs font-mono text-text-secondary py-1">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>North Guwahati, IN • 2 Launch Slots Open</span>
+            <div className="flex items-center justify-between text-xs font-mono text-text-secondary py-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>North Guwahati, IN</span>
+              </div>
+              <span className="font-semibold text-text-primary">2 Slots Open</span>
             </div>
 
             <a
