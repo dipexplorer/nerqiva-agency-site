@@ -175,8 +175,19 @@ export default function CaseStudies() {
                   {/* Content Block */}
                   <div className="p-6 sm:p-7">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="font-mono text-[9px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold border bg-accent/10 text-accent border-accent/20">
-                        {project.projectType === "client" ? "Live Client Platform" : "Bespoke System"}
+                      <span className={`font-mono text-[9px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold border ${
+                        project.id === "lablink"
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25 flex items-center gap-1.5"
+                          : project.projectType === "client"
+                          ? "bg-accent/10 text-accent border-accent/20"
+                          : "bg-accent/10 text-accent border-accent/20"
+                      }`}>
+                        {project.id === "lablink" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
+                        {project.id === "lablink"
+                          ? "Live Client · 1,797+ Tests Cataloged"
+                          : project.projectType === "client"
+                          ? "Live Client Platform"
+                          : "Bespoke System"}
                       </span>
                       <span className="font-mono text-[9px] text-accent-gold font-bold uppercase tracking-wider">
                         Verified Mobile Speed
