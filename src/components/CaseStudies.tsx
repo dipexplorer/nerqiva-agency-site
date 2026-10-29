@@ -1,56 +1,86 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, MousePointer2, CheckCircle2 } from "lucide-react";
-import { PROJECTS } from "../data/projects";
+import { ArrowRight, ExternalLink, X, CheckCircle2, Layers, Cpu, ShieldCheck, Sparkles, Eye } from "lucide-react";
+import { PROJECTS, Project } from "../data/projects";
 
 const CATEGORIES = ["ALL", "Healthcare & Diagnostics", "Beauty & Bridal", "Photography Studio", "Fitness & Wellness"];
 
 export default function CaseStudies() {
   const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
-  const [activeIframeId, setActiveIframeId] = useState<string | null>(null);
-  const [iframeLoaded, setIframeLoaded] = useState<Record<string, boolean>>({});
+  const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [modalImageIndex, setModalImageIndex] = useState<number>(0);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (activeModalProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeModalProject]);
 
   const filteredProjects = PROJECTS.filter((p) => {
     if (selectedCategory === "ALL") return p.featured;
     return p.category === selectedCategory || p.type.includes(selectedCategory);
   });
 
+  const openModal = (project: Project) => {
+    setActiveModalProject(project);
+    setModalImageIndex(0);
+  };
+
+  const closeModal = () => {
+    setActiveModalProject(null);
+  };
+
   return (
     <section id="case-studies" className="py-20 sm:py-28 bg-transparent border-t border-border/30 relative">
       <div className="section-container relative z-10">
         
-        {/* Section Header: Authoritative Fraunces Display, No Kicker Gimmick */}
+        {/* Section Header: Editorial & Confident */}
         <div className="grid md:grid-cols-12 gap-8 mb-14 items-end">
-          <div className="md:col-span-7">
+          <div className="md:col-span-8">
+            <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold mb-3 block">
+              Selected Work &amp; Flagship Builds
+            </span>
             <h2
-              className="font-display font-black text-text-primary text-3xl sm:text-4xl lg:text-[2.75rem] leading-[1.12] tracking-tight"
+              className="font-display font-black text-text-primary text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight"
               style={{ letterSpacing: "-0.03em" }}
             >
-              High-Ticket Implementations{" "}
-              <span className="font-serif italic font-normal text-accent">
-                &amp; Live Flagships.
+              Digital systems engineered for{" "}
+              <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+                commercial conversion.
               </span>
             </h2>
           </div>
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <p className="text-text-secondary text-base leading-relaxed">
-              Explore our live bespoke builds engineered for healthcare providers, luxury MUAs, photographers, and studios. Each system includes sub-second speed, 1-click WhatsApp lead routing, and custom visual identity.
+              Explore our live bespoke builds engineered for healthcare providers, luxury MUAs, photographers, and studios. Sub-second mobile speeds, zero template bloat, and verified WhatsApp booking funnels.
             </p>
           </div>
         </div>
 
         {/* Category Filters */}
-        <div className="flex overflow-x-auto no-scrollbar gap-2 mb-10 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+        <div className="flex overflow-x-auto no-scrollbar gap-2 mb-12 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`whitespace-nowrap shrink-0 px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold border transition-all duration-200 cursor-pointer rounded-full ${
                 selectedCategory === cat
-                  ? "bg-accent text-text-inverted border-accent shadow-sm"
+                  ? "bg-accent text-text-inverted border-accent shadow-md shadow-accent/20"
                   : "bg-bg-secondary text-text-secondary border-border hover:border-accent/40 hover:text-text-primary"
               }`}
             >
@@ -59,252 +89,300 @@ export default function CaseStudies() {
           ))}
         </div>
 
-        {/* Mobile Swipe Hint */}
-        <div className="flex sm:hidden items-center justify-between text-text-secondary font-mono text-[10px] tracking-wider uppercase mb-3 px-1">
-          <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            Swipe Projects Left/Right
-          </span>
-          <span>{filteredProjects.length + (selectedCategory === "ALL" ? 1 : 0)} Total</span>
-        </div>
-
-        {/* Project Cards Grid (Desktop 2-Col Grid / Mobile Swipe Carousel) */}
-        <div className="flex sm:grid overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory sm:snap-none no-scrollbar grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 -mx-4 px-4 sm:mx-0 sm:px-0 pb-4 sm:pb-0">
+        {/* Project Cards Grid (Large Visual Cards) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="w-[85vw] sm:w-full shrink-0 snap-center group relative card-luxury overflow-hidden flex flex-col justify-between border border-border hover:border-accent/40 hover:shadow-xl transition-all duration-300 rounded-2xl bg-bg-card"
-                onMouseLeave={() => setActiveIframeId(null)}
-              >
-                <div>
-                  {/* Interactive Live Viewport Frame */}
-                  {project.demoUrl ? (
-                    <div className="w-full h-56 sm:h-72 bg-bg-secondary relative overflow-hidden border-b border-border/50">
-                      {/* Real UI Poster / Instant High-Res Visual */}
-                      {project.gallery?.[0] && (
-                        <img
-                          src={project.gallery[0]}
-                          alt={`${project.name} UI Preview`}
-                          className="absolute inset-0 w-full h-full object-cover object-top z-0"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.style.display = "none";
-                            setIframeLoaded((prev) => ({ ...prev, [project.id]: true }));
-                          }}
-                        />
-                      )}
+            {filteredProjects.map((project, i) => {
+              const displayImage = project.heroImage || project.gallery?.[0] || "/images/projects/lablink/desktop.png";
 
-                      {/* Live Interactive Iframe */}
-                      <iframe
-                        src={project.demoUrl}
-                        title={`${project.name} Live Flagship Preview`}
-                        onLoad={() => setIframeLoaded((prev) => ({ ...prev, [project.id]: true }))}
-                        className={`absolute inset-0 w-full h-full border-none transition-opacity duration-500 ${
-                          !project.gallery?.[0] || iframeLoaded[project.id]
-                            ? "opacity-100"
-                            : "opacity-0"
-                        } ${
-                          activeIframeId === project.id
-                            ? "pointer-events-auto z-10 bg-white"
-                            : "pointer-events-none z-[5]"
-                        }`}
-                        loading="lazy"
-                      />
-
-                      {/* Clean Overlay Controls (No heavy blur veil) */}
-                      {activeIframeId !== project.id && (
-                        <div className="absolute inset-0 bg-transparent hover:bg-black/5 dark:hover:bg-black/15 transition-all duration-300 flex flex-col items-center justify-end pb-4 sm:pb-6 px-4 sm:px-6 text-center z-20 group/overlay select-none">
-                          {/* Mobile Direct Tap Button */}
-                          <a
-                            href={project.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="sm:hidden bg-bg-primary/95 text-text-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider border border-border shadow-lg rounded-full flex items-center gap-2"
-                          >
-                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                            <span>Open Live Demo</span>
-                            <ExternalLink size={11} className="text-accent shrink-0" />
-                          </a>
-
-                          {/* Desktop Tap to Scroll Button */}
-                          <div
-                            onClick={() => setActiveIframeId(project.id)}
-                            className="hidden sm:flex bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wider border border-border shadow-xl backdrop-blur-md rounded-full group-hover/overlay:scale-105 transition-all duration-200 items-center gap-2 cursor-pointer"
-                          >
-                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                            <span>Tap to Scroll</span>
-                            <MousePointer2 size={12} className="text-accent shrink-0" />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Active Mode Exit Button */}
-                      {activeIframeId === project.id && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setActiveIframeId(null); }}
-                          className="absolute top-3 right-3 z-30 btn-primary shadow-xl font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-all items-center gap-1.5 py-1.5 px-3"
-                        >
-                          Done scrolling ✕
-                        </button>
-                      )}
-
-                      {/* Top Badges */}
-                      <div className="absolute top-3 sm:top-4 left-3 sm:left-4 font-mono text-[9px] font-bold uppercase tracking-wider text-white bg-black/75 border border-white/15 px-2.5 py-1 rounded-full backdrop-blur-md pointer-events-none z-30 flex items-center gap-1.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        Curated Build · {project.number}
-                      </div>
-
-                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 font-mono text-[9px] font-bold uppercase tracking-wider text-white bg-black/75 border border-white/15 px-2.5 py-1 rounded-full backdrop-blur-md pointer-events-none z-30">
-                        {project.category}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className={`w-full h-48 sm:h-56 bg-bg-secondary relative overflow-hidden flex items-center justify-center border-b border-border/40`}>
-                      <div className="absolute top-4 left-4 font-mono text-[9px] font-bold uppercase tracking-wider text-text-secondary bg-bg-card border border-border px-2.5 py-1 rounded-full">
-                        Curated Build · {project.number}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Content Block */}
-                  <div className="p-6 sm:p-7">
-                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className={`font-mono text-[9px] uppercase tracking-wider px-2.5 py-0.5 rounded-full font-bold border ${
-                        project.id === "lablink"
-                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/25 flex items-center gap-1.5"
-                          : project.projectType === "client"
-                          ? "bg-accent/10 text-accent border-accent/20"
-                          : "bg-accent/10 text-accent border-accent/20"
-                      }`}>
-                        {project.id === "lablink" && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
-                        {project.id === "lablink"
-                          ? "Live Client · 1,797+ Tests Cataloged"
-                          : project.projectType === "client"
-                          ? "Live Client Platform"
-                          : "Bespoke System"}
-                      </span>
-                      <span className="font-mono text-[9px] text-accent-gold font-bold uppercase tracking-wider">
-                        Verified Mobile Speed
-                      </span>
-                    </div>
-
-                    <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary mb-2 group-hover:text-accent transition-colors duration-200">
-                      {project.demoUrl ? (
-                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <span>{project.name}</span>
-                          <ExternalLink size={14} className="text-text-tertiary group-hover:text-accent transition-colors" />
-                        </a>
-                      ) : (
-                        <Link href={`/work/${project.slug}`}>
-                          {project.name}
-                        </Link>
-                      )}
-                    </h3>
-
-                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4 font-normal line-clamp-2">
-                      {project.tagline}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Card Action Footer */}
-                <div className="px-6 sm:px-7 pb-6 pt-0 border-t border-border/30 mt-auto">
-                  <div className="flex items-center justify-between pt-3.5">
-                    <span className="font-mono text-[10px] text-text-secondary tracking-wider uppercase font-semibold">
-                      Direct WhatsApp Routing
-                    </span>
-
-                    {project.demoUrl ? (
-                      <a 
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent-mid font-mono uppercase tracking-wider font-bold transition-colors group/link"
-                      >
-                        <span>Launch Flagship</span>
-                        <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
-                      </a>
-                    ) : (
-                      <Link 
-                        href={`/work/${project.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs text-accent hover:text-accent-mid font-mono uppercase tracking-wider font-bold transition-colors group/link"
-                      >
-                        <span>View Details</span>
-                        <ArrowRight size={12} className="group-hover/link:translate-x-1 transition-transform" />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* 8th Slot: Architectural Inquiry Card (Eliminates the Orphan Void in 2-Col Grid) */}
-            {selectedCategory === "ALL" && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: filteredProjects.length * 0.05 }}
-                className="w-[85vw] sm:w-full shrink-0 snap-center card-luxury border border-dashed border-accent/40 bg-accent/5 rounded-2xl p-7 sm:p-9 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-6">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
-                      Custom Commission · 08
-                    </span>
-                    <span className="font-mono text-[9px] text-accent-gold font-bold uppercase tracking-wider">
-                      Accepting Q2 Projects
-                    </span>
-                  </div>
-
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-text-primary mb-3.5 tracking-tight">
-                    Commission Your Digital Flagship
-                  </h3>
-                  
-                  <p className="text-text-secondary text-sm leading-relaxed mb-6 font-normal">
-                    Have an established salon, studio, or clinic ready to outperform local competitors? We engineer custom bespoke systems delivered in 24–48 hours with 100% IP ownership.
-                  </p>
-
-                  <div className="space-y-2.5 mb-8">
-                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
-                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
-                      <span>Engineered specifically for your price tier &amp; clientele</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
-                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
-                      <span>Direct 1-tap WhatsApp lead funnel integration</span>
-                    </div>
-                    <div className="flex items-center gap-2.5 text-xs text-text-secondary font-medium">
-                      <CheckCircle2 size={15} className="text-accent-gold shrink-0" />
-                      <span>Permanent one-time investment with zero recurring fees</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-border/40">
-                  <Link
-                    href="/contact"
-                    className="btn-primary w-full py-3.5 text-xs font-mono font-bold tracking-wider inline-flex items-center justify-center gap-2"
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  className="group relative flex flex-col justify-between border border-border hover:border-accent/50 rounded-3xl overflow-hidden bg-bg-card shadow-lg hover:shadow-2xl transition-all duration-300"
+                >
+                  {/* Visual Canvas Container */}
+                  <div 
+                    onClick={() => openModal(project)}
+                    className="relative aspect-[16/10] w-full overflow-hidden bg-bg-secondary cursor-pointer"
                   >
-                    <span>Start Your Project</span>
-                    <ArrowRight size={14} />
-                  </Link>
-                  <span className="font-mono text-[10px] text-text-secondary uppercase tracking-wider block text-center mt-2.5">
-                    Direct consultation · No forms or waitlists
-                  </span>
-                </div>
-              </motion.div>
-            )}
+                    {/* Top Floating Badges */}
+                    <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                      <span className="px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider bg-bg-primary/90 text-text-primary backdrop-blur-md rounded-full border border-border shadow-sm flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>{project.projectType === "client" ? "Live Client Flagship" : "Bespoke System"}</span>
+                      </span>
+                    </div>
+
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-wider bg-text-primary/80 text-text-inverted backdrop-blur-md rounded-full shadow-sm">
+                        {project.number}
+                      </span>
+                    </div>
+
+                    {/* High-Resolution Project Poster */}
+                    <img
+                      src={displayImage}
+                      alt={`${project.name} UI Preview`}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      loading="lazy"
+                    />
+
+                    {/* Dark Subtle Vignette & Quick Action Overlay on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-5">
+                      <span className="text-white font-mono text-xs font-bold tracking-wider flex items-center gap-2">
+                        <Eye size={14} className="text-accent-light" />
+                        <span>Quick Inspect Case</span>
+                      </span>
+
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="px-3 py-1.5 rounded-full bg-white text-zinc-900 font-mono text-[11px] font-bold uppercase tracking-wider hover:bg-zinc-100 transition-colors flex items-center gap-1 shadow-lg"
+                        >
+                          <span>Visit Live</span>
+                          <ExternalLink size={11} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Card Content Footer */}
+                  <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 gap-5">
+                    <div>
+                      <div className="flex items-center justify-between gap-3 mb-2">
+                        <span className="font-mono text-xs uppercase tracking-wider text-accent font-bold">
+                          {project.category}
+                        </span>
+                        <span className="font-mono text-[11px] text-text-tertiary">
+                          Sub-second 4G
+                        </span>
+                      </div>
+
+                      <h3 className="font-display font-black text-2xl sm:text-[1.75rem] text-text-primary tracking-tight mb-2 group-hover:text-accent transition-colors">
+                        {project.name}
+                      </h3>
+
+                      <p className="text-text-secondary text-sm leading-relaxed line-clamp-2">
+                        {project.tagline}
+                      </p>
+                    </div>
+
+                    {/* Stack & Action Row */}
+                    <div className="pt-4 border-t border-border/50 flex items-center justify-between gap-3">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.stack.slice(0, 3).map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-0.5 rounded-md bg-bg-secondary text-text-secondary font-mono text-[10px] font-medium border border-border/60"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <button
+                        onClick={() => openModal(project)}
+                        className="font-mono text-xs font-bold text-accent hover:text-accent-mid uppercase tracking-wider flex items-center gap-1 cursor-pointer transition-colors"
+                      >
+                        <span>Case Details</span>
+                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </div>
 
       </div>
+
+      {/* Interactive Case Inspector Modal (anfalova.art inspired dialog view) */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {activeModalProject && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-10">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              className="absolute inset-0 bg-black/75 backdrop-blur-md"
+            />
+
+            {/* Modal Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-bg-primary border border-border rounded-3xl shadow-2xl z-10 flex flex-col no-scrollbar"
+            >
+              {/* Modal Top Bar */}
+              <div className="sticky top-0 z-20 px-6 py-4 bg-bg-primary/95 backdrop-blur-md border-b border-border flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs font-bold text-accent px-2.5 py-0.5 rounded-md bg-accent/10">
+                    {activeModalProject.number}
+                  </span>
+                  <span className="font-display font-black text-lg sm:text-xl text-text-primary tracking-tight">
+                    {activeModalProject.name}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  {activeModalProject.demoUrl && (
+                    <a
+                      href={activeModalProject.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hidden sm:flex btn-primary py-1.5 px-3.5 text-xs font-bold items-center gap-1.5"
+                    >
+                      <span>Visit Live Site</span>
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
+
+                  <button
+                    onClick={closeModal}
+                    className="p-2 rounded-full bg-bg-secondary hover:bg-border text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+                    aria-label="Close Case Modal"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Body */}
+              <div className="p-6 sm:p-8 flex flex-col gap-8">
+                
+                {/* Active Image Showcase */}
+                <div className="flex flex-col gap-3">
+                  <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-border bg-bg-secondary shadow-inner">
+                    <img
+                      src={
+                        activeModalProject.gallery?.[modalImageIndex] ||
+                        activeModalProject.heroImage ||
+                        "/images/projects/lablink/desktop.png"
+                      }
+                      alt={`${activeModalProject.name} View ${modalImageIndex + 1}`}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+
+                  {/* Gallery Thumbnails */}
+                  {activeModalProject.gallery && activeModalProject.gallery.length > 1 && (
+                    <div className="flex gap-2 overflow-x-auto no-scrollbar py-1">
+                      {activeModalProject.gallery.map((img, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setModalImageIndex(idx)}
+                          className={`relative w-20 h-14 rounded-lg overflow-hidden border-2 shrink-0 transition-all cursor-pointer ${
+                            modalImageIndex === idx ? "border-accent scale-105 shadow-md" : "border-border opacity-70 hover:opacity-100"
+                          }`}
+                        >
+                          <img src={img} alt="thumbnail" className="w-full h-full object-cover object-top" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Case Details Grid */}
+                <div className="grid md:grid-cols-12 gap-8">
+                  <div className="md:col-span-8 flex flex-col gap-6">
+                    <div>
+                      <h4 className="font-mono text-xs uppercase tracking-wider text-accent font-bold mb-2">
+                        Commercial Challenge
+                      </h4>
+                      <p className="text-text-primary text-base leading-relaxed">
+                        {activeModalProject.challenge}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-xs uppercase tracking-wider text-accent font-bold mb-2">
+                        Engineering Approach &amp; Solution
+                      </h4>
+                      <p className="text-text-secondary text-base leading-relaxed">
+                        {activeModalProject.approach}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="font-mono text-xs uppercase tracking-wider text-accent font-bold mb-2">
+                        Measurable Outcome
+                      </h4>
+                      <div className="p-4 rounded-xl bg-bg-secondary border border-border text-sm text-text-primary leading-relaxed">
+                        {activeModalProject.outcome}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="md:col-span-4 flex flex-col gap-6 border-t md:border-t-0 md:border-l border-border/60 pt-6 md:pt-0 md:pl-6">
+                    <div>
+                      <h5 className="font-mono text-xs uppercase tracking-wider text-text-tertiary font-bold mb-3">
+                        Tech Stack
+                      </h5>
+                      <div className="flex flex-wrap gap-1.5">
+                        {activeModalProject.stack.map((s, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-1 rounded-md bg-bg-secondary text-text-primary font-mono text-xs border border-border"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h5 className="font-mono text-xs uppercase tracking-wider text-text-tertiary font-bold mb-3">
+                        Industry &amp; Tier
+                      </h5>
+                      <p className="font-sans text-sm text-text-secondary font-medium">
+                        {activeModalProject.category}
+                      </p>
+                      <p className="font-mono text-xs text-accent mt-1">
+                        {activeModalProject.type}
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-border flex flex-col gap-2.5">
+                      <a
+                        href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20am%20interested%20in%20a%20project%20like%20${encodeURIComponent(activeModalProject.name)}.`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary py-2.5 px-4 text-xs font-bold text-center w-full shadow-md"
+                      >
+                        Discuss on WhatsApp
+                      </a>
+
+                      <Link
+                        href={`/work/${activeModalProject.slug}`}
+                        className="btn-secondary py-2 px-4 text-xs font-bold text-center w-full"
+                      >
+                        Full Case Article →
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>,
+      document.body
+    )}
     </section>
   );
 }

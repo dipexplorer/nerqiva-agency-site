@@ -2,476 +2,305 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, MousePointer2, MessageCircle, Search, ChevronDown, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, Monitor, Smartphone, CheckCircle2, Sparkles, ArrowDown } from "lucide-react";
 import HeroFlowLine from "./HeroFlowLine";
 
-const DEMO_SHOWCASES = [
-  {
-    id: "healthcare",
-    label: "Healthcare & Labs",
-    name: "LabLink Guwahati",
-    description: "Doorstep diagnostic platform — 1,797+ tests, cold-chain phlebotomy & instant booking",
-    url: "https://www.lablinkguwahati.in/",
-    demoUrl: "https://www.lablinkguwahati.in/",
-    tag: "Healthcare & Diagnostics",
-  },
-  {
-    id: "beauty",
-    label: "Salons & MUAs",
-    name: "Aura Beauty",
-    description: "Bridal & makeup studio — portfolio gallery, services & direct WhatsApp booking",
-    url: "https://aura-beauty-theme.vercel.app/",
-    demoUrl: "https://aura-beauty-theme.vercel.app/",
-    tag: "Beauty & Bridal",
-  },
-  {
-    id: "gym",
-    label: "Gyms & Fitness",
-    name: "Titan Gym",
-    description: "Premium fitness centre — class schedules, trainer rosters & VIP trial intake",
-    url: "https://titangymnq.vercel.app/",
-    demoUrl: "https://titangymnq.vercel.app/",
-    tag: "Fitness & Wellness",
-  },
-  {
-    id: "bridal",
-    label: "Luxury Boutiques",
-    name: "Valerie Laurent",
-    description: "Haute bridal couture — curated collection lookbook & consultation booking",
-    url: "https://bridalnerqiva.vercel.app/",
-    demoUrl: "https://bridalnerqiva.vercel.app/",
-    tag: "Luxury Couture",
-  },
-];
-
-const TOP_SERVICES = [
-  "Custom Website & Direct WhatsApp Booking",
-  "Google Maps & Local Search Visibility",
-  "High-Converting Mobile Funnel",
-];
-
-type DemoId = "healthcare" | "beauty" | "gym" | "bridal";
-
-interface HeroSubProps {
-  activeDemo: DemoId;
-  setActiveDemo: (id: DemoId) => void;
-  interacting: string | null;
-  setInteracting: (id: string | null) => void;
+interface ShowcaseProject {
+  id: string;
+  number: string;
+  name: string;
+  category: string;
+  tagline: string;
+  desktopImage: string;
+  mobileImage: string;
+  liveUrl: string;
+  metrics: string[];
+  caseSlug: string;
 }
 
-function DesktopHero({ activeDemo, setActiveDemo, interacting, setInteracting }: HeroSubProps) {
-  const demo = DEMO_SHOWCASES.find((d) => d.id === activeDemo)!;
+const SHOWCASES: ShowcaseProject[] = [
+  {
+    id: "lablink",
+    number: "01",
+    name: "LabLink Guwahati",
+    category: "Healthcare & Diagnostics",
+    tagline: "Doorstep diagnostic platform with 1,797+ tests, cold-chain phlebotomy & direct WhatsApp routing.",
+    desktopImage: "/images/projects/lablink/desktop.png",
+    mobileImage: "/images/projects/lablink/hero.png",
+    liveUrl: "https://www.lablinkguwahati.in/",
+    metrics: ["1,797+ Tests Cataloged", "< 0.8s Mobile Paint", "Live Client Flagship"],
+    caseSlug: "lablink-guwahati",
+  },
+  {
+    id: "krishav",
+    number: "02",
+    name: "Krishav Mehendi",
+    category: "Luxury Bridal Artistry",
+    tagline: "Digital exhibition & instant reservation engine for luxury bridal and traditional henna artists.",
+    desktopImage: "/images/projects/krishavmehendi/bridal.png",
+    mobileImage: "/images/projects/krishavmehendi/arabic.png",
+    liveUrl: "https://hennaart-nine.vercel.app/",
+    metrics: ["Instant WhatsApp Intake", "Retina Art Gallery", "Zero Template Bloat"],
+    caseSlug: "krishav-mehendi",
+  },
+  {
+    id: "titangym",
+    number: "03",
+    name: "Titan Athletic Club",
+    category: "Fitness & Athletic Performance",
+    tagline: "High-octane digital platform with class schedules, trainer rosters & VIP trial intake.",
+    desktopImage: "/images/projects/titangym/contrast.png",
+    mobileImage: "/images/projects/titangym/mobile.png",
+    liveUrl: "https://titangymnq.vercel.app/",
+    metrics: ["VIP Trial Funnel", "High-Contrast Brutalism", "Sub-Second Edge"],
+    caseSlug: "titan-gym",
+  },
+  {
+    id: "valerie",
+    number: "04",
+    name: "Valerie Laurent",
+    category: "Haute Couture & Editorial",
+    tagline: "Vogue-inspired editorial portfolio & VIP consultation booking for high-fashion makeup artists.",
+    desktopImage: "/images/projects/editorial/vogue.png",
+    mobileImage: "/images/projects/editorial/traditional.png",
+    liveUrl: "https://bridalnerqiva.vercel.app/",
+    metrics: ["Editorial Print Layout", "VIP Client Concierge", "Fluid Micro-Motion"],
+    caseSlug: "valerie-laurent",
+  },
+];
+
+export default function Hero() {
+  const [activeTab, setActiveTab] = useState<string>("lablink");
+  const current = SHOWCASES.find((s) => s.id === activeTab) || SHOWCASES[0];
 
   return (
-    <section className="relative w-full bg-transparent overflow-hidden border-b border-border/30">
+    <section className="relative w-full bg-transparent overflow-hidden border-b border-border/40">
       <HeroFlowLine />
-      <div className="section-container relative z-10 w-full pt-16 pb-14 lg:pt-22 lg:pb-18">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Value proposition & CTAs */}
-          <div className="lg:col-span-6 flex flex-col">
-            {/* Single quiet status pill */}
-            <div className="animate-fade-in-up mb-4 flex items-center gap-2">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[11px] font-semibold text-text-secondary bg-bg-secondary border border-border rounded-full shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                Available for New Client Projects
-              </span>
-            </div>
 
-            {/* Eyebrow */}
-            <div className="animate-fade-in-up mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
-                Web Design &amp; Lead Systems for Local Businesses
-              </span>
-            </div>
-
-            {/* Authoritative H1: Editorial emphasis with serif italic, no cheesy gradients */}
-            <h1
-              className="animate-fade-in-up font-display font-black text-text-primary text-3xl sm:text-4xl lg:text-[3.25rem] leading-[1.12] tracking-tight mb-5"
-              style={{ letterSpacing: "-0.03em", animationFillMode: "both" }}
-            >
-              We build websites that turn Instagram scrollers into{" "}
-              <span className="font-serif italic font-normal text-accent">
-                paying clients.
-              </span>
-            </h1>
-
-            {/* Distilled Subheadline */}
-            <p
-              className="animate-fade-in-up text-text-secondary text-base sm:text-lg leading-relaxed max-w-xl mb-6 font-normal"
-              style={{ animationDelay: "120ms", animationFillMode: "both" }}
-            >
-              Fast loading, custom-tailored on mobile, and connected directly to your WhatsApp. No slow agency retainers or bloated WordPress templates. Delivered live in days.
-            </p>
-
-            {/* Core Capability Tags */}
-            <div
-              className="animate-fade-in-up flex flex-wrap gap-2 mb-7"
-              style={{ animationDelay: "200ms", animationFillMode: "both" }}
-            >
-              {TOP_SERVICES.map((item) => (
-                <span
-                  key={item}
-                  className="font-mono text-xs font-semibold text-text-primary bg-bg-secondary border border-border px-3.5 py-1.5 rounded-full tracking-wide shadow-2xs"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            {/* Action CTAs */}
-            <div
-              className="animate-fade-in-up flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 mb-8"
-              style={{ animationDelay: "270ms", animationFillMode: "both" }}
-            >
-              <a
-                href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20a%20free%20audit%20of%20my%20business%20online%20presence."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full sm:w-auto"
-              >
-                <span>Get a Free Business Audit</span>
-                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-200 shrink-0" />
-              </a>
-              <a href="#case-studies" className="btn-secondary w-full sm:w-auto">
-                Browse Live Demos
-              </a>
-            </div>
+      <div className="section-container relative z-10 pt-16 sm:pt-24 pb-16 sm:pb-24">
+        
+        {/* Top Studio Meta & Location Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-border/30">
+          <div className="flex items-center gap-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
+              NERQIVA STUDIO
+            </span>
+            <span className="text-border-dark">•</span>
+            <span className="font-mono text-xs text-text-secondary tracking-wider">
+              North Guwahati &amp; Remote Worldwide
+            </span>
           </div>
 
-          {/* Right Column: Live Interactive Demo Browser Frame */}
-          <div className="lg:col-span-6 w-full flex flex-col gap-3.5 relative">
-            {/* Demo Switcher Tabs */}
-            <div className="flex gap-2 overflow-x-auto snap-x scrollbar-none pb-1 sm:pb-0 sm:flex-wrap">
-              {DEMO_SHOWCASES.map((d) => (
-                <button
-                  key={d.id}
-                  onClick={() => { setActiveDemo(d.id as DemoId); setInteracting(null); }}
-                  className={`snap-start shrink-0 px-4 py-2 font-mono text-xs font-semibold border transition-all duration-200 cursor-pointer rounded-full ${
-                    activeDemo === d.id
-                      ? "bg-accent text-text-inverted border-accent shadow-sm"
-                      : "bg-bg-secondary text-text-secondary border-border hover:border-accent/40 hover:text-text-primary"
-                  }`}
-                >
-                  {d.label}
-                </button>
-              ))}
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeDemo}
-                initial={{ opacity: 0, scale: 0.99, y: 4 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.99, y: -4 }}
-                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative z-10 card-luxury overflow-hidden border border-border rounded-2xl bg-bg-primary shadow-xl"
-              >
-                {/* Browser Chrome Header */}
-                <div className="px-4 py-2.5 border-b border-border bg-bg-secondary/90 flex items-center justify-between gap-3">
-                  <div className="flex gap-1.5 shrink-0">
-                    <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-                  </div>
-                  <div className="flex-1 max-w-xs bg-bg-card border border-border rounded-md px-3 py-0.5 text-center shadow-2xs">
-                    <span className="font-mono text-[10px] font-semibold text-text-secondary tracking-wide truncate block">
-                      {demo.url.replace("https://", "")}
-                    </span>
-                  </div>
-                  <a
-                    href={demo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 flex items-center gap-1 font-mono text-[10px] font-bold text-accent hover:text-accent-mid hover:underline uppercase tracking-wider transition-colors"
-                  >
-                    <ExternalLink size={11} />
-                    Open
-                  </a>
-                </div>
-
-                {/* Live Iframe Viewport */}
-                <div className="relative w-full overflow-hidden bg-bg-primary" style={{ height: "380px" }}>
-                  <iframe
-                    src={demo.demoUrl}
-                    title={`${demo.name} — Live Demo`}
-                    className={`absolute inset-0 w-full h-full border-none bg-white transition-all duration-300 ${
-                      interacting === activeDemo ? "pointer-events-auto opacity-100 z-10" : "pointer-events-none opacity-100 z-0"
-                    }`}
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                  />
-
-                  {interacting !== activeDemo && (
-                    <button 
-                      onClick={() => setInteracting(activeDemo)}
-                      className="hidden sm:flex absolute bottom-4 right-4 z-20 bg-bg-primary/95 text-text-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider border border-border shadow-md backdrop-blur-md rounded-full hover:scale-105 transition-all duration-200 items-center gap-2 cursor-pointer select-none"
-                    >
-                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                      <span>Tap to Scroll</span>
-                      <MousePointer2 size={12} className="text-accent shrink-0" />
-                    </button>
-                  )}
-
-                  <a
-                    href={demo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="sm:hidden absolute inset-0 z-20 flex flex-col items-center justify-end pb-8 cursor-pointer"
-                  >
-                    <div className="bg-bg-primary/95 text-text-primary px-5 py-2.5 font-mono text-[11px] font-bold uppercase tracking-wider border border-border shadow-xl backdrop-blur-md rounded-full flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                      <span>Open Live Demo</span>
-                      <ExternalLink size={12} className="text-accent shrink-0" />
-                    </div>
-                  </a>
-
-                  {interacting === activeDemo && (
-                    <button
-                      onClick={(e) => { e.stopPropagation(); setInteracting(null); }}
-                      className="hidden sm:flex absolute top-3 right-3 z-30 btn-primary shadow-xl font-mono text-[10px] font-bold uppercase tracking-wider cursor-pointer transition-all items-center gap-1.5 py-1.5 px-3"
-                    >
-                      Done scrolling ✕
-                    </button>
-                  )}
-                </div>
-
-                {/* Footer Bar */}
-                <div className="px-4 py-3 border-t border-border bg-bg-secondary/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5">
-                  <span className="font-sans text-xs font-medium text-text-secondary truncate w-full sm:w-auto">
-                    Like this design? We build custom variations tailored for your brand.
-                  </span>
-                  <a
-                    href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20like%20the%20${encodeURIComponent(demo.name)}%20style.%20Can%20you%20build%20something%20similar%20for%20me?`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 font-mono text-[10px] font-bold text-accent hover:text-accent-mid hover:underline uppercase tracking-wider flex items-center gap-1.5 transition-colors"
-                  >
-                    Get this style <ArrowRight size={11} />
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-2 px-3 py-1 font-mono text-[11px] font-semibold text-text-primary bg-bg-secondary border border-border rounded-full shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span>Available for New Projects</span>
+            </span>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-function MobileHero({ activeDemo, setActiveDemo }: HeroSubProps) {
-  const demo = DEMO_SHOWCASES.find((d) => d.id === activeDemo)!;
-
-  return (
-    <section className="relative w-full bg-bg-primary overflow-hidden border-b border-border/30">
-      <div className="section-container relative z-10 w-full pt-26 pb-12 px-4 sm:px-6">
-        <div className="flex flex-col">
-          {/* Status availability badge */}
-          <div className="animate-fade-in-up mb-4 flex items-center gap-2">
-            <span className="inline-flex items-center gap-2 px-3 py-1 font-mono text-[10px] font-semibold text-text-secondary bg-bg-secondary border border-border rounded-full shadow-2xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              Available for New Client Projects
-            </span>
-          </div>
-
-          {/* Eyebrow */}
-          <div className="animate-fade-in-up mb-2 flex items-center">
-            <span className="font-mono text-[11px] uppercase tracking-widest text-accent font-bold">
-              Web Design &amp; Lead Systems for Local Businesses
-            </span>
-          </div>
-
-          {/* Headline with editorial italic emphasis, no AI gradient */}
+        {/* Editorial Headline: Confident, Art-Directed Fraunces Scale */}
+        <div className="max-w-5xl mb-8">
           <h1
-            className="animate-fade-in-up font-display font-black text-text-primary text-[2.15rem] leading-[1.12] tracking-tight mb-4"
-            style={{ letterSpacing: "-0.025em", animationFillMode: "both" }}
+            className="font-display font-black text-text-primary text-4xl sm:text-6xl lg:text-7xl xl:text-[4.75rem] leading-[1.06] tracking-tight mb-6"
+            style={{ letterSpacing: "-0.035em" }}
           >
-            We build websites that turn Instagram scrollers into{" "}
-            <span className="font-serif italic font-normal text-accent">
+            We engineer bespoke web flagships that turn attention into{" "}
+            <span className="font-serif italic font-normal text-accent underline decoration-accent/20 decoration-wavy">
               paying clients.
             </span>
           </h1>
 
-          {/* Clean Demo Preview Card (No fake rotated card, no fake SVG doodle lines) */}
-          <div className="relative z-10 w-full my-4">
-            {/* Demo selector tabs */}
-            <div className="flex gap-1.5 overflow-x-auto snap-x scrollbar-none pb-2 mb-2">
-              {DEMO_SHOWCASES.map((d) => (
-                <button
-                  key={d.id}
-                  onClick={() => setActiveDemo(d.id as DemoId)}
-                  className={`snap-start shrink-0 px-3.5 py-1.5 font-mono text-[11px] font-semibold border transition-all duration-200 cursor-pointer rounded-full ${
-                    activeDemo === d.id
-                      ? "bg-accent text-text-inverted border-accent shadow-xs"
-                      : "bg-bg-secondary text-text-secondary border-border"
-                  }`}
-                >
-                  {d.label}
-                </button>
-              ))}
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeDemo}
-                initial={{ opacity: 0, scale: 0.99, y: 6 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.99, y: -6 }}
-                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="relative bg-bg-primary border border-border rounded-xl shadow-lg overflow-hidden"
-              >
-                {/* Browser Chrome Bar */}
-                <div className="px-3 py-2 border-b border-border bg-bg-secondary/90 flex items-center justify-between gap-2">
-                  <div className="flex gap-1 shrink-0">
-                    <span className="h-2 w-2 rounded-full bg-red-400/80" />
-                    <span className="h-2 w-2 rounded-full bg-amber-400/80" />
-                    <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
-                  </div>
-                  <div className="flex-1 max-w-[170px] bg-bg-card border border-border rounded px-2 py-0.5 text-center truncate shadow-2xs">
-                    <span className="font-mono text-[9px] font-semibold text-text-secondary">
-                      {demo.url.replace("https://", "")}
-                    </span>
-                  </div>
-                  <a 
-                    href={demo.url} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center gap-1 font-mono text-[9px] font-bold text-accent uppercase tracking-wider py-1 px-1.5"
-                    aria-label={`Open ${demo.name} in new tab`}
-                  >
-                    <ExternalLink size={10} /> OPEN
-                  </a>
-                </div>
-
-                {/* Iframe Viewport with full overlay */}
-                <div className="relative w-full bg-white h-[300px]">
-                  <iframe
-                    src={demo.demoUrl}
-                    title={`${demo.name} Demo`}
-                    className="absolute inset-0 w-full h-full border-none opacity-100 z-0 pointer-events-none"
-                    loading="lazy"
-                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-                  />
-
-                  {/* Mobile Direct Tap Overlay */}
-                  <a
-                    href={demo.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-6 cursor-pointer"
-                    aria-label="Open live demo in new tab"
-                  >
-                    <div className="bg-bg-primary/95 text-text-primary px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-wider border border-border shadow-lg backdrop-blur-md rounded-full flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-                      <span>Open Live Demo</span>
-                      <ExternalLink size={11} className="text-accent shrink-0" />
-                    </div>
-                  </a>
-                </div>
-
-                {/* Card footer */}
-                <div className="px-3 py-2.5 border-t border-border bg-bg-secondary/90 flex justify-between items-center gap-2">
-                  <span className="text-[10px] text-text-secondary font-medium truncate max-w-[170px]">
-                    Like this design? We tailor it for you.
-                  </span>
-                  <a 
-                    href={`https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20like%20the%20${encodeURIComponent(demo.name)}%20style.%20Can%20you%20build%20something%20similar%20for%20me?`}
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="shrink-0 font-mono text-[9px] font-bold text-accent uppercase tracking-wider flex items-center gap-1"
-                  >
-                    INQUIRE <ArrowRight size={9} />
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Subheading paragraph */}
-          <p
-            className="animate-fade-in-up text-text-secondary text-[15px] leading-relaxed mb-6 font-normal mt-2"
-            style={{ animationDelay: "100ms", animationFillMode: "both" }}
-          >
-            Fast loading, custom-tailored on mobile, and connected directly to your WhatsApp. No slow agency retainers or bloated WordPress templates. Delivered live in days.
+          <p className="text-text-secondary text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-3xl font-normal">
+            Fast loading, custom-tailored on mobile, and connected directly to your WhatsApp.
+            No slow agency retainers or bloated WordPress templates. Handcrafted from scratch.
           </p>
+        </div>
 
-          {/* Clean Capability Tags */}
-          <div
-            className="animate-fade-in-up flex flex-wrap gap-2 mb-7 w-full"
-            style={{ animationDelay: "150ms", animationFillMode: "both" }}
+        {/* Primary Tactile Actions */}
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-16">
+          <a
+            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20build%20a%20high-converting%20website%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary shadow-lg shadow-accent/20 py-3.5 px-6 sm:px-8 text-sm sm:text-base font-bold tracking-wide"
           >
-            {TOP_SERVICES.map((item) => (
-              <span
-                key={item}
-                className="font-mono text-[11px] font-semibold text-text-primary bg-bg-secondary border border-border px-3 py-1.5 rounded-full tracking-wide shadow-2xs"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
+            <span>Start on WhatsApp</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
 
-          {/* Consistent CTA Buttons using design system */}
-          <div
-            className="animate-fade-in-up flex flex-col gap-3 mb-8"
-            style={{ animationDelay: "200ms", animationFillMode: "both" }}
+          <a
+            href="#case-studies"
+            className="btn-secondary py-3.5 px-6 text-sm sm:text-base font-bold flex items-center gap-2"
           >
-            <a
-              href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20a%20free%20audit%20of%20my%20business%20online%20presence."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary w-full py-3.5 text-xs font-mono font-bold tracking-wider"
-            >
-              <span>Get a Free Business Audit</span>
-              <ArrowRight size={14} />
-            </a>
+            <span>Explore Selected Work</span>
+            <ArrowDown size={15} className="group-hover:translate-y-1 transition-transform" />
+          </a>
 
-            <a
-              href="#case-studies"
-              className="btn-secondary w-full py-3.5 text-xs font-mono font-bold tracking-wider"
-            >
-              Browse Live Demos
-            </a>
-          </div>
-
-
-
-          {/* Subtle scroll cue */}
-          <div
-            className="animate-fade-in-up flex flex-col items-center justify-center gap-1 opacity-50"
-            style={{ animationDelay: "300ms", animationFillMode: "both" }}
-          >
-            <ChevronDown size={14} className="text-text-tertiary animate-bounce" />
-            <span className="font-mono text-[9px] font-semibold uppercase tracking-widest text-text-tertiary">
-              Scroll to explore
+          <div className="w-full sm:w-auto flex items-center gap-3 pt-2 sm:pt-0 sm:border-l sm:border-border/60 sm:pl-6">
+            <span className="font-mono text-xs text-text-secondary font-medium">
+              Verified &lt;0.8s mobile speed on 4G • 100% Code Handover
             </span>
           </div>
         </div>
+
+        {/* Grand Cinematic Showcase Stage (Visual Proof, Zero Faux Iframes) */}
+        <div className="w-full bg-bg-card border border-border rounded-3xl p-4 sm:p-7 shadow-2xl relative overflow-hidden">
+          
+          {/* Showcase Tabs Switcher */}
+          <div className="flex items-center justify-between flex-wrap gap-3 pb-5 border-b border-border/50">
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+              {SHOWCASES.map((item) => {
+                const isActive = activeTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveTab(item.id)}
+                    className={`shrink-0 px-4 py-2 rounded-full font-mono text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+                      isActive
+                        ? "bg-accent text-text-inverted shadow-md shadow-accent/25"
+                        : "bg-bg-secondary text-text-secondary hover:text-text-primary hover:bg-border/40"
+                    }`}
+                  >
+                    <span className="opacity-60">{item.number}</span>
+                    <span>{item.name}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-mono text-text-tertiary">
+              <span className="hidden sm:inline">Active Flagship Showcase</span>
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
+            </div>
+          </div>
+
+          {/* Active Showcase Stage */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 flex flex-col gap-6"
+            >
+              {/* Dual Visual Showcase: Desktop Widescreen + Floating Mobile Frame */}
+              <div className="grid lg:grid-cols-12 gap-6 items-center">
+                
+                {/* Desktop Viewport Canvas */}
+                <div className="lg:col-span-8 relative rounded-2xl overflow-hidden border border-border shadow-xl bg-bg-secondary group">
+                  {/* Browser Top Bar */}
+                  <div className="px-4 py-2.5 bg-bg-primary/95 border-b border-border/60 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80" />
+                    </div>
+                    <div className="flex-1 max-w-sm mx-auto px-3 py-0.5 bg-bg-secondary border border-border/60 rounded-md text-center">
+                      <span className="font-mono text-[10px] text-text-secondary truncate block">
+                        {current.liveUrl.replace("https://", "")}
+                      </span>
+                    </div>
+                    <a
+                      href={current.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-mono text-[10px] font-bold text-accent hover:underline flex items-center gap-1"
+                    >
+                      <span>Visit Live</span>
+                      <ExternalLink size={10} />
+                    </a>
+                  </div>
+
+                  {/* High-Resolution Screenshot */}
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-bg-secondary">
+                    <img
+                      src={current.desktopImage}
+                      alt={`${current.name} Desktop Interface`}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                      loading="eager"
+                    />
+                  </div>
+                </div>
+
+                {/* Mobile Viewport & Context Card */}
+                <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-5 justify-between">
+                  
+                  {/* Phone Mockup Preview */}
+                  <div className="relative mx-auto sm:mx-0 w-44 sm:w-48 lg:w-44 shrink-0 rounded-[28px] p-2 bg-text-primary shadow-2xl border-2 border-border/60">
+                    <div className="relative rounded-[22px] overflow-hidden aspect-[9/19] bg-bg-secondary">
+                      <img
+                        src={current.mobileImage}
+                        alt={`${current.name} Mobile Experience`}
+                        className="w-full h-full object-cover object-top"
+                        loading="eager"
+                      />
+                      <div className="absolute bottom-2 left-2 right-2 bg-text-primary/80 backdrop-blur-md rounded-full py-1 text-center">
+                        <span className="font-mono text-[9px] text-text-inverted uppercase tracking-wider font-bold">
+                          Mobile 60fps
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Info & Metrics */}
+                  <div className="flex-1 flex flex-col justify-between gap-4">
+                    <div>
+                      <div className="font-mono text-xs uppercase tracking-wider text-accent font-bold mb-1">
+                        {current.category}
+                      </div>
+                      <h3 className="font-display font-black text-2xl text-text-primary tracking-tight mb-2">
+                        {current.name}
+                      </h3>
+                      <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                        {current.tagline}
+                      </p>
+
+                      {/* Verified Metric Chips */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {current.metrics.map((m, i) => (
+                          <span
+                            key={i}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-bg-secondary border border-border text-[11px] font-mono text-text-primary"
+                          >
+                            <CheckCircle2 size={11} className="text-emerald-500 shrink-0" />
+                            <span>{m}</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 pt-3 border-t border-border/40">
+                      <a
+                        href={current.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary py-2 px-4 text-xs font-bold flex items-center gap-1.5"
+                      >
+                        <span>Launch Flagship</span>
+                        <ExternalLink size={12} />
+                      </a>
+
+                      <Link
+                        href={`/work/${current.caseSlug}`}
+                        className="btn-secondary py-2 px-4 text-xs font-bold"
+                      >
+                        Case Details
+                      </Link>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+        </div>
+
       </div>
     </section>
-  );
-}
-
-export default function Hero() {
-  const [activeDemo, setActiveDemo] = useState<DemoId>("healthcare");
-  const [interacting, setInteracting] = useState<string | null>(null);
-
-  return (
-    <>
-      <div className="block lg:hidden">
-        <MobileHero 
-          activeDemo={activeDemo} 
-          setActiveDemo={setActiveDemo} 
-          interacting={interacting} 
-          setInteracting={setInteracting} 
-        />
-      </div>
-      <div className="hidden lg:block">
-        <DesktopHero 
-          activeDemo={activeDemo} 
-          setActiveDemo={setActiveDemo} 
-          interacting={interacting} 
-          setInteracting={setInteracting} 
-        />
-      </div>
-    </>
   );
 }

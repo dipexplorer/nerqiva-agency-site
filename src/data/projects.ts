@@ -21,6 +21,7 @@ export interface Project {
   accentColor: string;
   demoUrl?: string;
   featured?: boolean;
+  heroImage?: string;
   gallery?: string[];
 }
 
@@ -56,9 +57,12 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-teal-600",
     featured: true,
     demoUrl: "https://www.lablinkguwahati.in/",
+    heroImage: "/images/projects/lablink/desktop.png",
     gallery: [
+      "/images/projects/lablink/desktop.png",
       "/images/projects/lablink/hero.png",
-      "/images/projects/lablink/booking.png"
+      "/images/projects/lablink/booking.png",
+      "/images/projects/lablink/phlebotomist.jpg"
     ]
   },
   {
@@ -91,7 +95,14 @@ export const PROJECTS: Project[] = [
     gradient: "from-amber-600/10 to-emerald-600/10",
     accentColor: "bg-amber-600",
     featured: true,
-    demoUrl: "https://hennaart-nine.vercel.app/"
+    demoUrl: "https://hennaart-nine.vercel.app/",
+    heroImage: "/images/projects/krishavmehendi/bridal.png",
+    gallery: [
+      "/images/projects/krishavmehendi/bridal.png",
+      "/images/projects/krishavmehendi/arabic.png",
+      "/images/projects/krishavmehendi/traditional.png",
+      "/images/projects/krishavmehendi/minimal.png"
+    ]
   },
   {
     id: "valerielaurent",
@@ -123,7 +134,13 @@ export const PROJECTS: Project[] = [
     gradient: "from-red-600/10 to-[#0a0a0a]/10",
     accentColor: "bg-red-600",
     featured: true,
-    demoUrl: "https://bridalnerqiva.vercel.app/"
+    demoUrl: "https://bridalnerqiva.vercel.app/",
+    heroImage: "/images/projects/editorial/vogue.png",
+    gallery: [
+      "/images/projects/editorial/vogue.png",
+      "/images/projects/editorial/prada.png",
+      "/images/projects/editorial/traditional.png"
+    ]
   },
   {
     id: "elenastyles",
@@ -155,7 +172,13 @@ export const PROJECTS: Project[] = [
     gradient: "from-[#F5F2EB]/10 to-[#EAE5D9]/10",
     accentColor: "bg-[#2A2320]",
     featured: true,
-    demoUrl: "https://aura-beauty-theme.vercel.app/"
+    demoUrl: "https://aura-beauty-theme.vercel.app/",
+    heroImage: "/images/projects/aurabeauty/final_hero.png",
+    gallery: [
+      "/images/projects/aurabeauty/final_hero.png",
+      "/images/projects/aurabeauty/packages.png",
+      "/images/projects/aurabeauty/hero.png"
+    ]
   },
   {
     id: "mayabennett",
@@ -186,8 +209,13 @@ export const PROJECTS: Project[] = [
     stack: ["Next.js", "React", "Tailwind CSS"],
     gradient: "from-rose-500/10 to-pink-500/10",
     accentColor: "bg-rose-500",
-    featured: true,
-    demoUrl: "https://bridalnerqiva2.vercel.app/"
+    featured: false,
+    demoUrl: "https://bridalnerqiva2.vercel.app/",
+    heroImage: "/images/projects/aurabeauty/hero.png",
+    gallery: [
+      "/images/projects/aurabeauty/hero.png",
+      "/images/projects/aurabeauty/packages.png"
+    ]
   },
   {
     id: "houseoftales",
@@ -219,7 +247,13 @@ export const PROJECTS: Project[] = [
     gradient: "from-zinc-500/10 to-stone-500/10",
     accentColor: "bg-zinc-500",
     featured: true,
-    demoUrl: "https://aperturelight.vercel.app/"
+    demoUrl: "https://aperturelight.vercel.app/",
+    heroImage: "/images/projects/wedding/bride_portrait.png",
+    gallery: [
+      "/images/projects/wedding/bride_portrait.png",
+      "/images/projects/wedding/holi.png",
+      "/images/projects/wedding/coastal.png"
+    ]
   },
   {
     id: "titangym",
@@ -251,7 +285,14 @@ export const PROJECTS: Project[] = [
     gradient: "from-amber-500/10 to-orange-600/10",
     accentColor: "bg-amber-500",
     featured: true,
-    demoUrl: "https://titangymnq.vercel.app/"
+    demoUrl: "https://titangymnq.vercel.app/",
+    heroImage: "/images/projects/titangym/contrast.png",
+    gallery: [
+      "/images/projects/titangym/contrast.png",
+      "/images/projects/titangym/hero.png",
+      "/images/projects/titangym/zones.png",
+      "/images/projects/titangym/mobile.png"
+    ]
   },
   {
     id: "vogueheirloom",
@@ -283,6 +324,12 @@ export const PROJECTS: Project[] = [
     gradient: "from-stone-400/10 to-amber-200/10",
     accentColor: "bg-amber-600",
     featured: true,
-    demoUrl: "https://heirloomnq.vercel.app/"
+    demoUrl: "https://heirloomnq.vercel.app/",
+    heroImage: "/images/projects/wedding/coastal.png",
+    gallery: [
+      "/images/projects/wedding/coastal.png",
+      "/images/projects/wedding/holi.png",
+      "/images/projects/wedding/bride_portrait.png"
+    ]
   }
 ];

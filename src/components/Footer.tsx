@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import BrandLogo from "./BrandLogo";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Mail, MapPin, Phone, ExternalLink, ChevronDown, ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, MessageCircle, Mail, MapPin, ExternalLink, ArrowUp } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
-// Custom SVG Icons to avoid dependency version problems
+// Custom SVG Icons
 const GitHubIcon = ({ size = 16 }: { size?: number }) => (
   <svg 
     viewBox="0 0 24 24" 
@@ -40,248 +39,213 @@ const LinkedInIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
-const CAPABILITIES_LINKS = [
-  { label: "Digital Presence", href: "/solutions#presence" },
-  { label: "Workflow Automation", href: "/solutions#automation" },
-  { label: "Custom Web Apps", href: "/solutions#webapps" },
-  { label: "Data Pipelines", href: "/solutions#data" },
+const CAPABILITIES = [
+  { label: "High-Converting Flagships", href: "/#case-studies" },
+  { label: "Doorstep Clinical Diagnostics", href: "/work/lablink-guwahati" },
+  { label: "Luxury Bridal & Henna Portfolios", href: "/work/krishav-mehendi" },
+  { label: "Athletic & Wellness Systems", href: "/work/titan-gym" },
+  { label: "1-Tap WhatsApp Lead Engines", href: "/#process" },
 ];
 
 const STUDIO_LINKS = [
   { label: "Selected Work", href: "/work" },
-  { label: "Our Process", href: "/process" },
-  { label: "North Guwahati HQ", href: "/locations/north-guwahati" },
+  { label: "4-Day Sprint Process", href: "/process" },
+  { label: "North Guwahati Studio HQ", href: "/locations/north-guwahati" },
   { label: "Brand Philosophy", href: "/about" },
-  { label: "FAQs & Answers", href: "/faq" },
-  { label: "Start a Project", href: "/contact" },
+  { label: "Direct Consultation", href: "/contact" },
 ];
 
-const SERVICE_AREAS = [
-  { label: "North Guwahati", href: "/locations/north-guwahati" },
-  { label: "Rudreswar", href: "/locations/north-guwahati#rudreswar" },
-  { label: "Guwahati City", href: "/locations/north-guwahati#guwahati" },
-  { label: "Assam & India", href: "/locations/north-guwahati#assam" },
-];
-
-const RESOURCES_LINKS = [
-  { label: "GitHub", href: "https://github.com/dipexplorer", icon: GitHubIcon, external: true },
-  { label: "LinkedIn", href: "https://linkedin.com/in/dip-jyoti22", icon: LinkedInIcon, external: true },
-  { label: "Terms of Service", href: "/terms", external: false },
-  { label: "Privacy Policy", href: "/privacy", external: false },
+const LEGAL_LINKS = [
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "LLMs Context File", href: "/llms.txt", external: true },
+  { label: "Source Code Handover", href: "https://github.com/dipexplorer", external: true },
 ];
 
 export default function Footer() {
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const [istTime, setIstTime] = useState<string>("");
 
-  const toggleSection = (id: string) => {
-    setOpenSection((prev) => (prev === id ? null : id));
-  };
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      // IST is UTC+5:30
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      };
+      setIstTime(new Intl.DateTimeFormat("en-GB", options).format(now));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <footer className="border-t border-border/40 bg-bg-primary overflow-hidden relative z-20 pt-12 sm:pt-20 pb-8 sm:pb-12">
-      {/* Background Ambience */}
+    <footer className="border-t border-border/40 bg-bg-card relative z-20 pt-16 sm:pt-24 pb-12 overflow-hidden">
+      
+      {/* Ambient background soft glow */}
       <div 
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent/8 rounded-[100%] blur-[100px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-accent/5 rounded-full blur-[140px] pointer-events-none"
         aria-hidden="true"
       />
-      
+
       <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-12">
+        
+        {/* Live Studio Coordinates Bar (footer.design style) */}
+        <div className="pb-10 border-b border-border/40 grid grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs">
+          <div>
+            <span className="text-text-tertiary block mb-1 uppercase tracking-wider text-[10px]">Studio Location</span>
+            <span className="text-text-primary font-bold">North Guwahati, IN</span>
+          </div>
+
+          <div>
+            <span className="text-text-tertiary block mb-1 uppercase tracking-wider text-[10px]">Studio Time (IST)</span>
+            <span className="text-text-primary font-bold tabular-nums">
+              {istTime ? `${istTime} IST` : "21:45:00 IST"}
+            </span>
+          </div>
+
+          <div>
+            <span className="text-text-tertiary block mb-1 uppercase tracking-wider text-[10px]">Availability</span>
+            <span className="text-emerald-500 font-bold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Open for Q4 2026</span>
+            </span>
+          </div>
+
+          <div>
+            <span className="text-text-tertiary block mb-1 uppercase tracking-wider text-[10px]">Delivery Sprint</span>
+            <span className="text-text-primary font-bold">96 Hours to Live</span>
+          </div>
+        </div>
+
+        {/* Navigation Grid */}
+        <div className="py-14 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           
-          {/* Column 1: Brand details & Premium Local Widget */}
-          <div className="col-span-1 lg:col-span-4 flex flex-col gap-5">
-            <div className="flex flex-col gap-4">
-              <Link href="/" className="flex items-center gap-3 w-fit group">
-                <BrandLogo className="h-8 w-8 opacity-100 group-hover:scale-105 transition-transform" />
-                <span className="font-mono text-lg font-black tracking-widest text-text-primary">
-                  NERQIVA <span className="text-text-tertiary">STUDIO</span>
-                </span>
-              </Link>
-              <p className="text-sm leading-relaxed max-w-sm text-text-secondary font-medium">
-                High-converting website design, 1-click WhatsApp lead routing, and custom web systems delivered in 24 Hours.
-              </p>
-            </div>
-
-            {/* Premium Local NAP Widget */}
-            <div className="p-5 rounded-2xl bg-bg-card border border-border/60 shadow-lg shadow-black/5 hover:border-accent/30 hover:shadow-accent/5 transition-all duration-300 flex flex-col gap-4">
-              <div className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-accent/10 text-accent shrink-0 mt-0.5">
-                  <MapPin size={16} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-sans font-semibold text-text-primary text-sm mb-1">
-                    Headquarters
-                  </span>
-                  <span className="text-xs text-text-secondary leading-relaxed">
-                    Baruah Souk, North Guwahati,<br />
-                    Rudreswar, Guwahati, Assam 781030
-                  </span>
-                </div>
-              </div>
-              
-              <div className="h-px w-full bg-border/40" />
-              
-              <div className="flex items-center justify-between gap-2">
-                <a
-                  href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'm%20reaching%20out%20from%20your%20website%20to%20discuss%20a%20project%20for%20my%20business."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 group cursor-pointer"
-                  title="Direct WhatsApp Consultation"
-                >
-                  <div className="p-1.5 rounded-md bg-emerald-500/10 text-emerald-600 group-hover:bg-emerald-500/20 transition-colors">
-                    <Phone size={13} />
-                  </div>
-                  <span className="font-mono text-xs font-bold text-text-primary group-hover:text-emerald-600 transition-colors">
-                    +91 87249 32985
-                  </span>
-                </a>
-                
-                <a
-                  href="https://share.google/6KKUdxiR4zdUDuAnT"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-text-tertiary hover:text-accent uppercase tracking-wider group"
-                >
-                  MAPS <ExternalLink size={12} className="group-hover:-mt-0.5 group-hover:ml-0.5 transition-all" />
-                </a>
-              </div>
-            </div>
-
-            {/* Premium Social Links */}
-            <div className="flex items-center gap-3 mt-2">
-              <a 
-                href="https://github.com/dipexplorer" 
-                target="_blank" 
+          {/* Brand Info */}
+          <div className="col-span-2 sm:col-span-1 flex flex-col gap-4">
+            <Link href="/" className="flex items-center gap-2.5 w-fit group">
+              <BrandLogo className="h-7 w-7 opacity-100 group-hover:scale-105 transition-transform" />
+              <span className="font-mono text-base font-black tracking-widest text-text-primary">
+                NERQIVA <span className="text-text-tertiary font-normal">STUDIO</span>
+              </span>
+            </Link>
+            <p className="text-text-secondary text-xs sm:text-sm leading-relaxed max-w-xs">
+              Bespoke digital systems and high-converting web applications. Handcrafted in North Guwahati for ambitious clients worldwide.
+            </p>
+            <div className="flex items-center gap-3 pt-2">
+              <a
+                href="https://github.com/dipexplorer"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-accent hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 hover:-translate-y-1"
-                aria-label="GitHub"
+                className="h-8 w-8 rounded-full border border-border bg-bg-secondary flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
+                aria-label="GitHub Profile"
               >
-                <GitHubIcon size={18} />
+                <GitHubIcon size={14} />
               </a>
-              <a 
-                href="https://linkedin.com/in/dip-jyoti22" 
-                target="_blank" 
+              <a
+                href="https://linkedin.com/in/dip-jyoti22"
+                target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:shadow-lg hover:shadow-[#0A66C2]/20 transition-all duration-300 hover:-translate-y-1"
-                aria-label="LinkedIn"
+                className="h-8 w-8 rounded-full border border-border bg-bg-secondary flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
+                aria-label="LinkedIn Profile"
               >
-                <LinkedInIcon size={18} />
-              </a>
-              <a 
-                href="mailto:nerqiva.studio@gmail.com"
-                className="p-3 rounded-full bg-bg-secondary border border-border/80 text-text-secondary hover:text-text-inverted hover:bg-emerald-600 hover:border-emerald-600 hover:shadow-lg hover:shadow-emerald-600/20 transition-all duration-300 hover:-translate-y-1"
-                aria-label="Email"
-              >
-                <Mail size={18} />
+                <LinkedInIcon size={14} />
               </a>
             </div>
           </div>
 
-          {/* Link Columns (Smooth Animated Mobile Accordion / Desktop Grid) */}
-          <div className="col-span-1 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-8 lg:gap-10">
-            {[
-              { title: "Capabilities", id: "cap", links: CAPABILITIES_LINKS },
-              { title: "Studio", id: "studio", links: STUDIO_LINKS },
-              { title: "Service Areas", id: "areas", links: SERVICE_AREAS },
-              { title: "Legal & Info", id: "legal", links: RESOURCES_LINKS },
-            ].map((col) => {
-              const isOpen = openSection === col.id;
-              
-              return (
-                <div key={col.id} className="flex flex-col border-b border-border/30 sm:border-none">
-                  {/* Mobile Accordion Header */}
-                  <button 
-                    onClick={() => toggleSection(col.id)}
-                    className="w-full text-left font-sans text-xs uppercase tracking-widest font-extrabold py-4 sm:py-0 sm:mb-5 text-text-primary flex justify-between items-center sm:cursor-auto cursor-pointer group"
+          {/* Capabilities */}
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-primary mb-4">
+              Capabilities
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {CAPABILITIES.map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    href={link.href}
+                    className="text-xs text-text-secondary hover:text-accent transition-colors font-medium"
                   >
-                    <span className="group-hover:text-accent transition-colors sm:group-hover:text-text-primary">{col.title}</span>
-                    <ChevronDown 
-                      size={16} 
-                      className={`sm:hidden text-text-tertiary transition-transform duration-300 ${isOpen ? "rotate-180 text-accent" : ""}`} 
-                    />
-                  </button>
-                  
-                  {/* Desktop List (always visible on sm+) */}
-                  <div className="hidden sm:flex flex-col gap-3">
-                    {col.links.map((link: any, idx: number) => (
-                      <Link
-                        key={idx}
-                        href={link.href}
-                        target={link.external ? "_blank" : undefined}
-                        rel={link.external ? "noopener noreferrer" : undefined}
-                        className="font-sans text-[13px] text-text-secondary hover:text-accent transition-all duration-200 flex items-center group w-fit"
-                      >
-                        <span className="group-hover:translate-x-1.5 transition-transform flex items-center gap-1.5 font-medium">
-                          {link.label}
-                          {link.external && <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                  
-                  {/* Mobile Animated Accordion (hidden on sm+) */}
-                  <div className="sm:hidden">
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          key="content"
-                          initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                          animate={{ opacity: 1, height: "auto", marginBottom: 16 }}
-                          exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                          transition={{ duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] }}
-                          className="overflow-hidden flex flex-col gap-3"
-                        >
-                          {col.links.map((link: any, idx: number) => (
-                            <Link
-                              key={idx}
-                              href={link.href}
-                              target={link.external ? "_blank" : undefined}
-                              rel={link.external ? "noopener noreferrer" : undefined}
-                              className="font-sans text-[13px] text-text-secondary hover:text-accent transition-all duration-200 flex items-center group w-fit"
-                            >
-                              <span className="group-hover:translate-x-1.5 transition-transform flex items-center gap-1.5 font-medium">
-                                {link.label}
-                                {link.external && <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
-                              </span>
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              );
-            })}
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Studio Links */}
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-primary mb-4">
+              Studio
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {STUDIO_LINKS.map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    href={link.href}
+                    className="text-xs text-text-secondary hover:text-accent transition-colors font-medium"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal & Deliverables */}
+          <div>
+            <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-primary mb-4">
+              Governance &amp; Code
+            </h4>
+            <ul className="flex flex-col gap-2.5">
+              {LEGAL_LINKS.map((link, idx) => (
+                <li key={idx}>
+                  <Link
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="text-xs text-text-secondary hover:text-accent transition-colors font-medium flex items-center gap-1"
+                  >
+                    <span>{link.label}</span>
+                    {link.external && <ArrowUpRight size={10} className="text-text-tertiary" />}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 border-t border-border/30 flex flex-col-reverse sm:flex-row items-center justify-between gap-5">
-          <p className="font-sans text-[11px] sm:text-xs text-text-tertiary text-center sm:text-left leading-relaxed">
-            © {new Date().getFullYear()} NERQIVA Studio. Handcrafted in <br className="sm:hidden" />
-            <Link href="/locations/north-guwahati" className="hover:text-accent font-semibold transition-colors">
-              North Guwahati, Assam 781030
-            </Link>.
+        {/* Monolithic Grand Brand Wordmark (footer.design inspired) */}
+        <div className="pt-10 pb-6 border-t border-border/30 overflow-hidden select-none pointer-events-none">
+          <div
+            className="font-display font-black text-center text-text-primary/5 tracking-[0.25em] sm:tracking-[0.35em] text-[13vw] leading-none"
+            style={{ letterSpacing: "0.22em" }}
+          >
+            NERQIVA
+          </div>
+        </div>
+
+        {/* Bottom Utility Bar */}
+        <div className="pt-4 border-t border-border/20 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-text-tertiary">
+          <p>
+            © {new Date().getFullYear()} NERQIVA Studio. All rights reserved. North Guwahati, Assam 781030.
           </p>
-          
+
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex sm:hidden font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm w-full justify-center mt-2"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="hover:text-text-primary flex items-center gap-1.5 cursor-pointer transition-colors"
           >
-            Back to Top 
-            <ArrowUpRight size={14} className="-rotate-45" />
-          </button>
-          
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="hidden sm:flex font-mono text-[10px] font-bold uppercase tracking-widest text-text-secondary hover:text-text-inverted bg-bg-card hover:bg-accent border border-border/80 hover:border-accent px-4 py-2.5 rounded-full transition-all items-center gap-2 cursor-pointer shadow-sm"
-          >
-            Back to Top 
-            <ArrowUpRight size={14} className="-rotate-45" />
+            <span>Back to top</span>
+            <ArrowUp size={12} />
           </button>
         </div>
+
       </div>
     </footer>
   );
