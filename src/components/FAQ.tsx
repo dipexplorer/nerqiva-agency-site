@@ -156,7 +156,7 @@ export default function FAQ() {
             </div>
             <div>
               <h4 className="font-sans font-bold text-sm sm:text-base text-text-primary">Have a specific question about your business?</h4>
-              <p className="font-mono text-[10px] sm:text-xs text-text-tertiary uppercase tracking-wider mt-0.5">Chat directly with our lead architect on WhatsApp</p>
+              <p className="font-mono text-[10px] sm:text-xs text-text-tertiary uppercase tracking-wider mt-0.5">Chat directly with founder Dipjyoti on WhatsApp</p>
             </div>
           </div>
           <a

@@ -1,17 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BrandLogo from "./BrandLogo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Work", href: "/work" },
-  { label: "Services", href: "/solutions" },
-  { label: "Process", href: "/process" },
-  { label: "About", href: "/about" },
+  { label: "Selected Work", href: "/#case-studies" },
+  { label: "Anti-Agency", href: "/#manifesto" },
+  { label: "Build Flagship", href: "/#configurator" },
+  { label: "Founder", href: "/#founder" },
 ];
 
 export default function Navigation() {
@@ -21,13 +21,12 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -39,140 +38,126 @@ export default function Navigation() {
     };
   }, [isOpen]);
 
-  const isActive = (href: string) => {
-    if (href === "/" && pathname !== "/") return false;
-    return pathname.startsWith(href);
-  };
-
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-          scrolled
-            ? "glass-panel rounded-none border-border/40 py-3 shadow-sm"
-            : "bg-transparent border-transparent py-5"
-        }`}
-      >
-        <div className="section-container flex items-center justify-between">
-          {/* Logo & Location Micro-Badge */}
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex items-center gap-3 group shrink-0">
-              <BrandLogo className="h-9 w-9" />
-              <span className="font-mono text-lg font-bold tracking-widest text-text-primary group-hover:text-accent transition-colors duration-300">
-                NERQIVA
-              </span>
-            </Link>
+      {/* Floating Luxury Control Bar */}
+      <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 pt-4 pointer-events-none">
+        <nav
+          className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3 rounded-full transition-all duration-300 pointer-events-auto ${
+            scrolled
+              ? "bg-bg-card/90 backdrop-blur-xl border border-border shadow-2xl"
+              : "bg-bg-card/70 backdrop-blur-md border border-border/60 shadow-lg"
+          }`}
+        >
+          {/* Brand Monogram */}
+          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+            <BrandLogo className="h-7 w-7 transition-transform duration-300 group-hover:scale-105" />
+            <span className="font-mono text-base font-black tracking-widest text-text-primary">
+              NERQIVA<span className="text-accent">®</span>
+            </span>
+          </Link>
 
-            {/* Subtle Local Trust Badge */}
-            <div className="hidden lg:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-secondary/70 border border-border/60 font-mono text-[11px] text-text-secondary select-none">
-              <span className="font-semibold text-text-primary">Guwahati, IN</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] text-text-tertiary">Available for new projects</span>
-            </div>
-          </div>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Minimal Nav Links with Hover Micro-Dots */}
+          <div className="hidden md:flex items-center gap-7">
             {NAV_ITEMS.map((item) => (
-              <Link
+              <a
                 key={item.label}
                 href={item.href}
-                className={`font-mono text-xs font-semibold uppercase tracking-wider transition-colors duration-200 relative group py-1 ${
-                  isActive(item.href)
-                    ? "text-accent"
-                    : "text-text-secondary hover:text-text-primary"
-                }`}
+                className="font-mono text-xs font-semibold uppercase tracking-wider text-text-secondary hover:text-text-primary transition-colors flex items-center gap-1.5 group py-1"
               >
-                {item.label}
-                <span
-                  className={`absolute -bottom-0.5 left-0 h-0.5 bg-accent transition-all duration-300 ${
-                    isActive(item.href) ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </Link>
+                <span className="w-1 h-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span>{item.label}</span>
+              </a>
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Right Actions & Live Availability */}
+          <div className="hidden md:flex items-center gap-3.5">
+            {/* Live Launch Status Pill */}
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-bg-secondary border border-border text-[11px] font-mono text-text-secondary">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span className="font-semibold text-text-primary">2 Launch Slots Open</span>
+            </div>
+
             <ThemeToggle />
+
+            {/* Direct WhatsApp CTA Button */}
             <a
-              href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20project%20for%20my%20business."
+              href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20commission%20a%20website%20flagship."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary py-2 px-4 text-xs font-mono font-bold tracking-wider flex items-center gap-2 shadow-sm"
+              className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md shadow-accent/20"
             >
-              <span>Start on WhatsApp</span>
+              <span>Book on WhatsApp</span>
+              <ArrowUpRight size={13} />
             </a>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile drawer */}
-      <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-6 glass-panel transition-all duration-300 md:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-5 right-6 p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-text-secondary rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
-          aria-label="Close menu"
-        >
-          <X size={24} />
-        </button>
-
-        <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 mb-4">
-          <BrandLogo className="h-11 w-11" />
-          <span className="font-mono text-2xl font-bold tracking-widest text-text-primary">NERQIVA</span>
-        </Link>
-
-        {NAV_ITEMS.map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            onClick={() => setIsOpen(false)}
-            className={`w-64 text-center py-3.5 px-4 min-h-[44px] flex items-center justify-center font-mono text-xs font-semibold uppercase tracking-wider transition-all duration-200 border rounded-lg ${
-              isActive(item.href) 
-                ? "text-accent border-accent/40 bg-accent/5 font-bold" 
-                : "text-text-secondary hover:text-text-primary border-border hover:border-accent/30"
-            }`}
-          >
-            {item.label}
-          </Link>
-        ))}
-
-        <div className="flex flex-col items-center gap-3 mt-4 w-64">
-          <a
-            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20project%20for%20my%20business."
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setIsOpen(false)}
-            className="btn-primary w-full py-3.5 text-center text-xs font-mono font-bold tracking-wider rounded-lg flex items-center justify-center gap-2"
-          >
-            <span>Start on WhatsApp</span>
-          </a>
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="w-full py-3 text-center text-xs font-mono font-semibold border border-border/80 text-text-secondary hover:text-accent rounded-lg flex items-center justify-center gap-2"
-          >
-            <span>Submit Detailed Scope</span>
-          </Link>
-          <div className="pt-2">
+          {/* Mobile Menu Button */}
+          <div className="flex md:hidden items-center gap-2.5">
             <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-full bg-bg-secondary text-text-primary border border-border cursor-pointer hover:bg-border transition-colors"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Full-Screen Overlay Drawer */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 bg-bg-primary/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden">
+          <div className="flex items-center justify-between pb-6 border-b border-border">
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <BrandLogo className="h-7 w-7" />
+              <span className="font-mono text-base font-black tracking-widest text-text-primary">
+                NERQIVA<span className="text-accent">®</span>
+              </span>
+            </Link>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 rounded-full bg-bg-secondary text-text-primary border border-border cursor-pointer"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-6 py-8">
+            {NAV_ITEMS.map((item, idx) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="font-display font-black text-3xl text-text-primary hover:text-accent transition-colors flex items-center justify-between"
+              >
+                <span>{item.label}</span>
+                <span className="font-mono text-xs text-text-tertiary">0{idx + 1}</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="pt-6 border-t border-border flex flex-col gap-3">
+            <div className="flex items-center gap-2 text-xs font-mono text-text-secondary py-1">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>North Guwahati, IN • 2 Launch Slots Open</span>
+            </div>
+
+            <a
+              href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20commission%20a%20website%20flagship."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="btn-primary w-full py-3.5 text-center font-bold text-sm flex items-center justify-center gap-2 shadow-xl"
+            >
+              <span>Book on WhatsApp</span>
+              <ArrowUpRight size={15} />
+            </a>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

@@ -1,19 +1,19 @@
 import Hero from "../components/Hero";
 import CaseStudies from "../components/CaseStudies";
-import StudioStandard from "../components/StudioStandard";
+import AntiAgencyManifesto from "../components/AntiAgencyManifesto";
+import ProjectConfigurator from "../components/ProjectConfigurator";
 import FounderSection from "../components/FounderSection";
 import FAQ from "../components/FAQ";
-import ClosingSection from "../components/ClosingSection";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <CaseStudies />
-      <StudioStandard />
+      <AntiAgencyManifesto />
+      <ProjectConfigurator />
       <FounderSection />
       <FAQ />
-      <ClosingSection />
     </>
   );
 }

@@ -1,146 +1,140 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, CheckCircle2 } from "lucide-react";
+import { MessageCircle, ArrowUpRight, CheckCircle2 } from "lucide-react";
+
+// Custom SVG Icons
+const GitHubIcon = ({ size = 16 }: { size?: number }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width={size} 
+    height={size} 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+    <path d="M9 18c-4.51 2-5-2-7-2" />
+  </svg>
+);
+
+const LinkedInIcon = ({ size = 16 }: { size?: number }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    width={size} 
+    height={size} 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 export default function FounderSection() {
   return (
-    <section id="founder" className="py-20 md:py-28 bg-bg-primary text-text-primary relative overflow-hidden border-t border-border/45 z-10">
-      {/* Structural Ambient Grid Pattern */}
-      <div
-        className="absolute inset-0 opacity-15 dark:opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, var(--border-dark) 1px, transparent 0)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-
+    <section id="founder" className="py-20 md:py-28 bg-bg-card text-text-primary relative overflow-hidden border-t border-border/40 z-10">
       <div className="section-container max-w-5xl relative z-10">
-        {/* Header: Pure Typographic Authority without AI Kicker */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold mb-3 block">
+            The Human Craft Behind NERQIVA
+          </span>
           <h2
-            className="font-serif text-text-primary tracking-tight leading-tight text-center mb-4"
-            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
+            className="font-display font-black text-text-primary text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-4"
+            style={{ letterSpacing: "-0.03em" }}
           >
-            Direct founder oversight on every <span className="italic font-normal">flagship</span>.
+            Direct engineer oversight on every{" "}
+            <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+              flagship.
+            </span>
           </h2>
-          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal text-center max-w-2xl mx-auto">
-            No junior outsourcing or account manager middlemen. You collaborate directly with the senior engineer architecting and coding your system.
-          </p>
         </div>
 
-        {/* Main Card Container */}
-        <div className="relative rounded-2xl p-7 sm:p-10 md:p-12 bg-bg-card border border-border/70 shadow-xs overflow-hidden">
-          <div className="relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Profile Picture & Location */}
-            <div className="lg:col-span-4 flex flex-col items-center">
-              <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-2xl overflow-hidden border border-border/70 shadow-sm relative group bg-bg-secondary">
+        {/* Founder Card */}
+        <div className="rounded-3xl p-7 sm:p-10 md:p-12 bg-bg-primary border border-border shadow-xl">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column: Portrait & Coordinates */}
+            <div className="lg:col-span-5 flex flex-col items-center text-center">
+              <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden border-2 border-border shadow-lg relative group bg-bg-secondary">
                 <Image
                   src="/dip-profile.png"
-                  alt="Dipjyoti Das - Founder & Lead Engineer at NERQIVA"
+                  alt="Dipjyoti Das — Founder & Lead Engineer at NERQIVA Studio"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 176px, 208px"
+                  sizes="(max-width: 768px) 192px, 224px"
                   priority
                 />
               </div>
-              <p className="mt-3.5 font-mono text-[10px] tracking-widest text-text-tertiary uppercase font-medium">
-                Guwahati, Assam · Available Globally
+
+              <h3 className="font-display font-black text-2xl text-text-primary tracking-tight mt-4 mb-1">
+                Dipjyoti Das
+              </h3>
+              <p className="font-mono text-xs text-accent font-bold tracking-wider uppercase mb-1">
+                Founder &amp; Principal Engineer
+              </p>
+              <p className="font-mono text-[11px] text-text-tertiary">
+                North Guwahati, Assam • Direct Access
               </p>
             </div>
 
-            {/* Right Column: Badges, Bio, Focus & Social Links */}
-            <div className="lg:col-span-8 space-y-5 text-center lg:text-left">
-              {/* Badges Row */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-semibold bg-accent/10 text-accent border border-accent/25">
-                  Founder &amp; Principal Engineer
-                </span>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs font-mono font-semibold text-accent-gold bg-accent-gold/10 border border-accent-gold/25">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-                  Accepting Projects for Q2
-                </span>
+            {/* Right Column: Authentic Direct Manifesto */}
+            <div className="lg:col-span-7 flex flex-col gap-5 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bg-secondary border border-border w-fit text-[11px] font-mono text-text-secondary">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Working directly with clients worldwide</span>
               </div>
 
-              {/* Name Heading */}
-              <h3 className="font-sans font-bold text-3xl sm:text-4xl text-text-primary tracking-tight">
-                Dipjyoti Das
-              </h3>
+              <blockquote className="text-text-primary text-base sm:text-lg lg:text-xl font-serif italic leading-relaxed">
+                &ldquo;Most agency owners outsource their code to cheap overseas freelancers. At NERQIVA, every pixel and every line of code goes through my hands right here in Guwahati. When you work with us, you get my direct phone number. No account managers. No corporate telephone game. Just pure craft delivered on time.&rdquo;
+              </blockquote>
 
-              {/* Bio Paragraphs */}
-              <div className="space-y-3 text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
-                <p>
-                  I founded <strong className="text-text-primary font-semibold">NERQIVA</strong> to give ambitious business owners, luxury clinics, and high-ticket service brands elite digital flagships without the inflated retainer fees, slow bureaucracy, and hidden costs of traditional agencies.
-                </p>
-                <p>
-                  When you commission a project with us, I personally architect your conversion flow, write the Next.js edge codebase, and configure your WhatsApp lead routing to guarantee your site launches fast and converts casual visitors into paying clients.
-                </p>
-              </div>
-
-              {/* Technical Deliverables Pills */}
-              <div className="pt-1 flex flex-wrap items-center justify-center lg:justify-start gap-2">
-                {[
-                  "Next.js 15 & React",
-                  "TypeScript Architecture",
-                  "Direct WhatsApp Flow",
-                  "Zero-Lag Touch Layouts",
-                ].map((spec, idx) => (
-                  <span
-                    key={idx}
-                    className="px-2.5 py-1 bg-bg-secondary text-text-primary border border-border/50 rounded-md font-mono text-[10px] font-medium flex items-center gap-1.5 shadow-2xs"
+              <div className="pt-4 border-t border-border flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://github.com/dipexplorer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 w-9 rounded-full border border-border bg-bg-secondary flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
+                    aria-label="GitHub Profile"
                   >
-                    <CheckCircle2 size={12} className="text-accent-gold shrink-0" />
-                    {spec}
-                  </span>
-                ))}
-              </div>
-
-              {/* Social Link Buttons */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3">
-                <a
-                  href="https://linkedin.com/in/dip-jyoti22"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-semibold rounded-lg"
-                >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                  </svg>
-                  <span>LinkedIn Profile</span>
-                  <ExternalLink className="w-3 h-3 opacity-70" />
-                </a>
+                    <GitHubIcon size={15} />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/dip-jyoti22"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 w-9 rounded-full border border-border bg-bg-secondary flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <LinkedInIcon size={15} />
+                  </a>
+                </div>
 
                 <a
-                  href="https://github.com/dipexplorer"
+                  href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'd%20like%20to%20discuss%20a%20flagship%20website%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-secondary inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-semibold rounded-lg"
+                  className="btn-primary py-2.5 px-5 text-xs font-bold font-mono tracking-wider flex items-center gap-2 shadow-md shadow-accent/20"
                 >
-                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
-                  </svg>
-                  <span>GitHub Codebase</span>
-                  <ExternalLink className="w-3 h-3 opacity-70" />
-                </a>
-
-                <a
-                  href="https://dip-jyoti22.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary inline-flex items-center gap-2 px-4 py-2 font-mono text-xs font-semibold rounded-lg"
-                >
-                  <svg className="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="2" y1="12" x2="22" y2="12" />
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                  </svg>
-                  <span>Personal Portfolio</span>
-                  <ExternalLink className="w-3 h-3 opacity-70" />
+                  <MessageCircle size={14} />
+                  <span>Chat on WhatsApp</span>
+                  <ArrowUpRight size={13} />
                 </a>
               </div>
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
