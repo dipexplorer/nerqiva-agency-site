@@ -1,40 +1,40 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, Sparkles, MessageSquare } from "lucide-react";
+import { ChevronDown, Sparkles, MessageSquare, ArrowRight } from "lucide-react";
 
 export interface FAQItem {
   question: string;
   answer: string;
   category: string;
+  isPriority?: boolean;
 }
 
 export const LOCAL_FAQS: FAQItem[] = [
   {
-    category: "Delivery & Speed",
-    question: "How fast can a business website be built in North Guwahati & Guwahati?",
-    answer: "We deliver your live custom website preview in 24 Hours. Once you pick a demo theme and share your business photos, text, and WhatsApp number, we customize the site and launch it live in 1 day with zero technical headache.",
+    category: "Turnaround & Timeline",
+    isPriority: true,
+    question: "How fast will our website actually go live?",
+    answer: "Within 48 hours, you receive a private, fully interactive mobile staging link directly on your smartphone. Once you review and approve the build, we connect your domain and push it live to Google and the public in under 4 days. No 6-week wireframe delays or committee meetings.",
   },
   {
     category: "Pricing & Ownership",
-    question: "How much does a business website cost in Guwahati & Assam?",
-    answer: "NERQIVA offers transparent fixed-fee pricing with zero hidden costs and zero monthly maintenance retainers. Upon project completion, you receive 100% full ownership of your source code, domain, and digital assets.",
+    isPriority: true,
+    question: "Do we have to pay recurring monthly maintenance retainers?",
+    answer: "No. Traditional agencies charge ₹3,000 to ₹10,000 every single month just to keep a basic WordPress site from breaking. At NERQIVA, we charge a transparent, one-time project fee. On launch day, 100% of the clean source code, domain DNS, and design assets are transferred to your ownership with zero recurring hostage fees.",
   },
   {
-    category: "Pricing & Retainers",
-    question: "Do you charge recurring monthly maintenance fees?",
-    answer: "No. Unlike conventional agencies that charge ₹2,000 to ₹10,000 monthly retainers just to keep a basic site online, NERQIVA charges a one-time fixed fee with 100% source code handover and zero monthly software lock-in.",
+    category: "Leads & WhatsApp",
+    isPriority: true,
+    question: "How do prospective clients book appointments or contact us?",
+    answer: "Directly through your personal WhatsApp. When a client taps the booking button on your website, an automated message with their chosen service, timing, and appointment details opens instantly inside your WhatsApp chat. No 8-field contact forms that get lost in spam folders.",
   },
   {
     category: "Intake & Requirements",
     question: "What do I need to provide to start a project?",
     answer: "Just your business name, logo or photos, service/product list, and your WhatsApp phone number. We handle everything else—conversion-focused copy, responsive UI engineering, local SEO schemas, and DNS deployment.",
-  },
-  {
-    category: "WhatsApp Leads",
-    question: "Can customers contact me directly on WhatsApp from my website?",
-    answer: "Yes, we integrate 1-click direct WhatsApp booking buttons. When a customer taps to inquire or book an appointment, their name, chosen service, and pre-formatted inquiry opens instantly inside your WhatsApp chat on your phone.",
   },
   {
     category: "Location & Office",
@@ -50,11 +50,17 @@ export const LOCAL_FAQS: FAQItem[] = [
     category: "Mobile Optimization",
     question: "Will my website look great on mobile phones?",
     answer: "Yes, all NERQIVA websites are built 100% mobile-first and tested on iOS & Android screens. We guarantee sub-1-second FCP load speeds and touch-friendly booking buttons.",
-  }
+  },
 ];
 
-export default function FAQ() {
+interface FAQProps {
+  isHomepage?: boolean;
+}
+
+export default function FAQ({ isHomepage = false }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const displayList = isHomepage ? LOCAL_FAQS.slice(0, 3) : LOCAL_FAQS;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -63,7 +69,7 @@ export default function FAQ() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": LOCAL_FAQS.map((faq) => ({
+    "mainEntity": displayList.map((faq) => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -82,22 +88,35 @@ export default function FAQ() {
 
       <div className="section-container max-w-4xl">
         
-        {/* Header: Editorial Authority without Kicker */}
+        {/* Header: Editorial Authority without Underlines */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+          <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold mb-3 block">
+            {isHomepage ? "Essential Client Questions" : "Frequently Asked Questions"}
+          </span>
           <h2
             className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
           >
-            Frequently asked <span className="italic font-normal text-accent">questions</span>.
+            {isHomepage ? (
+              <>
+                What clients ask before <span className="italic font-normal text-accent">hiring us</span>.
+              </>
+            ) : (
+              <>
+                Frequently asked <span className="italic font-normal text-accent">questions</span>.
+              </>
+            )}
           </h2>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
-            Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our 4-Day Sprint launch workflow.
+            {isHomepage
+              ? "The 3 critical facts on delivery speed, 100% asset ownership, and direct WhatsApp lead conversion."
+              : "Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our 4-Day Sprint launch workflow."}
           </p>
         </div>
 
         {/* Accordion Stack */}
         <div className="space-y-3.5">
-          {LOCAL_FAQS.map((faq, index) => {
+          {displayList.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
@@ -148,8 +167,21 @@ export default function FAQ() {
           })}
         </div>
 
+        {/* Homepage link to full FAQ directory */}
+        {isHomepage && (
+          <div className="mt-6 text-center">
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-accent font-bold transition-colors py-2 px-4 rounded-full bg-bg-secondary border border-border hover:border-accent/40"
+            >
+              <span>Have questions about hosting, domains, or migrations? Read full FAQ directory</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+        )}
+
         {/* Still Have Questions CTA */}
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-bg-card border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+        <div className="mt-10 p-6 sm:p-8 rounded-2xl bg-bg-card border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
           <div className="flex items-center gap-4">
             <div className="h-11 w-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shrink-0">
               <MessageSquare size={20} />

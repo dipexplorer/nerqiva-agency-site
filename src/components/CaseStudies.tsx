@@ -60,7 +60,7 @@ export default function CaseStudies() {
               style={{ letterSpacing: "-0.03em" }}
             >
               Digital systems engineered for{" "}
-              <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+              <span className="font-serif italic font-normal text-accent">
                 commercial conversion.
               </span>
             </h2>

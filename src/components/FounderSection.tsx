@@ -52,7 +52,7 @@ export default function FounderSection() {
             style={{ letterSpacing: "-0.03em" }}
           >
             Direct engineer oversight on every{" "}
-            <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+            <span className="font-serif italic font-normal text-accent">
               flagship.
             </span>
           </h2>

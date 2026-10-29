@@ -92,7 +92,7 @@ export default function Hero() {
         >
           WE TURN CASUAL VISITORS <br />
           INTO{" "}
-          <span className="font-serif italic font-normal text-accent underline decoration-accent/20 decoration-wavy">
+          <span className="font-serif italic font-normal text-accent">
             high-ticket clients.
           </span>
         </h1>

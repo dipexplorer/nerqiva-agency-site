@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowDown, Volume2, VolumeX, Sparkles, Zap, MessageCircle } from "lucide-react";
-import { sound } from "../utils/audio";
+import { ArrowUpRight, ArrowDown, Sparkles, Zap, MessageCircle } from "lucide-react";
 
 interface FlagshipChannel {
   id: string;
@@ -71,7 +70,6 @@ const CHANNELS: FlagshipChannel[] = [
 
 export default function SensoryHero() {
   const [activeChannel, setActiveChannel] = useState<FlagshipChannel>(CHANNELS[0]);
-  const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const stageRef = useRef<HTMLDivElement>(null);
 
   // 3D Tilt Physics (exp.fiddle.digital style)
@@ -97,16 +95,8 @@ export default function SensoryHero() {
     mouseY.set(0);
   };
 
-  const toggleSound = () => {
-    const next = !soundEnabled;
-    setSoundEnabled(next);
-    sound.enabled = next;
-    if (next) sound.click();
-  };
-
   const selectChannel = (ch: FlagshipChannel) => {
     setActiveChannel(ch);
-    sound.tick();
   };
 
   return (
@@ -121,33 +111,24 @@ export default function SensoryHero() {
 
       <div className="section-container relative z-10 flex flex-col items-center text-center">
         
-        {/* Top Control Bar: Audio & Live Slots */}
-        <div className="flex items-center justify-between w-full max-w-5xl mb-8 px-2">
-          <div className="flex items-center gap-2">
+        {/* Top Control Bar: Live Slots */}
+        <div className="flex items-center justify-center w-full max-w-5xl mb-8 px-2">
+          <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-bg-secondary border border-border">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-mono text-xs text-text-secondary uppercase tracking-widest font-bold">
-              Guwahati Studio • 2 Slots Left
+              Guwahati Studio • 2 Launch Slots Open
             </span>
           </div>
-
-          <button
-            onClick={toggleSound}
-            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-bg-secondary border border-border text-xs font-mono text-text-secondary hover:text-text-primary hover:border-accent transition-all cursor-pointer select-none"
-            title="Toggle Sensory Sound Feedback"
-          >
-            {soundEnabled ? <Volume2 size={13} className="text-accent" /> : <VolumeX size={13} />}
-            <span>{soundEnabled ? "Audio: Active" : "Audio: Muted"}</span>
-          </button>
         </div>
 
-        {/* Master Headline: Pure Visual Authority */}
+        {/* Master Headline: Pure Visual Authority without Underlines */}
         <h1
           className="font-display font-black text-text-primary text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.03] tracking-tight max-w-5xl mb-6"
           style={{ letterSpacing: "-0.04em" }}
         >
           Websites that make <br />
           competitors{" "}
-          <span className="font-serif italic font-normal underline decoration-accent/30 decoration-wavy">
+          <span className="font-serif italic font-normal text-accent">
             nervous.
           </span>
         </h1>
@@ -161,7 +142,6 @@ export default function SensoryHero() {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
           <a
             href="#flagships"
-            onClick={() => sound.click()}
             className="btn-primary py-3.5 px-8 text-sm font-bold flex items-center gap-2 shadow-2xl shadow-accent/25"
           >
             <Zap size={15} />
@@ -173,7 +153,6 @@ export default function SensoryHero() {
             href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'm%20ready%20to%20build%20a%20flagship%20website%20for%20my%20business."
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => sound.click()}
             className="btn-secondary py-3.5 px-7 text-sm font-bold flex items-center gap-2"
           >
             <MessageCircle size={15} />
@@ -227,7 +206,6 @@ export default function SensoryHero() {
                 href={activeChannel.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => sound.click()}
                 className="font-mono text-xs font-bold text-accent hover:underline flex items-center gap-1 shrink-0"
               >
                 <span>Live Viewport</span>

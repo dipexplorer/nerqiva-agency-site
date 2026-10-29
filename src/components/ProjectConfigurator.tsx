@@ -58,7 +58,7 @@ export default function ProjectConfigurator() {
             style={{ letterSpacing: "-0.03em" }}
           >
             Configure your bespoke{" "}
-            <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+            <span className="font-serif italic font-normal text-accent">
               flagship system.
             </span>
           </h2>

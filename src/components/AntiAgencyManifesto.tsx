@@ -1,36 +1,44 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Ban, ShieldCheck, Zap, MessageCircle, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
-const MANIFESTO_POINTS = [
+interface ManifestoPoint {
+  number: string;
+  tag: string;
+  title: string;
+  description: string;
+  badge: string;
+}
+
+const MANIFESTO_POINTS: ManifestoPoint[] = [
   {
     number: "01",
-    tag: "🚫 NO 6-WEEK FIGMA RUNAROUNDS",
-    title: "We don't do endless feedback loops.",
-    description: "We scope, design, and push to production in 48 hours flat. You get a working mobile-first staging link on Day 2.",
+    tag: "48-HOUR SPRINT",
+    title: "No 6-week wireframe purgatory.",
+    description: "Traditional agencies drag projects through weeks of wireframe decks. We scope, design, and deliver a working mobile staging build to your smartphone in 48 hours flat.",
     badge: "48-Hour Live Delivery",
   },
   {
     number: "02",
-    tag: "🚫 NO MONTHLY HOSTAGE FEES",
-    title: "Zero recurring agency maintenance fees.",
-    description: "Most agencies charge ₹5,000/mo just to keep WordPress alive. We give you 100% clean code repository and domain ownership on launch.",
-    badge: "100% Asset Ownership",
+    tag: "100% ASSET OWNERSHIP",
+    title: "Zero recurring hostage fees.",
+    description: "Most agencies charge ₹5,000 every month just to keep WordPress alive. With NERQIVA, you get 100% clean source code repository, domain DNS, and asset ownership on Day 2.",
+    badge: "100% Source Code Handover",
   },
   {
     number: "03",
-    tag: "📲 WHATSAPP-NATIVE CONVERSIONS",
+    tag: "DIRECT CONVERSIONS",
     title: "Engineered for Indian consumer behavior.",
-    description: "Indian clients don't want complex 7-step checkouts. They want 1-tap WhatsApp booking with pre-filled service context and live pricing.",
-    badge: "3-Second Lead Intake",
+    description: "Local clients never fill 8-field forms. They want 1-tap WhatsApp booking with pre-filled service context, date, and pricing directly inside your chat.",
+    badge: "1-Tap Direct WhatsApp Funnel",
   },
   {
     number: "04",
-    tag: "⚡ SUB-SECOND 4G SPEED",
-    title: "Built on modern Next.js edge architecture.",
-    description: "Over 85% of your local clients browse on mobile. We verify sub-second paint on real Jio and Airtel 4G networks—zero bloated themes.",
-    badge: "< 0.8s Mobile Paint",
+    tag: "EDGE PERFORMANCE",
+    title: "Built on clean modern edge code.",
+    description: "Over 85% of your local clients browse on mobile. We verify sub-second loading speeds on real local 4G connections—zero bloated WordPress themes or sluggish plugins.",
+    badge: "< 0.8s Mobile First Paint",
   },
 ];
 
@@ -51,16 +59,16 @@ export default function AntiAgencyManifesto() {
             style={{ letterSpacing: "-0.03em" }}
           >
             Why ambitious brands choose us over{" "}
-            <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+            <span className="font-serif italic font-normal text-accent">
               traditional retainers.
             </span>
           </h2>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
-            No corporate telephone game, no junior freelancers, and no proprietary lock-in. Just bespoke engineering delivered on time.
+            No corporate telephone game, no offshore middlemen, and no proprietary lock-in. Just bespoke engineering delivered on time.
           </p>
         </div>
 
-        {/* 4 Graphic Token Cards */}
+        {/* 4 Clean Editorial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {MANIFESTO_POINTS.map((item, idx) => (
             <motion.div
@@ -73,7 +81,7 @@ export default function AntiAgencyManifesto() {
             >
               <div>
                 <div className="flex items-center justify-between gap-3 mb-5">
-                  <span className="font-mono text-xs font-bold text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
+                  <span className="font-mono text-[10px] tracking-widest font-bold text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
                     {item.tag}
                   </span>
                   <span className="font-mono text-xs text-text-tertiary">

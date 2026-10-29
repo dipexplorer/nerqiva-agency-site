@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, MessageCircle, MapPin, CheckCircle2 } from "lucide-react";
-import { sound } from "../utils/audio";
 
 const GitHubIcon = ({ size = 15 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -30,7 +29,6 @@ export default function TactileFounder() {
           <div className="lg:col-span-5 flex justify-center">
             <motion.div
               whileHover={{ rotate: 0, scale: 1.03, y: -4 }}
-              onHoverStart={() => sound.shutter()}
               className="relative bg-white text-neutral-900 p-4 pb-7 rounded-sm shadow-2xl border border-neutral-200/80 -rotate-2 cursor-pointer transition-shadow duration-300 max-w-[280px] sm:max-w-[320px]"
             >
               {/* Realistic Scotch Tape on Top Corner */}
@@ -75,7 +73,7 @@ export default function TactileFounder() {
                 style={{ letterSpacing: "-0.03em" }}
               >
                 No account managers. <br />
-                <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+                <span className="font-serif italic font-normal text-accent">
                   No corporate telephone game.
                 </span>
               </h2>
@@ -119,7 +117,6 @@ export default function TactileFounder() {
                   href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'd%20like%20to%20talk%20about%20a%20website%20project."
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => sound.click()}
                   className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md"
                 >
                   <MessageCircle size={13} />

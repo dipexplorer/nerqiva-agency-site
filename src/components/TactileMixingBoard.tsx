@@ -2,34 +2,33 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, MessageCircle, ArrowUpRight, Check, Sliders, Printer, ShieldCheck } from "lucide-react";
-import { sound } from "../utils/audio";
+import { Sparkles, MessageCircle, ArrowUpRight, Check, Sliders, Printer, ShieldCheck, Stethoscope, Sparkle, Dumbbell, Briefcase, Zap, PhoneCall, Compass } from "lucide-react";
 
 interface IndustryTrack {
   id: string;
-  icon: string;
+  tag: string;
   title: string;
   scope: string;
 }
 
 interface PriorityToggle {
   id: string;
-  icon: string;
+  tag: string;
   title: string;
   benefit: string;
 }
 
 const INDUSTRIES: IndustryTrack[] = [
-  { id: "salon", icon: "💄", title: "Luxury Salon / MUA", scope: "Bridal henna, aesthetic clinics, hair ateliers" },
-  { id: "clinic", icon: "🩺", title: "Clinic / Doctor", scope: "Diagnostics, dental practices, specialized care" },
-  { id: "fitness", icon: "🏋️", title: "Fitness / Wellness", scope: "Boutique gyms, yoga retreats, athletic centers" },
-  { id: "boutique", icon: "💼", title: "Boutique & Services", scope: "Photographers, luxury fashion, consultants" },
+  { id: "salon", tag: "ATELIER", title: "Luxury Salon / MUA", scope: "Aesthetic clinics, bridal artists, hair ateliers" },
+  { id: "clinic", tag: "HEALTHCARE", title: "Clinic / Doctor", scope: "Diagnostics, dental practices, specialized care" },
+  { id: "fitness", tag: "WELLNESS", title: "Fitness / Wellness", scope: "Boutique gyms, yoga retreats, athletic studios" },
+  { id: "boutique", tag: "PROFESSIONAL", title: "Boutique & Services", scope: "Architects, luxury fashion, consultants" },
 ];
 
 const PRIORITIES: PriorityToggle[] = [
-  { id: "express", icon: "⚡", title: "48h Express Launch", benefit: "Live public cutover in 48 hours flat" },
-  { id: "whatsapp", icon: "📲", title: "1-Tap WhatsApp Funnel", benefit: "Inquiries arrive pre-filled in your WhatsApp" },
-  { id: "seo", icon: "🔍", title: "Rank #1 on Google Maps", benefit: "Dominant local search pin & LocalBusiness schema" },
+  { id: "express", tag: "SPEED", title: "48h Express Launch", benefit: "Live public cutover in 48 hours flat" },
+  { id: "whatsapp", tag: "LEADS", title: "1-Tap WhatsApp Funnel", benefit: "Inquiries arrive pre-filled in your WhatsApp" },
+  { id: "seo", tag: "SEARCH", title: "Rank #1 on Google Maps", benefit: "Dominant local search pin & LocalBusiness schema" },
 ];
 
 export default function TactileMixingBoard() {
@@ -37,12 +36,10 @@ export default function TactileMixingBoard() {
   const [selectedPriority, setSelectedPriority] = useState<PriorityToggle>(PRIORITIES[0]);
 
   const handleSelectIndustry = (ind: IndustryTrack) => {
-    sound.click();
     setSelectedIndustry(ind);
   };
 
   const handleSelectPriority = (pri: PriorityToggle) => {
-    sound.click();
     setSelectedPriority(pri);
   };
 
@@ -70,7 +67,7 @@ export default function TactileMixingBoard() {
             style={{ letterSpacing: "-0.03em" }}
           >
             Configure your bespoke{" "}
-            <span className="font-serif italic font-normal text-accent underline decoration-accent/20">
+            <span className="font-serif italic font-normal text-accent">
               flagship system.
             </span>
           </h2>
@@ -108,7 +105,9 @@ export default function TactileMixingBoard() {
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl">{ind.icon}</span>
+                      <span className="font-mono text-[10px] tracking-widest font-bold text-accent px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                        {ind.tag}
+                      </span>
                       {isSelected && <Check size={16} className="text-text-inverted" />}
                     </div>
                     <div>
@@ -151,7 +150,9 @@ export default function TactileMixingBoard() {
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xl">{pri.icon}</span>
+                      <span className="font-mono text-[10px] tracking-widest font-bold text-accent px-2 py-0.5 rounded bg-accent/10 border border-accent/20">
+                        {pri.tag}
+                      </span>
                       {isSelected && <Check size={16} className="text-text-inverted" />}
                     </div>
                     <div>
@@ -180,7 +181,7 @@ export default function TactileMixingBoard() {
               <div className="flex items-center gap-2">
                 <Printer size={15} className="text-accent" />
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent">
-                  Live Printed Blueprint // NQ-2026
+                  Live Studio Blueprint // NQ-2026
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               </div>
@@ -190,11 +191,11 @@ export default function TactileMixingBoard() {
               </h4>
 
               <div className="flex flex-wrap gap-2 text-xs font-mono text-text-secondary pt-1">
-                <span>⚡ Delivery: 48 Hours Flat</span>
+                <span>Delivery: 48 Hours Flat</span>
                 <span>•</span>
-                <span>📲 Direct 1-Tap WhatsApp Funnel</span>
+                <span>Direct WhatsApp Funnel</span>
                 <span>•</span>
-                <span>📦 100% Code Handover</span>
+                <span>100% Code Handover</span>
                 <span>•</span>
                 <span className="text-emerald-500 font-bold">₹0 Monthly Retainer</span>
               </div>
@@ -204,7 +205,6 @@ export default function TactileMixingBoard() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => sound.success()}
               className="btn-primary py-3.5 px-7 sm:px-8 text-sm font-bold flex items-center justify-center gap-2 w-full lg:w-auto shadow-2xl shadow-accent/25 shrink-0"
             >
               <MessageCircle size={16} />
