@@ -1,70 +1,80 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowDown, Sparkles, Zap, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ArrowDown, MessageCircle, ExternalLink, ShieldCheck, Zap } from "lucide-react";
 
 interface FlagshipChannel {
   id: string;
-  channel: string;
+  index: string;
   client: string;
+  tag: string;
   industry: string;
   accentColor: string;
-  accentGlow: string;
   desktopImage: string;
   mobileImage: string;
   liveUrl: string;
-  outcome: string;
+  displayUrl: string;
+  speedMetric: string;
+  impactMetric: string;
 }
 
 const CHANNELS: FlagshipChannel[] = [
   {
-    id: "krishav",
-    channel: "CH.01",
-    client: "Krishav Mehendi",
-    industry: "Luxury Bridal & Henna Atelier",
-    accentColor: "#C9A227",
-    accentGlow: "rgba(201, 162, 39, 0.25)",
-    desktopImage: "/images/projects/krishavmehendi/bridal.png",
-    mobileImage: "/images/projects/krishavmehendi/arabic.png",
-    liveUrl: "https://hennaart-nine.vercel.app/",
-    outcome: "100% WhatsApp Reservation Funnel",
-  },
-  {
     id: "lablink",
-    channel: "CH.02",
+    index: "01",
     client: "LabLink Guwahati",
+    tag: "HEALTHCARE",
     industry: "Specialized Clinical Diagnostics",
     accentColor: "#0284C7",
-    accentGlow: "rgba(2, 132, 199, 0.25)",
     desktopImage: "/images/projects/lablink/desktop.png",
     mobileImage: "/images/projects/lablink/hero.png",
     liveUrl: "https://www.lablinkguwahati.in/",
-    outcome: "1,797+ Tests Cataloged with Home Booking",
+    displayUrl: "lablinkguwahati.in",
+    speedMetric: "< 0.72s Mobile Paint",
+    impactMetric: "1,797+ Tests Cataloged with Home Booking",
+  },
+  {
+    id: "krishav",
+    index: "02",
+    client: "Krishav Mehendi",
+    tag: "ATELIER",
+    industry: "Luxury Bridal & Henna Atelier",
+    accentColor: "#C9A227",
+    desktopImage: "/images/projects/krishavmehendi/bridal.png",
+    mobileImage: "/images/projects/krishavmehendi/arabic.png",
+    liveUrl: "https://hennaart-nine.vercel.app/",
+    displayUrl: "krishavmehendi.com",
+    speedMetric: "< 0.65s Mobile Paint",
+    impactMetric: "100% Direct WhatsApp Reservation Funnel",
   },
   {
     id: "titangym",
-    channel: "CH.03",
+    index: "03",
     client: "Titan Athletic Club",
+    tag: "WELLNESS",
     industry: "High-Performance Fitness & Wellness",
-    accentColor: "#E0FE10",
-    accentGlow: "rgba(224, 254, 16, 0.25)",
+    accentColor: "#10B981",
     desktopImage: "/images/projects/titangym/contrast.png",
     mobileImage: "/images/projects/titangym/mobile.png",
     liveUrl: "https://titangymnq.vercel.app/",
-    outcome: "VIP Trial Pass Intake in 3 Seconds",
+    displayUrl: "titangymnq.vercel.app",
+    speedMetric: "< 0.58s Mobile Paint",
+    impactMetric: "VIP Trial Pass Intake in 3 Seconds",
   },
   {
     id: "valerie",
-    channel: "CH.04",
+    index: "04",
     client: "Valerie Laurent",
-    industry: "Haute Couture & Editorial Artistry",
-    accentColor: "#E2D9D2",
-    accentGlow: "rgba(226, 217, 210, 0.25)",
+    tag: "EDITORIAL",
+    industry: "Haute Couture & Lookbook",
+    accentColor: "#8B5CF6",
     desktopImage: "/images/projects/editorial/vogue.png",
     mobileImage: "/images/projects/editorial/traditional.png",
     liveUrl: "https://bridalnerqiva.vercel.app/",
-    outcome: "Vogue-Style High-Ticket Lookbook",
+    displayUrl: "valerielaurent.com",
+    speedMetric: "< 0.79s Mobile Paint",
+    impactMetric: "Vogue-Style High-Ticket Portfolio",
   },
 ];
 
@@ -72,14 +82,14 @@ export default function SensoryHero() {
   const [activeChannel, setActiveChannel] = useState<FlagshipChannel>(CHANNELS[0]);
   const stageRef = useRef<HTMLDivElement>(null);
 
-  // 3D Tilt Physics (exp.fiddle.digital style)
+  // 3D Perspective Physics (Inspired by exp.fiddle.digital)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { stiffness: 180, damping: 24 });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 180, damping: 24 });
-  const glareX = useTransform(mouseX, [-0.5, 0.5], ["0%", "100%"]);
-  const glareY = useTransform(mouseY, [-0.5, 0.5], ["0%", "100%"]);
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { stiffness: 200, damping: 25 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 25 });
+  const glareX = useTransform(mouseX, [-0.5, 0.5], ["10%", "90%"]);
+  const glareY = useTransform(mouseY, [-0.5, 0.5], ["10%", "90%"]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!stageRef.current) return;
@@ -95,225 +105,222 @@ export default function SensoryHero() {
     mouseY.set(0);
   };
 
-  const selectChannel = (ch: FlagshipChannel) => {
-    setActiveChannel(ch);
-  };
-
   return (
-    <section className="relative w-full pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden bg-bg-primary text-text-primary">
+    <section className="relative w-full pt-28 sm:pt-36 pb-16 sm:pb-24 overflow-hidden bg-bg-primary text-text-primary">
       
-      {/* Dynamic Ambient Atmosphere (Color Physics) */}
+      {/* Subtle Ambient Studio Atmosphere */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[900px] h-[450px] rounded-full blur-[160px] pointer-events-none transition-all duration-700 opacity-25"
+        className="absolute top-1/3 right-10 w-[550px] h-[550px] rounded-full blur-[180px] pointer-events-none transition-colors duration-700 opacity-20"
         style={{ backgroundColor: activeChannel.accentColor }}
         aria-hidden="true"
       />
 
-      <div className="section-container relative z-10 flex flex-col items-center text-center">
+      <div className="section-container relative z-10">
         
-        {/* Top Control Bar: Live Slots */}
-        <div className="flex items-center justify-center w-full max-w-5xl mb-8 px-2">
-          <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-bg-secondary border border-border">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-xs text-text-secondary uppercase tracking-widest font-bold">
-              Guwahati Studio • 2 Launch Slots Open
-            </span>
-          </div>
-        </div>
-
-        {/* Master Headline: Pure Visual Authority without Underlines */}
-        <h1
-          className="font-display font-black text-text-primary text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.03] tracking-tight max-w-5xl mb-6"
-          style={{ letterSpacing: "-0.04em" }}
-        >
-          Websites that make <br />
-          competitors{" "}
-          <span className="font-serif italic font-normal text-accent">
-            nervous.
-          </span>
-        </h1>
-
-        {/* 18-word Punchy Human Subtext */}
-        <p className="text-text-secondary text-base sm:text-xl leading-relaxed max-w-2xl mb-10 font-normal">
-          Bespoke digital flagships for premier salons, clinics, and luxury studios. Delivered live on your smartphone in 48 hours flat.
-        </p>
-
-        {/* Primary Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
-          <a
-            href="#flagships"
-            className="btn-primary py-3.5 px-8 text-sm font-bold flex items-center gap-2 shadow-2xl shadow-accent/25"
-          >
-            <Zap size={15} />
-            <span>Explore Flagships</span>
-            <ArrowDown size={14} />
-          </a>
-
-          <a
-            href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'm%20ready%20to%20build%20a%20flagship%20website%20for%20my%20business."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary py-3.5 px-7 text-sm font-bold flex items-center gap-2"
-          >
-            <MessageCircle size={15} />
-            <span>WhatsApp Founder Directly</span>
-            <ArrowUpRight size={14} />
-          </a>
-        </div>
-
-        {/* 3D SENSORY STAGE CONSOLE */}
-        <div
-          ref={stageRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-          className="w-full max-w-5xl relative rounded-3xl p-4 sm:p-7 bg-bg-card border border-border shadow-2xl overflow-hidden transition-all duration-300"
-          style={{ perspective: 1200 }}
-        >
+        {/* Asymmetric 12-Column Editorial Grid */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          {/* Physical Channel Selector Console */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-border/60">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
-              {CHANNELS.map((ch) => {
-                const isSelected = activeChannel.id === ch.id;
-                return (
-                  <button
-                    key={ch.id}
-                    onClick={() => selectChannel(ch)}
-                    className={`shrink-0 px-4 py-2 rounded-2xl font-mono text-xs font-bold tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-2 border select-none ${
-                      isSelected
-                        ? "bg-text-primary text-text-inverted border-text-primary shadow-lg scale-[1.03]"
-                        : "bg-bg-secondary text-text-secondary border-border hover:border-accent/40 hover:text-text-primary"
-                    }`}
-                  >
-                    <span className="opacity-50">{ch.channel}</span>
-                    <span>{ch.client}</span>
-                    {isSelected && (
-                      <span
-                        className="w-2 h-2 rounded-full animate-ping"
-                        style={{ backgroundColor: ch.accentColor }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
+          {/* Left Column: Studio Authority & Editorial Statement */}
+          <div className="lg:col-span-6 flex flex-col justify-center text-left min-w-0 w-full">
+            
+            {/* Studio Coordinate Radar Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-bg-secondary border border-border text-text-secondary font-mono text-[11px] font-semibold mb-6 w-fit shadow-xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="tracking-wider">GUWAHATI [26.18°N 91.73°E]</span>
+              <span className="text-border-dark">•</span>
+              <span className="text-accent font-bold">2 SLOTS OPEN</span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-xs text-text-tertiary hidden md:inline">
-                {activeChannel.outcome}
+            {/* Master Headline: Pure Typographic Weight */}
+            <h1
+              className="font-display font-black text-text-primary text-[2rem] sm:text-5xl lg:text-6xl xl:text-[4.15rem] leading-[1.12] sm:leading-[1.08] tracking-tight mb-5"
+              style={{ letterSpacing: "-0.035em" }}
+            >
+              Digital flagships <br />
+              engineered for{" "}
+              <span className="font-serif italic font-normal text-accent block sm:inline">
+                ambitious brands.
               </span>
+            </h1>
+
+            {/* Crisp Human Subtext: Concrete & Grounded */}
+            <p className="text-text-secondary text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mb-6 sm:mb-8 font-normal">
+              We craft sub-second web flagships for premier clinics, luxury ateliers, and modern businesses. Delivered live to your phone in 48 hours flat.
+            </p>
+
+            {/* Concrete Production Commitments Bar */}
+            <div className="grid grid-cols-3 gap-2 py-3.5 mb-6 sm:mb-8 border-y border-border/80 font-mono text-xs">
+              <div className="flex flex-col">
+                <span className="text-[9px] sm:text-[10px] uppercase text-text-tertiary tracking-wider font-semibold">Speed</span>
+                <span className="font-bold text-text-primary text-xs sm:text-sm mt-0.5">48h Live</span>
+              </div>
+              <div className="flex flex-col border-x border-border/80 px-2 sm:px-3">
+                <span className="text-[9px] sm:text-[10px] uppercase text-text-tertiary tracking-wider font-semibold">Ownership</span>
+                <span className="font-bold text-text-primary text-xs sm:text-sm mt-0.5">100% Code</span>
+              </div>
+              <div className="flex flex-col pl-1.5 sm:pl-2">
+                <span className="text-[9px] sm:text-[10px] uppercase text-text-tertiary tracking-wider font-semibold">Funnel</span>
+                <span className="font-bold text-text-primary text-xs sm:text-sm mt-0.5">1-Tap WA</span>
+              </div>
+            </div>
+
+            {/* High-Agency Action Row */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <a
+                href="#flagships"
+                className="btn-primary py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-2 shadow-xl shadow-accent/20 cursor-pointer select-none text-center"
+              >
+                <span>Explore Selected Work</span>
+                <ArrowDown size={14} />
+              </a>
+
+              <a
+                href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'm%20ready%20to%20commission%20a%20website%20flagship."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary py-3.5 px-6 text-sm font-bold flex items-center justify-center gap-2 cursor-pointer hover:border-accent/40 select-none text-center"
+              >
+                <MessageCircle size={15} />
+                <span>WhatsApp Founder Directly</span>
+                <ArrowUpRight size={14} />
+              </a>
+            </div>
+
+          </div>
+
+          {/* Right Column: Interactive Living Showcase Canvas */}
+          <div className="lg:col-span-6 relative flex flex-col items-center min-w-0 w-full">
+            
+            {/* Tactile Channel Switcher Header (anfalova.art inspired) */}
+            <div className="w-full flex items-center justify-between gap-2 mb-4 px-1 overflow-x-auto no-scrollbar">
+              <div className="flex items-center gap-2">
+                {CHANNELS.map((ch) => {
+                  const isSelected = activeChannel.id === ch.id;
+                  return (
+                    <button
+                      key={ch.id}
+                      onClick={() => setActiveChannel(ch)}
+                      className={`px-3.5 py-1.5 rounded-xl font-mono text-xs font-bold tracking-wider transition-all duration-200 cursor-pointer flex items-center gap-1.5 border select-none ${
+                        isSelected
+                          ? "bg-text-primary text-text-inverted border-text-primary shadow-md scale-[1.02]"
+                          : "bg-bg-secondary text-text-secondary border-border hover:border-accent/40 hover:text-text-primary"
+                      }`}
+                    >
+                      <span className="text-[10px] opacity-60">{ch.index}</span>
+                      <span>{ch.client.split(" ")[0]}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
               <a
                 href={activeChannel.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs font-bold text-accent hover:underline flex items-center gap-1 shrink-0"
+                className="font-mono text-xs font-bold text-accent hover:text-accent-mid flex items-center gap-1 shrink-0"
               >
                 <span>Live Viewport</span>
                 <ArrowUpRight size={13} />
               </a>
             </div>
-          </div>
 
-          {/* 3D Tilted Viewport Canvas with Framer Motion Physics */}
-          <motion.div
-            style={{
-              rotateX,
-              rotateY,
-              transformStyle: "preserve-3d",
-            }}
-            className="relative rounded-2xl overflow-hidden bg-bg-secondary border border-border/80 shadow-2xl p-4 sm:p-6"
-          >
-            {/* Dynamic Light Glare Overlay */}
-            <motion.div
-              className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay"
-              style={{
-                background: useTransform(
-                  [glareX, glareY],
-                  ([x, y]) => `radial-gradient(circle at ${x} ${y}, rgba(255,255,255,0.8), transparent 70%)`
-                ),
-              }}
-            />
-
-            <AnimatePresence mode="wait">
+            {/* 3D Perspective Tilt Stage Canvas */}
+            <div
+              ref={stageRef}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              className="w-full relative rounded-3xl p-4 sm:p-6 bg-bg-card border border-border shadow-2xl overflow-hidden transition-all duration-300"
+              style={{ perspective: 1200 }}
+            >
+              
               <motion.div
-                key={activeChannel.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="grid lg:grid-cols-12 gap-6 items-center text-left"
+                style={{
+                  rotateX,
+                  rotateY,
+                  transformStyle: "preserve-3d",
+                }}
+                className="relative rounded-2xl overflow-hidden bg-bg-secondary border border-border/80 shadow-2xl p-3 sm:p-5"
               >
-                
-                {/* MacBook Pro Display Canvas */}
-                <div className="lg:col-span-8 rounded-xl overflow-hidden border border-border shadow-2xl bg-bg-primary group relative">
-                  {/* Browser Chrome Header */}
-                  <div className="px-3.5 py-2 bg-bg-secondary border-b border-border flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                    </div>
-                    <div className="px-3 py-0.5 rounded-md bg-bg-primary border border-border text-[11px] font-mono text-text-secondary truncate max-w-[200px] sm:max-w-[280px]">
-                      {activeChannel.liveUrl.replace("https://", "")}
-                    </div>
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  </div>
+                {/* Dynamic Specular Light Glare */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay"
+                  style={{
+                    background: useTransform(
+                      [glareX, glareY],
+                      ([x, y]) => `radial-gradient(circle at ${x} ${y}, rgba(255,255,255,0.8), transparent 70%)`
+                    ),
+                  }}
+                />
 
-                  {/* Real UI Screenshot */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-secondary">
-                    <img
-                      src={activeChannel.desktopImage}
-                      alt={`${activeChannel.client} Desktop Preview`}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                      loading="eager"
-                    />
-                  </div>
-                </div>
-
-                {/* iPhone 16 Pro Vertical Frame */}
-                <div className="lg:col-span-4 flex flex-col items-center justify-center gap-4">
-                  <div className="relative w-44 sm:w-48 rounded-[32px] p-2 bg-text-primary shadow-2xl border-2 border-border/80">
-                    <div className="relative rounded-[24px] overflow-hidden aspect-[9/19] bg-bg-secondary">
-                      {/* Dynamic Island */}
-                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-14 h-3 bg-black rounded-full z-20" />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeChannel.id}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col gap-4 text-left"
+                  >
+                    
+                    {/* Desktop Browser Chrome Viewport */}
+                    <div className="rounded-xl overflow-hidden border border-border shadow-xl bg-bg-primary group relative">
                       
-                      <img
-                        src={activeChannel.mobileImage}
-                        alt={`${activeChannel.client} Mobile UI`}
-                        className="w-full h-full object-cover object-top"
-                        loading="eager"
-                      />
+                      {/* Window Frame Bar */}
+                      <div className="px-3 py-2 bg-bg-secondary border-b border-border flex items-center justify-between">
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                        </div>
+                        <div className="px-3 py-0.5 rounded-md bg-bg-primary border border-border text-[11px] font-mono text-text-secondary truncate max-w-[200px] sm:max-w-[260px]">
+                          https://{activeChannel.displayUrl}
+                        </div>
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      </div>
 
-                      {/* 1-Tap WhatsApp Lead Badge */}
-                      <div className="absolute bottom-2.5 left-2 right-2 bg-text-primary/95 backdrop-blur-md rounded-full py-1 px-2 text-center flex items-center justify-center gap-1 shadow-md">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="font-mono text-[9px] text-text-inverted uppercase tracking-wider font-bold">
-                          1-Tap WhatsApp Lead
-                        </span>
+                      {/* Main Project Desktop Visual */}
+                      <div className="relative aspect-[16/10] overflow-hidden bg-bg-secondary">
+                        <img
+                          src={activeChannel.desktopImage}
+                          alt={`${activeChannel.client} Desktop Preview`}
+                          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-103"
+                          loading="eager"
+                        />
                       </div>
                     </div>
-                  </div>
 
-                  {/* Channel Summary */}
-                  <div className="text-center">
-                    <span className="font-mono text-xs uppercase tracking-wider font-bold text-accent block mb-1">
-                      {activeChannel.industry}
-                    </span>
-                    <span className="font-mono text-[11px] text-text-tertiary">
-                      Delivered in 48 Hours flat
-                    </span>
-                  </div>
-                </div>
+                    {/* Integrated Mobile & Impact Metadata Ribbon */}
+                    <div className="flex items-center justify-between gap-3 pt-2 text-xs font-mono">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-1 rounded-md bg-bg-secondary text-text-primary font-bold border border-border">
+                          {activeChannel.speedMetric}
+                        </span>
+                        <span className="font-bold text-accent hidden sm:inline">
+                          {activeChannel.tag}
+                        </span>
+                      </div>
+
+                      <span className="text-[11px] text-text-secondary truncate max-w-[260px] text-right">
+                        {activeChannel.impactMetric}
+                      </span>
+                    </div>
+
+                  </motion.div>
+                </AnimatePresence>
 
               </motion.div>
-            </AnimatePresence>
 
-          </motion.div>
+              {/* Bottom Interactive Touch Note */}
+              <div className="mt-3 pt-2.5 border-t border-border/40 flex items-center justify-between text-[11px] font-mono text-text-tertiary">
+                <span>Interactive 3D Stage • Move mouse to tilt</span>
+                <span className="text-accent font-semibold">Tap tabs above to switch flagship</span>
+              </div>
 
-          {/* Bottom Interactive Prompt */}
-          <div className="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs font-mono text-text-tertiary">
-            <span>Interactive 3D Stage • Move mouse to tilt perspective</span>
-            <span className="text-accent font-semibold">Tap channels above to switch live build</span>
+            </div>
+
           </div>
 
         </div>
