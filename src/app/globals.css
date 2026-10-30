@@ -161,11 +161,17 @@ h1, h2 { font-family: var(--font-display); }
   100% { transform: scale(1.6); opacity: 0; }
 }
 
+@keyframes marquee-stream {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
 .animate-fade-in-up { animation: fade-in-up 0.55s ease forwards; }
 .animate-float-up   { animation: float-up 5s ease-in-out infinite; }
 .animate-float-down { animation: float-down 6s ease-in-out infinite; }
 .animate-pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
 .animate-spin-slow  { animation: spin-slow 12s linear infinite; }
+.animate-marquee    { animation: marquee-stream 40s linear infinite; }
 
 /* ============================================================
    Surface Classes
