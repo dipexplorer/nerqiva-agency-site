@@ -89,7 +89,7 @@ export default function SensoryHero() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative w-full pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden bg-bg-primary text-text-primary flex flex-col justify-between min-h-[92vh] lg:min-h-screen">
+    <section className="relative w-full pt-20 sm:pt-22 pb-8 sm:pb-12 overflow-hidden bg-bg-primary text-text-primary flex flex-col justify-between min-h-[90vh] lg:min-h-screen">
       
       {/* ============================================================
           TIER 1: CLEAN MINIMAL HEADER BAND
@@ -102,12 +102,13 @@ export default function SensoryHero() {
               NERQIVA STUDIO
             </span>
             <span className="text-border-dark hidden sm:inline">•</span>
-            <div className="flex items-center gap-1.5 font-mono text-xs font-semibold text-emerald-500">
-              <span className="relative flex h-2 w-2">
+            <div className="flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-semibold text-emerald-500">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span>2 LAUNCH SLOTS OPEN FOR NOVEMBER</span>
+              <span className="hidden sm:inline">2 LAUNCH SLOTS OPEN FOR NOVEMBER</span>
+              <span className="sm:hidden">2 SLOTS OPEN</span>
             </div>
           </div>
 
@@ -125,11 +126,11 @@ export default function SensoryHero() {
       {/* ============================================================
           TIER 2: CENTERED 3D KINETIC PROJECT RIBBON (ANFALOVA CAROUSEL)
           ============================================================ */}
-      <div className="relative w-full my-4 sm:my-6 overflow-hidden py-2">
+      <div className="relative w-full my-2 sm:my-4 overflow-hidden py-1 sm:py-2">
         
         {/* Stream Command Pill & Pause Control */}
-        <div className="section-container flex items-center justify-between mb-2.5">
-          <div className="flex items-center gap-2 font-mono text-[11px] text-text-tertiary">
+        <div className="section-container flex items-center justify-between mb-2 sm:mb-2.5">
+          <div className="flex items-center gap-2 font-mono text-[10px] sm:text-[11px] text-text-tertiary">
             <span className="text-rose-500 font-bold">●</span>
             <span className="uppercase tracking-wider">PROJECTS IN CONTINUOUS MOTION</span>
             <span className="text-border-dark hidden sm:inline">•</span>
@@ -139,7 +140,7 @@ export default function SensoryHero() {
           <button
             onClick={() => setIsPaused(!isPaused)}
             aria-label={isPaused ? "Play gallery" : "Pause gallery"}
-            className="px-2.5 py-1 rounded-md bg-bg-secondary hover:bg-bg-card border border-border text-text-primary font-mono text-[11px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none shadow-2xs"
+            className="px-2.5 py-1 rounded-md bg-bg-secondary hover:bg-bg-card border border-border text-text-primary font-mono text-[10px] sm:text-[11px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer select-none shadow-2xs"
           >
             {isPaused ? <Play size={10} className="fill-current" /> : <Pause size={10} className="fill-current" />}
             <span>{isPaused ? "RESUME" : "PAUSE"}</span>
@@ -259,7 +260,7 @@ export default function SensoryHero() {
         </h1>
 
         {/* Action Row & Provenance Statement */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-6 sm:mt-8 pt-5 border-t border-border/60">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-5 sm:mt-6 pt-4 border-t border-border/60">
           <a
             href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'm%20ready%20to%20commission%20a%20flagship%20website."
             target="_blank"
