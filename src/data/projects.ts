@@ -29,6 +29,11 @@ export interface Project {
   heroImage?: string;
   desktopImage?: string;
   mobileImage?: string;
+  fullDesktopImage?: string;
+  fullMobileImage?: string;
+  year?: string;
+  scope?: string;
+  summary?: string;
   domain?: string;
   metrics?: ProjectMetric[];
   colors?: string[];
@@ -71,6 +76,11 @@ export const PROJECTS: Project[] = [
     desktopImage: "/images/projects/lablink/desktop.png",
     mobileImage: "/images/projects/lablink/booking.png",
     heroImage: "/images/projects/lablink/desktop.png",
+    fullDesktopImage: "/images/projects/lablink/full_desktop.webp",
+    fullMobileImage: "/images/projects/lablink/full_mobile.webp",
+    year: "2026",
+    scope: "Full-Stack Architecture, WhatsApp Booking Funnel, Local SEO",
+    summary: "Doorstep clinical diagnostic platform with verified phlebotomy, cold-chain transport, and NABL partner lab routing. We engineered the end-to-end booking funnel, direct WhatsApp dispatch, and sub-second mobile performance across Guwahati.",
     colors: ["#0F172A", "#0D9488", "#0284C7", "#10B981"],
     metrics: [
       { value: "1,797+", label: "Tests Catalogued" },
@@ -119,6 +129,11 @@ export const PROJECTS: Project[] = [
     desktopImage: "/images/projects/krishavmehendi/bridal.png",
     mobileImage: "/images/projects/krishavmehendi/minimal.png",
     heroImage: "/images/projects/krishavmehendi/bridal.png",
+    fullDesktopImage: "/images/projects/krishavmehendi/full_desktop.webp",
+    fullMobileImage: "/images/projects/krishavmehendi/full_mobile.webp",
+    year: "2026",
+    scope: "Creative Direction, High-Res Bridal Showcase, WhatsApp Funnel",
+    summary: "Luxury bridal henna and traditional artistry digital canvas. Engineered for instant 4G mobile loading, high-resolution bridal catalogs, and a zero-friction WhatsApp reservation flow.",
     colors: ["#1C1917", "#B45309", "#D97706", "#78350F"],
     metrics: [
       { value: "Sub-Second", label: "Mobile 4G Load" },
@@ -167,6 +182,11 @@ export const PROJECTS: Project[] = [
     desktopImage: "/images/projects/editorial/vogue.png",
     mobileImage: "/images/projects/editorial/prada.png",
     heroImage: "/images/projects/editorial/vogue.png",
+    fullDesktopImage: "/images/projects/editorial/full_desktop.webp",
+    fullMobileImage: "/images/projects/editorial/full_mobile.webp",
+    year: "2026",
+    scope: "Editorial Direction, 60fps Scroll Physics, VIP Lead Capture",
+    summary: "High-fashion editorial and bridal makeup artistry portfolio. Engineered with 60fps scroll transitions, monochrome-to-color image reveals, and a direct VIP booking flow.",
     colors: ["#0A0A0A", "#DC2626", "#991B1B", "#F4F4F5"],
     metrics: [
       { value: "Editorial", label: "Art Direction" },
@@ -214,6 +234,11 @@ export const PROJECTS: Project[] = [
     desktopImage: "/images/projects/aurabeauty/final_hero.png",
     mobileImage: "/images/projects/aurabeauty/hero.png",
     heroImage: "/images/projects/aurabeauty/final_hero.png",
+    fullDesktopImage: "/images/projects/aurabeauty/full_desktop.webp",
+    fullMobileImage: "/images/projects/aurabeauty/full_mobile.webp",
+    year: "2026",
+    scope: "Editorial Design System, Before/After Slider, Mobile Booking",
+    summary: "Editorial bridal makeup portfolio inspired by luxury print publications. Designed with warm cream aesthetics, interactive transformation reveals, and streamlined mobile scheduling.",
     colors: ["#2A2320", "#C5A880", "#EAE5D9", "#F5F2EB"],
     gallery: [
       "/images/projects/aurabeauty/final_hero.png",
@@ -291,8 +316,13 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://aperturelight.vercel.app/",
     domain: "aperturelight.vercel.app",
     desktopImage: "/images/projects/wedding/coastal.png",
-    mobileImage: "/images/projects/wedding/bride_portrait.png",
-    heroImage: "/images/projects/wedding/bride_portrait.png",
+    mobileImage: "/images/projects/wedding/full_mobile.webp",
+    heroImage: "/images/projects/wedding/coastal.png",
+    fullDesktopImage: "/images/projects/wedding/full_desktop.webp",
+    fullMobileImage: "/images/projects/wedding/full_mobile.webp",
+    year: "2026",
+    scope: "Fine Art Artistry, Zero-Shift Gallery, Consultation Engine",
+    summary: "Cinematic wedding photography and production studio showcase. Engineered with full-bleed fine art layouts, zero layout shift, instant asset delivery, and direct date availability booking.",
     colors: ["#18181B", "#71717A", "#D4D4D8", "#A1A1AA"],
     metrics: [
       { value: "Full Bleed", label: "Fine Art Display" },
@@ -300,9 +330,9 @@ export const PROJECTS: Project[] = [
       { value: "Editorial", label: "Lookbook Experience" }
     ],
     gallery: [
-      "/images/projects/wedding/bride_portrait.png",
+      "/images/projects/wedding/coastal.png",
       "/images/projects/wedding/holi.png",
-      "/images/projects/wedding/coastal.png"
+      "/images/projects/wedding/full_desktop.webp"
     ]
   },
   {
@@ -338,8 +368,13 @@ export const PROJECTS: Project[] = [
     demoUrl: "https://titangymnq.vercel.app/",
     domain: "titangymnq.vercel.app",
     desktopImage: "/images/projects/titangym/contrast.png",
-    mobileImage: "/images/projects/titangym/mobile.png",
+    mobileImage: "/images/projects/titangym/full_mobile.webp",
     heroImage: "/images/projects/titangym/contrast.png",
+    fullDesktopImage: "/images/projects/titangym/full_desktop.webp",
+    fullMobileImage: "/images/projects/titangym/full_mobile.webp",
+    year: "2026",
+    scope: "Athletic Brand Identity, WebGL Fluid Shaders, VIP Pass Funnel",
+    summary: "High-performance athletic training center and boutique strength club. Engineered with obsidian brutalism, fluid interactions, and a frictionless 7-day VIP pass acquisition funnel.",
     colors: ["#09090B", "#F59E0B", "#EA580C", "#27272A"],
     metrics: [
       { value: "Liquid GL", label: "Shader Hero" },
@@ -350,7 +385,7 @@ export const PROJECTS: Project[] = [
       "/images/projects/titangym/contrast.png",
       "/images/projects/titangym/hero.png",
       "/images/projects/titangym/zones.png",
-      "/images/projects/titangym/mobile.png"
+      "/images/projects/titangym/full_mobile.webp"
     ]
   },
   {

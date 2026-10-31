@@ -403,3 +403,84 @@ textarea:focus-visible {
   color: #FFFFFF !important;
   box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow-soft);
 }
+
+/* ============================================================
+   Dual-Device Live Motion Stage (Gray Sunderland inspired)
+   ============================================================ */
+
+:root {
+  --stage-viewport-h: 300px;
+  --phone-viewport-h: 340px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --stage-viewport-h: 200px;
+    --phone-viewport-h: 260px;
+  }
+}
+
+@keyframes screenContinuousScrollDesktop {
+  0% {
+    transform: translateY(0%);
+  }
+  16% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(-48%);
+  }
+  64% {
+    transform: translateY(-48%);
+  }
+  92% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes screenContinuousScrollMobile {
+  0% {
+    transform: translateY(0%);
+  }
+  18% {
+    transform: translateY(0%);
+  }
+  52% {
+    transform: translateY(-42%);
+  }
+  66% {
+    transform: translateY(-42%);
+  }
+  94% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.animate-motion-desktop {
+  animation: screenContinuousScrollDesktop 18s cubic-bezier(0.42, 0, 0.28, 1) infinite;
+  will-change: transform;
+}
+
+.animate-motion-mobile {
+  animation: screenContinuousScrollMobile 22s cubic-bezier(0.42, 0, 0.28, 1) infinite;
+  will-change: transform;
+}
+
+.motion-paused {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-motion-desktop,
+  .animate-motion-mobile {
+    animation: none !important;
+  }
+}
+
+
