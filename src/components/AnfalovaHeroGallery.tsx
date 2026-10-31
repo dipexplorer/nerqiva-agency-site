@@ -57,14 +57,27 @@ const FLAGSHIP_ITEMS: GalleryProject[] = [
   },
 ];
 
-// Card dimensions at each breakpoint
-const CARD_W_SM = 260;
-const CARD_H_SM = 172;
-const CARD_W_MD = 340;
-const CARD_H_MD = 225;
-// Strip height at each breakpoint (card + generous overflow for diagonal effect)
-const STRIP_H_SM = 220;
-const STRIP_H_MD = 300;
+// Compute card dimensions responsively from container width
+// Target: show ~3.5 cards on desktop, ~2.2 on mobile — cards fill most of the strip
+function computeCardDims(containerW: number): { w: number; h: number; gap: number } {
+  if (containerW < 480) {
+    // Mobile: show ~2.2 cards
+    const w = Math.round(containerW * 0.42);
+    return { w, h: Math.round(w * 0.66), gap: 10 };
+  } else if (containerW < 768) {
+    // Tablet: ~2.8 cards
+    const w = Math.round(containerW * 0.32);
+    return { w, h: Math.round(w * 0.66), gap: 12 };
+  } else if (containerW < 1200) {
+    // MD: ~3 cards
+    const w = Math.round(containerW * 0.26);
+    return { w, h: Math.round(w * 0.66), gap: 14 };
+  } else {
+    // LG+: ~3.5 cards
+    const w = Math.round(containerW * 0.22);
+    return { w, h: Math.round(w * 0.66), gap: 16 };
+  }
+}
 
 export default function AnfalovaHeroGallery() {
   const shellRef = useRef<HTMLDivElement>(null);
@@ -95,28 +108,25 @@ export default function AnfalovaHeroGallery() {
     return () => mq.removeEventListener("change", h);
   }, []);
 
-  // Measure geometry: strip position relative to the shell (the full-section container)
+  // Measure geometry: responsive card dims from real container width
   useEffect(() => {
     const shellEl = shellRef.current;
     const stripEl = stripRef.current;
     if (!shellEl || !stripEl) return;
 
     const updateGeometry = () => {
-      const isMd = window.innerWidth >= 768;
-      const cardW = isMd ? CARD_W_MD : CARD_W_SM;
-      const cardH = isMd ? CARD_H_MD : CARD_H_SM;
-      const gap = isMd ? 16 : 10;
-
       const shellRect = shellEl.getBoundingClientRect();
       const stripRect = stripEl.getBoundingClientRect();
+
+      const { w, h, gap } = computeCardDims(shellRect.width);
 
       // top offset of the strip within the shell
       const topOffset = stripRect.top - shellRect.top;
       const stripH = stripRect.height;
 
       setGeometry({
-        width: cardW,
-        height: cardH,
+        width: w,
+        height: h,
         gap,
         top: topOffset,
         canvasHeight: shellRect.height,
@@ -151,6 +161,9 @@ export default function AnfalovaHeroGallery() {
     []
   );
 
+  // Compute strip height based on card height + margin for tilt overflow
+  const stripH = geometry ? Math.round(geometry.height * 1.38) : 0;
+
   // Aspect ratio scale factor for lens
   const bScale = geometry
     ? Math.max(1, geometry.canvasWidth / geometry.canvasHeight / (1440 / 900))
@@ -162,19 +175,40 @@ export default function AnfalovaHeroGallery() {
   return (
     /*
      * shellRef = the full-width container whose height becomes the canvas height.
-     * The WebGL canvas is absolute within this shell, covering its full area.
-     * The stripRef is a physical placeholder div that sets the shell's height
-     * and tells the carousel where to draw the card row.
+     * overflow-visible so tilted cards bleed naturally past section edges — 
+     * the hero section itself provides overflow-hidden clipping, with left/right
+     * fade masks giving the seamless bleed-out edge look.
      */
     <div
       ref={shellRef}
-      className="relative w-full overflow-hidden select-none"
+      className="relative w-full overflow-visible select-none"
       aria-label="Project gallery"
     >
-      {/* ── Physical strip placeholder — determines shell height & centerY ── */}
+      {/* ── Physical strip placeholder — sets the shell's intrinsic height ── */}
       <div
         ref={stripRef}
-        className="relative w-full h-[220px] md:h-[300px]"
+        className="relative w-full"
+        style={{ height: geometry ? `${stripH}px` : "260px" }}
+        aria-hidden="true"
+      />
+
+      {/* ── Left & Right edge fade masks — the anfalova effect ── */}
+      <div
+        className="absolute inset-y-0 left-0 w-[12vw] pointer-events-none z-20"
+        style={{
+          background: resolvedTheme === "dark"
+            ? "linear-gradient(to right, #09090B 0%, transparent 100%)"
+            : "linear-gradient(to right, #FFFFFF 0%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-[12vw] pointer-events-none z-20"
+        style={{
+          background: resolvedTheme === "dark"
+            ? "linear-gradient(to left, #09090B 0%, transparent 100%)"
+            : "linear-gradient(to left, #FFFFFF 0%, transparent 100%)",
+        }}
         aria-hidden="true"
       />
 
@@ -232,7 +266,8 @@ export default function AnfalovaHeroGallery() {
             {[...FLAGSHIP_ITEMS, ...FLAGSHIP_ITEMS].map((project, idx) => (
               <div
                 key={`${project.id}-${idx}`}
-                className="w-[260px] h-[172px] md:w-[340px] md:h-[225px] shrink-0 rounded-xl overflow-hidden bg-neutral-800 border border-white/10 shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+                className="shrink-0 rounded-xl overflow-hidden bg-neutral-800 border border-white/10 shadow-2xl"
+                style={{ width: geometry ? `${geometry.width}px` : "260px", height: geometry ? `${geometry.height}px` : "172px" }}
               >
                 <img
                   src={project.image}
@@ -250,8 +285,7 @@ export default function AnfalovaHeroGallery() {
       <button
         onClick={() => setIsPaused(!isPaused)}
         aria-label={isPaused ? "Play gallery" : "Pause gallery"}
-        className="absolute right-6 sm:right-10 bottom-2 z-20 px-3 py-1.5 rounded-full bg-white/80 dark:bg-black/40 hover:bg-white dark:hover:bg-black/60 backdrop-blur-md border border-black/10 dark:border-white/10 text-text-secondary dark:text-white/50 hover:text-text-primary dark:hover:text-white font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-lg select-none"
-        style={{ zIndex: 10 }}
+        className="absolute right-6 sm:right-10 bottom-2 z-30 px-3 py-1.5 rounded-full bg-white/80 dark:bg-black/40 hover:bg-white dark:hover:bg-black/60 backdrop-blur-md border border-black/10 dark:border-white/10 text-text-secondary dark:text-white/50 hover:text-text-primary dark:hover:text-white font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-lg select-none"
       >
         {isPaused ? (
           <Play size={9} className="fill-current" />
