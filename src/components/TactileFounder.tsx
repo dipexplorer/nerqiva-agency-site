@@ -20,10 +20,10 @@ const LinkedInIcon = ({ size = 15 }: { size?: number }) => (
 
 export default function TactileFounder() {
   return (
-    <section id="founder" className="py-20 sm:py-28 bg-bg-card border-t border-border/40 relative overflow-hidden">
+    <section id="founder" className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative overflow-hidden">
       <div className="section-container relative z-10 max-w-5xl">
         
-        <div className="bg-bg-primary rounded-3xl p-7 sm:p-12 border border-border/80 shadow-2xl grid lg:grid-cols-12 gap-10 items-center">
+        <div className="bg-bg-secondary/30 dark:bg-zinc-900/40 rounded-3xl p-7 sm:p-12 border border-border/80 shadow-sm grid lg:grid-cols-12 gap-10 items-center">
           
           {/* Left: Authentic Instant Polaroid Print with Scotch Tape */}
           <div className="lg:col-span-5 flex justify-center">
@@ -64,26 +64,22 @@ export default function TactileFounder() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
-                  Direct Craft // North Guwahati, Assam
+                  Direct Partnership · Guwahati
                 </span>
               </div>
 
               <h2
-                className="font-display font-black text-text-primary text-2xl sm:text-4xl leading-[1.1] tracking-tight mb-5"
+                className="font-display font-black text-text-primary text-2xl sm:text-4xl leading-[1.1] tracking-tight mb-4"
                 style={{ letterSpacing: "-0.03em" }}
               >
-                No account managers. <br />
+                Talk to the builder, <br />
                 <span className="font-serif italic font-normal text-accent">
-                  No corporate telephone game.
+                  not an account manager.
                 </span>
               </h2>
 
-              <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal mb-4">
-                Most agency owners outsource client code to cheap overseas freelancers. At NERQIVA, every single pixel and line of code is handcrafted by me right here in Guwahati.
-              </p>
-
               <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
-                When you partner with us, you get my direct phone number. No middlemen, no endless slide decks—just pure commercial engineering delivered on time.
+                Every project is designed and engineered directly by Dipjyoti Das. Direct WhatsApp access, 48-hour delivery, and zero corporate overhead.
               </p>
             </div>
 
@@ -91,7 +87,7 @@ export default function TactileFounder() {
             <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2 font-mono text-xs text-text-secondary">
                 <MapPin size={14} className="text-accent" />
-                <span>North Guwahati, Assam 781030</span>
+                <span>North Guwahati, Assam</span>
               </div>
 
               <div className="flex items-center gap-2.5">
