@@ -1,3 +1,8 @@
+export interface ProjectMetric {
+  value: string;
+  label: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -22,6 +27,11 @@ export interface Project {
   demoUrl?: string;
   featured?: boolean;
   heroImage?: string;
+  desktopImage?: string;
+  mobileImage?: string;
+  domain?: string;
+  metrics?: ProjectMetric[];
+  colors?: string[];
   gallery?: string[];
 }
 
@@ -57,7 +67,16 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-teal-600",
     featured: true,
     demoUrl: "https://www.lablinkguwahati.in/",
+    domain: "lablinkguwahati.in",
+    desktopImage: "/images/projects/lablink/desktop.png",
+    mobileImage: "/images/projects/lablink/booking.png",
     heroImage: "/images/projects/lablink/desktop.png",
+    colors: ["#0F172A", "#0D9488", "#0284C7", "#10B981"],
+    metrics: [
+      { value: "1,797+", label: "Tests Catalogued" },
+      { value: "< 60s", label: "WhatsApp Booking" },
+      { value: "Sub-24h", label: "Report Delivery" }
+    ],
     gallery: [
       "/images/projects/lablink/desktop.png",
       "/images/projects/lablink/hero.png",
@@ -96,7 +115,16 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-amber-600",
     featured: true,
     demoUrl: "https://hennaart-nine.vercel.app/",
+    domain: "hennaart-nine.vercel.app",
+    desktopImage: "/images/projects/krishavmehendi/bridal.png",
+    mobileImage: "/images/projects/krishavmehendi/minimal.png",
     heroImage: "/images/projects/krishavmehendi/bridal.png",
+    colors: ["#1C1917", "#B45309", "#D97706", "#78350F"],
+    metrics: [
+      { value: "Sub-Second", label: "Mobile 4G Load" },
+      { value: "Zero-Step", label: "WhatsApp Funnel" },
+      { value: "Bespoke", label: "Bridal Gallery" }
+    ],
     gallery: [
       "/images/projects/krishavmehendi/bridal.png",
       "/images/projects/krishavmehendi/arabic.png",
@@ -135,7 +163,16 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-red-600",
     featured: true,
     demoUrl: "https://bridalnerqiva.vercel.app/",
+    domain: "bridalnerqiva.vercel.app",
+    desktopImage: "/images/projects/editorial/vogue.png",
+    mobileImage: "/images/projects/editorial/prada.png",
     heroImage: "/images/projects/editorial/vogue.png",
+    colors: ["#0A0A0A", "#DC2626", "#991B1B", "#F4F4F5"],
+    metrics: [
+      { value: "Editorial", label: "Art Direction" },
+      { value: "60fps", label: "Scroll Physics" },
+      { value: "Direct VIP", label: "Inquiry Funnel" }
+    ],
     gallery: [
       "/images/projects/editorial/vogue.png",
       "/images/projects/editorial/prada.png",
@@ -173,7 +210,11 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-[#2A2320]",
     featured: true,
     demoUrl: "https://aura-beauty-theme.vercel.app/",
+    domain: "aura-beauty-theme.vercel.app",
+    desktopImage: "/images/projects/aurabeauty/final_hero.png",
+    mobileImage: "/images/projects/aurabeauty/hero.png",
     heroImage: "/images/projects/aurabeauty/final_hero.png",
+    colors: ["#2A2320", "#C5A880", "#EAE5D9", "#F5F2EB"],
     gallery: [
       "/images/projects/aurabeauty/final_hero.png",
       "/images/projects/aurabeauty/packages.png",
@@ -248,7 +289,16 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-zinc-500",
     featured: true,
     demoUrl: "https://aperturelight.vercel.app/",
+    domain: "aperturelight.vercel.app",
+    desktopImage: "/images/projects/wedding/coastal.png",
+    mobileImage: "/images/projects/wedding/bride_portrait.png",
     heroImage: "/images/projects/wedding/bride_portrait.png",
+    colors: ["#18181B", "#71717A", "#D4D4D8", "#A1A1AA"],
+    metrics: [
+      { value: "Full Bleed", label: "Fine Art Display" },
+      { value: "Zero Delay", label: "Media Loading" },
+      { value: "Editorial", label: "Lookbook Experience" }
+    ],
     gallery: [
       "/images/projects/wedding/bride_portrait.png",
       "/images/projects/wedding/holi.png",
@@ -286,7 +336,16 @@ export const PROJECTS: Project[] = [
     accentColor: "bg-amber-500",
     featured: true,
     demoUrl: "https://titangymnq.vercel.app/",
+    domain: "titangymnq.vercel.app",
+    desktopImage: "/images/projects/titangym/contrast.png",
+    mobileImage: "/images/projects/titangym/mobile.png",
     heroImage: "/images/projects/titangym/contrast.png",
+    colors: ["#09090B", "#F59E0B", "#EA580C", "#27272A"],
+    metrics: [
+      { value: "Liquid GL", label: "Shader Hero" },
+      { value: "7-Day VIP", label: "Trial Funnel" },
+      { value: "Obsidian", label: "Athletic Identity" }
+    ],
     gallery: [
       "/images/projects/titangym/contrast.png",
       "/images/projects/titangym/hero.png",
