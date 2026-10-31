@@ -7,156 +7,156 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { PROJECTS, Project } from "../data/projects";
 import ProjectDualDeviceModal from "./ProjectDualDeviceModal";
 
-// Homepage showcases only the top 3 high-contrast flagship proofs
-const HOMEPAGE_FLAGSHIP_IDS = ["lablink", "houseoftales", "titangym"];
+// Top 3 flagship proofs with deliberate handcrafted tilt & vertical offsets
+const HOMEPAGE_FLAGSHIPS = [
+  {
+    id: "lablink",
+    tiltClass: "-rotate-1 sm:-rotate-2 lg:translate-y-2",
+    tag: "Live Client",
+    isClient: true,
+  },
+  {
+    id: "houseoftales",
+    tiltClass: "rotate-1 sm:rotate-1.5 lg:-translate-y-3",
+    tag: "Photography",
+    isClient: false,
+  },
+  {
+    id: "titangym",
+    tiltClass: "-rotate-0.5 sm:-rotate-1 lg:translate-y-3",
+    tag: "Athletic Club",
+    isClient: false,
+  },
+];
 
 export default function CaseStudies() {
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
-  // Filter strictly to the top 3 curated flagships
-  const curatedFlagships = HOMEPAGE_FLAGSHIP_IDS.map((id) =>
-    PROJECTS.find((p) => p.id === id)
-  ).filter(Boolean) as Project[];
+  // Retrieve the 3 flagship projects
+  const curatedProjects = HOMEPAGE_FLAGSHIPS.map((config) => {
+    const project = PROJECTS.find((p) => p.id === config.id);
+    return { ...config, project };
+  }).filter((item): item is typeof item & { project: Project } => Boolean(item.project));
 
   return (
     <section
       id="case-studies"
-      className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative"
+      className="py-18 sm:py-24 bg-transparent border-t border-border/40 relative overflow-x-clip"
     >
       <div className="section-container relative z-10">
-        {/* Section Header: Focused, Confident, Clean */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
-          <div className="max-w-2xl">
+        
+        {/* Section Header: Pure Typographic Authority, Zero Fluff */}
+        <div className="flex items-baseline justify-between mb-10 sm:mb-14 pb-4 border-b border-border/40">
+          <div className="flex items-baseline gap-3">
             <h2
-              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.06]"
-              style={{ letterSpacing: "-0.03em" }}
+              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.04]"
+              style={{ letterSpacing: "-0.035em" }}
             >
-              Selected Works.
+              Selected Works
             </h2>
-            <p className="mt-3 text-text-secondary text-base sm:text-lg leading-relaxed max-w-xl">
-              A focused selection of digital flagships engineered for commercial conversion, sub-second mobile speeds, and verified WhatsApp booking funnels.
-            </p>
+            <span className="font-mono text-xs sm:text-sm text-text-tertiary">
+              / 03
+            </span>
           </div>
 
-          <div className="hidden md:flex items-center">
-            <Link
-              href="/work"
-              className="font-mono text-xs font-semibold tracking-wider text-text-secondary hover:text-accent flex items-center gap-2 transition-colors group"
-            >
-              <span>Explore All 8 Builds</span>
-              <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+          <Link
+            href="/work"
+            className="font-mono text-xs font-semibold tracking-wider text-text-secondary hover:text-accent flex items-center gap-1.5 transition-colors group"
+          >
+            <span>All Builds [8]</span>
+            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
 
-        {/* Minimal Agency Works Triad (Top 3 Proofs) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 sm:gap-y-16">
-          {curatedFlagships.map((project, i) => {
+        {/* Handcrafted Tilted Cards Stage */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 pt-4 pb-6">
+          {curatedProjects.map(({ id, tiltClass, isClient, tag, project }) => {
             const displayImage =
               project.desktopImage ||
               project.heroImage ||
               project.gallery?.[0] ||
               "/images/projects/lablink/desktop.png";
-            const palette = project.colors || ["#18181B", "#71717A", "#D4D4D8"];
 
             return (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: i * 0.05 }}
-                className="group flex flex-col cursor-pointer"
+              <div
+                key={id}
+                className={`group relative cursor-pointer transform-gpu will-change-transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${tiltClass} hover:!rotate-0 hover:!-translate-y-3 hover:scale-[1.025] hover:z-20`}
                 onClick={() => setActiveModalProject(project)}
               >
-                {/* Visual Preview Container */}
-                <div className="relative aspect-[16/10.5] w-full rounded-2xl overflow-hidden bg-bg-secondary border border-border group-hover:border-accent/40 shadow-sm group-hover:shadow-xl transition-all duration-300">
-                  {/* Live Client Flagship Indicator */}
-                  {project.projectType === "client" ? (
-                    <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md text-white font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 border border-white/10 shadow-sm">
+                {/* Visual Preview Box */}
+                <div className="relative aspect-[16/10.5] w-full rounded-2xl overflow-hidden bg-bg-secondary border border-border/80 group-hover:border-accent/50 shadow-md group-hover:shadow-2xl group-hover:shadow-black/20 dark:group-hover:shadow-black/60 transition-all duration-500">
+                  
+                  {/* Minimal Status Tag */}
+                  {isClient ? (
+                    <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-white font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 border border-white/10 shadow-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Live Client Flagship</span>
+                      <span>Live Client</span>
                     </div>
                   ) : (
-                    <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/90 font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 border border-white/10 shadow-sm">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                      <span>Interactive Demo</span>
+                    <div className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/90 font-mono text-[10px] font-bold tracking-wider border border-white/10 shadow-sm">
+                      <span>{tag}</span>
                     </div>
                   )}
 
-                  {/* Quick External Link Button */}
+                  {/* Direct Launch Link */}
                   {project.demoUrl && (
                     <a
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md"
-                      title="Visit Live Site"
-                      aria-label={`Visit ${project.name} Live`}
+                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md"
+                      title="Open Live Site"
+                      aria-label={`Visit ${project.name} live`}
                     >
-                      <ExternalLink size={13} />
+                      <ExternalLink size={12} />
                     </a>
                   )}
 
-                  {/* Thumbnail Image */}
+                  {/* Hover Motion Prompt */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10 pointer-events-none">
+                    <span className="px-3 py-1.5 rounded-full bg-bg-primary/95 text-text-primary border border-border shadow-lg text-[11px] font-mono font-bold tracking-wider backdrop-blur-sm">
+                      Live Motion ↗
+                    </span>
+                  </div>
+
+                  {/* High-Resolution Screenshot */}
                   <img
                     src={displayImage}
-                    alt={`${project.name} Preview`}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    alt={`${project.name} preview`}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     loading="lazy"
                   />
                 </div>
 
-                {/* Minimal Meta Row (Title, Category, Color Palette Dots) */}
-                <div className="mt-4 flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <h3 className="font-display font-bold text-lg sm:text-xl text-text-primary tracking-tight group-hover:text-accent transition-colors truncate">
-                      {project.name}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-text-secondary mt-0.5 truncate">
-                      {project.category}
-                    </p>
-                  </div>
-
-                  {/* Brand Palette Dots */}
-                  <div className="flex items-center gap-1.5 shrink-0 pt-1.5" aria-hidden="true">
-                    {palette.map((color, idx) => (
-                      <span
-                        key={idx}
-                        className="w-2.5 h-2.5 rounded-full shadow-inner border border-black/10 dark:border-white/15"
-                        style={{ backgroundColor: color }}
-                        title={color}
-                      />
-                    ))}
-                  </div>
+                {/* Minimal Meta Row: Title + Category Only */}
+                <div className="mt-3.5 flex items-baseline justify-between gap-3 px-1">
+                  <h3 className="font-display font-bold text-lg sm:text-xl text-text-primary tracking-tight group-hover:text-accent transition-colors truncate">
+                    {project.name}
+                  </h3>
+                  <span className="font-mono text-xs text-text-tertiary shrink-0">
+                    {project.category}
+                  </span>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>
 
-        {/* High-Gravity Archive Banner Linking to /work */}
-        <div className="mt-14 sm:mt-18 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-6 bg-bg-secondary/40 rounded-2xl p-6 sm:p-8 border border-border/60">
-          <div className="max-w-xl text-center sm:text-left">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent block mb-1">
-              Curated Portfolio Archive
-            </span>
-            <h3 className="font-display font-bold text-xl sm:text-2xl text-text-primary tracking-tight">
-              Explore All 8 Commercial Flagships
-            </h3>
-            <p className="mt-1 text-sm text-text-secondary leading-relaxed">
-              Browse our complete archive across clinical healthcare, luxury bridal henna, editorial makeup, boutique fitness, and fine art studios.
-            </p>
-          </div>
+        {/* Minimal Tactile Archive Link (Zero Essay) */}
+        <div className="mt-12 sm:mt-16 pt-8 border-t border-border/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <span className="font-mono text-xs text-text-tertiary">
+            3 Flagships shown · 8 Active systems in production
+          </span>
           <Link
             href="/work"
-            className="btn-primary py-3 px-6 text-sm font-bold flex items-center gap-2.5 shrink-0 group shadow-md"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/80 bg-bg-secondary/60 hover:bg-bg-secondary text-text-primary text-xs font-mono font-semibold tracking-wide hover:border-accent/40 shadow-xs hover:shadow-sm transition-all duration-200 group"
           >
-            <span>View All Selected Works (8)</span>
-            <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+            <span>Explore Complete Archive (8)</span>
+            <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform text-accent" />
           </Link>
         </div>
+
       </div>
 
       {/* Dual-Device 60fps Motion Showcase Modal */}
