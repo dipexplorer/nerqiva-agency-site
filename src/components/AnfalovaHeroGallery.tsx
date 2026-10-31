@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Play, Pause } from "lucide-react";
+import { useTheme } from "next-themes";
 
-// Dynamically load the Liquid Glass Three.js WebGL component (SSR disabled for WebGL canvas)
+// Dynamically load the Liquid Glass Three.js WebGL component (SSR disabled)
 const LiquidGlassCarousel = dynamic(
   () => import("./LiquidGlassCarousel"),
   { ssr: false }
@@ -56,10 +57,19 @@ const FLAGSHIP_ITEMS: GalleryProject[] = [
   },
 ];
 
+// Card dimensions at each breakpoint
+const CARD_W_SM = 260;
+const CARD_H_SM = 172;
+const CARD_W_MD = 340;
+const CARD_H_MD = 225;
+// Strip height at each breakpoint (card + generous overflow for diagonal effect)
+const STRIP_H_SM = 220;
+const STRIP_H_MD = 300;
+
 export default function AnfalovaHeroGallery() {
   const shellRef = useRef<HTMLDivElement>(null);
-  const measureRef = useRef<HTMLDivElement>(null);
-  
+  const stripRef = useRef<HTMLDivElement>(null);
+
   const [geometry, setGeometry] = useState<{
     width: number;
     height: number;
@@ -78,47 +88,48 @@ export default function AnfalovaHeroGallery() {
 
   useEffect(() => {
     setIsClient(true);
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-    const handler = () => setPrefersReducedMotion(mediaQuery.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mq.matches);
+    const h = () => setPrefersReducedMotion(mq.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
   }, []);
 
-  // Measure geometry relative to hero section
+  // Measure geometry: strip position relative to the shell (the full-section container)
   useEffect(() => {
-    const measureEl = measureRef.current;
     const shellEl = shellRef.current;
-    if (!measureEl || !shellEl) return;
-
-    const heroSection = shellEl.closest("section") || shellEl.parentElement;
-    if (!heroSection) return;
+    const stripEl = stripRef.current;
+    if (!shellEl || !stripEl) return;
 
     const updateGeometry = () => {
-      const cardRect = measureEl.getBoundingClientRect();
-      const heroRect = heroSection.getBoundingClientRect();
-      const shellRect = shellEl.getBoundingClientRect();
+      const isMd = window.innerWidth >= 768;
+      const cardW = isMd ? CARD_W_MD : CARD_W_SM;
+      const cardH = isMd ? CARD_H_MD : CARD_H_SM;
+      const gap = isMd ? 16 : 10;
 
-      const cardWidth = cardRect.width || (window.innerWidth < 640 ? 248 : 332);
-      const cardHeight = cardRect.height || (window.innerWidth < 640 ? 164 : 219);
-      const topOffset = shellRect.top - heroRect.top;
+      const shellRect = shellEl.getBoundingClientRect();
+      const stripRect = stripEl.getBoundingClientRect();
+
+      // top offset of the strip within the shell
+      const topOffset = stripRect.top - shellRect.top;
+      const stripH = stripRect.height;
 
       setGeometry({
-        width: cardWidth,
-        height: cardHeight,
-        gap: window.innerWidth < 640 ? 10 : 14,
+        width: cardW,
+        height: cardH,
+        gap,
         top: topOffset,
-        canvasHeight: heroRect.height || 900,
-        canvasWidth: heroRect.width || 1440,
-        centerY: topOffset + cardHeight / 2,
-        radius: 6,
+        canvasHeight: shellRect.height,
+        canvasWidth: shellRect.width,
+        // center of the strip in shell-space
+        centerY: topOffset + stripH / 2,
+        radius: 8,
       });
     };
 
     const ro = new ResizeObserver(updateGeometry);
-    ro.observe(measureEl);
-    ro.observe(heroSection);
     ro.observe(shellEl);
+    ro.observe(stripEl);
 
     updateGeometry();
     window.addEventListener("resize", updateGeometry);
@@ -129,7 +140,6 @@ export default function AnfalovaHeroGallery() {
     };
   }, [isClient]);
 
-  // Texture items for Liquid Glass Carousel
   const items = useMemo(
     () =>
       FLAGSHIP_ITEMS.map((item) => ({
@@ -141,121 +151,115 @@ export default function AnfalovaHeroGallery() {
     []
   );
 
-  // Aspect ratio scale factor
+  // Aspect ratio scale factor for lens
   const bScale = geometry
     ? Math.max(1, geometry.canvasWidth / geometry.canvasHeight / (1440 / 900))
     : 1;
 
-  return (
-    <div className="relative w-full overflow-hidden select-none" ref={shellRef}>
-      
-      {/* Hidden layout measuring element matching exact CSS geometry */}
-      <div
-        className="carousel-measure media-set"
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          opacity: 0,
-          pointerEvents: "none",
-          visibility: "hidden",
-        }}
-      >
-        <div
-          ref={measureRef}
-          className="w-[248px] h-[164px] sm:w-[332px] sm:h-[219px]"
-        />
-      </div>
+  const { resolvedTheme } = useTheme();
+  const canvasBg = resolvedTheme === "dark" ? "#09090B" : "#FFFFFF";
 
-      {/* Main Container */}
+  return (
+    /*
+     * shellRef = the full-width container whose height becomes the canvas height.
+     * The WebGL canvas is absolute within this shell, covering its full area.
+     * The stripRef is a physical placeholder div that sets the shell's height
+     * and tells the carousel where to draw the card row.
+     */
+    <div
+      ref={shellRef}
+      className="relative w-full overflow-hidden select-none"
+      aria-label="Project gallery"
+    >
+      {/* ── Physical strip placeholder — determines shell height & centerY ── */}
       <div
-        className="media-carousel relative w-full h-[164px] sm:h-[219px] overflow-visible cursor-grab active:cursor-grabbing"
-        role="region"
-        aria-label="Project gallery"
-      >
-        {/* WebGL Surface if available and no reduced motion */}
-        {isClient && geometry && !hasWebGLError && !prefersReducedMotion ? (
+        ref={stripRef}
+        className="relative w-full h-[220px] md:h-[300px]"
+        aria-hidden="true"
+      />
+
+      {/* ── WebGL Surface ── */}
+      {isClient && geometry && !hasWebGLError && !prefersReducedMotion ? (
+        <div
+          className="pointer-events-auto"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: geometry.canvasHeight,
+            zIndex: 1,
+          }}
+        >
+          <React.Suspense fallback={<div className="w-full h-full" />}>
+            <LiquidGlassCarousel
+              items={items}
+              background={canvasBg}
+              sizeMode="same"
+              cardWidth={geometry.width}
+              cardHeight={geometry.height}
+              gap={geometry.gap}
+              cardRadius={geometry.radius}
+              rowCenterY={geometry.centerY}
+              lens={{
+                enabled: true,
+                width: 0.565 * bScale,
+                height: bScale,
+                whiteGlow: 0,
+                ringColor: "#00000000",
+              }}
+              motion={{ sensitivity: 3.125, glide: 5, snap: true }}
+              interaction={{ wheel: false, drag: true, clickToFocus: false }}
+              paused={isPaused}
+              entry={{ enabled: false }}
+              onError={() => setHasWebGLError(true)}
+            />
+          </React.Suspense>
+        </div>
+      ) : (
+        /* ── High-fidelity CSS fallback ── */
+        <div
+          className="absolute inset-0 flex items-center overflow-hidden"
+          style={{ perspective: "1200px" }}
+        >
           <div
-            className="originkit-surface pointer-events-auto"
+            className="flex gap-2.5 md:gap-4 w-max animate-marquee"
             style={{
-              position: "absolute",
-              left: 0,
-              width: "100%",
-              top: -geometry.top,
-              height: geometry.canvasHeight,
-              zIndex: 1,
+              animationPlayState: isPaused ? "paused" : "running",
+              animationDuration: "40s",
             }}
           >
-            <React.Suspense fallback={<div className="w-full h-full bg-transparent" />}>
-              <LiquidGlassCarousel
-                items={items}
-                background="#0C0C0E"
-                sizeMode="same"
-                cardWidth={geometry.width}
-                cardHeight={geometry.height}
-                gap={geometry.gap}
-                cardRadius={geometry.radius}
-                rowCenterY={geometry.centerY}
-                lens={{
-                  enabled: true,
-                  width: 0.565 * bScale,
-                  height: bScale,
-                  whiteGlow: 0,
-                  ringColor: "#00000000",
-                }}
-                motion={{ sensitivity: 3.125, glide: 5, snap: true }}
-                interaction={{ wheel: false, drag: true, clickToFocus: false }}
-                paused={isPaused}
-                entry={{
-                  enabled: false,
-                }}
-                onError={() => setHasWebGLError(true)}
-              />
-            </React.Suspense>
+            {[...FLAGSHIP_ITEMS, ...FLAGSHIP_ITEMS].map((project, idx) => (
+              <div
+                key={`${project.id}-${idx}`}
+                className="w-[260px] h-[172px] md:w-[340px] md:h-[225px] shrink-0 rounded-xl overflow-hidden bg-neutral-800 border border-white/10 shadow-2xl transition-transform duration-300 hover:scale-[1.02]"
+              >
+                <img
+                  src={project.image}
+                  alt={project.client}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
+        </div>
+      )}
+
+      {/* ── Pause / Resume tactile control ── */}
+      <button
+        onClick={() => setIsPaused(!isPaused)}
+        aria-label={isPaused ? "Play gallery" : "Pause gallery"}
+        className="absolute right-6 sm:right-10 bottom-2 z-20 px-3 py-1.5 rounded-full bg-white/80 dark:bg-black/40 hover:bg-white dark:hover:bg-black/60 backdrop-blur-md border border-black/10 dark:border-white/10 text-text-secondary dark:text-white/50 hover:text-text-primary dark:hover:text-white font-mono text-[10px] font-bold tracking-wider flex items-center gap-1.5 transition-all cursor-pointer shadow-lg select-none"
+        style={{ zIndex: 10 }}
+      >
+        {isPaused ? (
+          <Play size={9} className="fill-current" />
         ) : (
-          /* High-Fidelity CSS 3D Diagonal Ribbon Fallback */
-          <div
-            className="relative w-full h-full flex items-center overflow-hidden"
-            style={{ perspective: "1200px" }}
-          >
-            <div
-              className="flex gap-2.5 sm:gap-3.5 w-max animate-marquee"
-              style={{
-                animationPlayState: isPaused ? "paused" : "running",
-                animationDuration: "40s",
-              }}
-            >
-              {[...FLAGSHIP_ITEMS, ...FLAGSHIP_ITEMS].map((project, idx) => (
-                <div
-                  key={`${project.id}-${idx}`}
-                  className="w-[248px] h-[164px] sm:w-[332px] sm:h-[219px] shrink-0 rounded-md overflow-hidden bg-neutral-900 border border-white/10 shadow-xl transition-transform duration-300 hover:scale-[1.02]"
-                >
-                  <img
-                    src={project.image}
-                    alt={project.client}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <Pause size={9} className="fill-current" />
         )}
-
-        {/* Tactile Pause Button on Lower Right of Carousel (Kris Anfalova Style) */}
-        <button
-          onClick={() => setIsPaused(!isPaused)}
-          aria-label={isPaused ? "Play gallery" : "Pause gallery"}
-          className="absolute right-4 bottom-2 z-20 px-2 py-1 rounded bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/15 text-white/80 hover:text-white font-mono text-[10px] font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-lg select-none"
-        >
-          {isPaused ? <Play size={10} className="fill-current" /> : <Pause size={10} className="fill-current" />}
-          <span>{isPaused ? "RESUME" : "PAUSE"}</span>
-        </button>
-
-      </div>
-
+        <span>{isPaused ? "RESUME" : "PAUSE"}</span>
+      </button>
     </div>
   );
 }

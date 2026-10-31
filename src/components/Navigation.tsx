@@ -51,14 +51,14 @@ export default function Navigation() {
         <nav
           className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3 rounded-full transition-all duration-300 pointer-events-auto ${
             scrolled
-              ? "bg-bg-card/90 backdrop-blur-xl border border-border shadow-2xl"
-              : "bg-bg-card/75 backdrop-blur-md border border-border/60 shadow-lg"
+              ? "bg-bg-card/90 dark:bg-[#09090b]/90 backdrop-blur-xl border border-border dark:border-white/10 shadow-2xl dark:shadow-black/60"
+              : "bg-bg-card/80 dark:bg-[#09090b]/80 backdrop-blur-md border border-border/70 dark:border-white/10 shadow-lg dark:shadow-black/40"
           }`}
         >
           {/* Brand Monogram */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
             <BrandLogo className="h-7 w-7 transition-transform duration-300 group-hover:scale-105" />
-            <span className="font-mono text-base font-black tracking-widest text-text-primary">
+            <span className="font-mono text-base font-black tracking-widest text-text-primary dark:text-white transition-colors">
               NERQIVA<span className="text-accent">®</span>
             </span>
           </Link>
@@ -72,12 +72,16 @@ export default function Navigation() {
                   key={item.label}
                   href={item.href}
                   className={`font-mono text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 group py-1 ${
-                    active ? "text-text-primary font-bold" : "text-text-secondary hover:text-text-primary"
+                    active
+                      ? "text-text-primary dark:text-white font-bold"
+                      : "text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white"
                   }`}
                 >
                   <span
                     className={`w-1.5 h-1.5 rounded-full bg-accent transition-all duration-200 ${
-                      active ? "opacity-100 scale-100" : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
+                      active
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
                     }`}
                   />
                   <span>{item.label}</span>
@@ -89,9 +93,11 @@ export default function Navigation() {
           {/* Right Actions & Live Availability */}
           <div className="hidden md:flex items-center gap-3.5">
             {/* Live Launch Status Pill */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-bg-secondary border border-border text-[11px] font-mono text-text-secondary">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              <span className="font-semibold text-text-primary">2 Launch Slots Open</span>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-border dark:border-white/10 bg-bg-secondary dark:bg-white/5 text-[11px] font-mono text-text-secondary dark:text-white/70 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse shrink-0" />
+              <span className="font-semibold text-text-primary dark:text-white">
+                2 Launch Slots Open
+              </span>
             </div>
 
             <ThemeToggle />
@@ -101,7 +107,7 @@ export default function Navigation() {
               href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20commission%20a%20website%20flagship."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md shadow-accent/20"
+              className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md shadow-accent/20 cursor-pointer select-none"
             >
               <span>Book on WhatsApp</span>
               <ArrowUpRight size={13} />
