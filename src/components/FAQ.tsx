@@ -81,81 +81,88 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
       />
 
       {/* ========================================================
-          BACKGROUND SCULPTURAL WATERMARK (Outer Margin Bleeds Only)
-          Hidden on mobile to preserve pristine reading contrast;
-          Anchored strictly off-canvas on desktop to frame the grid.
+          BACKGROUND SCULPTURAL WATERMARK (F, A, Q)
+          Fully contained inside section boundaries (no overflow/clipping),
+          distinctly visible, and responsively calibrated for mobile & desktop.
           ======================================================== */}
       <div
-        className="hidden md:block absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
+        className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
         aria-hidden="true"
       >
-        <svg
-          className="w-full h-full absolute inset-0 text-text-primary dark:text-white opacity-[0.03] dark:opacity-[0.05]"
-          viewBox="0 0 1440 960"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          <defs>
-            <linearGradient id="faqGradF" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-              <stop offset="60%" stopColor="currentColor" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="faqGradA" x1="0.3" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-              <stop offset="55%" stopColor="currentColor" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="faqGradQ" x1="0.1" y1="0.2" x2="0.9" y2="1">
-              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
-              <stop offset="60%" stopColor="currentColor" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
-          </defs>
+        {/* Sculptural 'F' — Upper-Left, fully contained inside top padding */}
+        <div className="absolute top-2 sm:top-4 lg:top-6 left-1 sm:left-4 lg:left-8 w-28 sm:w-56 lg:w-72 h-36 sm:h-72 lg:h-88 text-text-primary dark:text-white">
+          <svg viewBox="0 0 280 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sculptF" x1="0" y1="0" x2="0.8" y2="1">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.10" />
+                <stop offset="55%" stopColor="currentColor" stopOpacity="0.04" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
+              </linearGradient>
+            </defs>
+            <text
+              x="25"
+              y="270"
+              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="300"
+              fill="url(#sculptF)"
+              transform="rotate(-8 25 270)"
+              letterSpacing="-0.04em"
+            >
+              F
+            </text>
+          </svg>
+        </div>
 
-          {/* Letter 'F' Anchored on Far Left Margin Bleed (x < 160) */}
-          <text
-            x="-70"
-            y="320"
-            fontFamily="var(--font-sans), system-ui, sans-serif"
-            fontWeight="900"
-            fontSize="480"
-            fill="url(#faqGradF)"
-            transform="rotate(-12, -70, 320)"
-            letterSpacing="-0.06em"
-          >
-            F
-          </text>
+        {/* Sculptural 'A' — Mid-Right Margin, safely within right bounds */}
+        <div className="absolute top-[28%] sm:top-[16%] lg:top-[12%] right-1 sm:right-4 lg:right-8 w-32 sm:w-60 lg:w-80 h-40 sm:h-76 lg:h-96 text-text-primary dark:text-white">
+          <svg viewBox="0 0 300 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sculptA" x1="0.2" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.10" />
+                <stop offset="55%" stopColor="currentColor" stopOpacity="0.04" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
+              </linearGradient>
+            </defs>
+            <text
+              x="20"
+              y="275"
+              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="300"
+              fill="url(#sculptA)"
+              transform="rotate(10 20 275)"
+              letterSpacing="-0.04em"
+            >
+              A
+            </text>
+          </svg>
+        </div>
 
-          {/* Letter 'A' Anchored on Far Right Margin Bleed (x > 1280) */}
-          <text
-            x="1320"
-            y="420"
-            fontFamily="var(--font-sans), system-ui, sans-serif"
-            fontWeight="900"
-            fontSize="520"
-            fill="url(#faqGradA)"
-            transform="rotate(14, 1320, 420)"
-            letterSpacing="-0.06em"
-          >
-            A
-          </text>
-
-          {/* Letter 'Q' Anchored Low in Bottom Right Perimeter (x > 1180, y > 900) */}
-          <text
-            x="1200"
-            y="940"
-            fontFamily="var(--font-sans), system-ui, sans-serif"
-            fontWeight="900"
-            fontSize="540"
-            fill="url(#faqGradQ)"
-            transform="rotate(-6, 1200, 940)"
-            letterSpacing="-0.06em"
-          >
-            Q
-          </text>
-        </svg>
+        {/* Sculptural 'Q' — Lower Area, comfortably above bottom border */}
+        <div className="absolute bottom-24 sm:bottom-28 lg:bottom-24 left-4 sm:left-[18%] lg:left-[26%] w-36 sm:w-64 lg:w-80 h-44 sm:h-80 lg:h-96 text-text-primary dark:text-white">
+          <svg viewBox="0 0 320 360" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sculptQ" x1="0.1" y1="0.1" x2="0.9" y2="1">
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.09" />
+                <stop offset="60%" stopColor="currentColor" stopOpacity="0.035" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
+              </linearGradient>
+            </defs>
+            <text
+              x="25"
+              y="280"
+              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="300"
+              fill="url(#sculptQ)"
+              transform="rotate(-5 25 280)"
+              letterSpacing="-0.04em"
+            >
+              Q
+            </text>
+          </svg>
+        </div>
       </div>
 
       {/* ========================================================
