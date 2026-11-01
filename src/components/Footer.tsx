@@ -145,9 +145,9 @@ export default function Footer() {
                 </div>
               </Link>
               
-              {/* Small, concise, valuable copy only (no essay / zero fluff) */}
-              <p className="text-xs sm:text-sm text-text-tertiary max-w-sm mb-6 font-medium tracking-wide">
-                High-converting websites &amp; digital systems.
+              {/* Short, human, professional studio descriptor (zero AI buzzwords) */}
+              <p className="text-xs sm:text-sm text-text-secondary max-w-sm mb-6 font-medium">
+                Web design &amp; development for modern businesses.
               </p>
             </div>
 
@@ -253,12 +253,6 @@ export default function Footer() {
           className="pt-12 sm:pt-16 pb-8 overflow-hidden select-none relative group/wordmark cursor-default"
           aria-label="NERQIVA Studio Grand Display"
         >
-          {/* Subtle studio caption indicator */}
-          <div className="flex items-center justify-between mb-4 px-1 text-text-tertiary/70 font-mono text-[10px] uppercase tracking-widest">
-            <span>Bespoke Studio Display</span>
-            <span className="hidden sm:inline-block">Hover to interact with kinetic type</span>
-          </div>
-
           {/* Kinetic Letters Container */}
           <div 
             className="flex items-center justify-between sm:justify-center sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 font-display font-black leading-none"
