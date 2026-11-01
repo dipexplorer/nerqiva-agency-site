@@ -89,24 +89,24 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
         className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
         aria-hidden="true"
       >
-        {/* Sculptural 'F' — Upper-Left, fully contained inside top padding */}
-        <div className="absolute top-2 sm:top-4 lg:top-6 left-1 sm:left-4 lg:left-8 w-28 sm:w-56 lg:w-72 h-36 sm:h-72 lg:h-88 text-text-primary dark:text-white">
-          <svg viewBox="0 0 280 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Sculptural 'F' — Upper-Left, brought comfortably inside the frame */}
+        <div className="absolute top-2 sm:top-4 lg:top-6 left-[5%] sm:left-[8%] lg:left-[11%] xl:left-[14%] w-28 sm:w-52 lg:w-64 h-36 sm:h-64 lg:h-80 text-text-primary dark:text-white">
+          <svg viewBox="0 0 320 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptF" x1="0" y1="0" x2="0.8" y2="1">
-                <stop offset="0%" stopColor="currentColor" stopOpacity="0.10" />
-                <stop offset="55%" stopColor="currentColor" stopOpacity="0.04" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.09" />
+                <stop offset="55%" stopColor="currentColor" stopOpacity="0.035" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
               </linearGradient>
             </defs>
             <text
-              x="25"
+              x="60"
               y="270"
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight="900"
-              fontSize="300"
+              fontSize="270"
               fill="url(#sculptF)"
-              transform="rotate(-8 25 270)"
+              transform="rotate(-5 160 170)"
               letterSpacing="-0.04em"
             >
               F
@@ -114,24 +114,24 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
           </svg>
         </div>
 
-        {/* Sculptural 'A' — Mid-Right Margin, safely within right bounds */}
-        <div className="absolute top-[28%] sm:top-[16%] lg:top-[12%] right-1 sm:right-4 lg:right-8 w-32 sm:w-60 lg:w-80 h-40 sm:h-76 lg:h-96 text-text-primary dark:text-white">
-          <svg viewBox="0 0 300 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Sculptural 'A' — Mid-Right Margin, brought comfortably inside the frame */}
+        <div className="absolute top-[26%] sm:top-[16%] lg:top-[12%] right-[5%] sm:right-[8%] lg:right-[11%] xl:right-[14%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
+          <svg viewBox="0 0 340 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptA" x1="0.2" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="currentColor" stopOpacity="0.10" />
-                <stop offset="55%" stopColor="currentColor" stopOpacity="0.04" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.09" />
+                <stop offset="55%" stopColor="currentColor" stopOpacity="0.035" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
               </linearGradient>
             </defs>
             <text
-              x="20"
-              y="275"
+              x="60"
+              y="270"
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight="900"
-              fontSize="300"
+              fontSize="270"
               fill="url(#sculptA)"
-              transform="rotate(10 20 275)"
+              transform="rotate(5 170 170)"
               letterSpacing="-0.04em"
             >
               A
@@ -140,23 +140,23 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
         </div>
 
         {/* Sculptural 'Q' — Lower Area, comfortably above bottom border */}
-        <div className="absolute bottom-24 sm:bottom-28 lg:bottom-24 left-4 sm:left-[18%] lg:left-[26%] w-36 sm:w-64 lg:w-80 h-44 sm:h-80 lg:h-96 text-text-primary dark:text-white">
+        <div className="absolute bottom-20 sm:bottom-24 lg:bottom-20 left-[8%] sm:left-[18%] lg:left-[26%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
           <svg viewBox="0 0 320 360" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptQ" x1="0.1" y1="0.1" x2="0.9" y2="1">
-                <stop offset="0%" stopColor="currentColor" stopOpacity="0.09" />
-                <stop offset="60%" stopColor="currentColor" stopOpacity="0.035" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0.08" />
+                <stop offset="60%" stopColor="currentColor" stopOpacity="0.03" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0.01" />
               </linearGradient>
             </defs>
             <text
-              x="25"
-              y="280"
+              x="45"
+              y="275"
               fontFamily="var(--font-sans), system-ui, sans-serif"
               fontWeight="900"
-              fontSize="300"
+              fontSize="270"
               fill="url(#sculptQ)"
-              transform="rotate(-5 25 280)"
+              transform="rotate(-4 160 180)"
               letterSpacing="-0.04em"
             >
               Q
