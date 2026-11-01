@@ -145,9 +145,9 @@ export default function Footer() {
                 </div>
               </Link>
               
-              {/* Short, human, professional studio descriptor (zero AI buzzwords) */}
-              <p className="text-xs sm:text-sm text-text-secondary max-w-sm mb-6 font-medium">
-                Web design &amp; development for modern businesses.
+              {/* Humanized, high-conversion studio statement */}
+              <p className="text-sm sm:text-base text-text-secondary max-w-md mb-6 font-medium leading-relaxed">
+                Building an online presence that doesn&apos;t just exist — it brings your business real revenue.
               </p>
             </div>
 

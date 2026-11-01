@@ -89,7 +89,7 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
         className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
         aria-hidden="true"
       >
-        {/* Sculptural 'F' — Upper-Left, brought comfortably inside the frame */}
+        {/* Sculptural 'F' — Upper-Left, rendered in Fraunces luxury editorial serif */}
         <div className="absolute top-2 sm:top-4 lg:top-6 left-[5%] sm:left-[8%] lg:left-[11%] xl:left-[14%] w-28 sm:w-52 lg:w-64 h-36 sm:h-64 lg:h-80 text-text-primary dark:text-white">
           <svg viewBox="0 0 320 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -102,19 +102,19 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
             <text
               x="60"
               y="270"
-              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontFamily="var(--font-display), Fraunces, Georgia, serif"
               fontWeight="900"
               fontSize="270"
               fill="url(#sculptF)"
               transform="rotate(-5 160 170)"
-              letterSpacing="-0.04em"
+              letterSpacing="-0.02em"
             >
               F
             </text>
           </svg>
         </div>
 
-        {/* Sculptural 'A' — Mid-Right Margin, brought comfortably inside the frame */}
+        {/* Sculptural 'A' — Mid-Right Margin, rendered in Fraunces luxury editorial serif */}
         <div className="absolute top-[26%] sm:top-[16%] lg:top-[12%] right-[5%] sm:right-[8%] lg:right-[11%] xl:right-[14%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
           <svg viewBox="0 0 340 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -127,21 +127,21 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
             <text
               x="60"
               y="270"
-              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontFamily="var(--font-display), Fraunces, Georgia, serif"
               fontWeight="900"
               fontSize="270"
               fill="url(#sculptA)"
               transform="rotate(5 170 170)"
-              letterSpacing="-0.04em"
+              letterSpacing="-0.02em"
             >
               A
             </text>
           </svg>
         </div>
 
-        {/* Sculptural 'Q' — Lower Area, comfortably above bottom border */}
+        {/* Sculptural 'Q' — Lower Area, rendered in Fraunces luxury editorial serif */}
         <div className="absolute bottom-20 sm:bottom-24 lg:bottom-20 left-[8%] sm:left-[18%] lg:left-[26%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
-          <svg viewBox="0 0 320 360" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 340 370" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptQ" x1="0.1" y1="0.1" x2="0.9" y2="1">
                 <stop offset="0%" stopColor="currentColor" stopOpacity="0.08" />
@@ -150,14 +150,14 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
               </linearGradient>
             </defs>
             <text
-              x="45"
-              y="275"
-              fontFamily="var(--font-sans), system-ui, sans-serif"
+              x="50"
+              y="270"
+              fontFamily="var(--font-display), Fraunces, Georgia, serif"
               fontWeight="900"
               fontSize="270"
               fill="url(#sculptQ)"
-              transform="rotate(-4 160 180)"
-              letterSpacing="-0.04em"
+              transform="rotate(-4 170 185)"
+              letterSpacing="-0.02em"
             >
               Q
             </text>
