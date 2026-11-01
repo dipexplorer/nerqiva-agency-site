@@ -22,18 +22,20 @@ export default function SensoryHero() {
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-14 pt-20 sm:pt-24 pb-2 z-20 shrink-0">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 border-b border-border/40 dark:border-white/10 pb-3">
           
-          {/* Left: What this showcase is */}
-          <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-semibold tracking-wider text-text-primary dark:text-white uppercase">
-              <span className="relative flex h-2 w-2">
+          {/* Left: Emotion trigger & direct value for first-time visitors */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <div className="inline-flex items-center gap-2">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              Commercial Web Flagships
-            </span>
-            <span className="hidden sm:inline-block text-border dark:text-white/20">/</span>
-            <span className="font-sans text-xs text-text-secondary dark:text-white/50 font-normal">
-              Digital architecture &amp; revenue systems
+              <span className="font-sans text-xs sm:text-[13px] font-bold tracking-tight text-text-primary dark:text-white">
+                Websites built to bring you real paying clients
+              </span>
+            </div>
+            <span className="hidden sm:inline-block text-border dark:text-white/20">·</span>
+            <span className="font-sans text-xs text-text-secondary dark:text-white/60 font-normal">
+              For business owners who refuse to look amateur online
             </span>
           </div>
 
