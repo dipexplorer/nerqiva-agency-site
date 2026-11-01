@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Sparkles, MessageSquare, ArrowRight } from "lucide-react";
+import { ChevronDown, MessageCircle, ArrowRight } from "lucide-react";
 
 export interface FAQItem {
   question: string;
@@ -14,42 +14,43 @@ export interface FAQItem {
 
 export const LOCAL_FAQS: FAQItem[] = [
   {
-    category: "Turnaround & Timeline",
+    category: "Timeline",
     isPriority: true,
-    question: "How fast will our website actually go live?",
-    answer: "As soon as your business assets and service list are submitted, you receive a private, fully interactive mobile staging link directly on your smartphone. Once you review and approve the build, we connect your domain and push it live to Google and the public. No months-long agency delays, endless committee meetings, or broken promises.",
+    question: "How fast will my website be live?",
+    answer: "Most websites launch within 7 to 10 days. You will get a private staging link to test everything directly on your phone first. Once you review and approve it, we connect your domain and push it live.",
   },
   {
     category: "Pricing & Ownership",
     isPriority: true,
-    question: "Do we have to pay recurring monthly maintenance retainers?",
-    answer: "No. Traditional agencies charge ₹3,000 to ₹10,000 every single month just to keep a basic WordPress site from breaking. At NERQIVA, we charge a transparent, one-time project fee. On launch day, 100% of the clean source code, domain DNS, and design assets are transferred to your ownership with zero recurring hostage fees.",
+    question: "Are there any monthly fees or hidden retainers?",
+    answer: "No. You pay a single, transparent project fee. Once your site is live, you own 100% of your website, domain, and files. No monthly maintenance fees, no surprise invoices.",
   },
   {
-    category: "Leads & WhatsApp",
+    category: "Customer Inquiries",
     isPriority: true,
-    question: "How do prospective clients book appointments or contact us?",
-    answer: "Directly through your personal WhatsApp. When a client taps the booking button on your website, an automated message with their chosen service, timing, and appointment details opens instantly inside your WhatsApp chat. No 8-field contact forms that get lost in spam folders.",
+    question: "How do customers contact me from the website?",
+    answer: "Directly to your WhatsApp or phone. When a visitor taps to book or inquire, a pre-filled message opens right in your chat so you can respond and close the customer immediately — no tedious contact forms that get lost in spam.",
   },
   {
-    category: "Intake & Requirements",
-    question: "What do I need to provide to start a project?",
-    answer: "Just your business name, logo or photos, service/product list, and your WhatsApp phone number. We handle everything else—conversion-focused copy, responsive UI engineering, local SEO schemas, and DNS deployment.",
+    category: "Google Search",
+    isPriority: true,
+    question: "Will my business actually show up on Google?",
+    answer: "Yes. Every build is set up with local search optimization and Google Maps integration so people searching nearby for your services can easily find your business, read reviews, and call you directly.",
   },
   {
-    category: "Location & Office",
-    question: "Where is NERQIVA Studio located?",
-    answer: "NERQIVA Studio is based at Baruah Souk, Rudreswar, North Guwahati, Guwahati, Assam 781030. We serve business owners locally across North Guwahati, Rudreswar, Guwahati, statewide Assam, and remotely across Pan-India.",
+    category: "Getting Started",
+    question: "What do I need to provide to get started?",
+    answer: "Just your business name, photos (or logo if you have one), a list of your services, and your contact number. I take care of the writing, design, and technical launch from start to finish.",
   },
   {
-    category: "Google & Local SEO",
-    question: "Do you help my business show up on Google Maps and local searches?",
-    answer: "Yes, every website project includes Google Business Profile guidance, local Schema.org markup, and click-to-call direct routing so nearby customers in your city can easily find your location and call you.",
+    category: "After-Launch Support",
+    question: "What happens if I need changes after we launch?",
+    answer: "Direct after-launch support is included. Whenever you need to update phone numbers, add new services, or tweak pricing, just message me directly and it gets updated quickly.",
   },
   {
-    category: "Mobile Optimization",
-    question: "Will my website look great on mobile phones?",
-    answer: "Yes, all NERQIVA websites are built 100% mobile-first and tested on iOS & Android screens. We guarantee sub-1-second FCP load speeds and touch-friendly booking buttons.",
+    category: "Location",
+    question: "Where are you based, and do you work with businesses outside Assam?",
+    answer: "I am based in North Guwahati, Assam, and work with business owners locally across Guwahati as well as remotely across India. Everything can be handled smoothly over WhatsApp and Google Meet.",
   },
 ];
 
@@ -60,7 +61,7 @@ interface FAQProps {
 export default function FAQ({ isHomepage = false }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const displayList = isHomepage ? LOCAL_FAQS.slice(0, 3) : LOCAL_FAQS;
+  const displayList = isHomepage ? LOCAL_FAQS.slice(0, 4) : LOCAL_FAQS;
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -88,8 +89,8 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
 
       <div className="section-container max-w-4xl">
         
-        {/* Header: Editorial Authority */}
-        <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+        {/* Header: Editorial & Honest */}
+        <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
           <h2
             className="font-serif text-text-primary dark:text-white leading-[1.1] mb-4 tracking-tight"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
@@ -104,10 +105,10 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
               </>
             )}
           </h2>
-          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed font-normal">
             {isHomepage
-              ? "The critical facts on delivery speed, 100% asset ownership, and direct WhatsApp lead conversion."
-              : "Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our sprint launch workflow."}
+              ? "Honest answers about delivery timelines, pricing, and how your website brings in customers."
+              : "Clear, straightforward answers about turnaround, pricing, code ownership, and how we work."}
           </p>
         </div>
 
@@ -115,32 +116,36 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
         <div className="space-y-3.5">
           {displayList.map((faq, index) => {
             const isOpen = openIndex === index;
+            const buttonId = `faq-btn-${index}`;
+            const panelId = `faq-panel-${index}`;
 
             return (
               <div
                 key={index}
                 className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-bg-card border-accent/40 shadow-lg shadow-black/10"
-                    : "bg-bg-card/70 border-border/70 hover:border-accent/30"
+                    ? "bg-bg-card dark:bg-white/[0.03] border-accent/40 shadow-sm"
+                    : "bg-bg-card/60 dark:bg-white/[0.015] border-border/70 dark:border-white/10 hover:border-accent/30"
                 }`}
               >
                 <button
+                  id={buttonId}
                   onClick={() => toggleFAQ(index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer select-none"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 rounded-2xl"
                   aria-expanded={isOpen}
+                  aria-controls={panelId}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <span className="font-mono text-xs font-bold text-accent shrink-0">
-                      0{index + 1}
-                    </span>
-                    <h3 className="font-sans font-semibold text-base sm:text-lg text-text-primary leading-snug">
-                      {faq.question}
-                    </h3>
-                  </div>
-                  <div className={`p-1.5 rounded-lg border transition-transform duration-300 shrink-0 ${
-                    isOpen ? "rotate-180 bg-accent text-white border-accent" : "bg-bg-secondary text-text-tertiary border-border"
-                  }`}>
+                  <h3 className="font-sans font-semibold text-base sm:text-lg text-text-primary dark:text-white leading-snug pr-2">
+                    {faq.question}
+                  </h3>
+                  <div
+                    aria-hidden="true"
+                    className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${
+                      isOpen
+                        ? "rotate-180 bg-accent text-white border-accent"
+                        : "bg-bg-secondary dark:bg-white/[0.06] text-text-tertiary dark:text-white/60 border-border dark:border-white/10"
+                    }`}
+                  >
                     <ChevronDown size={16} />
                   </div>
                 </button>
@@ -148,12 +153,15 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-text-secondary text-sm md:text-base leading-relaxed border-t border-border/20 mt-1 font-sans">
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-text-secondary dark:text-white/75 text-sm sm:text-base leading-relaxed border-t border-border/20 dark:border-white/10 mt-1 font-sans">
                         <p>{faq.answer}</p>
                       </div>
                     </motion.div>
@@ -166,36 +174,40 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
 
         {/* Homepage link to full FAQ directory */}
         {isHomepage && (
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <Link
               href="/faq"
-              className="inline-flex items-center gap-2 font-mono text-xs text-text-secondary hover:text-accent font-bold transition-colors py-2 px-4 rounded-full bg-bg-secondary border border-border hover:border-accent/40"
+              className="inline-flex items-center gap-2 text-sm text-text-secondary dark:text-white/70 hover:text-accent dark:hover:text-accent font-medium transition-colors group"
             >
-              <span>Have questions about hosting, domains, or migrations? Read full FAQ directory</span>
-              <ArrowRight size={13} />
+              <span>Have more questions? Read the full FAQ</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         )}
 
-        {/* Still Have Questions CTA */}
-        <div className="mt-10 p-6 sm:p-8 rounded-2xl bg-bg-card border border-border/80 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+        {/* Direct WhatsApp Callout Banner */}
+        <div className="mt-10 p-6 sm:p-7 rounded-2xl bg-bg-card dark:bg-white/[0.03] border border-border/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
           <div className="flex items-center gap-4">
-            <div className="h-11 w-11 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-500 shrink-0">
-              <MessageSquare size={20} />
+            <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0">
+              <MessageCircle size={20} />
             </div>
             <div>
-              <h4 className="font-sans font-bold text-sm sm:text-base text-text-primary">Have a specific question about your business?</h4>
-              <p className="font-mono text-[10px] sm:text-xs text-text-tertiary uppercase tracking-wider mt-0.5">Chat directly with founder Dipjyoti on WhatsApp</p>
+              <h4 className="font-sans font-bold text-base text-text-primary dark:text-white">
+                Have a specific question about your project?
+              </h4>
+              <p className="text-xs sm:text-sm text-text-secondary dark:text-white/60 mt-0.5">
+                Chat directly with Dipjyoti. No sales middlemen, no pressure.
+              </p>
             </div>
           </div>
           <a
-            href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20have%20a%20question%20about%20building%20a%20website."
+            href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20have%20a%20question%20about%20a%20website%20project."
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary shrink-0 w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] shadow-sm cursor-pointer select-none shrink-0 w-full sm:w-auto justify-center"
           >
+            <MessageCircle size={15} />
             <span>Ask on WhatsApp</span>
-            <Sparkles size={14} />
           </a>
         </div>
 
