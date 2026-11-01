@@ -55,12 +55,17 @@ export default function Navigation() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
-          {/* Brand Monogram */}
-          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+          {/* Brand Monogram & Studio Descriptor */}
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0" aria-label="NERQIVA STUDIO Homepage">
             <BrandLogo className="h-6 w-6 sm:h-7 sm:w-7 transition-transform duration-300 group-hover:scale-105" />
-            <span className="font-display text-base sm:text-lg font-black tracking-tight text-text-primary dark:text-white transition-colors">
-              NERQIVA<span className="text-accent font-sans text-xs align-super ml-0.5">®</span>
-            </span>
+            <div className="flex items-baseline gap-1.5 sm:gap-2">
+              <span className="font-display text-base sm:text-lg font-black tracking-tight text-text-primary dark:text-white transition-colors">
+                NERQIVA
+              </span>
+              <span className="font-mono text-[10.5px] sm:text-xs font-bold tracking-[0.24em] text-text-tertiary dark:text-white/45 uppercase transition-colors group-hover:text-text-primary dark:group-hover:text-white">
+                STUDIO
+              </span>
+            </div>
           </Link>
 
           {/* Editorial Nav Links */}
@@ -119,11 +124,16 @@ export default function Navigation() {
       {isOpen && (
         <div className="fixed inset-0 z-50 bg-bg-primary/98 dark:bg-[#09090b]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto">
           <div className="flex items-center justify-between pb-6 border-b border-border dark:border-white/10">
-            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2.5">
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2.5" aria-label="NERQIVA STUDIO Homepage">
               <BrandLogo className="h-7 w-7" />
-              <span className="font-display text-lg font-black tracking-tight text-text-primary dark:text-white">
-                NERQIVA<span className="text-accent text-xs align-super ml-0.5">®</span>
-              </span>
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-display text-lg font-black tracking-tight text-text-primary dark:text-white">
+                  NERQIVA
+                </span>
+                <span className="font-mono text-[11px] font-bold tracking-[0.24em] text-text-tertiary dark:text-white/50 uppercase">
+                  STUDIO
+                </span>
+              </div>
             </Link>
             <button
               onClick={() => setIsOpen(false)}
