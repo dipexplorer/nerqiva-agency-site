@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight } from "lucide-react";
 
 export interface FAQItem {
   question: string;
@@ -16,26 +14,26 @@ export const LOCAL_FAQS: FAQItem[] = [
   {
     category: "Timeline",
     isPriority: true,
-    question: "How fast will my website be live?",
-    answer: "Most websites launch within 7 to 10 days. You will get a private staging link to test everything directly on your phone first. Once you review and approve it, we connect your domain and push it live.",
+    question: "How fast will my website actually go live?",
+    answer: "Most websites launch within 7 to 10 days. You get a private preview link to test everything directly on your phone first. Once you review and approve it, we connect your domain and push it live.",
   },
   {
     category: "Pricing & Ownership",
     isPriority: true,
-    question: "Are there any monthly fees or hidden retainers?",
-    answer: "No. You pay a single, transparent project fee. Once your site is live, you own 100% of your website, domain, and files. No monthly maintenance fees, no surprise invoices.",
+    question: "Are there any monthly fees or hidden charges?",
+    answer: "No. You pay a clear one-time project fee. Once your site is live, you own 100% of your website, domain, and files. No monthly maintenance retainers, no surprise invoices.",
   },
   {
     category: "Customer Inquiries",
     isPriority: true,
-    question: "How do customers contact me from the website?",
+    question: "How do customers contact me from the site?",
     answer: "Directly to your WhatsApp or phone. When a visitor taps to book or inquire, a pre-filled message opens right in your chat so you can respond and close the customer immediately — no tedious contact forms that get lost in spam.",
   },
   {
     category: "Google Search",
     isPriority: true,
-    question: "Will my business actually show up on Google?",
-    answer: "Yes. Every build is set up with local search optimization and Google Maps integration so people searching nearby for your services can easily find your business, read reviews, and call you directly.",
+    question: "Will my business show up on Google?",
+    answer: "Yes. Every build is set up with local Google search optimization and Google Maps integration so nearby customers searching for your services can easily find your business, read reviews, and call you directly.",
   },
   {
     category: "Getting Started",
@@ -59,13 +57,7 @@ interface FAQProps {
 }
 
 export default function FAQ({ isHomepage = false }: FAQProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
   const displayList = isHomepage ? LOCAL_FAQS.slice(0, 4) : LOCAL_FAQS;
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -81,133 +73,162 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-bg-primary text-text-primary border-t border-border/40 relative z-10">
+    <section id="faq" className="py-24 sm:py-32 bg-bg-primary text-text-primary border-t border-border/40 relative z-10 overflow-hidden">
+      {/* Search Engine Optimization Schema (100% visible in SSR DOM) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      <div className="section-container max-w-4xl">
+      {/* ========================================================
+          BACKGROUND SCULPTURAL FAQ GRAPHICS (Atmospheric Typographic Backdrop)
+          ======================================================== */}
+      <div
+        className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
+        aria-hidden="true"
+      >
+        <svg
+          className="w-full h-full absolute inset-0 text-text-primary dark:text-white opacity-[0.045] dark:opacity-[0.08]"
+          viewBox="0 0 1440 960"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <defs>
+            <linearGradient id="faqGradF" x1="0.1" y1="0" x2="0.8" y2="1">
+              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+              <stop offset="55%" stopColor="currentColor" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="faqGradA" x1="0.5" y1="0" x2="0.9" y2="1">
+              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+              <stop offset="50%" stopColor="currentColor" stopOpacity="0.35" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+            </linearGradient>
+            <linearGradient id="faqGradQ" x1="0.2" y1="0.2" x2="0.8" y2="0.9">
+              <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+              <stop offset="60%" stopColor="currentColor" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+
+          {/* Sculptural Giant Letter 'F' */}
+          <text
+            x="100"
+            y="350"
+            fontFamily="sans-serif"
+            fontWeight="900"
+            fontSize="430"
+            fill="url(#faqGradF)"
+            transform="rotate(-13, 100, 350)"
+            letterSpacing="-0.06em"
+          >
+            F
+          </text>
+
+          {/* Sculptural Giant Letter 'A' */}
+          <text
+            x="860"
+            y="480"
+            fontFamily="sans-serif"
+            fontWeight="900"
+            fontSize="480"
+            fill="url(#faqGradA)"
+            transform="rotate(15, 860, 480)"
+            letterSpacing="-0.06em"
+          >
+            A
+          </text>
+
+          {/* Sculptural Giant Letter 'Q' */}
+          <text
+            x="360"
+            y="920"
+            fontFamily="sans-serif"
+            fontWeight="900"
+            fontSize="540"
+            fill="url(#faqGradQ)"
+            transform="rotate(-7, 360, 920)"
+            letterSpacing="-0.06em"
+          >
+            Q
+          </text>
+        </svg>
+      </div>
+
+      {/* ========================================================
+          FOREGROUND CONTENT: 2-COLUMN OPEN EDITORIAL GRID
+          ======================================================== */}
+      <div className="section-container max-w-5xl relative z-10">
         
-        {/* Header: Editorial & Honest */}
-        <div className="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
+        {/* Section Header */}
+        <div className="mb-14 sm:mb-20">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="w-6 h-[1px] bg-accent/60" />
+            <span className="font-mono text-[11px] uppercase tracking-widest text-text-tertiary dark:text-white/40">
+              Questions // Direct Answers
+            </span>
+          </div>
+
           <h2
-            className="font-serif text-text-primary dark:text-white leading-[1.1] mb-4 tracking-tight"
-            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
+            className="font-display font-black text-3xl sm:text-4xl lg:text-[3.25rem] text-text-primary dark:text-white leading-[1.08] tracking-tight mb-4"
           >
             {isHomepage ? (
               <>
-                What clients ask before <span className="italic font-normal text-accent">hiring us.</span>
+                Before we <span className="font-serif italic font-normal text-accent">begin.</span>
               </>
             ) : (
               <>
-                Frequently asked <span className="italic font-normal text-accent">questions.</span>
+                Frequently asked <span className="font-serif italic font-normal text-accent">questions.</span>
               </>
             )}
           </h2>
-          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed font-normal">
+
+          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed max-w-xl font-normal">
             {isHomepage
-              ? "Honest answers about delivery timelines, pricing, and how your website brings in customers."
-              : "Clear, straightforward answers about turnaround, pricing, code ownership, and how we work."}
+              ? "Straightforward answers to the questions business owners ask most. No technical jargon."
+              : "Clear, direct answers about turnaround times, one-time pricing, ownership, and how we work."}
           </p>
         </div>
 
-        {/* Accordion Stack */}
-        <div className="space-y-3.5">
-          {displayList.map((faq, index) => {
-            const isOpen = openIndex === index;
-            const buttonId = `faq-btn-${index}`;
-            const panelId = `faq-panel-${index}`;
-
-            return (
-              <div
-                key={index}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? "bg-bg-card dark:bg-white/[0.03] border-accent/40 shadow-sm"
-                    : "bg-bg-card/60 dark:bg-white/[0.015] border-border/70 dark:border-white/10 hover:border-accent/30"
-                }`}
-              >
-                <button
-                  id={buttonId}
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950 rounded-2xl"
-                  aria-expanded={isOpen}
-                  aria-controls={panelId}
-                >
-                  <h3 className="font-sans font-semibold text-base sm:text-lg text-text-primary dark:text-white leading-snug pr-2">
-                    {faq.question}
-                  </h3>
-                  <div
-                    aria-hidden="true"
-                    className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 shrink-0 ${
-                      isOpen
-                        ? "rotate-180 bg-accent text-white border-accent"
-                        : "bg-bg-secondary dark:bg-white/[0.06] text-text-tertiary dark:text-white/60 border-border dark:border-white/10"
-                    }`}
-                  >
-                    <ChevronDown size={16} />
-                  </div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-text-secondary dark:text-white/75 text-sm sm:text-base leading-relaxed border-t border-border/20 dark:border-white/10 mt-1 font-sans">
-                        <p>{faq.answer}</p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+        {/* 2-Column Open Grid (Immediate Readability + 100% SEO Indexing) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-12 sm:gap-y-16">
+          {displayList.map((faq, index) => (
+            <div key={index} className="flex flex-col group">
+              <h3 className="font-sans font-bold text-xl sm:text-2xl text-text-primary dark:text-white tracking-tight leading-snug mb-3">
+                {faq.question}
+              </h3>
+              <p className="text-text-secondary dark:text-white/70 text-sm sm:text-base leading-relaxed font-normal">
+                {faq.answer}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Homepage link to full FAQ directory */}
-        {isHomepage && (
-          <div className="mt-8 text-center">
+        {/* Bottom Actions & WhatsApp Direct Line */}
+        <div className="mt-16 sm:mt-20 pt-8 border-t border-border/50 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          {isHomepage ? (
             <Link
               href="/faq"
               className="inline-flex items-center gap-2 text-sm text-text-secondary dark:text-white/70 hover:text-accent dark:hover:text-accent font-medium transition-colors group"
             >
-              <span>Have more questions? Read the full FAQ</span>
+              <span>Have more questions? Read the full directory</span>
               <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-          </div>
-        )}
+          ) : (
+            <div className="text-sm text-text-secondary dark:text-white/60">
+              North Guwahati, Assam · Available Pan-India
+            </div>
+          )}
 
-        {/* Direct WhatsApp Callout Banner */}
-        <div className="mt-10 p-6 sm:p-7 rounded-2xl bg-bg-card dark:bg-white/[0.03] border border-border/80 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
-          <div className="flex items-center gap-4">
-            <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent shrink-0">
-              <MessageCircle size={20} />
-            </div>
-            <div>
-              <h4 className="font-sans font-bold text-base text-text-primary dark:text-white">
-                Have a specific question about your project?
-              </h4>
-              <p className="text-xs sm:text-sm text-text-secondary dark:text-white/60 mt-0.5">
-                Chat directly with Dipjyoti. No sales middlemen, no pressure.
-              </p>
-            </div>
-          </div>
           <a
             href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20have%20a%20question%20about%20a%20website%20project."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] shadow-sm cursor-pointer select-none shrink-0 w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] shadow-sm cursor-pointer select-none shrink-0 w-full sm:w-auto justify-center"
           >
-            <MessageCircle size={15} />
-            <span>Ask on WhatsApp</span>
+            <MessageCircle size={16} />
+            <span>Ask Dipjyoti on WhatsApp</span>
           </a>
         </div>
 
