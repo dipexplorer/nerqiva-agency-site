@@ -70,24 +70,24 @@ const FLAGSHIP_ITEMS: GalleryProject[] = [
 ];
 
 // Compute card dimensions responsively from container width
-// Optimized for mobile: legible cards (~65% width) rather than tiny stamps
+// Minimised, professional proportions (~5 cards across desktop like anfalova.art)
 function computeCardDims(containerW: number): { w: number; h: number; gap: number } {
   if (containerW < 480) {
-    // Mobile: comfortable legible hero card (~68% width on 375-430px phones)
-    const w = Math.min(280, Math.max(220, Math.round(containerW * 0.68)));
-    return { w, h: Math.round(w * 0.625), gap: 12 };
+    // Mobile: ~1.8 cards visible, compact & clean
+    const w = Math.min(200, Math.max(170, Math.round(containerW * 0.52)));
+    return { w, h: Math.round(w * 0.625), gap: 10 };
   } else if (containerW < 768) {
-    // Tablet: ~2.4 cards
-    const w = Math.round(containerW * 0.42);
-    return { w, h: Math.round(w * 0.625), gap: 14 };
+    // Tablet: ~3 cards
+    const w = Math.round(containerW * 0.32);
+    return { w, h: Math.round(w * 0.625), gap: 12 };
   } else if (containerW < 1200) {
-    // Medium desktop: ~3 cards
-    const w = Math.round(containerW * 0.30);
-    return { w, h: Math.round(w * 0.625), gap: 16 };
+    // Medium desktop: ~4 cards
+    const w = Math.min(235, Math.round(containerW * 0.22));
+    return { w, h: Math.round(w * 0.625), gap: 12 };
   } else {
-    // Large desktop: ~3.8 cards
-    const w = Math.min(400, Math.round(containerW * 0.24));
-    return { w, h: Math.round(w * 0.625), gap: 18 };
+    // Large desktop: ~5 cards across screen like anfalova.art!
+    const w = Math.min(255, Math.max(220, Math.round(containerW * 0.17)));
+    return { w, h: Math.round(w * 0.625), gap: 14 };
   }
 }
 
@@ -120,38 +120,41 @@ export default function AnfalovaHeroGallery() {
     return () => mq.removeEventListener("change", h);
   }, []);
 
-  // Measure geometry: responsive card dims from real container width
+  // Measure geometry: full hero canvas height + responsive compact card dims
   useEffect(() => {
     const shellEl = shellRef.current;
     const stripEl = stripRef.current;
     if (!shellEl || !stripEl) return;
 
+    const heroEl = (shellEl.closest(".intro-hero") || shellEl.closest("#hero") || shellEl.parentElement) as HTMLElement | null;
+    if (!heroEl) return;
+
     const updateGeometry = () => {
-      const shellRect = shellEl.getBoundingClientRect();
+      const heroRect = heroEl.getBoundingClientRect();
       const stripRect = stripEl.getBoundingClientRect();
 
-      const { w, h, gap } = computeCardDims(shellRect.width);
+      const { w, h, gap } = computeCardDims(heroRect.width);
 
-      // top offset of the strip within the shell
-      const topOffset = stripRect.top - shellRect.top;
-      const stripH = stripRect.height;
+      // Top offset of the physical strip relative to the top of the hero section:
+      const topOffset = stripRect.top - heroRect.top;
 
       setGeometry({
         width: w,
         height: h,
         gap,
         top: topOffset,
-        canvasHeight: shellRect.height,
-        canvasWidth: shellRect.width,
-        // center of the strip in shell-space
-        centerY: topOffset + stripH / 2,
-        radius: 8,
+        canvasHeight: heroRect.height,
+        canvasWidth: heroRect.width,
+        // Vertically center cards in the strip area:
+        centerY: topOffset + h / 2,
+        radius: 4,
       });
     };
 
     const ro = new ResizeObserver(updateGeometry);
     ro.observe(shellEl);
     ro.observe(stripEl);
+    ro.observe(heroEl);
 
     updateGeometry();
     window.addEventListener("resize", updateGeometry);
@@ -173,12 +176,9 @@ export default function AnfalovaHeroGallery() {
     []
   );
 
-  // Compute strip height based on card height + margin for tilt overflow
-  const stripH = geometry ? Math.round(geometry.height * 1.38) : 0;
-
-  // Aspect ratio scale factor for lens
+  // Aspect ratio scale factor for lens (anfalova ratio)
   const bScale = geometry
-    ? Math.max(1, geometry.canvasWidth / geometry.canvasHeight / (1440 / 900))
+    ? Math.max(1, geometry.canvasWidth / geometry.canvasHeight / (1440 / 1028))
     : 1;
 
   const { resolvedTheme } = useTheme();
@@ -186,51 +186,50 @@ export default function AnfalovaHeroGallery() {
 
   return (
     /*
-     * shellRef = the full-width container whose height becomes the canvas height.
-     * overflow-visible so tilted cards bleed naturally past section edges — 
-     * the hero section itself provides overflow-hidden clipping, with left/right
-     * fade masks giving the seamless bleed-out edge look.
+     * shellRef = container hosting the gallery strip.
+     * The WebGL canvas is positioned at top: -geometry.top so it spans
+     * the ENTIRE hero section without clipping vertices or color seams.
      */
     <div
       ref={shellRef}
       className="relative w-full overflow-visible select-none"
       aria-label="Project gallery"
     >
-      {/* ── Physical strip placeholder — sets the shell's intrinsic height ── */}
+      {/* ── Physical strip placeholder — sets the natural card height ── */}
       <div
         ref={stripRef}
         className="relative w-full"
-        style={{ height: geometry ? `${stripH}px` : "260px" }}
+        style={{ height: geometry ? `${geometry.height}px` : "155px" }}
         aria-hidden="true"
       />
 
-      {/* ── Left & Right edge fade masks — the anfalova effect ── */}
+      {/* ── Left & Right subtle edge bleed masks ── */}
       <div
-        className="absolute inset-y-0 left-0 w-[12vw] pointer-events-none z-20"
+        className="absolute -inset-y-6 left-0 w-[clamp(50px,8vw,130px)] pointer-events-none z-20"
         style={{
           background: resolvedTheme === "dark"
-            ? "linear-gradient(to right, #09090B 0%, transparent 100%)"
-            : "linear-gradient(to right, #FFFFFF 0%, transparent 100%)",
+            ? "linear-gradient(to right, #09090B 30%, transparent 100%)"
+            : "linear-gradient(to right, #FFFFFF 30%, transparent 100%)",
         }}
         aria-hidden="true"
       />
       <div
-        className="absolute inset-y-0 right-0 w-[12vw] pointer-events-none z-20"
+        className="absolute -inset-y-6 right-0 w-[clamp(50px,8vw,130px)] pointer-events-none z-20"
         style={{
           background: resolvedTheme === "dark"
-            ? "linear-gradient(to left, #09090B 0%, transparent 100%)"
-            : "linear-gradient(to left, #FFFFFF 0%, transparent 100%)",
+            ? "linear-gradient(to left, #09090B 30%, transparent 100%)"
+            : "linear-gradient(to left, #FFFFFF 30%, transparent 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* ── WebGL Surface ── */}
+      {/* ── WebGL Surface spanning full hero section ── */}
       {isClient && geometry && !hasWebGLError && !prefersReducedMotion ? (
         <div
           className="pointer-events-auto"
           style={{
             position: "absolute",
-            top: 0,
+            top: -geometry.top,
             left: 0,
             width: "100%",
             height: geometry.canvasHeight,

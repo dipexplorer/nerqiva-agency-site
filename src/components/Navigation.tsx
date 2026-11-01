@@ -46,103 +46,90 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Floating Luxury Control Bar */}
-      <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 pt-4 pointer-events-none">
-        <nav
-          className={`max-w-6xl mx-auto flex items-center justify-between px-5 sm:px-7 py-3 rounded-full transition-all duration-300 pointer-events-auto ${
-            scrolled
-              ? "bg-bg-card/90 dark:bg-[#09090b]/90 backdrop-blur-xl border border-border dark:border-white/10 shadow-2xl dark:shadow-black/60"
-              : "bg-bg-card/80 dark:bg-[#09090b]/80 backdrop-blur-md border border-border/70 dark:border-white/10 shadow-lg dark:shadow-black/40"
-          }`}
-        >
+      {/* Architectural Studio Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+          scrolled
+            ? "bg-bg-primary/90 dark:bg-[#09090b]/90 backdrop-blur-xl border-b border-border/70 dark:border-white/10 py-3.5 shadow-sm dark:shadow-black/50"
+            : "bg-transparent border-b border-transparent py-5 sm:py-6"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 flex items-center justify-between">
           {/* Brand Monogram */}
           <Link href="/" className="flex items-center gap-2.5 group shrink-0">
-            <BrandLogo className="h-7 w-7 transition-transform duration-300 group-hover:scale-105" />
-            <span className="font-mono text-base font-black tracking-widest text-text-primary dark:text-white transition-colors">
-              NERQIVA<span className="text-accent">®</span>
+            <BrandLogo className="h-6 w-6 sm:h-7 sm:w-7 transition-transform duration-300 group-hover:scale-105" />
+            <span className="font-display text-base sm:text-lg font-black tracking-tight text-text-primary dark:text-white transition-colors">
+              NERQIVA<span className="text-accent font-sans text-xs align-super ml-0.5">®</span>
             </span>
           </Link>
 
-          {/* Minimal Nav Links with Active State & Hover Micro-Dots */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-7">
+          {/* Editorial Nav Links */}
+          <nav className="hidden md:flex items-center gap-7 lg:gap-9" aria-label="Main navigation">
             {NAV_ITEMS.map((item) => {
               const active = isActive(item.href);
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`font-mono text-xs font-semibold uppercase tracking-wider transition-colors flex items-center gap-1.5 group py-1 ${
+                  className={`font-sans text-xs tracking-wider uppercase transition-colors duration-200 relative py-1 ${
                     active
-                      ? "text-text-primary dark:text-white font-bold"
-                      : "text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white"
+                      ? "text-text-primary dark:text-white font-semibold"
+                      : "text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white font-medium"
                   }`}
                 >
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full bg-accent transition-all duration-200 ${
-                      active
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
-                    }`}
-                  />
                   <span>{item.label}</span>
+                  {active && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent rounded-full" />
+                  )}
                 </Link>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Right Actions & Live Availability */}
-          <div className="hidden md:flex items-center gap-3.5">
-            {/* Live Launch Status Pill */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-border dark:border-white/10 bg-bg-secondary dark:bg-white/5 text-[11px] font-mono text-text-secondary dark:text-white/70 transition-colors">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse shrink-0" />
-              <span className="font-semibold text-text-primary dark:text-white">
-                2 Launch Slots Open
-              </span>
-            </div>
-
+          {/* Right Actions: Theme Toggle + High-Contrast Studio CTA */}
+          <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
 
-            {/* Direct WhatsApp CTA Button */}
             <a
               href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I%20want%20to%20commission%20a%20website%20flagship."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md shadow-accent/20 cursor-pointer select-none"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] shadow-sm cursor-pointer select-none"
             >
               <span>Book on WhatsApp</span>
               <ArrowUpRight size={13} />
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2.5">
+          {/* Mobile Controls */}
+          <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full bg-bg-secondary text-text-primary border border-border cursor-pointer hover:bg-border transition-colors"
+              className="p-2 rounded-lg text-text-primary dark:text-white hover:bg-bg-secondary dark:hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle navigation menu"
             >
-              {isOpen ? <X size={18} /> : <Menu size={18} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
-        </nav>
+        </div>
       </header>
 
       {/* Mobile Full-Screen Overlay Drawer */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-bg-primary/95 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto">
-          <div className="flex items-center justify-between pb-6 border-b border-border">
-            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+        <div className="fixed inset-0 z-50 bg-bg-primary/98 dark:bg-[#09090b]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:hidden overflow-y-auto">
+          <div className="flex items-center justify-between pb-6 border-b border-border dark:border-white/10">
+            <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2.5">
               <BrandLogo className="h-7 w-7" />
-              <span className="font-mono text-base font-black tracking-widest text-text-primary">
-                NERQIVA<span className="text-accent">®</span>
+              <span className="font-display text-lg font-black tracking-tight text-text-primary dark:text-white">
+                NERQIVA<span className="text-accent text-xs align-super ml-0.5">®</span>
               </span>
             </Link>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 rounded-full bg-bg-secondary text-text-primary border border-border cursor-pointer"
+              className="p-2 rounded-lg text-text-primary dark:text-white hover:bg-bg-secondary dark:hover:bg-white/10 transition-colors cursor-pointer"
             >
-              <X size={18} />
+              <X size={20} />
             </button>
           </div>
 
@@ -155,15 +142,15 @@ export default function Navigation() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`font-display font-black text-2xl sm:text-3xl transition-colors flex items-center justify-between py-2 border-b border-border/30 ${
-                    active ? "text-accent" : "text-text-primary hover:text-accent"
+                  className={`font-display font-black text-2xl sm:text-3xl transition-colors flex items-center justify-between py-2 border-b border-border/30 dark:border-white/10 ${
+                    active ? "text-accent" : "text-text-primary dark:text-white hover:text-accent"
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-xs text-accent">0{idx + 1}</span>
                     <span>{item.label}</span>
                   </div>
-                  <ArrowUpRight size={18} className="text-text-tertiary" />
+                  <ArrowUpRight size={18} className="text-text-tertiary dark:text-white/40" />
                 </Link>
               );
             })}
@@ -171,37 +158,34 @@ export default function Navigation() {
 
           {/* Interactive Tools & Quick Navigation */}
           <div className="py-4 flex flex-col gap-2">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-1">
-              Quick Shortcuts
+            <span className="font-mono text-[10px] uppercase tracking-widest text-text-tertiary dark:text-white/40 font-bold mb-1">
+              Shortcuts
             </span>
             <div className="grid grid-cols-2 gap-2">
               <Link
                 href="/#configurator"
                 onClick={() => setIsOpen(false)}
-                className="p-3 rounded-xl bg-bg-card border border-border/80 text-left font-mono text-xs text-text-secondary hover:border-accent/40"
+                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-accent/40"
               >
                 <span className="block text-accent font-bold mb-0.5">⚡ Builder</span>
-                <span className="text-[11px] text-text-tertiary">Configure Flagship</span>
+                <span className="text-[11px] text-text-tertiary dark:text-white/40">Configure Flagship</span>
               </Link>
               <Link
                 href="/#manifesto"
                 onClick={() => setIsOpen(false)}
-                className="p-3 rounded-xl bg-bg-card border border-border/80 text-left font-mono text-xs text-text-secondary hover:border-accent/40"
+                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-accent/40"
               >
                 <span className="block text-accent font-bold mb-0.5">🚫 Manifesto</span>
-                <span className="text-[11px] text-text-tertiary">Why Anti-Agency</span>
+                <span className="text-[11px] text-text-tertiary dark:text-white/40">Why Anti-Agency</span>
               </Link>
             </div>
           </div>
 
-          {/* Bottom Coordinates & Direct CTA */}
-          <div className="pt-6 border-t border-border flex flex-col gap-3">
-            <div className="flex items-center justify-between text-xs font-mono text-text-secondary py-1">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>North Guwahati, IN</span>
-              </div>
-              <span className="font-semibold text-text-primary">2 Slots Open</span>
+          {/* Bottom Direct CTA */}
+          <div className="pt-6 border-t border-border dark:border-white/10 flex flex-col gap-3">
+            <div className="flex items-center justify-between text-xs font-mono text-text-secondary dark:text-white/60 py-1">
+              <span>Guwahati · Assam</span>
+              <span className="text-accent font-medium">Bespoke Flagships</span>
             </div>
 
             <a
@@ -209,7 +193,7 @@ export default function Navigation() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="btn-primary w-full py-3.5 text-center font-bold text-sm flex items-center justify-center gap-2 shadow-xl"
+              className="w-full py-3.5 text-center font-bold text-sm flex items-center justify-center gap-2 rounded-full bg-text-primary dark:bg-white text-bg-primary dark:text-black shadow-lg"
             >
               <span>Book on WhatsApp</span>
               <ArrowUpRight size={15} />

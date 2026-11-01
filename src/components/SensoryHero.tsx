@@ -7,23 +7,8 @@ export default function SensoryHero() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-[100svh] sm:min-h-[640px] sm:max-h-[960px] h-auto sm:h-[100dvh] overflow-hidden flex flex-col justify-between select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300"
+      className="intro-hero relative w-full min-h-[100svh] sm:min-h-[640px] sm:max-h-[960px] h-auto sm:h-[100dvh] overflow-hidden flex flex-col justify-between select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300"
     >
-      {/* ── Atmospheric Background Glow ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-100 dark:opacity-0 transition-opacity duration-500"
-        style={{
-          background: "radial-gradient(ellipse 90% 70% at 50% 15%, #F4F4F6 0%, #FFFFFF 85%)",
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-500"
-        style={{
-          background: "radial-gradient(ellipse 90% 70% at 50% 15%, #14141a 0%, #09090b 85%)",
-        }}
-        aria-hidden="true"
-      />
 
       {/* ── Top clearance for floating nav ── */}
       <div className="w-full pt-20 sm:pt-28 shrink-0 pointer-events-none" aria-hidden="true" />
