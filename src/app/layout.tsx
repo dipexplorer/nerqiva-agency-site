@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, DM_Sans, DM_Mono } from "next/font/google";
+import { Fraunces, DM_Sans, DM_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 
 // Editorial display serif — optical size variable, used for headings
@@ -23,6 +23,14 @@ const dmMono = DM_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500"],
+});
+
+// Authentic handwritten typography
+const caveat = Caveat({
+  variable: "--font-handwritten",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -195,7 +203,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable} ${caveat.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

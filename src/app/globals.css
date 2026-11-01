@@ -92,6 +92,7 @@
   --font-display: var(--font-display), Georgia, serif;
   --font-sans:    var(--font-sans), system-ui, sans-serif;
   --font-mono:    var(--font-mono), "Courier New", monospace;
+  --font-handwritten: var(--font-handwritten), cursive;
 }
 
 /* ============================================================
