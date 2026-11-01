@@ -150,7 +150,7 @@ export default function TactileFounder() {
             </h2>
 
             <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-6 font-normal max-w-sm">
-              I build web systems that turn digital visits into actual revenue for your business. No agency middlemen, zero bullshit.
+              Websites, UI/UX, AI calling agents, automations, and CRM pipelines. I build whatever your business actually needs to bring in paying customers and grow online — direct with me, zero agency fluff.
             </p>
 
             <div className="flex items-center gap-2.5 text-xs font-mono text-text-tertiary dark:text-white/40 tracking-wider uppercase">
@@ -185,7 +185,7 @@ export default function TactileFounder() {
                   transformStyle: "preserve-3d",
                   zIndex: activeCard === 2 ? 30 : 10,
                 }}
-                className={`absolute right-0 sm:-right-2 top-1 w-[225px] sm:w-[250px] aspect-[4/5] rounded-2xl bg-[#09090B] text-white p-5 sm:p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/15 cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                className={`absolute right-0 sm:-right-2 top-1 w-[225px] sm:w-[250px] aspect-[4/5] rounded-2xl bg-[#09090B] text-white p-5 sm:p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/15 cursor-pointer transition-all duration-300 flex flex-col justify-between items-center text-center overflow-hidden ${
                   activeCard === 2 ? "rotate-0 scale-105" : "rotate-[7.5deg]"
                 }`}
               >
@@ -199,18 +199,10 @@ export default function TactileFounder() {
                 />
 
                 {/* Subtle ambient specular glow */}
-                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/30 blur-2xl pointer-events-none" />
-
-                {/* Top Subtle Tag */}
-                <div className="flex items-center justify-between relative z-10">
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 font-medium">
-                    Client Engine
-                  </span>
-                  <span className="text-violet-400 text-xs">✦</span>
-                </div>
+                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/25 blur-2xl pointer-events-none" />
 
                 {/* The Anfalova Typographic Triad: Search · Conversion* · Revenue */}
-                <div className="my-auto py-1 relative z-10 text-center select-none">
+                <div className="pt-3 sm:pt-4 pb-1 relative z-10 w-full select-none">
                   {/* Top Word: Bold Display Sans */}
                   <div className="font-sans font-black text-3xl sm:text-[38px] text-white tracking-tight leading-[0.88]">
                     Search
@@ -233,18 +225,18 @@ export default function TactileFounder() {
                 </div>
 
                 {/* Flanking Parentheses Descriptor */}
-                <div className="relative z-10 flex items-center justify-center gap-1.5 text-center px-1">
-                  <span className="text-xl sm:text-2xl text-white/40 font-light select-none leading-none">(</span>
-                  <p className="text-[10.5px] sm:text-[11.5px] text-white/75 leading-tight font-normal">
+                <div className="relative z-10 flex items-center justify-center gap-1.5 text-center px-1 my-auto">
+                  <span className="text-xl sm:text-2xl text-white/35 font-light select-none leading-none">(</span>
+                  <p className="text-[10.5px] sm:text-[11.5px] text-white/80 leading-snug font-normal">
                     Turning Google searches into paying customers. No showcase fluff.
                   </p>
-                  <span className="text-xl sm:text-2xl text-white/40 font-light select-none leading-none">)</span>
+                  <span className="text-xl sm:text-2xl text-white/35 font-light select-none leading-none">)</span>
                 </div>
 
                 {/* Bottom Status Pill */}
-                <div className="relative z-10 flex justify-center pt-1">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-300 text-[10px] font-mono tracking-wider uppercase font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+                <div className="relative z-10 flex justify-center pb-1">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/15 text-white/85 text-[10.5px] font-sans tracking-wide font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Built for Revenue
                   </span>
                 </div>
