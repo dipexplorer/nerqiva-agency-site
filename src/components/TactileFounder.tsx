@@ -150,7 +150,7 @@ export default function TactileFounder() {
             </h2>
 
             <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-6 font-normal max-w-sm">
-              Websites, UI/UX, AI calling agents, automations, and CRM pipelines. I build whatever your business actually needs to bring in paying customers and grow online — direct with me, zero agency fluff.
+              I build what your business needs to win paying customers online — direct with me.
             </p>
 
             <div className="flex items-center gap-2.5 text-xs font-mono text-text-tertiary dark:text-white/40 tracking-wider uppercase">
@@ -228,7 +228,7 @@ export default function TactileFounder() {
                 <div className="relative z-10 flex items-center justify-center gap-1.5 text-center px-1 my-auto">
                   <span className="text-xl sm:text-2xl text-white/35 font-light select-none leading-none">(</span>
                   <p className="text-[10.5px] sm:text-[11.5px] text-white/80 leading-snug font-normal">
-                    Turning Google searches into paying customers. No showcase fluff.
+                    Turning searches into paying customers.
                   </p>
                   <span className="text-xl sm:text-2xl text-white/35 font-light select-none leading-none">)</span>
                 </div>
@@ -310,7 +310,7 @@ export default function TactileFounder() {
 
             {/* Pain Point & Solution: Revenue, Google rank, direct WhatsApp, after-service, zero monthly retainers */}
             <p className="text-text-secondary dark:text-white/75 text-base sm:text-lg leading-relaxed mb-7 font-normal">
-              Most agencies build pretty showcase pages that bring zero calls. At NERQIVA, I build to rank your business on Google, turn visits into direct WhatsApp leads, and provide genuine after-launch support — with 100% ownership and zero monthly fees.
+              Most agencies build pretty pages that bring zero calls. I build to get you found on Google and talking directly to customers — with genuine support and zero monthly fees.
             </p>
 
             {/* Direct Line Actions */}
