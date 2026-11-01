@@ -56,7 +56,18 @@ const LEGAL_LINKS = [
   { label: "Terms of Service", href: "/terms" },
 ];
 
-// Interactive Kinetic Letter physics & typography configuration
+// Interactive Kinetic Logo Letters configuration for the big header
+const LOGO_HEADING_LETTERS = [
+  { char: "N", tilt: "-rotate-6", lift: "-translate-y-2" },
+  { char: "E", tilt: "rotate-6", lift: "-translate-y-2" },
+  { char: "R", tilt: "-rotate-8", lift: "-translate-y-2.5" },
+  { char: "Q", tilt: "rotate-8", lift: "-translate-y-3" },
+  { char: "I", tilt: "-rotate-4", lift: "-translate-y-1.5" },
+  { char: "V", tilt: "rotate-6", lift: "-translate-y-2" },
+  { char: "A", tilt: "-rotate-6", lift: "-translate-y-2" },
+];
+
+// Interactive Kinetic Letter physics & typography configuration for bottom display
 const WORDMARK_LETTERS = [
   { char: "N", restRotate: -1.5, hoverRotate: -8, hoverY: -18, scale: 1.1 },
   { char: "E", restRotate: 1.2, hoverRotate: 7, hoverY: -16, scale: 1.12 },
@@ -100,31 +111,48 @@ export default function Footer() {
       <div className="section-container relative z-10 px-4 sm:px-6 lg:px-8">
         
         {/* ========================================================
-            EDITORIAL STUDIO GRID (Minimal, High-Agency, Zero Slop)
+            HERO BRAND HEADER & NAVIGATION (Clean, Minimal, High-Agency)
             ======================================================== */}
-        <div className="pb-16 sm:pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-b border-border/30">
+        <div className="pb-14 sm:pb-18 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 border-b border-border/30">
           
-          {/* Left Column: Brand Identity, Manifesto & Direct Connect */}
+          {/* Left Column: Big Interactive Brand Logo & Direct Actions */}
           <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
-              <Link href="/" className="inline-flex items-center gap-3 group mb-6">
-                <BrandLogo className="h-8 w-8 opacity-100 group-hover:scale-105 transition-transform duration-300" />
-                <span className="font-mono text-base font-black tracking-widest text-text-primary">
-                  NERQIVA <span className="text-text-tertiary font-normal text-xs uppercase tracking-widest">STUDIO</span>
-                </span>
+              {/* Grand Interactive Brand Logo Heading */}
+              <Link 
+                href="/" 
+                className="inline-flex items-center gap-4 sm:gap-6 group/logo mb-4 cursor-pointer select-none"
+                aria-label="NERQIVA STUDIO Homepage"
+              >
+                <div className="relative flex-shrink-0">
+                  <BrandLogo className="h-14 w-14 sm:h-20 sm:w-20 lg:h-24 lg:w-24 transition-all duration-500 ease-out group-hover/logo:scale-105 group-hover/logo:-rotate-6" />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-4">
+                  <div className="flex items-center font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-text-primary dark:text-white leading-none">
+                    {LOGO_HEADING_LETTERS.map((item, idx) => (
+                      <span
+                        key={idx}
+                        className={`inline-block transition-transform duration-300 ease-out hover:${item.lift} hover:${item.tilt} hover:scale-105 cursor-pointer`}
+                      >
+                        {item.char}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="font-mono text-sm sm:text-xl lg:text-2xl font-bold tracking-[0.28em] text-text-tertiary group-hover/logo:text-text-primary transition-colors uppercase pt-1 sm:pt-0">
+                    STUDIO
+                  </span>
+                </div>
               </Link>
               
-              <h3 className="font-display font-medium text-2xl sm:text-3xl lg:text-[2rem] text-text-primary dark:text-white leading-[1.25] tracking-tight max-w-xl mb-5">
-                We design and engineer bespoke web systems that turn local attention into direct phone calls and booked revenue.
-              </h3>
-
-              <p className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-lg mb-8">
-                Independent digital studio based in North Guwahati, Assam. Every build is handcrafted with performance-first architecture, local Google search optimization, and 100% full client ownership. No monthly retainers, no surprise invoices.
+              {/* Small, concise, valuable copy only (no essay / zero fluff) */}
+              <p className="text-xs sm:text-sm text-text-tertiary max-w-sm mb-6 font-medium tracking-wide">
+                High-converting websites &amp; digital systems.
               </p>
             </div>
 
             {/* Direct Connect Pill Actions */}
-            <div className="flex flex-wrap items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="https://wa.me/918724932985?text=Hi%20NERQIVA,%20I'd%20like%20to%20discuss%20a%20website%20project%20for%20my%20business."
                 target="_blank"
@@ -167,7 +195,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right Column: Clean Minimal Navigation & Studio Details */}
+          {/* Right Column: Clean Minimal Navigation (Zero Essay Clutter) */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-8 lg:pl-10">
             {/* Primary Navigation */}
             <div>
@@ -179,48 +207,34 @@ export default function Footer() {
                   <li key={idx}>
                     <Link
                       href={item.href}
-                      className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-1 group"
+                      className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-1 group/nav"
                     >
                       <span>{item.label}</span>
-                      <ArrowUpRight size={12} className="opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-200" />
+                      <ArrowUpRight size={12} className="opacity-0 -translate-x-1 translate-y-1 group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:translate-y-0 transition-all duration-200" />
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Studio Location & Legal */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-tertiary mb-5">
-                  Studio
-                </h4>
-                <div className="text-xs text-text-secondary leading-relaxed mb-8 space-y-1.5">
-                  <p className="font-semibold text-text-primary">North Guwahati</p>
-                  <p>Assam, India · 781030</p>
-                  <p className="text-text-tertiary pt-1">
-                    Serving Guwahati &amp; businesses across India
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-tertiary mb-3">
-                  Legal
-                </h4>
-                <ul className="flex flex-col gap-2.5">
-                  {LEGAL_LINKS.map((link, idx) => (
-                    <li key={idx}>
-                      <Link
-                        href={link.href}
-                        className="text-xs text-text-secondary hover:text-text-primary transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            {/* Legal & Terms */}
+            <div>
+              <h4 className="font-mono text-xs uppercase tracking-wider font-bold text-text-tertiary mb-5">
+                Legal
+              </h4>
+              <ul className="flex flex-col gap-3">
+                {LEGAL_LINKS.map((link, idx) => (
+                  <li key={idx}>
+                    <Link
+                      href={link.href}
+                      className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-1 group/nav"
+                    >
+                      <span>{link.label}</span>
+                      <ArrowUpRight size={12} className="opacity-0 -translate-x-1 translate-y-1 group-hover/nav:opacity-100 group-hover/nav:translate-x-0 group-hover/nav:translate-y-0 transition-all duration-200" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
 
           </div>
@@ -311,7 +325,7 @@ export default function Footer() {
             ======================================================== */}
         <div className="pt-6 border-t border-border/30 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-text-tertiary">
           <p>
-            © {new Date().getFullYear()} NERQIVA Studio. All rights reserved. North Guwahati, Assam 781030.
+            © {new Date().getFullYear()} NERQIVA Studio. All rights reserved.
           </p>
 
           <button

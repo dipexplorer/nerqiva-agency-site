@@ -4,35 +4,27 @@ import Image from "next/image";
 
 export default function BrandLogo({ className = "h-8 w-8" }: { className?: string }) {
   return (
-    <div className={`relative overflow-hidden ${className}`}>
-      {/* Dark theme logo - shown only when .dark class is on html */}
+    <div className={`relative ${className}`}>
+      {/* Dark theme logo - pure crisp white mark on transparent */}
       <div className="hidden dark:block relative w-full h-full">
         <Image
-          src="/brand/logo-1.png"
+          src="/brand/logo-clean-white.png"
           alt="NERQIVA Studio Official Logo"
           fill
-          sizes="64px"
-          style={{
-            objectFit: "contain",
-            transform: "scale(1.4)",
-          }}
-          className="mix-blend-screen"
+          sizes="(max-width: 768px) 120px, 180px"
+          style={{ objectFit: "contain" }}
           priority
         />
       </div>
       
-      {/* Light theme logo - hidden when .dark class is on html */}
+      {/* Light theme logo - pure crisp obsidian ink mark on transparent */}
       <div className="block dark:hidden relative w-full h-full">
         <Image
-          src="/brand/logo-2.png"
+          src="/brand/logo-clean-dark.png"
           alt="NERQIVA Studio Official Logo"
           fill
-          sizes="64px"
-          style={{
-            objectFit: "contain",
-            transform: "scale(1.4)",
-          }}
-          className="mix-blend-multiply"
+          sizes="(max-width: 768px) 120px, 180px"
+          style={{ objectFit: "contain" }}
           priority
         />
       </div>
