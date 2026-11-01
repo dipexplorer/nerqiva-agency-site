@@ -17,7 +17,7 @@ export const LOCAL_FAQS: FAQItem[] = [
     category: "Turnaround & Timeline",
     isPriority: true,
     question: "How fast will our website actually go live?",
-    answer: "Within 48 hours, you receive a private, fully interactive mobile staging link directly on your smartphone. Once you review and approve the build, we connect your domain and push it live to Google and the public in under 4 days. No 6-week wireframe delays or committee meetings.",
+    answer: "As soon as your business assets and service list are submitted, you receive a private, fully interactive mobile staging link directly on your smartphone. Once you review and approve the build, we connect your domain and push it live to Google and the public. No months-long agency delays, endless committee meetings, or broken promises.",
   },
   {
     category: "Pricing & Ownership",

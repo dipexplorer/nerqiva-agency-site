@@ -214,7 +214,7 @@ export default function WorkCatalog() {
                   </h3>
 
                   <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-4 font-normal">
-                    Have an established clinic, studio, or brand? We engineer bespoke custom systems delivered in 24–48 hours with 100% IP ownership.
+                    Have an established clinic, studio, or brand? We engineer bespoke custom systems with agile sprint delivery and 100% IP ownership.
                   </p>
 
                   <div className="space-y-2 mb-6">

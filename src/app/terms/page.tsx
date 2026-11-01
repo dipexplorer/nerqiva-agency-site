@@ -6,14 +6,14 @@ import ClosingSection from "../../components/ClosingSection";
 export const metadata: Metadata = {
   title: "Terms of Service & Client Agreement | NERQIVA Studio",
   description:
-    "Review our transparent, business-friendly terms governing 24-hour website launches, 100% code and asset ownership, payment milestones, and quality standards.",
+    "Review our transparent, business-friendly terms governing agile website delivery sprints, 100% code and asset ownership, payment milestones, and quality standards.",
   alternates: {
     canonical: "/terms",
   },
   openGraph: {
     title: "Terms of Service & Client Agreement | NERQIVA Studio",
     description:
-      "Clear, transparent commercial terms: 100% asset ownership, 24-hour launch SLA, zero monthly lock-in retainers.",
+      "Clear, transparent commercial terms: 100% asset ownership, agile sprint delivery SLA, zero monthly lock-in retainers.",
     url: "https://www.nerqivastudio.in/terms",
   },
 };
@@ -30,8 +30,8 @@ const SUMMARY_POINTS = [
     icon: Lock,
   },
   {
-    title: "24-Hour Express SLA",
-    desc: "Private mobile preview link delivered within 24 hours of complete asset intake receipt.",
+    title: "Agile Sprint SLA",
+    desc: "Private mobile preview link delivered promptly upon completion of initial architecture.",
     icon: Clock,
   },
   {
@@ -59,9 +59,9 @@ const TERMS_CLAUSES = [
   {
     number: "03",
     tag: "DELIVERY & SLA",
-    title: "24-Hour Turnaround Protocol & Staging Verification",
+    title: "Agile Turnaround Protocol & Staging Verification",
     content:
-      "Our guaranteed 24-hour turnaround begins immediately once all agreed business assets, brand colors, and copy requirements are received in full. Within this window, NERQIVA provides a fully functional private staging preview URL for direct client verification on mobile and desktop hardware. Public domain cutover and live DNS propagation are executed immediately following client staging approval.",
+      "Project engineering begins immediately once agreed business assets, brand colors, and copy requirements are received in full. NERQIVA provides a fully functional private staging preview URL for direct client verification on mobile and desktop hardware. Public domain cutover and live DNS propagation are executed immediately following client staging approval.",
   },
   {
     number: "04",
@@ -143,7 +143,7 @@ export default function TermsPage() {
         </h1>
 
         <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal mb-8">
-          Clear, business-friendly terms governing our engineering deliverables, 100% intellectual property transfer, 24-hour launch commitments, and commercial standards.
+          Clear, business-friendly terms governing our engineering deliverables, 100% intellectual property transfer, agile sprint commitments, and commercial standards.
         </p>
 
         {/* Document Metadata Pill */}

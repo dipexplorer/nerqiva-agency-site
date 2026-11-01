@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "NERQIVA Studio",
     short_name: "NERQIVA",
-    description: "High-converting business website design and 1-click WhatsApp booking systems delivered in 24 Hours.",
+    description: "High-converting business website design and 1-click WhatsApp booking systems engineered for modern brands.",
     start_url: "/",
     display: "standalone",
     background_color: "#080B12",

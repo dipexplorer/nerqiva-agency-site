@@ -119,7 +119,7 @@ export default function Footer() {
 
           <div>
             <span className="text-text-tertiary block mb-1 uppercase tracking-wider text-[10px]">Delivery Sprint</span>
-            <span className="text-text-primary font-bold">96 Hours to Live</span>
+            <span className="text-text-primary font-bold">Agile Sprints</span>
           </div>
         </div>
 

@@ -79,7 +79,7 @@ export default function TactileFounder() {
               </h2>
 
               <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
-                Every project is designed and engineered directly by Dipjyoti Das. Direct WhatsApp access, 48-hour delivery, and zero corporate overhead.
+                Every project is designed and engineered directly by Dipjyoti Das. Direct WhatsApp access, rapid sprint execution, and zero corporate overhead.
               </p>
             </div>
 

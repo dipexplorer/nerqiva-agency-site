@@ -27,7 +27,7 @@ const SOLUTIONS_DETAIL = [
     problem: "Many local businesses lose high-ticket clients because their websites load slowly, break on modern mobile viewports, or look outdated. If first-time visitors don't feel immediate confidence, they leave and book a competitor.",
     whatWeBuild: "Bespoke Next.js edge web flagships engineered with sub-300ms loading speeds, mobile-first typography, curated service portfolios, and zero-friction 1-click booking actions.",
     whenItMakesSense: "When your current site fails to generate high-value inquiries, or you are launching a premium brand that requires undeniable digital authority.",
-    deliverySLA: "24-Hour Public Cutover",
+    deliverySLA: "Rapid Deployment Sprint",
     expectations: "A blazingly fast digital storefront that validates your pricing, builds immediate client trust, and turns visits into direct phone & WhatsApp conversations.",
   },
   {
@@ -36,10 +36,10 @@ const SOLUTIONS_DETAIL = [
     tag: "Lead Capture & Funnel",
     title: "Instant WhatsApp Booking Flow",
     subtitle: "Engineered for local service businesses that need direct, frictionless customer intake.",
-    problem: "Modern clients browse on smartphones and refuse to fill out 8-field contact forms only to wait 48 hours for an email response. They want answers and booking confirmation immediately.",
+    problem: "Modern clients browse on smartphones and refuse to fill out 8-field contact forms only to wait days for an email response. They want answers and booking confirmation immediately.",
     whatWeBuild: "One-tap direct WhatsApp integration buttons pre-configured with industry-specific inquiry templates, automated service query triggers, and direct mobile routing.",
     whenItMakesSense: "When you want every high-intent website visitor connected to your business WhatsApp in under 3 seconds with zero friction.",
-    deliverySLA: "Integrated & Tested in 2 Hours",
+    deliverySLA: "Turnkey WhatsApp Setup",
     expectations: "Immediate inbound inquiries arriving directly on your phone with service context already filled in, ready to close.",
   },
   {
@@ -63,7 +63,7 @@ const SOLUTIONS_DETAIL = [
     problem: "Manually coordinating appointment calendars, emailing photo review links, or tracking unpaid service invoices through fragmented chat threads wastes dozens of operational hours each week.",
     whatWeBuild: "Lightweight client access portals, automated booking calendars with slot locking, client gallery proofing pages, and invoice status dashboards.",
     whenItMakesSense: "When client booking volume outgrows manual messaging and you need an automated, professional system to run appointments.",
-    deliverySLA: "Delivered in 24 to 48 Hours",
+    deliverySLA: "Structured Sprint Delivery",
     expectations: "Automated calendar scheduling, organized client intake, and hours of administrative overhead eliminated every single day.",
   },
 ];
@@ -127,8 +127,7 @@ export default function SolutionsPage() {
           <span className="italic font-normal text-accent">grow your business</span>.
         </h1>
         <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-          We build bespoke, fast, and conversion-focused digital systems for local business owners. Delivered live in{" "}
-          <strong className="font-semibold text-text-primary">24 Hours</strong> with zero ongoing hostage fees.
+          We build bespoke, fast, and conversion-focused digital systems for local business owners. Delivered on a transparent sprint schedule with zero ongoing hostage fees.
         </p>
       </div>
 

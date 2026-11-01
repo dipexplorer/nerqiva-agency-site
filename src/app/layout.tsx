@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "Rudreswar Web Developer",
     "Guwahati Website Design Agency",
     "Assam Web Design Studio",
-    "24 Hour Express Website Launch",
+    "Agile Website Development Sprints",
     "1-Click WhatsApp Lead Routing",
     "Google Maps Local Search Optimization",
     "Next.js Development Agency Assam",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NERQIVA Studio | High-Converting Websites & Digital Systems",
     description:
-      "We build high-converting business websites delivered in 24 Hours with 1-click WhatsApp lead routing and Google Maps local SEO for North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
+      "We build high-converting business websites with 1-click WhatsApp lead routing and Google Maps local SEO for North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
     type: "website",
     locale: "en_US",
     url: "https://www.nerqivastudio.in",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NERQIVA Studio | High-Converting Websites in 24 Hours",
+    title: "NERQIVA Studio | High-Converting Business Websites & Systems",
     description:
       "Stunning websites with 1-click WhatsApp lead routing & local SEO for North Guwahati, Rudreswar, Guwahati, and Assam.",
     images: ["/icon.png"],
@@ -111,7 +111,7 @@ export default function RootLayout({
         "url": "https://www.nerqivastudio.in",
         "logo": "https://www.nerqivastudio.in/icon.png",
         "image": "https://www.nerqivastudio.in/icon.png",
-        "description": "High-converting business website design, 1-click WhatsApp lead routing, Google Maps local search optimization, and custom web systems delivered in 24 Hours.",
+        "description": "High-converting business website design, 1-click WhatsApp lead routing, Google Maps local search optimization, and bespoke digital platforms.",
         "telephone": "+91-8724932985",
         "email": "nerqiva.studio@gmail.com",
         "priceRange": "$$",

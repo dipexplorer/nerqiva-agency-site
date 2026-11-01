@@ -27,7 +27,7 @@ const SHOWCASES: HeroShowcase[] = [
     desktopImage: "/images/projects/lablink/desktop.png",
     mobileImage: "/images/projects/lablink/hero.png",
     liveUrl: "https://www.lablinkguwahati.in/",
-    deliveryTime: "48h Express Launch",
+    deliveryTime: "Engineered Sprint",
   },
   {
     id: "krishav",
@@ -38,7 +38,7 @@ const SHOWCASES: HeroShowcase[] = [
     desktopImage: "/images/projects/krishavmehendi/bridal.png",
     mobileImage: "/images/projects/krishavmehendi/arabic.png",
     liveUrl: "https://hennaart-nine.vercel.app/",
-    deliveryTime: "48h Express Launch",
+    deliveryTime: "Engineered Sprint",
   },
   {
     id: "titangym",
@@ -49,7 +49,7 @@ const SHOWCASES: HeroShowcase[] = [
     desktopImage: "/images/projects/titangym/contrast.png",
     mobileImage: "/images/projects/titangym/mobile.png",
     liveUrl: "https://titangymnq.vercel.app/",
-    deliveryTime: "48h Express Launch",
+    deliveryTime: "Engineered Sprint",
   },
   {
     id: "valerie",
@@ -60,7 +60,7 @@ const SHOWCASES: HeroShowcase[] = [
     desktopImage: "/images/projects/editorial/vogue.png",
     mobileImage: "/images/projects/editorial/traditional.png",
     liveUrl: "https://bridalnerqiva.vercel.app/",
-    deliveryTime: "48h Express Launch",
+    deliveryTime: "Engineered Sprint",
   },
 ];
 
@@ -99,7 +99,7 @@ export default function Hero() {
 
         {/* 2-Line Crisp Subtext (Max 30 words) */}
         <p className="text-text-secondary text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mb-10 font-normal">
-          Ultra-fast booking websites tailored for luxury salons, specialized clinics, and modern brands. Delivered live in 48 hours flat.
+          Ultra-fast booking websites tailored for luxury salons, specialized clinics, and modern brands. Built to convert and delivered on schedule.
         </p>
 
         {/* Confident Tactile Actions */}

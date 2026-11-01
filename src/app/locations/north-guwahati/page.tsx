@@ -8,14 +8,14 @@ import SolutionBuilder from "../../../components/SolutionBuilder";
 export const metadata: Metadata = {
   title: "Website Design & Development in North Guwahati & Rudreswar",
   description:
-    "NERQIVA Studio is based at Baruah Souk, Rudreswar, North Guwahati. We build stunning, high-converting business websites with 1-click WhatsApp lead routing delivered in 24 Hours across North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
+    "NERQIVA Studio is based at Baruah Souk, Rudreswar, North Guwahati. We build stunning, high-converting business websites with 1-click WhatsApp lead routing across North Guwahati, Rudreswar, Guwahati, Assam & Pan-India.",
   keywords: [
     "Website Designer North Guwahati",
     "Web Developer Rudreswar",
     "Guwahati Website Design Agency",
     "Baruah Souk Web Design Studio",
     "Assam Web Development",
-    "24 Hour Website Launch Guwahati",
+    "Agile Website Launch Guwahati",
   ],
   alternates: {
     canonical: "/locations/north-guwahati",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Website Design & Development in North Guwahati & Rudreswar | NERQIVA",
     description:
-      "Stunning local business websites delivered in 24 Hours with 1-click WhatsApp lead routing. Office at Baruah Souk, Rudreswar, North Guwahati.",
+      "Stunning local business websites with 1-click WhatsApp lead routing. Office at Baruah Souk, Rudreswar, North Guwahati.",
     url: "https://www.nerqivastudio.in/locations/north-guwahati",
   },
 };
@@ -39,7 +39,7 @@ export default function NorthGuwahatiLocationPage() {
         "url": "https://www.nerqivastudio.in/locations/north-guwahati",
         "logo": "https://www.nerqivastudio.in/icon.png",
         "image": "https://www.nerqivastudio.in/icon.png",
-        "description": "Premier website design studio based at Baruah Souk, Rudreswar, North Guwahati. Specialized in 24-Hour express website launches, WhatsApp lead routing, and Google Maps local SEO.",
+        "description": "Premier website design studio based at Baruah Souk, Rudreswar, North Guwahati. Specialized in high-converting website design, WhatsApp lead routing, and Google Maps local SEO.",
         "telephone": "+91-8724932985",
         "email": "nerqiva.studio@gmail.com",
         "priceRange": "$$",
@@ -116,7 +116,7 @@ export default function NorthGuwahatiLocationPage() {
         </h1>
 
         <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal mb-8">
-          Based right at <strong className="text-text-primary font-semibold">Baruah Souk, Rudreswar</strong>, NERQIVA Studio engineers high-converting digital flagships for local salons, specialized clinics, luxury boutiques, and high-ticket service businesses across Guwahati, Assam, and Pan-India. Launched live in <strong className="text-text-primary font-bold">24 hours</strong>.
+          Based right at <strong className="text-text-primary font-semibold">Baruah Souk, Rudreswar</strong>, NERQIVA Studio engineers high-converting digital flagships for local salons, specialized clinics, luxury boutiques, and high-ticket service businesses across Guwahati, Assam, and Pan-India. Built to convert and delivered on schedule.
         </p>
 
         <div className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -126,7 +126,7 @@ export default function NorthGuwahatiLocationPage() {
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 px-6 py-3 font-mono text-xs font-semibold rounded-lg shadow-sm"
           >
-            <span>Book 24-Hour Launch via WhatsApp</span>
+            <span>Start Project via WhatsApp</span>
             <ArrowRight size={14} />
           </a>
           <a
@@ -246,7 +246,7 @@ export default function NorthGuwahatiLocationPage() {
               title: "High-Converting Flagships",
               desc: "Fast, mobile-optimized sites tailored for local salons, clinics, couture studios, and professional practices in Guwahati.",
               badgeLabel: "SLA",
-              badgeValue: "24-Hour Launch",
+              badgeValue: "Agile Sprint",
               icon: Zap,
             },
             {

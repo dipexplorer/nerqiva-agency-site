@@ -5,14 +5,14 @@ import ClosingSection from "../../components/ClosingSection";
 export const metadata: Metadata = {
   title: "Start a Project Diagnostic | NERQIVA Studio",
   description:
-    "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links within 24 hours.",
+    "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Start a Project Diagnostic | NERQIVA Studio",
     description:
-      "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links within 24 hours.",
+      "Submit a structured project intake brief to receive a fixed-price roadmap, architecture scoping, and direct WhatsApp demo links.",
     url: "https://www.nerqivastudio.in/contact",
   },
 };

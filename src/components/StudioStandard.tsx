@@ -72,18 +72,18 @@ export default function StudioStandard() {
         <div className="max-w-3xl mb-14 sm:mb-18">
           <div className="flex items-center gap-2 mb-3">
             <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
-              The 4-Day Sprint &amp; Commercial Guarantees
+              Agile Sprints &amp; Commercial Guarantees
             </span>
           </div>
           <h2
             className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
           >
-            From intake to public cutover in{" "}
-            <span className="italic font-normal text-accent">96 hours</span>.
+            From intake to public cutover with{" "}
+            <span className="italic font-normal text-accent">precision sprints</span>.
           </h2>
           <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal">
-            Traditional agencies take 8 to 12 weeks of wireframe meetings and slide decks. We operate with strict, transparent 24-hour milestones.
+            Traditional agencies take 8 to 12 weeks of wireframe meetings and slide decks. We operate with strict, transparent sprint milestones.
           </p>
         </div>
 

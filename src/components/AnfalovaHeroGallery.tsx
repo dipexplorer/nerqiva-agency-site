@@ -45,37 +45,49 @@ const FLAGSHIP_ITEMS: GalleryProject[] = [
   },
   {
     id: "aurabeauty",
-    client: "Aura Wellness Clinic",
+    client: "Elena Styles · Aura Clinic",
     image: "/images/projects/aurabeauty/final_hero.png",
-    liveUrl: "https://nerqiva.com",
+    liveUrl: "https://aura-beauty-theme.vercel.app/",
   },
   {
-    id: "vowsnveils",
-    client: "Vows & Veils Atelier",
-    image: "/images/projects/wedding/bride_portrait.png",
-    liveUrl: "https://bridalnerqiva.vercel.app/",
+    id: "houseoftales",
+    client: "House of Tales / KMJ",
+    image: "/images/projects/wedding/coastal.png",
+    liveUrl: "https://aperturelight.vercel.app/",
+  },
+  {
+    id: "mayabennett",
+    client: "Maya Bennett Studio & Academy",
+    image: "/images/projects/aurabeauty/maya_hero.png",
+    liveUrl: "https://bridalnerqiva2.vercel.app/",
+  },
+  {
+    id: "vogueheirloom",
+    client: "Vogue & Heirloom",
+    image: "/images/projects/wedding/heirloom_hero.png",
+    liveUrl: "https://heirloomnq.vercel.app/",
   },
 ];
 
 // Compute card dimensions responsively from container width
-// Target: show ~3.5 cards on desktop, ~2.2 on mobile — cards fill most of the strip
+// Optimized for mobile: legible cards (~65% width) rather than tiny stamps
 function computeCardDims(containerW: number): { w: number; h: number; gap: number } {
   if (containerW < 480) {
-    // Mobile: show ~2.2 cards
-    const w = Math.round(containerW * 0.42);
-    return { w, h: Math.round(w * 0.66), gap: 10 };
+    // Mobile: comfortable legible hero card (~68% width on 375-430px phones)
+    const w = Math.min(280, Math.max(220, Math.round(containerW * 0.68)));
+    return { w, h: Math.round(w * 0.625), gap: 12 };
   } else if (containerW < 768) {
-    // Tablet: ~2.8 cards
-    const w = Math.round(containerW * 0.32);
-    return { w, h: Math.round(w * 0.66), gap: 12 };
+    // Tablet: ~2.4 cards
+    const w = Math.round(containerW * 0.42);
+    return { w, h: Math.round(w * 0.625), gap: 14 };
   } else if (containerW < 1200) {
-    // MD: ~3 cards
-    const w = Math.round(containerW * 0.26);
-    return { w, h: Math.round(w * 0.66), gap: 14 };
+    // Medium desktop: ~3 cards
+    const w = Math.round(containerW * 0.30);
+    return { w, h: Math.round(w * 0.625), gap: 16 };
   } else {
-    // LG+: ~3.5 cards
-    const w = Math.round(containerW * 0.22);
-    return { w, h: Math.round(w * 0.66), gap: 16 };
+    // Large desktop: ~3.8 cards
+    const w = Math.min(400, Math.round(containerW * 0.24));
+    return { w, h: Math.round(w * 0.625), gap: 18 };
   }
 }
 

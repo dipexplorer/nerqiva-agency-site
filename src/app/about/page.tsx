@@ -5,16 +5,16 @@ import FounderSection from "../../components/FounderSection";
 import ClosingSection from "../../components/ClosingSection";
 
 export const metadata: Metadata = {
-  title: "About Us | 24-Hour Express Digital Studio",
+  title: "About Us | Modern Digital Flagship Studio",
   description:
-    "NERQIVA is a modern website design studio. We build stunning, high-converting websites for local businesses, salons, studios, and clinics delivered in 24 Hours.",
+    "NERQIVA is a modern website design studio. We build stunning, high-converting websites for local businesses, salons, studios, and clinics engineered to convert.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About Us | 24-Hour Express Digital Studio | NERQIVA",
+    title: "About Us | Modern Digital Flagship Studio | NERQIVA",
     description:
-      "Stunning, high-converting websites for local businesses delivered in 24 Hours. Learn about our core principles and team.",
+      "Stunning, high-converting websites for local businesses engineered for maximum conversion. Learn about our core principles and team.",
     url: "https://www.nerqivastudio.in/about",
   },
 };
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   const specs = [
     {
-      title: "24-Hour SLA",
+      title: "Agile Sprint SLA",
       badge: "Turnaround",
-      desc: "From asset intake to live production cutover within one business day.",
+      desc: "Rapid delivery from asset intake to staging review without agency delays.",
       icon: Clock,
       accentClass: "text-accent bg-accent/10 border-accent/25",
     },
@@ -59,7 +59,7 @@ export default function AboutPage() {
       "Code and domain held hostage under mandatory retainer contracts",
     ],
     nerqiva: [
-      "Guaranteed 24-hour turnaround from benchmark to live domain cutover",
+      "Rapid sprint execution from benchmark to live domain cutover",
       "Direct collaboration with senior principal engineer via WhatsApp",
       "Custom Next.js edge codebase with 95+ Google Lighthouse mobile scores",
       "100% complete asset handover with zero monthly software lock-in",
@@ -97,8 +97,8 @@ export default function AboutPage() {
           className="font-serif text-text-primary leading-[1.12] mb-6 tracking-tight"
           style={{ fontSize: "clamp(2.5rem, 5vw, 4.25rem)", letterSpacing: "-0.03em" }}
         >
-          Stunning digital flagships built for local businesses in{" "}
-          <span className="italic font-normal text-accent">24 hours</span>.
+          Stunning digital flagships built for local businesses —{" "}
+          <span className="italic font-normal text-accent">built to convert</span>.
         </h1>
         <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
           NERQIVA is a modern website engineering studio. We help ambitious local businesses, luxury salons, specialized clinics, and high-ticket service brands establish dominant digital flagships—delivered without agency delays, bloated retainers, or technical overhead.
@@ -192,7 +192,7 @@ export default function AboutPage() {
                 Engineered for speed, ownership, & ROI.
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed mb-6 font-normal">
-                Direct WhatsApp contact with your lead engineer, high-converting commercial design, and complete asset handover within 24 hours.
+                Direct WhatsApp contact with your lead engineer, high-converting commercial design, and complete asset handover on launch day.
               </p>
             </div>
 

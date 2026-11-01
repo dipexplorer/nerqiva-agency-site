@@ -7,14 +7,14 @@ import ClosingSection from "../../components/ClosingSection";
 export const metadata: Metadata = {
   title: "Frequently Asked Questions & Answers | NERQIVA Studio",
   description:
-    "Direct, transparent answers regarding website turnaround speed, code ownership, fixed pricing in Guwahati & Assam, WhatsApp lead capture, and our 24-hour launch workflow.",
+    "Direct, transparent answers regarding website turnaround speed, code ownership, fixed pricing in Guwahati & Assam, WhatsApp lead capture, and our agile sprint workflow.",
   alternates: {
     canonical: "/faq",
   },
   openGraph: {
     title: "Frequently Asked Questions | NERQIVA Studio",
     description:
-      "Direct answers on turnaround, code ownership, fixed pricing, and 24-hour deployment for businesses in Guwahati and Assam.",
+      "Direct answers on turnaround, code ownership, fixed pricing, and agile sprint deployment for businesses in Guwahati and Assam.",
     url: "https://www.nerqivastudio.in/faq",
   },
 };
@@ -65,7 +65,7 @@ export default function FAQPage() {
               Frequently asked <span className="italic font-normal text-accent">questions</span>.
             </h1>
             <p className="text-text-secondary text-base sm:text-xl leading-relaxed font-normal">
-              Direct, verified answers on turnaround times, full code ownership, transparent pricing, and our 24-hour website launch workflow.
+              Direct, verified answers on turnaround times, full code ownership, transparent pricing, and our agile sprint launch workflow.
             </p>
           </div>
         </section>

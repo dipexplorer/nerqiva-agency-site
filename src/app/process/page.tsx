@@ -4,16 +4,16 @@ import Process from "../../components/Process";
 import ClosingSection from "../../components/ClosingSection";
 
 export const metadata: Metadata = {
-  title: "How It Works | 24-Hour Express Website Launch",
+  title: "How It Works | High-Converting Website Engineering",
   description:
-    "Learn how NERQIVA delivers high-converting business websites in 24 Hours. Simple 4-step process: Select theme, share photos & text, review live preview, and launch.",
+    "Learn how NERQIVA delivers high-converting business websites with rapid sprint execution. Simple 4-step process: Select theme, share photos & text, review live preview, and launch.",
   alternates: {
     canonical: "/process",
   },
   openGraph: {
-    title: "How It Works | 24-Hour Express Launch | NERQIVA",
+    title: "How It Works | Agile Sprint Launch | NERQIVA",
     description:
-      "Simple 4-step process: Select theme, share photos & text, review live preview on your phone, and go live in 1 day.",
+      "Simple 4-step process: Select theme, share photos & text, review live preview on your phone, and launch on schedule.",
     url: "https://www.nerqivastudio.in/process",
   },
 };
@@ -41,8 +41,8 @@ export default function ProcessPage() {
       },
       {
         "@type": "HowTo",
-        "name": "24-Hour Express Business Website Launch",
-        "description": "How NERQIVA Studio customizes and launches high-converting websites in 24 Hours.",
+        "name": "Agile Business Website Launch",
+        "description": "How NERQIVA Studio customizes and launches high-converting websites.",
         "step": [
           {
             "@type": "HowToStep",
@@ -91,10 +91,10 @@ export default function ProcessPage() {
           style={{ fontSize: "clamp(2.4rem, 4.8vw, 4rem)", letterSpacing: "-0.03em" }}
         >
           From demo architecture to live production <br className="hidden sm:inline" />
-          in <span className="italic font-normal text-accent">24 hours</span>.
+          with <span className="italic font-normal text-accent">precision sprints</span>.
         </h1>
         <p className="text-text-secondary text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-          No complicated technical jargon, no multi-week agency delays, and zero hidden scope creep. We take your business assets, tailor your chosen flagship architecture, and cut over to your live domain in one day.
+          No complicated technical jargon, no multi-month agency delays, and zero hidden scope creep. We take your business assets, tailor your chosen flagship architecture, and deliver an authoritative digital platform.
         </p>
       </div>
 
@@ -112,16 +112,16 @@ export default function ProcessPage() {
                 </span>
               </div>
               <h2 className="font-serif font-bold text-2xl text-text-primary mb-3 leading-snug">
-                No waiting weeks. <br />No technical headaches.
+                No waiting months. <br />No technical headaches.
               </h2>
               <p className="text-text-secondary text-sm leading-relaxed mb-6 font-normal">
-                Traditional digital agencies take 4 to 8 weeks, bury clients in discovery meetings, and charge high monthly retainers for basic websites. We build on top of verified, high-converting architectures to deliver an authoritative digital flagship within 24 hours.
+                Traditional digital agencies drag projects out for months, bury clients in discovery meetings, and charge high monthly retainers for basic websites. We build on top of verified, high-converting architectures to deliver an authoritative digital flagship on schedule.
               </p>
             </div>
 
             <div className="pt-6 border-t border-border/40 space-y-2.5">
               {[
-                "Production-ready within 24 hours of asset submission",
+                "Rapid, milestone-driven execution without agency bloat",
                 "Direct WhatsApp communication with your lead engineer",
                 "Sub-300ms mobile performance optimized for local search",
               ].map((item, idx) => (

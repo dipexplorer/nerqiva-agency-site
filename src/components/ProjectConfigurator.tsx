@@ -26,7 +26,7 @@ const BRAND_TYPES: BrandOption[] = [
 ];
 
 const PRIORITIES: PriorityOption[] = [
-  { id: "speed", icon: "⚡", title: "48h Express Launch", benefit: "Live public cutover in 48 hours flat" },
+  { id: "speed", icon: "⚡", title: "Rapid Sprint Delivery", benefit: "Fast, focused engineering without agency bloat" },
   { id: "whatsapp", icon: "📲", title: "1-Tap WhatsApp Lead Engine", benefit: "Inquiries land pre-filled directly in your WhatsApp" },
   { id: "seo", icon: "🔍", title: "Rank #1 on Google Local", benefit: "Dominant Google Maps pin & LocalBusiness schema" },
 ];
@@ -174,7 +174,7 @@ export default function ProjectConfigurator() {
               <div className="flex flex-wrap gap-2 text-xs font-mono text-text-secondary pt-1">
                 <span className="flex items-center gap-1">
                   <Clock size={12} className="text-accent" />
-                  Estimated Delivery: 48 Hours
+                  Agile Sprint Delivery
                 </span>
                 <span>•</span>
                 <span>1-Tap WhatsApp Lead Engine</span>

@@ -68,10 +68,10 @@ const BOTTLENECKS: BottleneckOption[] = [
 const TIMELINES = [
   {
     id: "express",
-    tag: "24-HOUR SPRINT",
-    title: "Express Emergency Launch (24 Hours)",
+    tag: "PRIORITY SPRINT",
+    title: "Priority Fast-Track Launch",
     desc: "Rapid deployment for time-sensitive commercial opportunities, event launches, or urgent market entries.",
-    value: "Express 24-Hour Launch",
+    value: "Priority Fast-Track Launch",
   },
   {
     id: "standard",
@@ -314,7 +314,7 @@ export default function ContactForm() {
         </h1>
 
         <p className="text-text-secondary text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal mb-7">
-          Answer 3 brief questions to receive a fixed-price engineering proposal, architecture recommendation, and direct WhatsApp demo within 24 hours.
+          Answer 3 brief questions to receive a fixed-price engineering proposal, architecture recommendation, and direct WhatsApp demo.
         </p>
 
         <p className="mt-3 text-xs text-text-tertiary font-mono">
@@ -397,7 +397,7 @@ export default function ContactForm() {
               </h2>
 
               <p className="text-text-secondary text-sm max-w-md leading-relaxed font-normal mb-8">
-                Your structured brief has been transmitted to our engineering team. We will analyze your specifications and respond with tailored demo links and architecture scoping within 24 hours.
+                Your structured brief has been transmitted to our engineering team. We will analyze your specifications and respond with tailored demo links and architecture scoping.
               </p>
 
               <button
