@@ -135,7 +135,7 @@ export default function TactileFounder() {
           <div className="lg:col-span-4 flex flex-col justify-center">
             
             {/* Handwritten Greeting */}
-            <div className="mb-2">
+            <div className="mb-1.5">
               <span className="font-handwritten text-3xl sm:text-4xl text-accent font-medium -rotate-2 inline-block tracking-wide">
                 Hey, I am Dipjyoti —
               </span>
@@ -143,14 +143,14 @@ export default function TactileFounder() {
 
             {/* High Bold Display Heading */}
             <h2
-              className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-text-primary dark:text-white leading-[0.98] tracking-[-0.04em] mb-4"
+              className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-text-primary dark:text-white leading-[0.96] tracking-[-0.04em] mb-4"
             >
-              Work direct with <br />
-              <span className="font-serif italic font-normal text-accent">the builder.</span>
+              Lead Engineer <br />
+              <span className="font-serif italic font-normal text-accent">&amp; Designer.</span>
             </h2>
 
-            <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-snug mb-6 font-normal max-w-md">
-              At NERQIVA, you don’t hire an agency with layers of management. Every screen, motion curve, and line of code is engineered directly by me.
+            <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-6 font-normal max-w-sm">
+              Every interface, motion curve, and line of code is engineered directly by me. Zero agency layers.
             </p>
 
             <div className="flex items-center gap-2.5 text-xs font-mono text-text-tertiary dark:text-white/40 tracking-wider uppercase">
@@ -185,38 +185,31 @@ export default function TactileFounder() {
                   transformStyle: "preserve-3d",
                   zIndex: activeCard === 2 ? 30 : 10,
                 }}
-                className={`absolute right-0 sm:right-2 top-3 w-[235px] sm:w-[260px] aspect-[4/5] rounded-2xl bg-gradient-to-br from-zinc-900 via-zinc-950 to-black text-white p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] border border-white/20 cursor-pointer transition-all duration-300 ${
+                className={`absolute right-0 sm:right-2 top-3 w-[235px] sm:w-[260px] aspect-[4/5] rounded-2xl bg-[#0C0C0E] text-white p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] border border-white/15 cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                   activeCard === 2 ? "rotate-0 scale-105" : "rotate-[7.5deg]"
                 }`}
               >
-                <div className="h-full flex flex-col justify-between relative overflow-hidden">
-                  
-                  {/* Card Header Stamp */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-accent font-bold">
-                      NERQIVA CRAFT
-                    </span>
-                    <span className="font-mono text-[9px] text-white/40">
-                      // 01
-                    </span>
-                  </div>
+                {/* Subtle ambient specular glow */}
+                <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-accent/25 blur-3xl pointer-events-none" />
 
-                  {/* High-Impact Statement */}
-                  <div className="my-auto py-2">
-                    <span className="font-sans font-black text-2xl sm:text-[27px] leading-[0.88] tracking-tighter uppercase block text-white">
-                      WHAT<br />
-                      HAPPENS<br />
-                      <span className="text-accent">WHEN YOU</span><br />
-                      GO DIRECT?
-                    </span>
-                  </div>
+                {/* Top: Minimal craft spark icon */}
+                <div className="flex items-center justify-between">
+                  <span className="text-accent text-base select-none">✦</span>
+                </div>
 
-                  {/* Card Bottom Tag */}
-                  <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-white/60">
-                    <span>1:1 BUILDER</span>
-                    <span className="text-accent font-bold">100% CODE</span>
-                  </div>
+                {/* High-Impact Statement */}
+                <div className="my-auto py-2">
+                  <span className="font-sans font-black text-2xl sm:text-[28px] leading-[0.9] tracking-tighter uppercase block text-white select-none">
+                    WHAT<br />
+                    HAPPENS<br />
+                    <span className="text-accent">WHEN YOU</span><br />
+                    GO DIRECT.
+                  </span>
+                </div>
 
+                {/* Bottom: Subtle minimal studio signature */}
+                <div className="text-[11px] font-sans text-white/40 tracking-tight select-none">
+                  NERQIVA Studio
                 </div>
               </motion.div>
 
@@ -273,73 +266,23 @@ export default function TactileFounder() {
                 </div>
               </motion.div>
 
-              {/* Floating Tilt Cue Pill */}
-              <motion.div
-                animate={prefersReducedMotion ? {} : { y: [0, -4, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-3 right-6 z-40 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/90 dark:bg-white/95 text-white dark:text-black shadow-lg text-[10px] font-mono select-none pointer-events-none"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Hover or tap to tilt</span>
-              </motion.div>
-
             </div>
           </div>
 
           {/* ========================================================
-              PART 3 (RIGHT): Trust Hooks for NERQIVA (Zero Boxy 3rd Card)
+              PART 3 (RIGHT): Trust Hook for NERQIVA (Zero Jargon Bullets)
               ======================================================== */}
           <div className="lg:col-span-4 flex flex-col justify-center">
             
-            <h3 className="font-display font-black text-2xl sm:text-3xl text-text-primary dark:text-white leading-[1.1] tracking-tight mb-5">
+            <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-text-primary dark:text-white leading-[1.08] tracking-tight mb-4">
               Built for founders who value <br className="hidden sm:inline" />
-              <span className="font-serif italic font-normal text-accent">speed, craft & ownership.</span>
+              <span className="font-serif italic font-normal text-accent">speed, craft &amp; ownership.</span>
             </h3>
 
-            {/* 3 High-Trust Locking Hooks (Zero Fluff) */}
-            <div className="space-y-4 mb-7">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-accent/10 dark:bg-accent/20 text-accent font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  01
-                </div>
-                <div>
-                  <h4 className="font-sans font-bold text-sm text-text-primary dark:text-white">
-                    Direct 1:1 WhatsApp Access
-                  </h4>
-                  <p className="font-sans text-xs text-text-secondary dark:text-white/60 leading-relaxed mt-0.5">
-                    Zero account managers playing telephone. You talk directly with the engineer authoring your Next.js code.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-accent/10 dark:bg-accent/20 text-accent font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  02
-                </div>
-                <div>
-                  <h4 className="font-sans font-bold text-sm text-text-primary dark:text-white">
-                    Bespoke Motion & Sub-Second Speed
-                  </h4>
-                  <p className="font-sans text-xs text-text-secondary dark:text-white/60 leading-relaxed mt-0.5">
-                    Production Next.js code with fluid canvas physics. No slow WordPress plugins or template bloat.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 rounded-full bg-accent/10 dark:bg-accent/20 text-accent font-mono text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  03
-                </div>
-                <div>
-                  <h4 className="font-sans font-bold text-sm text-text-primary dark:text-white">
-                    100% IP & Asset Ownership
-                  </h4>
-                  <p className="font-sans text-xs text-text-secondary dark:text-white/60 leading-relaxed mt-0.5">
-                    Full source code handover on launch day with zero recurring maintenance hostage retainers.
-                  </p>
-                </div>
-              </div>
-            </div>
+            {/* Single Clean Line of Text (Replaces 3 Multi-Bullet Point Jargon Essay) */}
+            <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-7 font-normal">
+              Direct 1:1 collaboration, bespoke engineering, and complete source code ownership from day one.
+            </p>
 
             {/* Direct Line Actions */}
             <div className="flex flex-col gap-2.5">
