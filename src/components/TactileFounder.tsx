@@ -73,7 +73,7 @@ function RollText({ text }: { text: string }) {
 
 export default function TactileFounder() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCard, setActiveCard] = useState<1 | 2>(1);
+  const [activeCard, setActiveCard] = useState<1 | 2>(2);
   const prefersReducedMotion = useReducedMotion();
 
   // Mouse tilt physics for the 2 pictures
@@ -124,8 +124,8 @@ export default function TactileFounder() {
         
         {/* 3-Part Layout: 
             1) Left (4 cols): Handwritten Greeting + High Bold Typography + Intro
-            2) Middle (4 cols): EXACTLY 2 Interactive Tilted Images (Polaroid & Editorial Card)
-            3) Right (4 cols): Trust Hooks for NERQIVA + WhatsApp Action Line (No 3rd Card)
+            2) Middle (4 cols): EXACTLY 2 Interactive Tilted Images (Polaroid & Conversion Card)
+            3) Right (4 cols): Revenue & Customer Reality for Business Owners (No Fluff)
         */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
@@ -145,12 +145,12 @@ export default function TactileFounder() {
             <h2
               className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-text-primary dark:text-white leading-[0.96] tracking-[-0.04em] mb-4"
             >
-              Lead Engineer <br />
-              <span className="font-serif italic font-normal text-accent">&amp; Designer.</span>
+              Founder &amp; <br />
+              <span className="font-serif italic font-normal text-accent">Lead Engineer.</span>
             </h2>
 
             <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-6 font-normal max-w-sm">
-              Every interface, motion curve, and line of code is engineered directly by me. Zero agency layers.
+              I build web systems that turn digital visits into actual revenue for your business. No agency middlemen, zero bullshit.
             </p>
 
             <div className="flex items-center gap-2.5 text-xs font-mono text-text-tertiary dark:text-white/40 tracking-wider uppercase">
@@ -169,11 +169,11 @@ export default function TactileFounder() {
             className="lg:col-span-4 flex justify-center items-center py-4"
           >
             <div
-              className="relative w-full max-w-[360px] sm:max-w-[400px] h-[450px] sm:h-[490px] flex items-center justify-center select-none"
+              className="relative w-full max-w-[390px] sm:max-w-[450px] h-[450px] sm:h-[480px] flex items-center justify-center select-none"
               style={{ perspective: 1200 }}
             >
               
-              {/* Image 2 (Behind / Right): Bold Editorial Print Card (+7.5deg) */}
+              {/* Image 2 (Behind / Right): Editorial Conversion Card (Anfalova Style) (+7.5deg) */}
               <motion.div
                 onClick={() => setActiveCard(2)}
                 onMouseEnter={() => setActiveCard(2)}
@@ -185,31 +185,68 @@ export default function TactileFounder() {
                   transformStyle: "preserve-3d",
                   zIndex: activeCard === 2 ? 30 : 10,
                 }}
-                className={`absolute right-0 sm:right-2 top-3 w-[235px] sm:w-[260px] aspect-[4/5] rounded-2xl bg-[#0C0C0E] text-white p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.45)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] border border-white/15 cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden ${
+                className={`absolute right-0 sm:-right-2 top-1 w-[225px] sm:w-[250px] aspect-[4/5] rounded-2xl bg-[#09090B] text-white p-5 sm:p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/15 cursor-pointer transition-all duration-300 flex flex-col justify-between overflow-hidden ${
                   activeCard === 2 ? "rotate-0 scale-105" : "rotate-[7.5deg]"
                 }`}
               >
+                {/* Background matrix grid pattern (Anfalova craft signature) */}
+                <div
+                  className="absolute inset-0 opacity-20 pointer-events-none"
+                  style={{
+                    backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.45) 1px, transparent 1px)",
+                    backgroundSize: "16px 16px",
+                  }}
+                />
+
                 {/* Subtle ambient specular glow */}
-                <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-accent/25 blur-3xl pointer-events-none" />
+                <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-accent/30 blur-2xl pointer-events-none" />
 
-                {/* Top: Minimal craft spark icon */}
-                <div className="flex items-center justify-between">
-                  <span className="text-accent text-base select-none">✦</span>
-                </div>
-
-                {/* High-Impact Statement */}
-                <div className="my-auto py-2">
-                  <span className="font-sans font-black text-2xl sm:text-[28px] leading-[0.9] tracking-tighter uppercase block text-white select-none">
-                    WHAT<br />
-                    HAPPENS<br />
-                    <span className="text-accent">WHEN YOU</span><br />
-                    GO DIRECT.
+                {/* Top Subtle Tag */}
+                <div className="flex items-center justify-between relative z-10">
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-white/50 font-medium">
+                    Client Engine
                   </span>
+                  <span className="text-violet-400 text-xs">✦</span>
                 </div>
 
-                {/* Bottom: Subtle minimal studio signature */}
-                <div className="text-[11px] font-sans text-white/40 tracking-tight select-none">
-                  NERQIVA Studio
+                {/* The Anfalova Typographic Triad: Search · Conversion* · Revenue */}
+                <div className="my-auto py-1 relative z-10 text-center select-none">
+                  {/* Top Word: Bold Display Sans */}
+                  <div className="font-sans font-black text-3xl sm:text-[38px] text-white tracking-tight leading-[0.88]">
+                    Search
+                  </div>
+
+                  {/* Middle Word: Cursive / Italic Script in Accent Color + Asterisk */}
+                  <div className="relative -my-1 z-20 flex items-center justify-center">
+                    <span className="font-display italic text-3xl sm:text-[38px] text-violet-400 -rotate-2 inline-block font-normal tracking-wide drop-shadow-sm">
+                      Conversion
+                    </span>
+                    <span className="text-violet-400 text-2xl font-serif leading-none ml-1 -mt-2 animate-pulse select-none">
+                      *
+                    </span>
+                  </div>
+
+                  {/* Bottom Word: Bold Display Sans */}
+                  <div className="font-sans font-black text-3xl sm:text-[38px] text-white tracking-tight leading-[0.88]">
+                    Revenue
+                  </div>
+                </div>
+
+                {/* Flanking Parentheses Descriptor */}
+                <div className="relative z-10 flex items-center justify-center gap-1.5 text-center px-1">
+                  <span className="text-xl sm:text-2xl text-white/40 font-light select-none leading-none">(</span>
+                  <p className="text-[10.5px] sm:text-[11.5px] text-white/75 leading-tight font-normal">
+                    Turning Google searches into paying customers. No showcase fluff.
+                  </p>
+                  <span className="text-xl sm:text-2xl text-white/40 font-light select-none leading-none">)</span>
+                </div>
+
+                {/* Bottom Status Pill */}
+                <div className="relative z-10 flex justify-center pt-1">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-300 text-[10px] font-mono tracking-wider uppercase font-semibold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+                    Built for Revenue
+                  </span>
                 </div>
               </motion.div>
 
@@ -225,7 +262,7 @@ export default function TactileFounder() {
                   transformStyle: "preserve-3d",
                   zIndex: activeCard === 1 ? 25 : 15,
                 }}
-                className={`absolute left-0 sm:left-2 bottom-3 w-[235px] sm:w-[260px] aspect-[4/5] bg-[#FAFAFA] text-neutral-900 rounded-[4px] p-3.5 pb-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-black/10 cursor-pointer transition-all duration-300 group ${
+                className={`absolute left-0 sm:-left-2 bottom-2 w-[220px] sm:w-[242px] aspect-[4/5] bg-[#FAFAFA] text-neutral-900 rounded-[4px] p-3.5 pb-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.4)] dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-black/10 cursor-pointer transition-all duration-300 group ${
                   activeCard === 1 ? "rotate-0 scale-105" : "-rotate-[6deg]"
                 }`}
               >
@@ -261,7 +298,7 @@ export default function TactileFounder() {
                     Dipjyoti Das
                   </span>
                   <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-wider block mt-0.5">
-                    Lead Designer-Engineer
+                    Founder &amp; Lead Engineer
                   </span>
                 </div>
               </motion.div>
@@ -270,18 +307,18 @@ export default function TactileFounder() {
           </div>
 
           {/* ========================================================
-              PART 3 (RIGHT): Trust Hook for NERQIVA (Zero Jargon Bullets)
+              PART 3 (RIGHT): Revenue-First Reality for Business Owners
               ======================================================== */}
           <div className="lg:col-span-4 flex flex-col justify-center">
             
-            <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-text-primary dark:text-white leading-[1.08] tracking-tight mb-4">
-              Built for founders who value <br className="hidden sm:inline" />
-              <span className="font-serif italic font-normal text-accent">speed, craft &amp; ownership.</span>
+            <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-[2.2rem] text-text-primary dark:text-white leading-[1.1] tracking-tight mb-4">
+              Built to bring paying customers, <br className="hidden sm:inline" />
+              <span className="font-serif italic font-normal text-accent">not just sit on the internet.</span>
             </h3>
 
-            {/* Single Clean Line of Text (Replaces 3 Multi-Bullet Point Jargon Essay) */}
-            <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-7 font-normal">
-              Direct 1:1 collaboration, bespoke engineering, and complete source code ownership from day one.
+            {/* Pain Point & Solution: Revenue, Google rank, direct WhatsApp, after-service, zero monthly retainers */}
+            <p className="text-text-secondary dark:text-white/75 text-base sm:text-lg leading-relaxed mb-7 font-normal">
+              Most agencies build pretty showcase pages that bring zero calls. At NERQIVA, I build to rank your business on Google, turn visits into direct WhatsApp leads, and provide genuine after-launch support — with 100% ownership and zero monthly fees.
             </p>
 
             {/* Direct Line Actions */}
