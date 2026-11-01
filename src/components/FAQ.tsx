@@ -88,29 +88,26 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
 
       <div className="section-container max-w-4xl">
         
-        {/* Header: Editorial Authority without Underlines */}
+        {/* Header: Editorial Authority */}
         <div className="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
-          <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold mb-3 block">
-            {isHomepage ? "Essential Client Questions" : "Frequently Asked Questions"}
-          </span>
           <h2
-            className="font-serif text-text-primary leading-[1.15] mb-4 tracking-tight"
+            className="font-serif text-text-primary dark:text-white leading-[1.1] mb-4 tracking-tight"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)", letterSpacing: "-0.03em" }}
           >
             {isHomepage ? (
               <>
-                What clients ask before <span className="italic font-normal text-accent">hiring us</span>.
+                What clients ask before <span className="italic font-normal text-accent">hiring us.</span>
               </>
             ) : (
               <>
-                Frequently asked <span className="italic font-normal text-accent">questions</span>.
+                Frequently asked <span className="italic font-normal text-accent">questions.</span>
               </>
             )}
           </h2>
-          <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
+          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed font-normal max-w-2xl mx-auto">
             {isHomepage
-              ? "The 3 critical facts on delivery speed, 100% asset ownership, and direct WhatsApp lead conversion."
-              : "Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our 4-Day Sprint launch workflow."}
+              ? "The critical facts on delivery speed, 100% asset ownership, and direct WhatsApp lead conversion."
+              : "Direct, verified answers on delivery turnaround, code ownership, fixed pricing, and our sprint launch workflow."}
           </p>
         </div>
 
