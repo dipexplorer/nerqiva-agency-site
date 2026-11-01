@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, MessageCircle, MapPin, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, MessageCircle, MapPin } from "lucide-react";
 
 const GitHubIcon = ({ size = 15 }: { size?: number }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -20,112 +20,120 @@ const LinkedInIcon = ({ size = 15 }: { size?: number }) => (
 
 export default function TactileFounder() {
   return (
-    <section id="founder" className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative overflow-hidden">
-      <div className="section-container relative z-10 max-w-5xl">
-        
-        <div className="bg-bg-secondary/30 dark:bg-zinc-900/40 rounded-3xl p-7 sm:p-12 border border-border/80 shadow-sm grid lg:grid-cols-12 gap-10 items-center">
+    <section id="founder" className="py-20 sm:py-28 bg-transparent border-t border-border/50 dark:border-white/10 relative overflow-hidden">
+      <div className="section-container relative z-10 max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left: Authentic Instant Polaroid Print with Scotch Tape */}
-          <div className="lg:col-span-5 flex justify-center">
-            <motion.div
-              whileHover={{ rotate: 0, scale: 1.03, y: -4 }}
-              className="relative bg-white text-neutral-900 p-4 pb-7 rounded-sm shadow-2xl border border-neutral-200/80 -rotate-2 cursor-pointer transition-shadow duration-300 max-w-[280px] sm:max-w-[320px]"
-            >
-              {/* Realistic Scotch Tape on Top Corner */}
-              <div 
-                className="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-white/70 backdrop-blur-xs border border-white/40 shadow-xs -rotate-1 pointer-events-none"
-                style={{ opacity: 0.85 }}
-              />
-
-              {/* Black & White Candid Portrait */}
-              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900 rounded-2xs mb-4">
+          {/* Left: Authentic Studio Portrait */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+            <div className="w-full max-w-[320px] sm:max-w-[360px]">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-900 border border-border dark:border-white/10 shadow-xl group">
                 <img
                   src="/dip-profile.png"
                   alt="Dipjyoti Das — Founder & Principal Engineer"
-                  className="w-full h-full object-cover grayscale contrast-115 hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover object-top grayscale contrast-110 group-hover:grayscale-0 transition-all duration-500"
                   loading="lazy"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <span className="font-display font-bold text-base sm:text-lg block leading-tight">
+                    Dipjyoti Das
+                  </span>
+                  <span className="font-sans text-xs text-white/70 block mt-0.5">
+                    Founder & Lead Designer-Engineer
+                  </span>
+                </div>
               </div>
-
-              {/* Polaroid Bottom Handwritten Chin */}
-              <div className="text-center">
-                <span className="font-serif italic font-bold text-base text-neutral-900 block leading-tight">
-                  Dipjyoti Das
-                </span>
-                <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-wider block mt-0.5">
-                  Founder & Principal Engineer
-                </span>
+              <div className="flex items-center gap-2 mt-3 text-xs font-mono text-text-tertiary dark:text-white/40">
+                <MapPin size={13} className="text-accent shrink-0" />
+                <span>North Guwahati, Assam · Available Pan-India</span>
               </div>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Right: Direct Words & Studio Ethos */}
-          <div className="lg:col-span-7 flex flex-col justify-between gap-6">
+          {/* Right: Direct Words & Studio Ethos (Human-crafted, zero jargon) */}
+          <div className="lg:col-span-7 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="font-mono text-xs uppercase tracking-widest text-accent font-bold">
-                  Direct Partnership · Guwahati
-                </span>
-              </div>
-
               <h2
-                className="font-display font-black text-text-primary text-2xl sm:text-4xl leading-[1.1] tracking-tight mb-4"
-                style={{ letterSpacing: "-0.03em" }}
+                className="font-display font-black text-text-primary dark:text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.08] tracking-tight mb-5"
+                style={{ letterSpacing: "-0.035em" }}
               >
-                Talk to the builder, <br />
-                <span className="font-serif italic font-normal text-accent">
+                You work with the builder —{" "}
+                <em className="font-serif italic font-normal text-accent dark:text-accent not-italic">
                   not an account manager.
-                </span>
+                </em>
               </h2>
 
-              <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal">
-                Every project is designed and engineered directly by Dipjyoti Das. Direct WhatsApp access, rapid sprint execution, and zero corporate overhead.
+              <p className="text-text-secondary dark:text-white/60 text-base sm:text-lg leading-relaxed font-normal mb-8 max-w-xl">
+                Traditional agencies hand your project down to junior freelancers and hide behind layers of managers. At NERQIVA, every screen, animation, and line of code is crafted directly by me. Direct WhatsApp access from day one.
               </p>
+
+              {/* Three Human Trust Pillars */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 py-6 border-y border-border/60 dark:border-white/10 mb-8">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent font-semibold block mb-1">
+                    Direct Line
+                  </span>
+                  <span className="text-sm text-text-primary dark:text-white/85 font-medium leading-snug block">
+                    Chat with the founder on WhatsApp
+                  </span>
+                </div>
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent font-semibold block mb-1">
+                    Full Ownership
+                  </span>
+                  <span className="text-sm text-text-primary dark:text-white/85 font-medium leading-snug block">
+                    100% clean code handover
+                  </span>
+                </div>
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-wider text-accent font-semibold block mb-1">
+                    Transparent
+                  </span>
+                  <span className="text-sm text-text-primary dark:text-white/85 font-medium leading-snug block">
+                    Zero monthly retainer lock-in
+                  </span>
+                </div>
+              </div>
             </div>
 
-            {/* Direct Social Proof & Coordinates */}
-            <div className="pt-6 border-t border-border/60 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2 font-mono text-xs text-text-secondary">
-                <MapPin size={14} className="text-accent" />
-                <span>North Guwahati, Assam</span>
-              </div>
+            {/* Direct Contact Actions */}
+            <div className="flex flex-wrap items-center gap-3.5">
+              <a
+                href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'd%20like%20to%20talk%20about%20a%20website%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] shadow-sm cursor-pointer select-none"
+              >
+                <MessageCircle size={15} />
+                <span>Chat with Dipjyoti</span>
+                <ArrowUpRight size={13} />
+              </a>
 
-              <div className="flex items-center gap-2.5">
-                <a
-                  href="https://github.com/dipexplorer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-xl bg-bg-secondary border border-border text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
-                  aria-label="GitHub"
-                >
-                  <GitHubIcon size={14} />
-                </a>
-                <a
-                  href="https://linkedin.com/in/dip-jyoti22"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-xl bg-bg-secondary border border-border text-text-secondary hover:text-text-primary hover:border-accent transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <LinkedInIcon size={14} />
-                </a>
-                <a
-                  href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I'd%20like%20to%20talk%20about%20a%20website%20project."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary py-2 px-4 text-xs font-bold font-mono tracking-wider flex items-center gap-1.5 shadow-md"
-                >
-                  <MessageCircle size={13} />
-                  <span>Direct Line</span>
-                  <ArrowUpRight size={12} />
-                </a>
-              </div>
+              <a
+                href="https://github.com/dipexplorer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-border dark:border-white/15 text-text-secondary dark:text-white/70 hover:text-text-primary dark:hover:text-white hover:border-accent transition-colors"
+                aria-label="Dipjyoti's GitHub"
+              >
+                <GitHubIcon size={15} />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/dip-jyoti22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-border dark:border-white/15 text-text-secondary dark:text-white/70 hover:text-text-primary dark:hover:text-white hover:border-accent transition-colors"
+                aria-label="Dipjyoti's LinkedIn"
+              >
+                <LinkedInIcon size={15} />
+              </a>
             </div>
 
           </div>
 
         </div>
-
       </div>
     </section>
   );
