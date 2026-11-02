@@ -224,7 +224,7 @@ export default function AnfalovaHeroGallery() {
       />
 
       {/* ── WebGL Surface spanning full hero section ── */}
-      {isClient && geometry && !hasWebGLError && !prefersReducedMotion ? (
+      {isClient && geometry && !hasWebGLError ? (
         <div
           className="pointer-events-auto"
           style={{
