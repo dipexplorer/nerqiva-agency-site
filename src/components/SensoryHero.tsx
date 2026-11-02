@@ -10,52 +10,11 @@ export default function SensoryHero() {
       className="intro-hero relative w-full min-h-[100svh] sm:min-h-[640px] sm:max-h-[960px] h-auto sm:h-[100dvh] overflow-hidden flex flex-col justify-between select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300"
     >
 
-      {/* ── Background Subtle Architectural Ambience ── */}
-      <div 
-        className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" 
-        aria-hidden="true"
-      >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-[radial-gradient(ellipse_at_top,rgba(76,29,149,0.035),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(167,139,250,0.05),transparent_70%)]" />
-      </div>
-
-      {/* ── Top Clearance & Editorial Studio Dispatch ── */}
-      <div className="w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-14 pt-20 sm:pt-24 pb-2 z-20 shrink-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-6 border-b border-border/40 dark:border-white/10 pb-3">
-          
-          {/* Left: Emotion trigger & direct value for first-time visitors */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-            <div className="inline-flex items-center gap-2">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="font-sans text-xs sm:text-[13px] font-bold tracking-tight text-text-primary dark:text-white">
-                Websites built to bring you real paying clients
-              </span>
-            </div>
-            <span className="hidden sm:inline-block text-border dark:text-white/20">·</span>
-            <span className="font-sans text-xs text-text-secondary dark:text-white/60 font-normal">
-              For business owners who refuse to look amateur online
-            </span>
-          </div>
-
-          {/* Right: Tactile interaction & delivery speed */}
-          <div className="flex items-center gap-3 sm:gap-4 font-mono text-[10.5px] sm:text-xs text-text-tertiary dark:text-white/45">
-            <span className="hidden md:inline-flex items-center gap-1">
-              <span>7–10 Day Delivery</span>
-            </span>
-            <span className="hidden md:inline-block text-border dark:text-white/20">·</span>
-            <div className="flex items-center gap-1.5 text-text-secondary dark:text-white/60">
-              <span className="inline-block w-3 h-[1px] bg-accent" />
-              <span>Drag gallery to inspect</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
+      {/* ── Top clearance for floating nav ── */}
+      <div className="w-full pt-20 sm:pt-28 shrink-0 pointer-events-none" aria-hidden="true" />
 
       {/* ── Project Gallery Strip ── */}
-      <div className="relative w-full my-auto shrink-0 z-10">
+      <div className="relative w-full my-3 sm:my-auto shrink-0 z-10">
         <AnfalovaHeroGallery />
       </div>
 
