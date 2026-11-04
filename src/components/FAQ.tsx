@@ -18,12 +18,6 @@ export const LOCAL_FAQS: FAQItem[] = [
     answer: "Most websites launch within 7 to 10 days. You get a private preview link to test everything directly on your phone first. Once you review and approve it, we connect your domain and push it live.",
   },
   {
-    category: "Unified Partner",
-    isPriority: true,
-    question: "Why should I hire NERQIVA instead of separate freelancers?",
-    answer: "When you hire multiple freelancers, none of their tools talk to each other and you waste months managing them. We engineer your entire digital presence — custom Next.js website, 1-click WhatsApp lead routing, Google Maps search rankings, and payment links — as a single synchronized system delivered in 7 to 10 days.",
-  },
-  {
     category: "Pricing & Ownership",
     isPriority: true,
     question: "Are there any monthly fees or hidden charges?",
@@ -42,14 +36,14 @@ export const LOCAL_FAQS: FAQItem[] = [
     answer: "Yes. Every build is set up with local Google search optimization and Google Maps integration so nearby customers searching for your services can easily find your business, read reviews, and call you directly.",
   },
   {
-    category: "After-Launch Support",
-    question: "What happens if I need changes after we launch?",
-    answer: "Direct after-launch support is included. Whenever you need to update phone numbers, add new services, or tweak pricing, just message me directly and it gets updated quickly.",
-  },
-  {
     category: "Getting Started",
     question: "What do I need to provide to get started?",
     answer: "Just your business name, photos (or logo if you have one), a list of your services, and your contact number. I take care of the writing, design, and technical launch from start to finish.",
+  },
+  {
+    category: "After-Launch Support",
+    question: "What happens if I need changes after we launch?",
+    answer: "Direct after-launch support is included. Whenever you need to update phone numbers, add new services, or tweak pricing, just message me directly and it gets updated quickly.",
   },
   {
     category: "Location",
@@ -63,7 +57,7 @@ interface FAQProps {
 }
 
 export default function FAQ({ isHomepage = false }: FAQProps) {
-  const displayList = isHomepage ? LOCAL_FAQS.slice(0, 6) : LOCAL_FAQS;
+  const displayList = isHomepage ? LOCAL_FAQS.slice(0, 4) : LOCAL_FAQS;
 
   const faqSchema = {
     "@context": "https://schema.org",
