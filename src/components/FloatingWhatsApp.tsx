@@ -40,11 +40,11 @@ export default function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat directly on WhatsApp with NERQIVA Studio founder"
-        className="group relative flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#09090b]/90 hover:bg-white dark:hover:bg-[#121217] backdrop-blur-md border border-black/10 dark:border-white/12 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 text-neutral-900 dark:text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_12px_40px_rgb(0,0,0,0.5)] hover:shadow-emerald-500/15 dark:hover:shadow-emerald-500/20 transform-gpu hover:-translate-y-1 active:scale-95 transition-all duration-300 select-none"
+        className="group relative flex items-center gap-2.5 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full dark:bg-[#09090b]/90 hover:bg-white dark:hover:bg-[#121217] backdrop-blur-md border border-black/10 hover:border-emerald-500/40 dark:hover:border-emerald-500/40 text-neutral-900 dark:shadow-[0_12px_40px_rgb(0,0,0,0.5)] hover:shadow-emerald-500/15 dark:hover:shadow-emerald-500/20 transform-gpu hover:-translate-y-1 active:scale-95 transition-all duration-300 select-none"
       >
         {/* Glowing Ambient Halo on Hover */}
         <span
-          className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300 -z-10"
+          className="absolute -inset-0.5 rounded-full bg-linear-to-r from-emerald-500/20 to-teal-500/20 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300 -z-10"
           aria-hidden="true"
         />
 
@@ -67,7 +67,7 @@ export default function FloatingWhatsApp() {
         </svg>
 
         {/* Clean, Human Micro-Copy */}
-        <span className="font-sans text-xs sm:text-sm font-medium tracking-tight text-text-primary dark:text-white">
+        <span className="font-sans text-xs sm:text-sm font-medium tracking-tight text-text-primary">
           Chat directly
         </span>
       </a>
