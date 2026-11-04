@@ -1,63 +1,70 @@
 "use client";
 
 import React from "react";
-import { ArrowUpRight, Zap, MessageSquare, MapPin, CreditCard } from "lucide-react";
 
-interface Capability {
+interface CapabilityCard {
   number: string;
-  category: string;
   title: string;
   description: string;
-  metric: string;
+  bgColor: string;
+  textColor: string;
+  subtextColor: string;
+  numeralColor: string;
   tiltClass: string;
-  accentColor: string;
-  icon: React.ReactNode;
+  badge?: {
+    text: string;
+    style: string;
+  };
 }
 
-const CAPABILITIES: Capability[] = [
+const CARDS: CapabilityCard[] = [
   {
     number: "01",
-    category: "Architecture",
-    title: "Sub-Second Mobile Speed",
-    description:
-      "Handcrafted frontend engineered for instant 0.4s mobile loads. Zero WordPress lag, zero plugin bloat.",
-    metric: "0.4s Fast · 99+ Lighthouse",
-    tiltClass: "-rotate-1 sm:-rotate-2 lg:translate-y-2",
-    accentColor: "group-hover:border-blue-500/50 group-hover:shadow-blue-500/10",
-    icon: <Zap className="w-4 h-4 text-blue-500" />,
+    title: "SPEED",
+    description: "Handcrafted Next.js frontend with 0.4s load. Zero WordPress lag, zero plugin bloat.",
+    bgColor: "bg-[#a6ff00]",
+    textColor: "text-black",
+    subtextColor: "text-black/80",
+    numeralColor: "text-black/50",
+    tiltClass: "-rotate-2 sm:-rotate-3 lg:-rotate-4 lg:translate-y-2",
+    badge: {
+      text: "0.4s Fast",
+      style: "bg-linear-to-r from-[#ff3b30] to-[#ff9500] text-white border-2 border-white shadow-xl -top-3.5 right-2 -rotate-3",
+    },
   },
   {
     number: "02",
-    category: "Conversion",
-    title: "Instant WhatsApp Routing",
-    description:
-      "Visitors tap once and land directly in your WhatsApp with booking details pre-filled. No forms lost in spam.",
-    metric: "< 60s Lead Alert · Zero Drop-off",
-    tiltClass: "rotate-1.5 sm:rotate-2 lg:-translate-y-4",
-    accentColor: "group-hover:border-emerald-500/50 group-hover:shadow-emerald-500/10",
-    icon: <MessageSquare className="w-4 h-4 text-emerald-500" />,
+    title: "WHATSAPP",
+    description: "Visitors tap once and land directly in your WhatsApp with booking details pre-filled.",
+    bgColor: "bg-[#ff2a85]",
+    textColor: "text-white",
+    subtextColor: "text-white/90",
+    numeralColor: "text-white/60",
+    tiltClass: "rotate-2 sm:rotate-3 lg:rotate-3 lg:translate-y-8",
   },
   {
     number: "03",
-    category: "Discovery",
-    title: "Google Maps #1 Ranking",
-    description:
-      "Structured local schemas built so nearby customers find your business first on Google Maps and search.",
-    metric: "Top 3-Pack · SEO & AEO Ready",
-    tiltClass: "-rotate-1 sm:-rotate-1.5 lg:translate-y-3",
-    accentColor: "group-hover:border-amber-500/50 group-hover:shadow-amber-500/10",
-    icon: <MapPin className="w-4 h-4 text-amber-500" />,
+    title: "DISCOVERY",
+    description: "Structured local schemas built so nearby customers find your business first on Google Maps.",
+    bgColor: "bg-[#4361ee]",
+    textColor: "text-white",
+    subtextColor: "text-white/90",
+    numeralColor: "text-white/60",
+    tiltClass: "-rotate-1 sm:-rotate-2 lg:-rotate-2 lg:-translate-y-3",
   },
   {
     number: "04",
-    category: "Settlement",
-    title: "Direct UPI & Card Portals",
-    description:
-      "Client payments land straight into your bank account with private booking records and zero platform cuts.",
-    metric: "0% Commission · Instant Settlement",
-    tiltClass: "rotate-1 sm:rotate-1.5 lg:-translate-y-2",
-    accentColor: "group-hover:border-purple-500/50 group-hover:shadow-purple-500/10",
-    icon: <CreditCard className="w-4 h-4 text-purple-500" />,
+    title: "SETTLEMENT",
+    description: "Direct client payments into your bank account with private booking records and 0% cut.",
+    bgColor: "bg-[#ff4500]",
+    textColor: "text-white",
+    subtextColor: "text-white/90",
+    numeralColor: "text-white/60",
+    tiltClass: "rotate-2 sm:rotate-3 lg:rotate-4 lg:translate-y-6",
+    badge: {
+      text: "0% Commission",
+      style: "bg-linear-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899] text-white border-2 border-white shadow-xl -top-3.5 left-2 rotate-6",
+    },
   },
 ];
 
@@ -65,10 +72,10 @@ export default function UnifiedEngine() {
   return (
     <section
       id="systems"
-      className="py-24 sm:py-32 bg-transparent border-t border-border/40 relative overflow-hidden"
+      className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative overflow-hidden"
     >
       <div className="section-container relative z-10">
-        {/* Section Header: Pure Typographic Authority */}
+        {/* Section Header: Pure Editorial Typographic Authority */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-24 pb-6 border-b border-border/40 gap-6">
           <div className="max-w-2xl">
             <h2
@@ -79,105 +86,98 @@ export default function UnifiedEngine() {
             </h2>
           </div>
           <p className="text-text-secondary text-sm sm:text-base max-w-md leading-relaxed font-sans">
-            Websites, WhatsApp client capture, local search ranking, and payment checkout engineered under one roof as a connected pipeline.
+            Websites, WhatsApp client capture, local search ranking, and payment checkout engineered under one roof as a continuous client acquisition pipeline.
           </p>
         </div>
 
-        {/* Interactive Staggered Flow Stage */}
-        <div className="relative">
-          {/* Subtle Directional Background Connector Arrow (Flows across the 4 systems) */}
+        {/* The Dark Curated Stage (Apple / Awwwards tactile canvas) */}
+        <div className="relative rounded-3xl p-6 sm:p-10 lg:p-16 bg-[#070709] border border-white/10 shadow-2xl overflow-hidden">
+          
+          {/* Continuous Flowing White Ribbon/Wire SVG */}
           <div
-            className="hidden lg:block absolute top-1/2 left-0 right-0 -translate-y-1/2 h-24 pointer-events-none select-none z-0 overflow-visible"
+            className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0"
             aria-hidden="true"
           >
             <svg
-              className="w-full h-full overflow-visible"
-              viewBox="0 0 1100 100"
+              className="w-full h-full"
+              viewBox="0 0 1200 480"
               fill="none"
               preserveAspectRatio="none"
             >
-              <defs>
-                <marker
-                  id="flowArrow"
-                  viewBox="0 0 10 10"
-                  refX="6"
-                  refY="5"
-                  markerWidth="6"
-                  markerHeight="6"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--accent)" opacity="0.6" />
-                </marker>
-                <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.1" />
-                  <stop offset="30%" stopColor="var(--accent)" stopOpacity="0.45" />
-                  <stop offset="70%" stopColor="var(--accent)" stopOpacity="0.45" />
-                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.1" />
-                </linearGradient>
-              </defs>
               <path
-                d="M 50,55 C 280,25 380,85 580,45 C 750,15 880,75 1060,50"
-                stroke="url(#connectorGradient)"
-                strokeWidth="2"
-                strokeDasharray="6 6"
-                markerEnd="url(#flowArrow)"
+                d="M -20,180 C 140,110 240,290 380,240 C 520,190 620,310 760,210 C 900,120 1020,300 1240,190"
+                stroke="white"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="opacity-90 drop-shadow-[0_4px_12px_rgba(255,255,255,0.4)]"
               />
             </svg>
           </div>
 
-          {/* 4 Asymmetric, Tilted Interactive Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 relative z-10 pt-4 pb-8">
-            {CAPABILITIES.map((cap) => (
-              <div
-                key={cap.number}
-                className={`group relative cursor-pointer transform-gpu will-change-transform rounded-2xl p-6 sm:p-7 bg-bg-primary/95 dark:bg-[#0c0c10]/95 backdrop-blur-xl border border-border/80 shadow-md ${cap.tiltClass} hover:!rotate-0 hover:!-translate-y-4 hover:scale-[1.04] hover:z-30 hover:shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${cap.accentColor} flex flex-col justify-between`}
-              >
-                {/* Glowing Ambient Halo on Hover */}
-                <span
-                  className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-accent/15 via-transparent to-accent/15 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 -z-10 pointer-events-none"
-                  aria-hidden="true"
+          {/* Sparkling 4-Point Star Element (Tactile sticker floating between cards 02 and 03) */}
+          <div
+            className="hidden lg:flex absolute top-[44%] left-[48%] -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none select-none items-center justify-center"
+            aria-hidden="true"
+          >
+            <div className="relative w-12 h-12 animate-pulse">
+              <svg viewBox="0 0 100 100" fill="none" className="w-full h-full drop-shadow-[0_0_15px_rgba(166,255,0,0.8)]">
+                <path
+                  d="M 50 0 C 50 35 65 50 100 50 C 65 50 50 65 50 100 C 50 65 35 50 0 50 C 35 50 50 35 50 0 Z"
+                  fill="#a6ff00"
+                  stroke="#ffffff"
+                  strokeWidth="6"
+                  strokeLinejoin="round"
                 />
+              </svg>
+            </div>
+          </div>
 
-                <div>
-                  {/* Top Header: Index + Micro Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="font-display font-black text-3xl sm:text-4xl text-text-tertiary/50 dark:text-text-tertiary/30 group-hover:text-accent transition-colors duration-300">
-                      {cap.number}
-                    </span>
-                    <div className="p-2 rounded-xl bg-bg-secondary dark:bg-neutral-800/80 border border-border/70 group-hover:border-accent/40 shadow-xs transition-colors duration-300">
-                      {cap.icon}
-                    </div>
+          {/* 4 Tactile, Hand-Tilted Playing Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 lg:gap-8 relative z-10 py-6">
+            {CARDS.map((card) => (
+              <div
+                key={card.number}
+                className={`group relative cursor-pointer transform-gpu will-change-transform rounded-3xl p-6 sm:p-7 ${card.bgColor} ${card.textColor} shadow-2xl ${card.tiltClass} hover:rotate-0! hover:-translate-y-6! hover:scale-[1.06] hover:z-30 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between min-h-[360px] sm:min-h-[400px] select-none`}
+              >
+                {/* Floating Glossy 3D Sticker Badge */}
+                {card.badge && (
+                  <div
+                    className={`absolute z-20 px-3.5 py-1.5 rounded-full font-mono text-[10.5px] font-black uppercase tracking-wider backdrop-blur-md select-none transition-transform duration-300 group-hover:scale-110 ${card.badge.style}`}
+                  >
+                    {card.badge.text}
                   </div>
+                )}
 
-                  {/* Category Pill */}
-                  <div className="mb-2">
-                    <span className="font-mono text-[10.5px] font-bold tracking-widest text-text-tertiary uppercase">
-                      {cap.category}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-display font-bold text-lg sm:text-xl text-text-primary mb-2.5 tracking-tight group-hover:text-accent transition-colors duration-300 flex items-center justify-between">
-                    <span>{cap.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0 ml-1" />
-                  </h3>
-
-                  {/* Human, Punchy Description (No Dev Jargon) */}
-                  <p className="text-text-secondary text-xs sm:text-[13.5px] leading-relaxed font-sans mb-6">
-                    {cap.description}
-                  </p>
+                {/* Top: Small Number Index */}
+                <div className="flex items-center justify-between">
+                  <span className={`font-mono text-sm font-bold tracking-widest ${card.numeralColor}`}>
+                    {card.number}
+                  </span>
                 </div>
 
-                {/* Bottom Metric Pill */}
-                <div className="pt-4 border-t border-border/50 flex items-center justify-between">
-                  <span className="font-mono text-[11px] font-semibold text-text-primary dark:text-white/90">
-                    {cap.metric}
-                  </span>
-                  <span className="w-2 h-2 rounded-full bg-accent/40 group-hover:bg-accent animate-pulse" />
+                {/* Generous Vibrant Empty Canvas (Letting the color and craft breathe) */}
+                <div className="flex-1" />
+
+                {/* Bottom: Massive Punchy Title & 2-Line High-Contrast Description */}
+                <div>
+                  <h3 className="font-display font-black text-2xl sm:text-3xl tracking-tight leading-none mb-3">
+                    {card.title}
+                  </h3>
+                  <p className={`text-xs sm:text-[13px] font-sans font-medium leading-relaxed ${card.subtextColor}`}>
+                    {card.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Bottom Ambient Subtitle Reassurance */}
+          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-white/50 relative z-10">
+            <span>Continuous Client Pipeline</span>
+            <span>100% Code & Asset Ownership</span>
+          </div>
+
         </div>
       </div>
     </section>
