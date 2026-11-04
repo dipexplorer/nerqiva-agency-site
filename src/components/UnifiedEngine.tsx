@@ -198,7 +198,7 @@ export default function UnifiedEngine() {
                 {/* Middle: Prominent Benefit Metric */}
                 <div className="my-5">
                   <div
-                    className={`font-display font-black text-2xl sm:text-[26px] tracking-tight leading-tight ${card.theme.metric}`}
+                    className={`font-display font-black text-xl sm:text-2xl lg:text-[21px] xl:text-2xl tracking-tight leading-tight whitespace-nowrap ${card.theme.metric}`}
                   >
                     {card.metric}
                   </div>
