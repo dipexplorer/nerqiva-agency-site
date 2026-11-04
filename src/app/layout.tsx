@@ -106,6 +106,7 @@ import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import InteractiveGridBackground from "../components/InteractiveGridBackground";
 import Loader from "../components/Loader";
+import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
 export default function RootLayout({
   children,
@@ -228,6 +229,8 @@ export default function RootLayout({
           <div className="relative z-20 w-full mt-auto">
             <Footer />
           </div>
+
+          <FloatingWhatsApp />
         </ThemeProvider>
       </body>
     </html>
