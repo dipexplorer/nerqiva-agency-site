@@ -16,8 +16,8 @@ interface CapabilityCard {
   metric: string;
   metricSub: string;
   title: string;
-  description: string;
-  bullet: string;
+  oneLiner: string;
+  specs: string[];
   tiltClass: string;
   theme: {
     badge: string;
@@ -27,6 +27,7 @@ interface CapabilityCard {
     hoverBorder: string;
     hoverShadow: string;
     dot: string;
+    checkColor: string;
   };
 }
 
@@ -35,21 +36,25 @@ const CARDS: CapabilityCard[] = [
     number: "01",
     tag: "Performance",
     metric: "100% Mobile",
-    metricSub: "Instant Load · Zero Lag",
-    title: "Modern Business Website",
-    description:
-      "A custom, mobile-first website designed to showcase your services, build instant credibility, and make your brand the obvious choice in your city.",
-    bullet: "Handcrafted code · Zero template lag",
+    metricSub: "Sub-Second Speed",
+    title: "High-Converting Website",
+    oneLiner: "Engineered to turn local visitors into paying clients.",
+    specs: [
+      "Sub-second load on any smartphone",
+      "100% responsive custom build",
+      "Handcrafted code · Zero template bloat",
+    ],
     tiltClass: "-rotate-1 sm:-rotate-1.5 lg:-rotate-2 lg:translate-y-1",
     theme: {
       badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
       iconBox:
         "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border-blue-200/60 dark:border-blue-500/30",
-      icon: <Smartphone className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      icon: <Smartphone className="w-5 h-5 dark:text-blue-400" />,
       metric: "text-blue-600 dark:text-blue-400",
       hoverBorder: "hover:border-blue-500/60 dark:hover:border-blue-400/60",
       hoverShadow: "hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20",
       dot: "bg-blue-500",
+      checkColor: "text-blue-500 dark:text-blue-400",
     },
   },
   {
@@ -58,9 +63,12 @@ const CARDS: CapabilityCard[] = [
     metric: "1-Tap Chat",
     metricSub: "Direct To Your Phone",
     title: "Instant WhatsApp Routing",
-    description:
-      "Customers tap once to message you directly with booking details pre-filled. No long forms, zero lost emails, and immediate client response.",
-    bullet: "Direct lead alerts on your smartphone",
+    oneLiner: "Capture customers immediately without long contact forms.",
+    specs: [
+      "Inquiries land straight on your phone",
+      "Booking details pre-filled for ease",
+      "Zero lost emails or delayed replies",
+    ],
     tiltClass: "rotate-1 sm:rotate-2 lg:rotate-2 lg:translate-y-5",
     theme: {
       badge:
@@ -68,12 +76,13 @@ const CARDS: CapabilityCard[] = [
       iconBox:
         "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200/60 dark:border-emerald-500/30",
       icon: (
-        <MessageSquare className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+        <MessageSquare className="w-5 h-5 dark:text-emerald-400" />
       ),
       metric: "text-emerald-600 dark:text-emerald-400",
       hoverBorder: "hover:border-emerald-500/60 dark:hover:border-emerald-400/60",
       hoverShadow: "hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/20",
       dot: "bg-emerald-500",
+      checkColor: "text-emerald-500 dark:text-emerald-400",
     },
   },
   {
@@ -82,19 +91,23 @@ const CARDS: CapabilityCard[] = [
     metric: "Google Maps #1",
     metricSub: "Local 3-Pack Ranking",
     title: "Local Search Dominance",
-    description:
-      "Structured local schemas engineered so nearby customers searching for your services in your city find your business first on Google Maps and Search.",
-    bullet: "Visible to high-intent local clients",
+    oneLiner: "Rank first when nearby customers search in your city.",
+    specs: [
+      "Local Google Maps 3-pack placement",
+      "Structured local search schemas",
+      "High-intent nearby buyers find you",
+    ],
     tiltClass: "-rotate-1 sm:-rotate-1.5 lg:-rotate-1 lg:-translate-y-2",
     theme: {
       badge: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20",
       iconBox:
         "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200/60 dark:border-amber-500/30",
-      icon: <MapPin className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
+      icon: <MapPin className="w-5 h-5 text-amber-600" />,
       metric: "text-amber-600 dark:text-amber-400",
       hoverBorder: "hover:border-amber-500/60 dark:hover:border-amber-400/60",
       hoverShadow: "hover:shadow-amber-500/10 dark:hover:shadow-amber-500/20",
       dot: "bg-amber-500",
+      checkColor: "text-amber-500 dark:text-amber-400",
     },
   },
   {
@@ -103,19 +116,23 @@ const CARDS: CapabilityCard[] = [
     metric: "0% Commission",
     metricSub: "Instant Bank Payout",
     title: "Direct UPI & Payments",
-    description:
-      "Accept customer payments directly into your bank account with zero platform cuts, no monthly SaaS subscriptions, and private client booking records.",
-    bullet: "Money goes straight to your account",
+    oneLiner: "Receive client payments straight into your bank account.",
+    specs: [
+      "Instant UPI, QR & card checkout",
+      "Direct bank payout · 0% commission",
+      "Zero monthly software lock-ins",
+    ],
     tiltClass: "rotate-1 sm:rotate-2 lg:rotate-2 lg:translate-y-4",
     theme: {
       badge: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
       iconBox:
         "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-200/60 dark:border-rose-500/30",
-      icon: <CreditCard className="w-5 h-5 text-rose-600 dark:text-rose-400" />,
+      icon: <CreditCard className="w-5 h-5 dark:text-rose-400" />,
       metric: "text-rose-600 dark:text-rose-400",
       hoverBorder: "hover:border-rose-500/60 dark:hover:border-rose-400/60",
       hoverShadow: "hover:shadow-rose-500/10 dark:hover:shadow-rose-500/20",
       dot: "bg-rose-500",
+      checkColor: "text-rose-500 dark:text-rose-400",
     },
   },
 ];
@@ -164,20 +181,20 @@ export default function UnifiedEngine() {
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeDasharray="6 6"
-                className="text-border-dark dark:text-white/15 opacity-60"
+                className="text-border-dark opacity-60"
               />
             </svg>
           </div>
 
-          {/* 4 Clean, Vibrant, Benefit-Driven Cards */}
+          {/* 4 Clean, Visual Spec Cards (Low Text, High Scannability, Zero Slop) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 relative z-10 py-4">
             {CARDS.map((card) => (
               <div
                 key={card.number}
-                className={`group relative cursor-pointer transform-gpu will-change-transform rounded-2xl p-6 sm:p-7 bg-bg-primary dark:bg-bg-dark-card border border-border/80 dark:border-white/10 shadow-md dark:shadow-xl shadow-black/5 ${card.tiltClass} hover:rotate-0! hover:-translate-y-3! hover:scale-[1.02] hover:z-30 ${card.theme.hoverBorder} ${card.theme.hoverShadow} hover:shadow-xl transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between min-h-[340px] sm:min-h-[360px] select-none`}
+                className={`group relative cursor-pointer transform-gpu will-change-transform rounded-2xl p-6 sm:p-7 bg-bg-primary border dark:border-white/10 dark:shadow-xl shadow-black/5 ${card.tiltClass} hover:rotate-0! hover:-translate-y-3! hover:scale-[1.02] hover:z-30 ${card.theme.hoverBorder} ${card.theme.hoverShadow} hover:shadow-xl transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between select-none`}
               >
                 {/* Top Row: Index + Semantic Category Pill + Themed Icon */}
-                <div className="flex items-center justify-between pb-4 border-b border-border/50 dark:border-white/5">
+                <div className="flex items-center justify-between pb-3.5 border-b dark:border-white/5">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-bold tracking-widest text-text-tertiary">
                       {card.number}
@@ -195,32 +212,43 @@ export default function UnifiedEngine() {
                   </div>
                 </div>
 
-                {/* Middle: Prominent Benefit Metric */}
-                <div className="my-5">
+                {/* Middle: Prominent Hero Visual Stat */}
+                <div className="my-4">
                   <div
                     className={`font-display font-black text-xl sm:text-2xl lg:text-[21px] xl:text-2xl tracking-tight leading-tight whitespace-nowrap ${card.theme.metric}`}
                   >
                     {card.metric}
                   </div>
-                  <div className="mt-1.5 font-mono text-xs text-text-tertiary flex items-center gap-1.5">
+                  <div className="mt-1 font-mono text-xs text-text-tertiary flex items-center gap-1.5">
                     <span className={`w-1.5 h-1.5 rounded-full ${card.theme.dot}`} />
                     <span>{card.metricSub}</span>
                   </div>
                 </div>
 
-                {/* Bottom: Modern Bold Title & Plain-Language Client Value */}
-                <div className="pt-4 border-t border-border/40">
-                  <h3 className="font-sans font-bold text-lg sm:text-xl text-text-primary tracking-tight leading-snug mb-2 group-hover:text-text-primary flex items-center justify-between">
+                {/* Title & 1-Line Punchline (Zero Fluff, Instant Comprehension) */}
+                <div className="mb-4">
+                  <h3 className="font-sans font-bold text-lg text-text-primary tracking-tight leading-snug mb-1 flex items-center justify-between">
                     <span>{card.title}</span>
                     <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0 ml-1" />
                   </h3>
-                  <p className="text-xs sm:text-[13px] font-sans font-normal text-text-secondary leading-relaxed mb-3">
-                    {card.description}
+                  <p className="text-xs font-sans text-text-secondary leading-normal">
+                    {card.oneLiner}
                   </p>
-                  <div className="flex items-center gap-1.5 text-[11px] font-mono text-text-tertiary">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-text-tertiary shrink-0" />
-                    <span className="truncate">{card.bullet}</span>
-                  </div>
+                </div>
+
+                {/* Visual Scannable Spec Badges (Replaces the long gray paragraph & truncation) */}
+                <div className="pt-3 border-t border-border/40 dark:border-white/5 space-y-1.5">
+                  {card.specs.map((spec, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 text-xs font-sans text-text-primary/90"
+                    >
+                      <CheckCircle2
+                        className={`w-3.5 h-3.5 shrink-0 ${card.theme.checkColor}`}
+                      />
+                      <span className="leading-tight">{spec}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
