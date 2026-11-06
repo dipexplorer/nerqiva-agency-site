@@ -6,104 +6,72 @@ import {
   MessageSquare,
   MapPin,
   CreditCard,
-  ArrowUpRight,
 } from "lucide-react";
 
-interface CapabilityCard {
+interface DeliverableCard {
   number: string;
-  tag: string;
   metric: string;
-  metricSub: string;
   title: string;
-  oneLiner: string;
-  tiltClass: string;
+  description: string;
   theme: {
-    badge: string;
     iconBox: string;
     icon: React.ReactNode;
-    metric: string;
+    metricColor: string;
     hoverBorder: string;
-    hoverShadow: string;
-    dot: string;
   };
 }
 
-const CARDS: CapabilityCard[] = [
+const DELIVERABLES: DeliverableCard[] = [
   {
     number: "01",
-    tag: "Performance",
-    metric: "100% Mobile",
-    metricSub: "Sub-Second Speed",
+    metric: "100% Mobile Ready",
     title: "High-Converting Website",
-    oneLiner: "Turns local smartphone visitors into booked paying clients.",
-    tiltClass: "-rotate-1 sm:-rotate-1.5 lg:-rotate-2 lg:translate-y-1",
+    description: "Loads instantly on smartphones to turn local visitors into paying clients.",
     theme: {
-      badge: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
       iconBox:
-        "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 border-blue-200/60 dark:border-blue-500/30",
-      icon: <Smartphone className="w-5 h-5 dark:text-blue-400" />,
-      metric: "text-blue-600 dark:text-blue-400",
-      hoverBorder: "hover:border-blue-500/60 dark:hover:border-blue-400/60",
-      hoverShadow: "hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20",
-      dot: "bg-blue-500",
+        "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+      icon: <Smartphone className="w-5 h-5 text-blue-600 dark:text-blue-400" />,
+      metricColor: "text-blue-600 dark:text-blue-400",
+      hoverBorder: "hover:border-blue-500/50 dark:hover:border-blue-400/50",
     },
   },
   {
     number: "02",
-    tag: "Conversion",
-    metric: "1-Tap Chat",
-    metricSub: "Direct To Phone",
+    metric: "1-Tap Direct Leads",
     title: "Instant WhatsApp Routing",
-    oneLiner: "Inquiries land straight on your phone with zero lost forms.",
-    tiltClass: "rotate-1 sm:rotate-2 lg:rotate-2 lg:translate-y-5",
+    description: "Inquiries land straight on your phone with zero lost forms or delay.",
     theme: {
-      badge:
-        "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
       iconBox:
-        "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200/60 dark:border-emerald-500/30",
-      icon: <MessageSquare className="w-5 h-5 dark:text-emerald-400" />,
-      metric: "text-emerald-600 dark:text-emerald-400",
-      hoverBorder: "hover:border-emerald-500/60 dark:hover:border-emerald-400/60",
-      hoverShadow: "hover:shadow-emerald-500/10 dark:hover:shadow-emerald-500/20",
-      dot: "bg-emerald-500",
+        "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+      icon: <MessageSquare className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />,
+      metricColor: "text-emerald-600 dark:text-emerald-400",
+      hoverBorder: "hover:border-emerald-500/50 dark:hover:border-emerald-400/50",
     },
   },
   {
     number: "03",
-    tag: "Discovery",
-    metric: "Google Maps #1",
-    metricSub: "Local 3-Pack Ready",
-    title: "Local Search Dominance",
-    oneLiner: "Rank in the top 3 when nearby customers search your services.",
-    tiltClass: "-rotate-1 sm:-rotate-1.5 lg:-rotate-1 lg:-translate-y-2",
+    metric: "#1 Local 3-Pack",
+    title: "Google Maps Ranking",
+    description: "Rank at the top when nearby customers search for your services in your city.",
     theme: {
-      badge: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20",
       iconBox:
-        "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200/60 dark:border-amber-500/30",
-      icon: <MapPin className="w-5 h-5 text-amber-600" />,
-      metric: "text-amber-600 dark:text-amber-400",
-      hoverBorder: "hover:border-amber-500/60 dark:hover:border-amber-400/60",
-      hoverShadow: "hover:shadow-amber-500/10 dark:hover:shadow-amber-500/20",
-      dot: "bg-amber-500",
+        "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20",
+      icon: <MapPin className="w-5 h-5 text-amber-600 dark:text-amber-400" />,
+      metricColor: "text-amber-600 dark:text-amber-400",
+      hoverBorder: "hover:border-amber-500/50 dark:hover:border-amber-400/50",
     },
   },
   {
     number: "04",
-    tag: "Settlement",
-    metric: "0% Commission",
-    metricSub: "Instant Bank Payout",
+    metric: "0% Commission Cut",
     title: "Direct UPI & Payments",
-    oneLiner: "Receive customer payments straight to your bank account.",
-    tiltClass: "rotate-1 sm:rotate-2 lg:rotate-2 lg:translate-y-4",
+    description: "Customer payments go straight to your bank account with zero middleman fees.",
     theme: {
-      badge: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
       iconBox:
-        "bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border-rose-200/60 dark:border-rose-500/30",
-      icon: <CreditCard className="w-5 h-5 dark:text-rose-400" />,
-      metric: "text-rose-600 dark:text-rose-400",
-      hoverBorder: "hover:border-rose-500/60 dark:hover:border-rose-400/60",
-      hoverShadow: "hover:shadow-rose-500/10 dark:hover:shadow-rose-500/20",
-      dot: "bg-rose-500",
+        "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
+      icon: <CreditCard className="w-5 h-5 text-rose-600 dark:text-rose-400" />,
+      metricColor: "text-rose-600 dark:text-rose-400",
+      hoverBorder: "hover:border-rose-500/50 dark:hover:border-rose-400/50",
     },
   },
 ];
@@ -112,109 +80,65 @@ export default function UnifiedEngine() {
   return (
     <section
       id="systems"
-      className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative overflow-hidden"
+      className="py-20 sm:py-24 bg-transparent border-t border-border/40 relative overflow-hidden"
     >
       <div className="section-container relative z-10">
-        {/* Section Header: Clear, Benefit-Driven Typography */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 sm:mb-20 pb-6 border-b border-border/40 gap-6">
-          <div className="max-w-2xl">
-            <div className="font-mono text-xs uppercase tracking-widest text-text-tertiary mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              <span>Full-Stack Studio Deliverables</span>
-            </div>
-            <h2
-              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.05]"
-              style={{ letterSpacing: "-0.035em" }}
-            >
-              What You Get In Every Build.
-            </h2>
-          </div>
-          <p className="text-text-secondary text-sm sm:text-base max-w-md leading-relaxed font-sans">
-            We don&apos;t build sites that just sit online. Every project comes with a complete, 4-part client acquisition engine ready on day one.
-          </p>
+        {/* Section Header: Pure Typographic Authority (No kickers, no redundant paragraph bloat) */}
+        <div className="mb-12 sm:mb-16 pb-6 border-b border-border/40">
+          <h2
+            className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.05]"
+            style={{ letterSpacing: "-0.035em" }}
+          >
+            What You Get In Every Build.
+          </h2>
         </div>
 
-        {/* The Interactive Connected Cards Stage */}
-        <div className="relative pt-4 pb-8">
-          {/* Continuous Flowing Architectural Guide Line */}
-          <div
-            className="hidden lg:block absolute inset-0 pointer-events-none select-none z-0"
-            aria-hidden="true"
-          >
-            <svg
-              className="w-full h-full"
-              viewBox="0 0 1200 420"
-              fill="none"
-              preserveAspectRatio="none"
+        {/* 4 Clean Editorial Spec Cards (Architectural Grid, Zero Tilt Gimmicks, Zero Slop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {DELIVERABLES.map((item) => (
+            <div
+              key={item.number}
+              className={`group relative rounded-2xl p-6 sm:p-7 bg-bg-primary border border-border/60 dark:border-white/10 dark:bg-bg-primary/90 shadow-xs hover:-translate-y-1.5 hover:shadow-lg transition-all duration-300 flex flex-col justify-between ${item.theme.hoverBorder}`}
             >
-              <path
-                d="M -20,210 C 140,140 240,290 380,240 C 520,190 620,310 760,220 C 900,150 1020,280 1240,210"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeDasharray="6 6"
-                className="text-border-dark opacity-60"
-              />
-            </svg>
-          </div>
-
-          {/* 4 Clean, Visual Spec Cards (Zero Text Overload, Zero Slop, Instant Comprehension) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7 relative z-10 py-4">
-            {CARDS.map((card) => (
-              <div
-                key={card.number}
-                className={`group relative cursor-pointer transform-gpu will-change-transform rounded-2xl p-6 sm:p-7 bg-bg-primary border border-border/60 dark:border-white/10 dark:bg-bg-primary/90 shadow-sm shadow-black/5 ${card.tiltClass} hover:rotate-0! hover:-translate-y-2.5! hover:scale-[1.02] hover:z-30 ${card.theme.hoverBorder} ${card.theme.hoverShadow} hover:shadow-xl transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between select-none min-h-[250px] sm:min-h-[270px]`}
-              >
-                {/* Top Row: Index + Semantic Category Pill + Themed Icon */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-border/40 dark:border-white/5">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold tracking-widest text-text-tertiary">
-                      {card.number}
-                    </span>
-                    <span
-                      className={`font-mono text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md border ${card.theme.badge}`}
-                    >
-                      {card.tag}
-                    </span>
-                  </div>
+              <div>
+                {/* Top Row: Clean Themed Icon Box + Subtle Index */}
+                <div className="flex items-center justify-between mb-6">
                   <div
-                    className={`p-2.5 rounded-xl border shadow-xs transition-transform duration-300 group-hover:scale-110 ${card.theme.iconBox}`}
+                    className={`p-2.5 rounded-xl border shadow-xs transition-transform duration-300 group-hover:scale-105 ${item.theme.iconBox}`}
                   >
-                    {card.theme.icon}
+                    {item.theme.icon}
                   </div>
+                  <span className="font-mono text-xs font-semibold text-text-tertiary">
+                    {item.number}
+                  </span>
                 </div>
 
-                {/* Middle: Prominent Hero Visual Stat */}
-                <div className="my-5">
-                  <div
-                    className={`font-display font-black text-2xl sm:text-3xl lg:text-[23px] xl:text-3xl tracking-tight leading-tight whitespace-nowrap ${card.theme.metric}`}
-                  >
-                    {card.metric}
-                  </div>
-                  <div className="mt-1.5 font-mono text-xs text-text-tertiary flex items-center gap-1.5">
-                    <span className={`w-1.5 h-1.5 rounded-full ${card.theme.dot}`} />
-                    <span>{card.metricSub}</span>
-                  </div>
+                {/* Hero Metric */}
+                <div
+                  className={`font-display font-black text-2xl sm:text-3xl tracking-tight leading-none mb-3 ${item.theme.metricColor}`}
+                >
+                  {item.metric}
                 </div>
 
-                {/* Bottom: Title & 1-Line Benefit (Zero Fluff, Instant Comprehension) */}
-                <div className="pt-3 border-t border-border/40 dark:border-white/5">
-                  <h3 className="font-sans font-bold text-base sm:text-lg text-text-primary tracking-tight leading-snug mb-1.5 flex items-center justify-between">
-                    <span>{card.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0 ml-1" />
-                  </h3>
-                  <p className="text-xs sm:text-[13px] font-sans text-text-secondary leading-relaxed">
-                    {card.oneLiner}
-                  </p>
-                </div>
+                {/* Clear Deliverable Title */}
+                <h3 className="font-sans font-bold text-base sm:text-lg text-text-primary tracking-tight leading-snug mb-2">
+                  {item.title}
+                </h3>
               </div>
-            ))}
-          </div>
 
-          {/* Understated Guarantee Line */}
-          <div className="mt-10 pt-6 border-t border-border/40 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-text-tertiary">
-            <span>Included in every client package</span>
-            <span>100% Code &amp; Asset Ownership · Zero Monthly Lock-Ins</span>
-          </div>
+              {/* Single-Sentence Benefit (Zero fluff, under 12 words) */}
+              <p className="text-xs sm:text-[13px] font-sans text-text-secondary leading-relaxed pt-4 border-t border-border/40 dark:border-white/5">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Understated Guarantee Line */}
+        <div className="mt-10 pt-6 border-t border-border/40 flex justify-end">
+          <span className="text-xs font-mono text-text-tertiary">
+            100% Code &amp; Asset Ownership · Zero Monthly Lock-Ins
+          </span>
         </div>
       </div>
     </section>
