@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ArrowUpRight, Check, MessageSquare, PhoneCall, FileText } from "lucide-react";
 
 export default function UnifiedEngine() {
@@ -41,8 +42,8 @@ export default function UnifiedEngine() {
           {/* CARD 01: 100% Mobile Ready (Website)                       */}
           {/* ─────────────────────────────────────────────────────────── */}
           <div className="group relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 shadow-sm hover:shadow-2xl hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu will-change-transform -rotate-1 sm:-rotate-1.5 lg:-rotate-2 lg:translate-y-2 hover:!rotate-0 hover:!-translate-y-3 hover:scale-[1.025] hover:z-20 flex flex-col justify-between overflow-hidden min-h-[380px] sm:min-h-[410px]">
-            {/* Solid Vibrant Emerald Accent Disc in Background (Matching Reference) */}
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-emerald-500/90 dark:bg-emerald-500/80 shadow-lg shadow-emerald-500/25 absolute -right-2 top-10 pointer-events-none" />
+            {/* Emerald circular background glow */}
+            <div className="w-32 h-32 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 blur-xl absolute -right-2 top-0 pointer-events-none" />
 
             {/* Top Row: Index & Arrow */}
             <div className="relative z-10">
@@ -54,56 +55,68 @@ export default function UnifiedEngine() {
                 <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-60 group-hover:opacity-100 group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
 
-              {/* Display Headline with Emerald Accent & Subtitle */}
+              {/* Display Headline & Subtitle */}
               <div className="font-display font-black text-2xl sm:text-3xl text-text-primary tracking-tight leading-tight mb-1">
-                100% Mobile <span className="text-emerald-500">Ready</span>
+                100% Mobile Ready
               </div>
               <div className="font-sans font-bold text-xs sm:text-sm text-text-secondary tracking-tight">
                 Modern Business Website
               </div>
             </div>
 
-            {/* Visual Center: 3D Tilted Smartphone Mockup with Real Mobile UI */}
-            <div className="relative h-48 sm:h-52 flex items-center justify-center my-auto z-10">
-              {/* 3D Tilted iPhone Body */}
-              <div className="relative w-36 sm:w-40 rounded-[24px] border-[3px] border-zinc-800 dark:border-zinc-700 bg-zinc-950 p-2 shadow-[-8px_16px_32px_-6px_rgba(0,0,0,0.35)] transform -rotate-3 group-hover:rotate-0 transition-transform duration-500 ease-out">
-                {/* Dynamic Island / Speaker */}
-                <div className="w-12 h-2.5 bg-zinc-900 rounded-full mx-auto mb-2 flex items-center justify-end pr-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+            {/* Visual Center: Smartphone with Crisp, Clear Mobile UI */}
+            <div className="relative h-48 sm:h-52 flex items-end justify-center overflow-hidden my-auto pt-2 z-10">
+              <div className="relative w-36 sm:w-40 h-44 sm:h-48 rounded-t-[22px] border-t-2 border-x-2 border-zinc-900/20 dark:border-white/20 bg-white dark:bg-zinc-950 shadow-xl overflow-hidden flex flex-col transform transition-transform duration-300 group-hover:scale-105">
+                {/* Speaker Notch */}
+                <div className="w-full pt-1.5 pb-1 bg-white dark:bg-zinc-950 flex justify-center shrink-0">
+                  <div className="w-10 h-1 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
                 </div>
 
-                {/* Screen Surface */}
-                <div className="w-full bg-white dark:bg-zinc-900 rounded-[18px] p-3 text-zinc-900 dark:text-white flex flex-col justify-between h-[155px] sm:h-[165px] border border-zinc-200/60 dark:border-white/5 overflow-hidden relative">
-                  {/* Screen Header */}
-                  <div className="flex items-center justify-between border-b border-zinc-100 dark:border-white/10 pb-1.5">
-                    <div className="flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                      <span className="font-sans font-black text-[10px] tracking-tight">NERQIVA</span>
+                {/* Mobile Screen Header */}
+                <div className="px-2.5 py-1 border-b border-border/60 dark:border-white/10 flex items-center justify-between bg-white dark:bg-zinc-950 shrink-0">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-3.5 h-3.5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[8px] font-black">
+                      L
                     </div>
-                    <div className="space-y-0.5">
-                      <div className="w-3.5 h-0.5 bg-zinc-800 dark:bg-white rounded-full" />
-                      <div className="w-3.5 h-0.5 bg-zinc-800 dark:bg-white rounded-full" />
-                    </div>
-                  </div>
-
-                  {/* Screen Hero Copy */}
-                  <div className="my-auto py-1">
-                    <div className="font-display font-black text-sm sm:text-base leading-tight tracking-tight text-zinc-900 dark:text-white">
-                      Your Business<br />
-                      <span className="text-emerald-600 dark:text-emerald-400">Online.</span>
-                    </div>
-                    <div className="text-[9px] font-sans text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-1">
-                      Built for smartphone conversion.
-                    </div>
-                  </div>
-
-                  {/* Screen Action Button */}
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500 text-white font-sans font-bold text-[9px] shadow-xs">
-                      <span>Explore</span>
-                      <span className="text-[10px]">→</span>
+                    <span className="font-sans text-[10px] font-bold text-text-primary tracking-tight">
+                      LabLink
                     </span>
-                    <span className="font-mono text-[8px] text-zinc-400">0.4s load</span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="w-3 h-[1px] bg-zinc-600 dark:bg-zinc-400 rounded-full" />
+                    <span className="w-3 h-[1px] bg-zinc-600 dark:bg-zinc-400 rounded-full" />
+                  </div>
+                </div>
+
+                {/* Mobile Screen Body: Clear, Razor-Sharp Booking UI */}
+                <div className="p-2.5 bg-zinc-50/70 dark:bg-zinc-900/50 flex-1 flex flex-col justify-between text-left">
+                  <div>
+                    <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[8px] font-mono font-medium mb-1">
+                      <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                      Guwahati Live
+                    </div>
+                    <div className="font-sans font-bold text-[11.5px] sm:text-[12px] text-text-primary leading-tight tracking-tight mb-0.5">
+                      Home Blood Test
+                    </div>
+                    <div className="text-[9px] text-text-secondary leading-tight">
+                      Doorstep test in 60 mins.
+                    </div>
+                  </div>
+
+                  {/* Time Slot Chips */}
+                  <div className="flex items-center gap-1 my-1">
+                    <span className="px-1.5 py-0.5 rounded-md bg-white dark:bg-zinc-800 border border-border/60 dark:border-white/10 text-[8px] font-mono text-text-secondary">
+                      07:30 AM
+                    </span>
+                    <span className="px-1.5 py-0.5 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[8px] font-mono font-bold text-emerald-600 dark:text-emerald-400">
+                      08:30 AM ✓
+                    </span>
+                  </div>
+
+                  {/* High-Converting CTA Button */}
+                  <div className="w-full py-1 px-2 rounded-md bg-emerald-600 text-white text-[9px] font-sans font-bold flex items-center justify-between shadow-xs">
+                    <span>Book Collection Slot</span>
+                    <span className="text-[10px]">→</span>
                   </div>
                 </div>
               </div>
