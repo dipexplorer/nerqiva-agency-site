@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { ArrowUpRight, Check, MessageSquare, PhoneCall, FileText } from "lucide-react";
 
 export default function UnifiedEngine() {
@@ -42,8 +41,8 @@ export default function UnifiedEngine() {
           {/* CARD 01: 100% Mobile Ready (Website)                       */}
           {/* ─────────────────────────────────────────────────────────── */}
           <div className="group relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 shadow-sm hover:shadow-2xl hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform-gpu will-change-transform -rotate-1 sm:-rotate-1.5 lg:-rotate-2 lg:translate-y-2 hover:!rotate-0 hover:!-translate-y-3 hover:scale-[1.025] hover:z-20 flex flex-col justify-between overflow-hidden min-h-[380px] sm:min-h-[410px]">
-            {/* Emerald circular background glow */}
-            <div className="w-32 h-32 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 blur-xl absolute -right-2 top-0 pointer-events-none" />
+            {/* Solid Vibrant Emerald Accent Disc in Background (Matching Reference) */}
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-emerald-500/90 dark:bg-emerald-500/80 shadow-lg shadow-emerald-500/25 absolute -right-2 top-10 pointer-events-none" />
 
             {/* Top Row: Index & Arrow */}
             <div className="relative z-10">
@@ -55,32 +54,57 @@ export default function UnifiedEngine() {
                 <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-60 group-hover:opacity-100 group-hover:text-emerald-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
 
-              {/* Display Headline & Subtitle */}
+              {/* Display Headline with Emerald Accent & Subtitle */}
               <div className="font-display font-black text-2xl sm:text-3xl text-text-primary tracking-tight leading-tight mb-1">
-                100% Mobile Ready
+                100% Mobile <span className="text-emerald-500">Ready</span>
               </div>
               <div className="font-sans font-bold text-xs sm:text-sm text-text-secondary tracking-tight">
                 Modern Business Website
               </div>
             </div>
 
-            {/* Visual Center: Smartphone with Real LabLink UI */}
-            <div className="relative h-48 sm:h-52 flex items-end justify-center overflow-hidden my-auto pt-2 z-10">
-              <div className="relative w-36 sm:w-40 h-44 sm:h-48 rounded-t-[22px] border-t-2 border-x-2 border-zinc-900/15 dark:border-white/20 bg-zinc-950 shadow-xl overflow-hidden transform transition-transform duration-300 group-hover:scale-105">
-                {/* Speaker Notch */}
-                <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-1 bg-zinc-800 rounded-full z-20" />
-                
-                {/* Real LabLink Mobile Website Screenshot */}
-                <div className="relative w-full h-full pt-3 overflow-hidden bg-zinc-900">
-                  <Image
-                    src="/images/projects/lablink/booking.png"
-                    alt="LabLink Mobile Website"
-                    width={860}
-                    height={1864}
-                    className="w-full h-auto object-cover object-top"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-t from-bg-primary dark:from-[#111614] to-transparent pointer-events-none" />
+            {/* Visual Center: 3D Tilted Smartphone Mockup with Real Mobile UI */}
+            <div className="relative h-48 sm:h-52 flex items-center justify-center my-auto z-10">
+              {/* 3D Tilted iPhone Body */}
+              <div className="relative w-36 sm:w-40 rounded-[24px] border-[3px] border-zinc-800 dark:border-zinc-700 bg-zinc-950 p-2 shadow-[-8px_16px_32px_-6px_rgba(0,0,0,0.35)] transform -rotate-3 group-hover:rotate-0 transition-transform duration-500 ease-out">
+                {/* Dynamic Island / Speaker */}
+                <div className="w-12 h-2.5 bg-zinc-900 rounded-full mx-auto mb-2 flex items-center justify-end pr-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                </div>
+
+                {/* Screen Surface */}
+                <div className="w-full bg-white dark:bg-zinc-900 rounded-[18px] p-3 text-zinc-900 dark:text-white flex flex-col justify-between h-[155px] sm:h-[165px] border border-zinc-200/60 dark:border-white/5 overflow-hidden relative">
+                  {/* Screen Header */}
+                  <div className="flex items-center justify-between border-b border-zinc-100 dark:border-white/10 pb-1.5">
+                    <div className="flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                      <span className="font-sans font-black text-[10px] tracking-tight">NERQIVA</span>
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="w-3.5 h-0.5 bg-zinc-800 dark:bg-white rounded-full" />
+                      <div className="w-3.5 h-0.5 bg-zinc-800 dark:bg-white rounded-full" />
+                    </div>
+                  </div>
+
+                  {/* Screen Hero Copy */}
+                  <div className="my-auto py-1">
+                    <div className="font-display font-black text-sm sm:text-base leading-tight tracking-tight text-zinc-900 dark:text-white">
+                      Your Business<br />
+                      <span className="text-emerald-600 dark:text-emerald-400">Online.</span>
+                    </div>
+                    <div className="text-[9px] font-sans text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-1">
+                      Built for smartphone conversion.
+                    </div>
+                  </div>
+
+                  {/* Screen Action Button */}
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500 text-white font-sans font-bold text-[9px] shadow-xs">
+                      <span>Explore</span>
+                      <span className="text-[10px]">→</span>
+                    </span>
+                    <span className="font-mono text-[8px] text-zinc-400">0.4s load</span>
+                  </div>
                 </div>
               </div>
             </div>
