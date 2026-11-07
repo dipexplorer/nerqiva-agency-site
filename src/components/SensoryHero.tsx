@@ -62,7 +62,7 @@ export default function SensoryHero() {
               style={{ letterSpacing: "-0.04em" }}
             >
               Your business gets a{" "}
-              <em className="not-italic font-display italic text-emerald-600 dark:text-emerald-400 font-normal inline-block transition-colors duration-300">
+              <em className="not-italic font-display italic text-accent dark:text-accent font-normal inline-block transition-colors duration-300">
                 website that books clients
               </em>
               {" "}—{" "}
@@ -79,7 +79,8 @@ export default function SensoryHero() {
                 href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20want%20a%20website%20for%20my%20business."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs sm:text-sm font-mono font-bold tracking-wider text-white rounded-full transition-all duration-200 hover:scale-[1.02] bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-950/20 active:scale-[0.98] cursor-pointer select-none text-center"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs sm:text-sm font-mono font-bold tracking-wider text-white rounded-full transition-all duration-200 hover:scale-[1.02] hover:opacity-95 shadow-lg shadow-purple-900/25 cursor-pointer select-none text-center"
+                style={{ background: "var(--accent)" }}
               >
                 <span>Start on WhatsApp</span>
                 <ArrowUpRight size={14} />
@@ -87,7 +88,7 @@ export default function SensoryHero() {
 
               <a
                 href="#flagships"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-xs sm:text-sm font-mono font-semibold text-text-primary dark:text-white/70 border border-border-dark dark:border-white/15 rounded-full hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:border-white/35 dark:hover:text-white transition-all duration-200 cursor-pointer select-none bg-bg-card/70 dark:bg-white/5 text-center"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-xs sm:text-sm font-mono font-semibold text-text-primary dark:text-white/70 border border-border-dark dark:border-white/15 rounded-full hover:border-accent hover:text-accent dark:hover:border-white/35 dark:hover:text-white transition-all duration-200 cursor-pointer select-none bg-bg-card/70 dark:bg-white/5 text-center"
               >
                 <span>See Our Work</span>
                 <ArrowDown size={14} />

@@ -264,7 +264,7 @@ export default function SprintDelivery() {
                   isCurrent
                     ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 shadow-xs"
                     : isPassed
-                    ? "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10"
+                    ? "text-accent dark:text-accent-light bg-accent/10"
                     : "text-text-tertiary hover:text-text-secondary"
                 }`}
                 aria-pressed={isCurrent}

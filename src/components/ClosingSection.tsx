@@ -68,7 +68,7 @@ export default function ClosingSection() {
         
         {/* Editorial Sub-badge */}
         <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
           <span className="font-mono text-xs uppercase tracking-wider text-text-tertiary">
             Direct Studio Commission
           </span>
@@ -80,7 +80,7 @@ export default function ClosingSection() {
           style={{ letterSpacing: "-0.035em" }}
         >
           Select your business category and commission your{" "}
-          <span className="font-display italic font-normal text-emerald-600 dark:text-emerald-400">
+          <span className="font-display italic font-normal text-accent">
             flagship.
           </span>
         </h2>
@@ -90,7 +90,7 @@ export default function ClosingSection() {
           Direct WhatsApp conversation with founder Dipjyoti. Tap your industry below to review live demos in your exact space and receive a transparent project quote.
         </p>
 
-        {/* Interactive Industry Chips (Touch-friendly 44px+ height, no purple) */}
+        {/* Interactive Industry Chips (Touch-friendly 44px+ height) */}
         <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-8 w-full max-w-2xl">
           {SERVICE_OPTIONS.map((item) => {
             const isSelected = selectedService.id === item.id;
@@ -107,7 +107,7 @@ export default function ClosingSection() {
                 aria-pressed={isSelected}
               >
                 {isSelected && (
-                  <Check size={13} className="text-emerald-500 dark:text-emerald-600 stroke-[3] shrink-0" />
+                  <Check size={13} className="text-accent stroke-[3] shrink-0" />
                 )}
                 <span>{item.label}</span>
               </button>
@@ -120,7 +120,8 @@ export default function ClosingSection() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-full sm:w-auto mb-4 px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-bold tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-950/20 cursor-pointer select-none"
+          className="group w-full sm:w-auto mb-4 px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-bold tracking-wider text-white active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 shadow-lg shadow-purple-900/25 cursor-pointer select-none hover:opacity-95"
+          style={{ background: "var(--accent)" }}
         >
           <MessageCircle className="w-4 h-4 fill-current shrink-0" />
           <span>Inquire for {selectedService.label} on WhatsApp</span>
@@ -129,7 +130,7 @@ export default function ClosingSection() {
 
         {/* Zero-Risk Staging Guarantee Card */}
         <div className="mt-8 max-w-xl w-full p-5 sm:p-6 rounded-2xl bg-zinc-50/90 dark:bg-zinc-900/40 border border-border/80 dark:border-zinc-800 shadow-sm flex items-start gap-4 text-left">
-          <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/25 text-accent flex items-center justify-center shrink-0 mt-0.5">
             <ShieldCheck size={20} strokeWidth={2} />
           </div>
           <div>
@@ -137,7 +138,7 @@ export default function ClosingSection() {
               <span className="font-mono text-[11px] uppercase tracking-wider text-text-primary font-bold">
                 Zero-Risk Staging Guarantee
               </span>
-              <span className="font-mono text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold border border-emerald-500/20">
+              <span className="font-mono text-[9px] px-2 py-0.5 rounded-full bg-accent/10 text-accent dark:text-accent-light font-bold border border-accent/20">
                 100% Code Ownership
               </span>
             </div>

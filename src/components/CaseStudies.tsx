@@ -141,8 +141,8 @@ export default function CaseStudies() {
 
                 {isClient && (
                   <div className="mt-2 px-1 flex items-center gap-1.5">
-                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-text-secondary dark:text-white/65 font-medium">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                       Live WhatsApp Booking Engine · 7-Day Sprint Delivery
                     </span>
                   </div>

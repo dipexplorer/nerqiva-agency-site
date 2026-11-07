@@ -148,7 +148,7 @@ export default function ProblemSection() {
                   <div className="flex items-start gap-3.5">
                     <span
                       className={`font-mono text-xs font-bold transition-colors ${
-                        isActive ? "text-emerald-600 dark:text-emerald-400" : "text-text-tertiary"
+                        isActive ? "text-accent dark:text-accent-light" : "text-text-tertiary"
                       }`}
                     >
                       {problem.index}
@@ -196,7 +196,7 @@ export default function ProblemSection() {
                     <div className="flex items-center gap-2 mb-2 font-mono text-[11px] text-text-tertiary uppercase tracking-wider">
                       <span>Diagnosis {activeProblem.index}</span>
                       <span>·</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                      <span className="text-accent dark:text-accent-light font-semibold">
                         {activeProblem.category}
                       </span>
                     </div>
@@ -224,10 +224,10 @@ export default function ProblemSection() {
                     </div>
 
                     {/* The Nerqiva System */}
-                    <div className="p-4 rounded-xl bg-emerald-500/[0.04] dark:bg-emerald-500/[0.06] border border-emerald-500/25 flex flex-col justify-between">
+                    <div className="p-4 rounded-xl bg-accent/[0.04] dark:bg-accent/[0.06] border border-accent/25 flex flex-col justify-between">
                       <div className="flex items-center gap-1.5 mb-2">
-                        <Check size={14} className="text-emerald-600 dark:text-emerald-400 stroke-[2.5] shrink-0" />
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+                        <Check size={14} className="text-accent dark:text-accent-light stroke-[2.5] shrink-0" />
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-accent dark:text-accent-light">
                           The Nerqiva System
                         </span>
                       </div>
@@ -245,7 +245,7 @@ export default function ProblemSection() {
                     <ul className="space-y-2.5">
                       {activeProblem.wefix.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
-                          <div className="mt-0.5 shrink-0 rounded-full p-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                          <div className="mt-0.5 shrink-0 rounded-full p-0.5 bg-accent/10 text-accent dark:text-accent-light">
                             <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                           </div>
                           <span className="font-sans leading-snug">{item}</span>
@@ -300,7 +300,7 @@ export default function ProblemSection() {
                   <div className="flex items-start gap-3 pr-2">
                     <span
                       className={`font-mono text-xs font-bold mt-0.5 ${
-                        isExpanded ? "text-emerald-600 dark:text-emerald-400" : "text-text-tertiary"
+                        isExpanded ? "text-accent dark:text-accent-light" : "text-text-tertiary"
                       }`}
                     >
                       {problem.index}
@@ -355,10 +355,10 @@ export default function ProblemSection() {
                             </p>
                           </div>
 
-                          <div className="p-3.5 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/25">
+                          <div className="p-3.5 rounded-xl bg-accent/[0.04] border border-accent/25">
                             <div className="flex items-center gap-1.5 mb-1">
-                              <Check size={13} className="text-emerald-600 dark:text-emerald-400 stroke-[2.5] shrink-0" />
-                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300">
+                              <Check size={13} className="text-accent dark:text-accent-light stroke-[2.5] shrink-0" />
+                              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-accent dark:text-accent-light">
                                 The Nerqiva System
                               </span>
                             </div>
@@ -372,7 +372,7 @@ export default function ProblemSection() {
                         <ul className="space-y-2 mt-1">
                           {problem.wefix.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-2 text-xs text-text-secondary">
-                              <div className="mt-0.5 shrink-0 rounded-full p-0.5 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                              <div className="mt-0.5 shrink-0 rounded-full p-0.5 bg-accent/10 text-accent dark:text-accent-light">
                                 <Check className="w-3 h-3 stroke-[2.5]" />
                               </div>
                               <span className="leading-snug">{item}</span>
@@ -387,7 +387,8 @@ export default function ProblemSection() {
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full py-3 px-4 rounded-full font-mono text-xs font-bold tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 inline-flex items-center justify-center gap-2 mt-2 shadow-sm"
+                          className="w-full py-3 px-4 rounded-full font-mono text-xs font-bold tracking-wider text-white inline-flex items-center justify-center gap-2 mt-2 shadow-sm shadow-purple-900/25 active:scale-[0.98] hover:opacity-95"
+                          style={{ background: "var(--accent)" }}
                         >
                           <MessageSquare className="w-3.5 h-3.5 fill-current" />
                           <span>{problem.cta}</span>

@@ -175,17 +175,17 @@ export default function Navigation() {
               <Link
                 href="/#systems"
                 onClick={() => setIsOpen(false)}
-                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-emerald-500/40"
+                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-accent/40"
               >
-                <span className="block text-emerald-600 dark:text-emerald-400 font-bold mb-0.5">⚡ Deliverables</span>
+                <span className="block text-accent font-bold mb-0.5">⚡ Deliverables</span>
                 <span className="text-[11px] text-text-tertiary dark:text-white/40">4 Core Systems</span>
               </Link>
               <Link
                 href="/#commission"
                 onClick={() => setIsOpen(false)}
-                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-emerald-500/40"
+                className="p-3 rounded-xl bg-bg-card dark:bg-white/5 border border-border/80 dark:border-white/10 text-left font-sans text-xs text-text-secondary dark:text-white/70 hover:border-accent/40"
               >
-                <span className="block text-emerald-600 dark:text-emerald-400 font-bold mb-0.5">✨ Commission</span>
+                <span className="block text-accent font-bold mb-0.5">✨ Commission</span>
                 <span className="text-[11px] text-text-tertiary dark:text-white/40">Pick Industry</span>
               </Link>
             </div>
@@ -195,10 +195,10 @@ export default function Navigation() {
           <div className="pt-6 border-t border-border dark:border-white/10 flex flex-col gap-3">
             <div className="flex items-center justify-between text-xs font-mono text-text-secondary dark:text-white/60 py-1">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                 <span>Guwahati, Assam</span>
               </div>
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Live Availability</span>
+              <span className="text-accent font-semibold">Live Availability</span>
             </div>
 
             <a
@@ -206,7 +206,8 @@ export default function Navigation() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
-              className="w-full py-3.5 text-center font-mono font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/20 active:scale-[0.98] transition-all"
+              className="w-full py-3.5 text-center font-mono font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 rounded-full text-white shadow-lg shadow-purple-900/25 active:scale-[0.98] transition-all hover:opacity-95"
+              style={{ background: "var(--accent)" }}
             >
               <span>Start on WhatsApp</span>
               <ArrowUpRight size={14} />
