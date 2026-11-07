@@ -11,19 +11,19 @@ import ProjectDualDeviceModal from "./ProjectDualDeviceModal";
 const HOMEPAGE_FLAGSHIPS = [
   {
     id: "lablink",
-    tiltClass: "-rotate-1 sm:-rotate-2 lg:translate-y-2",
+    tiltClass: "rotate-0 sm:-rotate-2 lg:translate-y-2",
     tag: "Live Client",
     isClient: true,
   },
   {
     id: "houseoftales",
-    tiltClass: "rotate-1 sm:rotate-1.5 lg:-translate-y-3",
+    tiltClass: "rotate-0 sm:rotate-1.5 lg:-translate-y-3",
     tag: "Photography",
     isClient: false,
   },
   {
     id: "titangym",
-    tiltClass: "-rotate-0.5 sm:-rotate-1 lg:translate-y-3",
+    tiltClass: "rotate-0 sm:-rotate-1 lg:translate-y-3",
     tag: "Athletic Club",
     isClient: false,
   },
@@ -105,7 +105,7 @@ export default function CaseStudies() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md text-white border border-white/10 opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md"
+                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md text-white border border-white/10 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 shadow-md"
                       title="Open Live Site"
                       aria-label={`Visit ${project.name} live`}
                     >
