@@ -66,32 +66,23 @@ export default function ClosingSection() {
     >
       <div className="section-container max-w-4xl px-4 sm:px-6 relative z-10 flex flex-col items-center">
         
-        {/* Editorial Sub-badge */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-          <span className="font-mono text-xs uppercase tracking-wider text-text-tertiary">
-            Direct Studio Commission
-          </span>
-        </div>
-
-        {/* Headline: Fraunces Display Typography */}
+        {/* Headline: Pure Editorial Authority (Zero Generic AI Kicker) */}
         <h2
-          className="font-display font-black text-text-primary text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-4 max-w-3xl"
-          style={{ letterSpacing: "-0.035em" }}
+          className="font-display font-black text-text-primary text-4xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.04em] mb-4 max-w-2xl"
         >
-          Select your business category and commission your{" "}
+          Commission your{" "}
           <span className="font-display italic font-normal text-accent">
             flagship.
           </span>
         </h2>
 
-        {/* Plain Language Subtext */}
-        <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-sans font-normal">
-          Direct WhatsApp conversation with founder Dipjyoti. Tap your industry below to review live demos in your exact space and receive a transparent project quote.
+        {/* Minimal Subtext: Direct & Zero Fluff */}
+        <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-8 max-w-xl font-sans font-normal">
+          Pick your industry below to review relevant live demos and get a transparent timeline &amp; project quote directly with Dipjyoti.
         </p>
 
-        {/* Interactive Industry Chips (Touch-friendly 44px+ height) */}
-        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-8 w-full max-w-2xl">
+        {/* Interactive Industry Chips */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 mb-8 w-full max-w-2xl">
           {SERVICE_OPTIONS.map((item) => {
             const isSelected = selectedService.id === item.id;
             return (
@@ -120,7 +111,7 @@ export default function ClosingSection() {
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group w-full sm:w-auto mb-4 px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-bold tracking-wider text-white active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 shadow-lg shadow-purple-900/25 cursor-pointer select-none hover:opacity-95"
+          className="group w-full sm:w-auto mb-6 px-8 py-4 rounded-full font-mono text-xs sm:text-sm font-bold tracking-wider text-white active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 shadow-lg shadow-purple-900/25 cursor-pointer select-none hover:opacity-95"
           style={{ background: "var(--accent)" }}
         >
           <MessageCircle className="w-4 h-4 fill-current shrink-0" />
@@ -128,29 +119,24 @@ export default function ClosingSection() {
           <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
         </a>
 
-        {/* Zero-Risk Staging Guarantee Card */}
-        <div className="mt-8 max-w-xl w-full p-5 sm:p-6 rounded-2xl bg-zinc-50/90 dark:bg-zinc-900/40 border border-border/80 dark:border-zinc-800 shadow-sm flex items-start gap-4 text-left">
-          <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/25 text-accent flex items-center justify-center shrink-0 mt-0.5">
-            <ShieldCheck size={20} strokeWidth={2} />
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-text-primary font-bold">
-                Zero-Risk Staging Guarantee
-              </span>
-              <span className="font-mono text-[9px] px-2 py-0.5 rounded-full bg-accent/10 text-accent dark:text-accent-light font-bold border border-accent/20">
-                100% Code Ownership
-              </span>
-            </div>
-            <p className="text-xs text-text-secondary leading-relaxed font-sans">
-              You receive a private mobile staging link to click, book, and test on your own smartphone before DNS connects. If the performance and booking flow don&apos;t meet your exact standard, we don&apos;t launch. Zero monthly maintenance retainers.
-            </p>
-          </div>
+        {/* Clean Studio Commitments (Zero Cartoonish Guarantee Box) */}
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[11px] sm:text-xs text-text-tertiary">
+          <span className="flex items-center gap-1.5">
+            <span className="text-accent font-bold">✓</span> Test on your phone before launch
+          </span>
+          <span className="hidden sm:inline opacity-30">·</span>
+          <span className="flex items-center gap-1.5">
+            <span className="text-accent font-bold">✓</span> 100% Code &amp; Domain Ownership
+          </span>
+          <span className="hidden sm:inline opacity-30">·</span>
+          <span className="flex items-center gap-1.5">
+            <span className="text-accent font-bold">✓</span> Zero monthly maintenance retainers
+          </span>
         </div>
 
-        {/* Micro Credibility Dispatch */}
-        <p className="font-mono text-[11px] text-text-tertiary mt-4 tracking-wide text-center">
-          Guwahati, Assam · Reply within 1–2 hours · 100% Client Data & Domain Ownership
+        {/* Location & Response Dispatch */}
+        <p className="font-mono text-[10.5px] text-text-tertiary/75 mt-3 tracking-wide text-center">
+          North Guwahati, Assam · Direct reply within 1–2 hours
         </p>
       </div>
     </section>
