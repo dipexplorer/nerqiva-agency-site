@@ -136,7 +136,7 @@ export default function TactileFounder() {
             
             {/* Handwritten Greeting */}
             <div className="mb-1.5">
-              <span className="font-handwritten text-3xl sm:text-4xl text-accent font-medium -rotate-2 inline-block tracking-wide">
+              <span className="font-handwritten text-3xl sm:text-4xl text-emerald-600 dark:text-emerald-400 font-medium -rotate-2 inline-block tracking-wide">
                 Hey, I am Dipjyoti —
               </span>
             </div>
@@ -146,7 +146,7 @@ export default function TactileFounder() {
               className="font-display font-black text-4xl sm:text-5xl lg:text-[3.25rem] text-text-primary dark:text-white leading-[0.96] tracking-[-0.04em] mb-4"
             >
               Founder &amp; <br />
-              <span className="font-serif italic font-normal text-accent">Lead Engineer.</span>
+              <span className="font-display italic font-normal text-emerald-600 dark:text-emerald-400">Lead Engineer.</span>
             </h2>
 
             <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed mb-6 font-normal max-w-sm">
@@ -166,10 +166,10 @@ export default function TactileFounder() {
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:col-span-4 flex justify-center items-center py-4"
+            className="lg:col-span-4 flex flex-col justify-center items-center py-4"
           >
             <div
-              className="relative w-full max-w-[390px] sm:max-w-[450px] h-[450px] sm:h-[480px] flex items-center justify-center select-none"
+              className="relative w-full max-w-[340px] sm:max-w-[450px] h-[370px] sm:h-[480px] flex items-center justify-center select-none"
               style={{ perspective: 1200 }}
             >
               
@@ -296,6 +296,33 @@ export default function TactileFounder() {
               </motion.div>
 
             </div>
+
+            {/* Mobile Card Switcher (< 1024px) */}
+            <div className="flex lg:hidden items-center gap-1.5 mt-3 p-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-border/70 font-mono text-[10.5px]">
+              <button
+                type="button"
+                onClick={() => setActiveCard(1)}
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                  activeCard === 1
+                    ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 font-bold shadow-xs"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                Dipjyoti Photo
+              </button>
+              <span className="text-text-tertiary">·</span>
+              <button
+                type="button"
+                onClick={() => setActiveCard(2)}
+                className={`px-3 py-1 rounded-full transition-all cursor-pointer ${
+                  activeCard === 2
+                    ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 font-bold shadow-xs"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                Revenue Card
+              </button>
+            </div>
           </div>
 
           {/* ========================================================
@@ -305,7 +332,7 @@ export default function TactileFounder() {
             
             <h3 className="font-display font-black text-2xl sm:text-3xl lg:text-[2.2rem] text-text-primary dark:text-white leading-[1.1] tracking-tight mb-4">
               Built to bring paying customers, <br className="hidden sm:inline" />
-              <span className="font-serif italic font-normal text-accent">not just sit on the internet.</span>
+              <span className="font-display italic font-normal text-emerald-600 dark:text-emerald-400">not just sit on the internet.</span>
             </h3>
 
             {/* Pain Point & Solution: Revenue, Google rank, direct WhatsApp, after-service, zero monthly retainers */}

@@ -247,6 +247,35 @@ export default function SprintDelivery() {
           </button>
         </div>
 
+        {/* Mobile Milestone Quick Touch Bar (< 768px for easy thumb tapping) */}
+        <div className="flex md:hidden items-center justify-between gap-1.5 mt-3 p-1 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/60 border border-border/70">
+          {STOPS.map(([sDay, sLabel]) => {
+            const isCurrent = day === sDay;
+            const isPassed = day >= sDay;
+            return (
+              <button
+                key={sDay}
+                type="button"
+                onClick={() => {
+                  stopAutoPlay();
+                  applyDay(sDay);
+                }}
+                className={`flex-1 py-1.5 px-1.5 rounded-lg font-mono text-[10.5px] font-semibold text-center transition-all cursor-pointer select-none flex flex-col items-center leading-tight ${
+                  isCurrent
+                    ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 shadow-xs"
+                    : isPassed
+                    ? "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10"
+                    : "text-text-tertiary hover:text-text-secondary"
+                }`}
+                aria-pressed={isCurrent}
+              >
+                <span className="font-bold">Day {sDay}</span>
+                <span className="truncate text-[9px] opacity-75">{sLabel}</span>
+              </button>
+            );
+          })}
+        </div>
+
         {/* ── SVG Curved Route ── */}
         <div className="relative mt-8 select-none" style={{ touchAction: "none" }}>
           <svg
