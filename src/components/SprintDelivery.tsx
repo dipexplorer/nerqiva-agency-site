@@ -1,331 +1,554 @@
 "use client";
 
-import React from "react";
-import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import React, { useRef, useEffect, useState, useCallback, useMemo } from "react";
 
-/* ─── Visual Artifact: Phase 01 — Blueprint Wireframe ──────────────────── */
-function BlueprintArtifact() {
-  return (
-    <div className="relative w-full h-48 sm:h-52 flex items-center justify-center select-none">
-      {/* Dot-grid paper texture */}
-      <div
-        className="absolute inset-0 rounded-xl opacity-30"
-        style={{
-          backgroundImage: "radial-gradient(circle, #A1A1AA 1px, transparent 1px)",
-          backgroundSize: "14px 14px",
-        }}
-      />
+/* ─── Static Data ────────────────────────────────────────────────────────── */
+const EVENTS = [
+  "Order received. Audit started.",
+  "Conversion path mapped.",
+  "Left audit. Build started.",
+  "Services built.",
+  "WhatsApp routing connected.",
+  "Google Maps indexing set up.",
+  "Reached you. Phone test started.",
+  "You approved. Cleared for launch.",
+  "Domain connected.",
+  "Delivered. Live on Google.",
+];
 
-      {/* Blueprint card */}
-      <div className="relative w-52 sm:w-60 bg-white dark:bg-zinc-900 rounded-xl border border-border/80 dark:border-zinc-700 shadow-lg p-4 group-hover:scale-[1.03] transition-transform duration-300">
-        {/* Top bar: title + status */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-red-400" />
-            <div className="w-2 h-2 rounded-full bg-yellow-400" />
-            <div className="w-2 h-2 rounded-full bg-emerald-400" />
-          </div>
-          <span className="font-mono text-[9px] text-text-tertiary uppercase tracking-wider">scope.fig</span>
-        </div>
+const STOPS: [number, string][] = [
+  [1, "Picked up"],
+  [3, "In transit"],
+  [7, "Out for delivery"],
+  [10, "Delivered"],
+];
 
-        {/* Mobile wireframe skeleton */}
-        <div className="flex gap-2.5 items-start">
-          {/* Phone outline */}
-          <div className="w-14 h-20 rounded-lg border-2 border-zinc-300 dark:border-zinc-600 flex flex-col overflow-hidden shrink-0">
-            <div className="w-full h-1.5 bg-zinc-200 dark:bg-zinc-700 shrink-0 flex items-center justify-center">
-              <div className="w-4 h-0.5 rounded-full bg-zinc-400 dark:bg-zinc-500" />
-            </div>
-            <div className="flex-1 p-1 space-y-1">
-              <div className="w-full h-2.5 bg-emerald-100 dark:bg-emerald-900/40 rounded-sm" />
-              <div className="w-3/4 h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-sm" />
-              <div className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-sm" />
-              <div className="w-2/3 h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-sm" />
-              <div className="w-full h-4 bg-emerald-500/80 rounded-sm mt-1" />
-            </div>
-          </div>
+const PATH_D =
+  "M40 150 C190 20 330 20 430 120 S640 220 730 130 S900 40 960 110";
 
-          {/* Annotations */}
-          <div className="flex-1 space-y-2 pt-1">
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-px bg-zinc-400 dark:bg-zinc-500" />
-              <span className="font-mono text-[9px] text-text-tertiary">Hero CTA</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-px bg-zinc-400 dark:bg-zinc-500" />
-              <span className="font-mono text-[9px] text-text-tertiary">WhatsApp tap</span>
-            </div>
-            <div className="flex items-center gap-1.5 mt-2">
-              <div className="w-2 h-px bg-emerald-500" />
-              <span className="font-mono text-[9px] text-emerald-600 dark:text-emerald-400">Conversion path</span>
-            </div>
-            <div className="mt-2 px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/30">
-              <span className="font-mono text-[9px] text-emerald-700 dark:text-emerald-300">48h → Wireframe ready</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+/* ─── Helper Functions ───────────────────────────────────────────────────── */
+function getStatus(d: number) {
+  if (d <= 2) return "Picked up";
+  if (d <= 6) return "In transit";
+  if (d <= 9) return "Out for delivery";
+  return "Delivered";
 }
 
-/* ─── Visual Artifact: Phase 02 — Build Terminal ───────────────────────── */
-function BuildTerminalArtifact() {
-  return (
-    <div className="relative w-full h-48 sm:h-52 flex items-center justify-center select-none">
-      {/* Terminal window */}
-      <div className="w-full max-w-[260px] sm:max-w-[280px] bg-zinc-950 rounded-xl border border-zinc-800 shadow-2xl overflow-hidden group-hover:scale-[1.03] transition-transform duration-300">
-        {/* Title bar */}
-        <div className="flex items-center gap-1.5 px-3 py-2 bg-zinc-900 border-b border-zinc-800">
-          <div className="w-2 h-2 rounded-full bg-red-500/70" />
-          <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
-          <div className="w-2 h-2 rounded-full bg-emerald-500/70" />
-          <span className="font-mono text-[10px] text-zinc-500 ml-auto">nerqiva — build</span>
-        </div>
-
-        {/* Terminal output */}
-        <div className="p-3 space-y-1.5 font-mono text-[11px]">
-          <div>
-            <span className="text-emerald-400">✓</span>
-            <span className="text-zinc-400 ml-1.5">Compiled Next.js 16</span>
-          </div>
-          <div>
-            <span className="text-emerald-400">✓</span>
-            <span className="text-zinc-400 ml-1.5">WhatsApp routing wired</span>
-          </div>
-          <div>
-            <span className="text-emerald-400">✓</span>
-            <span className="text-zinc-400 ml-1.5">Google Maps indexed</span>
-          </div>
-          <div className="pt-1 border-t border-zinc-800">
-            <span className="text-zinc-500">$</span>
-            <span className="text-emerald-400 ml-1.5">Staging deployed</span>
-            <span className="inline-block w-1.5 h-3.5 bg-emerald-400 ml-1 animate-pulse rounded-sm" />
-          </div>
-        </div>
-
-        {/* Staging URL strip */}
-        <div className="px-3 pb-3">
-          <div className="flex items-center gap-2 bg-zinc-900 border border-zinc-700 rounded-lg px-2.5 py-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-            <span className="font-mono text-[10px] text-zinc-300 truncate">preview.nerqiva.com/client</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function getPhase(d: number) {
+  if (d <= 2) return "Audit & Conversion Blueprint · Days 1–2";
+  if (d <= 6) return "Full-Stack Build & Wiring · Days 3–6";
+  return "Phone Test & Live Launch · Days 7–10";
 }
 
-/* ─── Visual Artifact: Phase 03 — Live Google Result ───────────────────── */
-function LiveLaunchArtifact() {
-  return (
-    <div className="relative w-full h-48 sm:h-52 flex items-center justify-center select-none">
-      {/* Outer glow */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-40 h-40 rounded-full bg-emerald-500/10 blur-2xl" />
-      </div>
-
-      {/* Google search card */}
-      <div className="relative w-full max-w-[260px] sm:max-w-[280px] bg-white dark:bg-zinc-900 rounded-xl border border-border dark:border-zinc-700 shadow-lg overflow-hidden group-hover:scale-[1.03] transition-transform duration-300">
-        {/* Search bar */}
-        <div className="flex items-center gap-2 px-3 py-2.5 border-b border-border/60 dark:border-zinc-800">
-          <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 shrink-0" aria-hidden>
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
-          </svg>
-          <span className="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 truncate flex-1">your business guwahati</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-3.5 h-3.5 text-zinc-400 shrink-0">
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-          </svg>
-        </div>
-
-        {/* Search result */}
-        <div className="p-3">
-          {/* Favicon + domain */}
-          <div className="flex items-center gap-2 mb-2">
-            <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
-              <span className="text-white text-[8px] font-black">N</span>
-            </div>
-            <div>
-              <div className="font-sans text-[10px] text-zinc-800 dark:text-zinc-200 font-medium">yourbusiness.com</div>
-              <div className="font-sans text-[9px] text-zinc-500 dark:text-zinc-500">yourbusiness.com › home</div>
-            </div>
-          </div>
-          <div className="font-sans text-sm text-blue-600 dark:text-blue-400 font-semibold leading-tight mb-1">
-            Your Business — Book Now
-          </div>
-          <div className="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed mb-2.5">
-            Instant booking available. Serving Guwahati...
-          </div>
-
-          {/* Live badge */}
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-[9px] text-emerald-700 dark:text-emerald-400 font-semibold uppercase tracking-wider">Live on Google</span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+// Generate realistic pseudo-random barcode bars
+function generateBarcode() {
+  let seed = 710;
+  let x = 0;
+  const bars: { x: number; w: number }[] = [];
+  for (let i = 0; i < 46; i++) {
+    seed = (seed * 9301 + 49297) % 233280;
+    const w = 1 + Math.floor((seed / 233280) * 4);
+    if (i % 2 === 0) {
+      bars.push({ x, w });
+    }
+    x += w + 0.4;
+  }
+  return { bars, totalWidth: x };
 }
 
-/* ─── Main Component ────────────────────────────────────────────────────── */
-interface SprintPhase {
-  number: string;
-  days: string;
-  phase: string;
-  title: string;
-  statusTag: string;
-  deliverableBadge: string;
-  isFinal?: boolean;
-  visual: React.ReactNode;
-}
-
+/* ─── Main Component ─────────────────────────────────────────────────────── */
 export default function SprintDelivery() {
-  const phases: SprintPhase[] = [
-    {
-      number: "01",
-      days: "Days 1–2",
-      phase: "Architecture",
-      title: "Blueprint & Scope",
-      statusTag: "48H TURNAROUND",
-      deliverableBadge: "Wireframe & Copy",
-      visual: <BlueprintArtifact />,
-    },
-    {
-      number: "02",
-      days: "Days 3–6",
-      phase: "Engineering",
-      title: "Build & Wiring",
-      statusTag: "ACTIVE SPRINT",
-      deliverableBadge: "Staging URL on Your Phone",
-      visual: <BuildTerminalArtifact />,
-    },
-    {
-      number: "03",
-      days: "Days 7–10",
-      phase: "Production",
-      title: "Test & Go Live",
-      statusTag: "GO LIVE",
-      deliverableBadge: "100% Asset Handoff",
-      isFinal: true,
-      visual: <LiveLaunchArtifact />,
-    },
-  ];
+  const roadRef = useRef<SVGPathElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dragRef = useRef(false);
+  const lengthRef = useRef(0);
+  const sampledRef = useRef<[number, number][]>([]);
+
+  const [day, setDay] = useState(1);
+  const [stopPoints, setStopPoints] = useState<
+    { x: number; y: number; label: string; dayNum: number }[]
+  >([]);
+  const [parcelPos, setParcelPos] = useState({ x: 40, y: 150 });
+  const [progOffset, setProgOffset] = useState(1200);
+  const [isHopping, setIsHopping] = useState(false);
+  const [initialized, setInitialized] = useState(false);
+
+  const { bars, totalWidth } = useMemo(() => generateBarcode(), []);
+
+  /* ── Initialize SVG Road Geometry ── */
+  useEffect(() => {
+    const road = roadRef.current;
+    if (!road) return;
+    const L = road.getTotalLength();
+    lengthRef.current = L;
+    setProgOffset(L);
+
+    // Compute exact stop circle coordinates
+    const pts = STOPS.map(([d, label]) => {
+      const p = road.getPointAtLength((L * (d - 1)) / 9);
+      return { x: p.x, y: p.y, label, dayNum: d };
+    });
+    setStopPoints(pts);
+
+    // Initial parcel position at Day 1
+    const p1 = road.getPointAtLength(0);
+    setParcelPos({ x: p1.x, y: p1.y });
+
+    // Pre-sample road arc for fast nearest-point drag detection
+    const sampled: [number, number][] = [];
+    for (let i = 0; i <= 180; i++) {
+      const q = road.getPointAtLength((L * i) / 180);
+      sampled.push([q.x, q.y]);
+    }
+    sampledRef.current = sampled;
+    setInitialized(true);
+  }, []);
+
+  /* ── Move Parcel to Day ── */
+  const applyDay = useCallback((d: number) => {
+    const road = roadRef.current;
+    const L = lengthRef.current;
+    if (!road || !L) return;
+
+    const p = road.getPointAtLength((L * (d - 1)) / 9);
+    setParcelPos({ x: p.x, y: p.y });
+    setProgOffset(L * (1 - (d - 1) / 9));
+    setDay(d);
+
+    // Trigger package hop jump animation
+    setIsHopping(false);
+    requestAnimationFrame(() => {
+      setIsHopping(true);
+    });
+  }, []);
+
+  /* ── Stop / Play Timers ── */
+  const stopAutoPlay = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const startPlay = useCallback(() => {
+    stopAutoPlay();
+    applyDay(1);
+    let d = 1;
+    const step = () => {
+      timerRef.current = setTimeout(() => {
+        if (d >= 10) {
+          stopAutoPlay();
+          return;
+        }
+        d++;
+        applyDay(d);
+        step();
+      }, 1250);
+    };
+    step();
+  }, [applyDay, stopAutoPlay]);
+
+  /* ── Auto-play on Mount (unless prefers-reduced-motion) ── */
+  useEffect(() => {
+    if (!initialized) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      applyDay(1);
+      return;
+    }
+    startPlay();
+    return () => stopAutoPlay();
+  }, [initialized, startPlay, applyDay, stopAutoPlay]);
+
+  /* ── Interactive Pointer / Dragging on Road ── */
+  const getDayFromPointer = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
+    const svg = svgRef.current;
+    const sampled = sampledRef.current;
+    if (!svg || sampled.length === 0) return 1;
+
+    const rect = svg.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 1000;
+    const y = ((e.clientY - rect.top) / rect.height) * 240;
+
+    let bestIndex = 0;
+    let minDistanceSq = Infinity;
+    for (let i = 0; i < sampled.length; i++) {
+      const [sx, sy] = sampled[i];
+      const distSq = (sx - x) ** 2 + (sy - y) ** 2;
+      if (distSq < minDistanceSq) {
+        minDistanceSq = distSq;
+        bestIndex = i;
+      }
+    }
+    const computedDay = Math.round((bestIndex / 180) * 9) + 1;
+    return Math.min(10, Math.max(1, computedDay));
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
+    stopAutoPlay();
+    dragRef.current = true;
+    svgRef.current?.setPointerCapture(e.pointerId);
+    applyDay(getDayFromPointer(e));
+  }, [stopAutoPlay, applyDay, getDayFromPointer]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
+    if (!dragRef.current) return;
+    const targetDay = getDayFromPointer(e);
+    applyDay(targetDay);
+  }, [getDayFromPointer, applyDay]);
+
+  const handlePointerUp = useCallback(() => {
+    dragRef.current = false;
+  }, []);
+
+  /* ── Keyboard Arrow Navigation ── */
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowUp") {
+      stopAutoPlay();
+      applyDay(Math.min(10, day + 1));
+      e.preventDefault();
+    }
+    if (e.key === "ArrowLeft" || e.key === "ArrowDown") {
+      stopAutoPlay();
+      applyDay(Math.max(1, day - 1));
+      e.preventDefault();
+    }
+  }, [stopAutoPlay, applyDay, day]);
+
+  /* ── Dynamic Event Log (Last 4 days descending) ── */
+  const logEntries: { dayNum: number; text: string }[] = [];
+  for (let k = day; k >= Math.max(1, day - 3); k--) {
+    logEntries.push({ dayNum: k, text: EVENTS[k - 1] });
+  }
 
   return (
     <section
       id="protocol"
-      className="py-20 sm:py-28 bg-transparent border-t border-border/40 relative overflow-hidden"
-      aria-label="Sprint Delivery Protocol"
+      className="py-16 sm:py-24 bg-transparent border-t border-border/40 relative overflow-hidden select-none"
+      aria-label="How We Ship — Delivery Protocol"
     >
       <div className="section-container relative z-10">
 
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 pb-6 border-b border-border/40 gap-6">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-mono text-xs text-text-tertiary uppercase tracking-wider">
-                10-Day Sprint Protocol
-              </span>
-            </div>
-            <h2
-              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.05]"
-              style={{ letterSpacing: "-0.035em" }}
-            >
-              How We Ship.
-            </h2>
-          </div>
-          <p className="text-text-secondary text-sm sm:text-base max-w-xs leading-relaxed font-sans">
-            First conversation to live bookings in 7–10 days.
-          </p>
+        {/* ── Top Bar: Title + Replay Action ── */}
+        <div className="flex justify-between items-end gap-4 flex-wrap pb-4">
+          <h2
+            className="font-display font-black text-text-primary m-0 leading-[0.9] tracking-tight"
+            style={{ fontSize: "clamp(3rem, 8.5vw, 6.6rem)", letterSpacing: "-0.04em" }}
+          >
+            How We Ship.
+          </h2>
+          <button
+            onClick={startPlay}
+            type="button"
+            className="font-mono text-xs text-text-primary bg-transparent border border-border/80 dark:border-zinc-700 hover:border-text-primary dark:hover:border-zinc-400 rounded-full px-4 py-2 cursor-pointer transition-colors shadow-2xs hover:bg-zinc-50 dark:hover:bg-zinc-900"
+          >
+            Track again
+          </button>
         </div>
 
-        {/* Phase Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
-          {phases.map((phase) => (
-            <div
-              key={phase.number}
-              className={`group relative flex flex-col rounded-2xl border overflow-hidden transition-all duration-300 hover:shadow-lg ${
-                phase.isFinal
-                  ? "bg-emerald-500/[0.02] dark:bg-emerald-500/[0.03] border-emerald-500/30 hover:border-emerald-500/50"
-                  : "bg-zinc-50/80 dark:bg-zinc-900/40 border-border/70 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-600"
-              }`}
+        {/* ── SVG Curved Route ── */}
+        <div className="relative mt-8 select-none" style={{ touchAction: "none" }}>
+          <svg
+            ref={svgRef}
+            viewBox="0 0 1000 240"
+            className="block w-full overflow-visible cursor-grab active:cursor-grabbing"
+            style={{ touchAction: "none", height: "auto" }}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            aria-label={`Interactive delivery route. Current position: Day ${day} of 10.`}
+            role="img"
+          >
+            {/* Background Dashed Road */}
+            <path
+              ref={roadRef}
+              d={PATH_D}
+              fill="none"
+              stroke="#cfcfd8"
+              className="dark:stroke-zinc-700"
+              strokeWidth="3"
+              strokeDasharray="2 9"
+              strokeLinecap="round"
+            />
+
+            {/* Solid Progress Path */}
+            <path
+              d={PATH_D}
+              fill="none"
+              stroke="var(--sp-accent, #5a14b8)"
+              strokeWidth="5"
+              strokeLinecap="round"
+              style={{
+                strokeDasharray: lengthRef.current || 1200,
+                strokeDashoffset: progOffset,
+                transition: "stroke-dashoffset 0.7s cubic-bezier(0.3, 0.7, 0.2, 1)",
+              }}
+            />
+
+            {/* Milestone Stop Circles */}
+            {stopPoints.map((pt) => {
+              const isHit = day >= pt.dayNum;
+              return (
+                <circle
+                  key={pt.dayNum}
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={11}
+                  fill={isHit ? "var(--sp-accent, #5a14b8)" : "var(--bg-primary, #ffffff)"}
+                  stroke={isHit ? "var(--sp-accent, #5a14b8)" : "#cfcfd8"}
+                  strokeWidth="3"
+                  className={!isHit ? "dark:stroke-zinc-700 dark:fill-zinc-900" : ""}
+                  style={{ transition: "fill 0.3s, stroke 0.3s" }}
+                />
+              );
+            })}
+
+            {/* Traveling Parcel with Hop Animation */}
+            <g
+              tabIndex={0}
+              role="slider"
+              aria-label="Project day"
+              aria-valuemin={1}
+              aria-valuemax={10}
+              aria-valuenow={day}
+              onKeyDown={handleKeyDown}
+              className="cursor-grab active:cursor-grabbing focus:outline-hidden"
+              style={{
+                transform: `translate(${parcelPos.x}px, ${parcelPos.y - 28}px)`,
+                transition: "transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1)",
+              }}
             >
-              {/* Card Top: compact metadata */}
-              <div className="flex items-center justify-between px-5 pt-5 pb-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-xs font-bold text-text-tertiary">{phase.number}</span>
-                  <span className="w-4 h-px bg-border dark:bg-zinc-700" />
-                  <span className="font-mono text-xs font-semibold text-text-primary uppercase tracking-wide">{phase.days}</span>
-                  <span className="text-text-tertiary text-xs">·</span>
-                  <span className="font-sans text-xs text-text-tertiary">{phase.phase}</span>
-                </div>
-                <ArrowUpRight className="w-4 h-4 text-text-tertiary opacity-0 group-hover:opacity-100 group-hover:text-text-primary transition-all" />
-              </div>
+              <g className={isHopping ? "parcel-hop" : ""}>
+                {/* Package Shadow */}
+                <ellipse cx="0" cy="12" rx="22" ry="5" fill="#000" opacity="0.14" />
+                {/* Package Body */}
+                <rect
+                  x="-24"
+                  y="-26"
+                  width="48"
+                  height="38"
+                  rx="5"
+                  fill="var(--sp-accent, #5a14b8)"
+                />
+                {/* Vertical Tape */}
+                <rect x="-4" y="-26" width="8" height="38" fill="var(--sp-on-accent, #ffffff)" opacity="0.35" />
+                {/* Horizontal Tape */}
+                <rect x="-24" y="-12" width="48" height="3" fill="var(--sp-on-accent, #ffffff)" opacity="0.35" />
+              </g>
+            </g>
+          </svg>
 
-              {/* Card Title */}
-              <div className="px-5 pb-2">
-                <h3 className="font-display font-black text-2xl sm:text-3xl text-text-primary tracking-tight leading-tight">
-                  {phase.title}
-                </h3>
+          {/* HTML Overlay Stop Labels */}
+          {stopPoints.map((pt, i) => {
+            const isHit = day >= pt.dayNum;
+            return (
+              <div
+                key={pt.dayNum}
+                className="absolute font-mono text-center pointer-events-none transition-colors duration-300"
+                style={{
+                  fontSize: "clamp(0.68rem, 1.4vw, 0.75rem)",
+                  lineHeight: 1.35,
+                  left: `${(pt.x / 1000) * 100}%`,
+                  top: `${((pt.y + 22) / 240) * 100}%`,
+                  transform:
+                    i === 0
+                      ? "translateX(-12%)"
+                      : i === 3
+                      ? "translateX(-88%)"
+                      : "translateX(-50%)",
+                  color: isHit ? "var(--text-primary)" : "var(--text-tertiary)",
+                }}
+              >
+                <b
+                  className="block font-medium"
+                  style={{ color: "var(--sp-accent, #5a14b8)" }}
+                >
+                  Day {pt.dayNum}
+                </b>
+                {pt.label}
               </div>
+            );
+          })}
+        </div>
 
-              {/* Visual Artifact (Dominant) */}
-              <div className="px-4 py-2 flex-1">
-                {phase.visual}
-              </div>
+        {/* ── Below Section: Live Status Log & Tactile Shipping Label ── */}
+        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 mt-14 sm:mt-16 items-start">
 
-              {/* Card Footer: deliverable stamp */}
-              <div className={`px-5 py-3.5 border-t flex items-center justify-between ${
-                phase.isFinal
-                  ? "border-emerald-500/20 bg-emerald-500/[0.03]"
-                  : "border-border/50 dark:border-zinc-800"
-              }`}>
-                <span className="font-mono text-[11px] text-text-secondary font-medium">
-                  {phase.deliverableBadge}
-                </span>
-                <span
-                  className={`inline-flex items-center gap-1 font-mono text-[9px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-md ${
-                    phase.isFinal
-                      ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
-                      : "bg-zinc-200/60 dark:bg-zinc-800 text-text-tertiary border border-border/40"
-                  }`}
+          {/* Left Column: Live Status & Day-by-Day Event Log */}
+          <div>
+            <p
+              className="font-display font-black text-text-primary m-0 leading-none"
+              style={{
+                fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+                letterSpacing: "-0.035em",
+              }}
+              aria-live="polite"
+            >
+              {getStatus(day)}
+            </p>
+            <p
+              className="font-mono mt-3"
+              style={{ fontSize: "0.75rem", color: "var(--sp-accent, #5a14b8)" }}
+            >
+              {getPhase(day)}
+            </p>
+
+            <ul className="list-none m-0 p-0 mt-7 border-t border-border/40">
+              {logEntries.map(({ dayNum, text }, i) => (
+                <li
+                  key={dayNum}
+                  className="grid gap-3 py-3 border-b border-border/40 font-sans text-sm"
+                  style={{
+                    gridTemplateColumns: "4.2rem 1fr",
+                    color: i === 0 ? "var(--text-primary)" : "var(--text-secondary)",
+                    fontWeight: i === 0 ? 500 : 400,
+                    opacity: i >= 3 ? 0.5 : 1,
+                    animation: i === 0 ? "sd-log-in 0.4s ease" : undefined,
+                  }}
                 >
                   <span
-                    className={`w-1 h-1 rounded-full ${
-                      phase.isFinal ? "bg-emerald-500 animate-pulse" : "bg-zinc-400"
-                    }`}
-                  />
-                  {phase.statusTag}
-                </span>
+                    className="font-mono"
+                    style={{ fontSize: "0.72rem", color: "var(--text-tertiary)" }}
+                  >
+                    Day {dayNum}
+                  </span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Right Column: Physical Shipping Label (Paper in Both Light & Dark) */}
+          <div
+            className="relative rounded-lg font-mono text-zinc-900 border border-zinc-200 shadow-2xl max-w-md w-full md:ml-auto"
+            style={{
+              background: "#ffffff",
+              padding: "1.3rem 1.3rem 1.1rem",
+              transform: "rotate(1.4deg)",
+              boxShadow: "0 18px 40px -18px rgba(30, 10, 70, 0.35)",
+              fontSize: "0.72rem",
+              lineHeight: 1.35,
+            }}
+            aria-label="Tactile Shipping Label"
+          >
+            {/* Dashed Tear Line */}
+            <div
+              className="absolute left-0 right-0 pointer-events-none"
+              style={{
+                top: "3.35rem",
+                borderTop: "2px dashed #cfcfd8",
+              }}
+            />
+
+            {/* Label Header */}
+            <div className="flex justify-between items-baseline mb-6">
+              <b
+                className="font-display font-black text-zinc-950"
+                style={{ fontSize: "1.5rem", letterSpacing: "-0.03em" }}
+              >
+                NERQIVA Studio
+              </b>
+              <span className="text-zinc-500 font-sans text-xs">Guwahati</span>
+            </div>
+
+            {/* Label Table Rows */}
+            {[
+              ["To", "Your business"],
+              ["Contents", "A website that books clients"],
+              ["Service", "7–10 day delivery"],
+              ["Ownership", "100% yours. Code, domain, data. No lock-in retainers."],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="grid gap-2 py-2 border-b border-zinc-100"
+                style={{ gridTemplateColumns: "5.2rem 1fr" }}
+              >
+                <span className="text-zinc-500">{label}</span>
+                <span className="text-zinc-900 font-medium">{value}</span>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
 
-        {/* Guarantee Banner */}
-        <div className="mt-10 sm:mt-12 p-5 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 border border-border/70 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-sans">
-          <div className="flex items-center gap-3">
-            <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shrink-0">
-              <ShieldCheck className="w-4 h-4 stroke-2" />
-            </div>
-            <p className="text-sm text-text-secondary">
-              <span className="font-semibold text-text-primary">You own everything.</span>{" "}
-              Code, domain, and client data. Zero lock-in.
-            </p>
-          </div>
-          <div className="flex items-center gap-2 shrink-0 px-3 py-1.5 rounded-lg bg-bg-primary dark:bg-zinc-800 border border-border/60 self-start sm:self-center">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="font-mono text-xs font-medium text-text-primary">Guaranteed 7–10 Day Delivery</span>
-          </div>
-        </div>
+            {/* Barcode SVG */}
+            <svg
+              viewBox={`0 0 ${totalWidth} 50`}
+              preserveAspectRatio="none"
+              className="w-full block"
+              style={{ height: "3.2rem", marginTop: "1rem" }}
+              aria-hidden="true"
+            >
+              {bars.map((bar, i) => (
+                <rect key={i} x={bar.x} y="0" width={bar.w} height="50" fill="#0c0c10" />
+              ))}
+            </svg>
 
+            {/* Tracking Serial */}
+            <div className="text-center mt-1 text-zinc-600 font-mono text-[11px]">
+              NQ 0710 · day {day} of 10
+            </div>
+
+            {/* Rubber Stamp: Delivered (Stamps down with bounce scale on Day 10) */}
+            <div
+              className={`absolute right-4 font-display font-black pointer-events-none transition-all duration-300 ${
+                day === 10 ? "opacity-100 scale-100" : "opacity-0 scale-175"
+              }`}
+              style={{
+                top: "42%",
+                fontSize: "2.1rem",
+                color: "#5a14b8",
+                border: "4px solid #5a14b8",
+                borderRadius: "0.4rem",
+                padding: "0.05rem 0.7rem",
+                transform: `rotate(-14deg) ${day === 10 ? "scale(1)" : "scale(1.75)"}`,
+                transition: "transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1), opacity 0.2s",
+                background: "rgba(255, 255, 255, 0.9)",
+              }}
+            >
+              Delivered
+            </div>
+          </div>
+
+        </div>
       </div>
+
+      {/* Scoped CSS Variables and Keyframe Animations */}
+      <style jsx>{`
+        #protocol {
+          --sp-accent: #5a14b8;
+          --sp-on-accent: #ffffff;
+        }
+        :global(.dark) #protocol {
+          --sp-accent: #b49cff;
+          --sp-on-accent: #150f2b;
+        }
+
+        .parcel-hop {
+          animation: hop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes hop {
+          0% {
+            transform: translateY(0);
+          }
+          40% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes sd-log-in {
+          from {
+            opacity: 0;
+            transform: translateY(-8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
