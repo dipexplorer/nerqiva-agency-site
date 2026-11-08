@@ -4,19 +4,51 @@ import React, { useState, useEffect, useRef } from "react";
 import { ArrowUpRight, ArrowDown, Play, Pause } from "lucide-react";
 import AnfalovaHeroGallery from "./AnfalovaHeroGallery";
 
-// ─── Mobile Project Mockup Cards ──────────────────────────────────────────────
-interface MobileSiteCard {
+// ─── Real Flagship Client Projects for Mobile Gallery ─────────────────────────
+interface RealMobileProject {
   id: string;
-  theme: "luxe" | "bridal" | "oak" | "lablink";
-  title: string;
-  subtitle: string;
+  client: string;
+  category: string;
+  urlLabel: string;
+  image: string;
 }
 
-const MOBILE_SITES: MobileSiteCard[] = [
-  { id: "oak", theme: "oak", title: "OAK", subtitle: "ATHLETIC CLUB" },
-  { id: "luxe", theme: "luxe", title: "LUXE", subtitle: "MAKEUP ARTIST" },
-  { id: "bridal", theme: "bridal", title: "BRIDAL", subtitle: "makeup artist" },
-  { id: "lablink", theme: "lablink", title: "LABLINK", subtitle: "DIAGNOSTICS" },
+const REAL_MOBILE_PROJECTS: RealMobileProject[] = [
+  {
+    id: "lablink",
+    client: "LabLink Diagnostics",
+    category: "Healthcare & Diagnostics",
+    urlLabel: "lablinkguwahati.in",
+    image: "/images/projects/lablink/desktop.png",
+  },
+  {
+    id: "krishav",
+    client: "Krishav Mehendi Atelier",
+    category: "Bridal & Aesthetics",
+    urlLabel: "krishavmehendi.com",
+    image: "/images/projects/krishavmehendi/bridal.png",
+  },
+  {
+    id: "valerie",
+    client: "Valerie Laurent Couture",
+    category: "Editorial Haute Couture",
+    urlLabel: "valerielaurent.com",
+    image: "/images/projects/editorial/vogue.png",
+  },
+  {
+    id: "titangym",
+    client: "Titan Athletic Club",
+    category: "Athletics & Training",
+    urlLabel: "titangym.club",
+    image: "/images/projects/titangym/contrast.png",
+  },
+  {
+    id: "aurabeauty",
+    client: "Elena Styles · Aura Clinic",
+    category: "Clinical Aesthetics",
+    urlLabel: "auraclinic.in",
+    image: "/images/projects/aurabeauty/final_hero.png",
+  },
 ];
 
 function MobileHero() {
@@ -24,7 +56,7 @@ function MobileHero() {
   const [isPaused, setIsPaused] = useState(false);
   const isInteracting = useRef(false);
 
-  // Auto-scroll loop
+  // Auto-scroll loop with smooth continuous subpixel movement
   useEffect(() => {
     const rail = railRef.current;
     if (!rail) return;
@@ -33,7 +65,7 @@ function MobileHero() {
     const step = () => {
       if (!isPaused && !isInteracting.current && rail) {
         rail.scrollLeft += 0.65;
-        // Infinite loop wrap: when halfway through doubled set, reset to 0
+        // Infinite wrap: when scrolled past half of the doubled list, smoothly loop
         if (rail.scrollLeft >= rail.scrollWidth / 2) {
           rail.scrollLeft = 0;
         }
@@ -45,27 +77,16 @@ function MobileHero() {
     return () => cancelAnimationFrame(animId);
   }, [isPaused]);
 
-  // Doubled list for seamless infinite looping
-  const displaySites = [...MOBILE_SITES, ...MOBILE_SITES];
+  // Doubled set for seamless continuous carousel loop
+  const displayProjects = [...REAL_MOBILE_PROJECTS, ...REAL_MOBILE_PROJECTS];
 
   return (
     <div className="sm:hidden flex flex-col justify-between min-h-[100svh] w-full px-5 pt-20 pb-4 select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300">
       
-      {/* ── Top Header Text ── */}
-      <div className="shrink-0">
-        {/* Pulsing Live indicator */}
-        <div className="flex items-center gap-2 mb-2">
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="font-sans text-[13px] font-semibold tracking-tight text-text-primary dark:text-white leading-tight">
-            Websites built to bring you real paying clients
-          </span>
-        </div>
-
+      {/* ── Top Header Text: Pure Authority (Kicker Removed for Clean & Professional Polish) ── */}
+      <div className="shrink-0 pt-1">
         {/* Editorial Headline with Purple Slot Box */}
-        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.75rem] leading-[0.98] tracking-[-0.04em] mt-1 mb-2">
+        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.75rem] leading-[0.98] tracking-[-0.04em] mb-2">
           Your business gets<br />
           a<br />
           <span
@@ -73,7 +94,7 @@ function MobileHero() {
             style={{
               background: "var(--accent, #5a0a9c)",
               transform: "rotate(-1.4deg)",
-              boxShadow: "0 4px 14px rgba(90, 10, 156, 0.28)",
+              boxShadow: "0 6px 20px rgba(90, 10, 156, 0.35)",
             }}
           >
             website that<br />books clients
@@ -85,109 +106,95 @@ function MobileHero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="font-sans text-[13.5px] text-text-secondary dark:text-white/60 mt-2 mb-3 leading-snug max-w-[30ch]">
+        <p className="font-sans text-[13.5px] text-text-secondary dark:text-white/60 mb-2 leading-snug max-w-[30ch]">
           For business owners who refuse to look amateur online
         </p>
       </div>
 
-      {/* ── Center Stage: Auto-scrolling Gallery Rail ── */}
-      <div className="relative my-auto py-2 shrink-0">
+      {/* ── Center Stage: Diagonal Glass Bending Gallery Rail ── */}
+      <div className="relative my-auto py-2 shrink-0 overflow-hidden -mx-5 px-5">
+        
+        {/* Subtle Ambient Refraction Gradients */}
+        <div
+          className="absolute -top-12 left-1/4 w-44 h-44 rounded-full pointer-events-none blur-3xl opacity-20 dark:opacity-25"
+          style={{ background: "var(--accent, #5a0a9c)" }}
+          aria-hidden="true"
+        />
+
+        {/* Diagonal Rotated Track */}
         <div
           ref={railRef}
           onTouchStart={() => { isInteracting.current = true; }}
           onTouchEnd={() => { isInteracting.current = false; }}
           onMouseDown={() => { isInteracting.current = true; }}
           onMouseUp={() => { isInteracting.current = false; }}
-          className="flex gap-3 overflow-x-auto py-2 -mx-5 px-5 touch-pan-x select-none"
+          className="flex gap-4 overflow-x-auto py-4 px-5 touch-pan-x select-none -rotate-[2.5deg] scale-[1.02]"
           style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
         >
-          {displaySites.map((site, idx) => (
+          {displayProjects.map((project, idx) => (
             <article
-              key={`${site.id}-${idx}`}
-              className="flex-none w-[148px] h-[210px] rounded-[10px] overflow-hidden relative shadow-lg transition-transform active:scale-98"
+              key={`${project.id}-${idx}`}
+              className="flex-none w-[172px] h-[245px] rounded-[18px] overflow-hidden relative shadow-2xl transition-transform active:scale-[0.98] bg-zinc-900 border border-white/25 dark:border-white/15"
               style={{
-                boxShadow: "0 0 0 1px rgba(0,0,0,0.08), 0 14px 28px -12px rgba(22, 17, 31, 0.35)",
+                boxShadow:
+                  "0 20px 40px -12px rgba(15, 10, 30, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset",
               }}
             >
-              {/* Browser chrome header with 3 dots */}
-              <div className="absolute inset-x-0 top-0 h-[14px] flex items-center gap-[3px] px-2 bg-black/20 z-10 backdrop-blur-[1px]">
-                <span className="w-1 h-1 rounded-full bg-white/40" />
-                <span className="w-1 h-1 rounded-full bg-white/40" />
-                <span className="w-1 h-1 rounded-full bg-white/40" />
+              {/* Actual Real UI Screenshot */}
+              <img
+                src={project.image}
+                alt={project.client}
+                className="w-full h-full object-cover object-top filter brightness-[0.96]"
+                loading="lazy"
+              />
+
+              {/* Glass Bending Specular Refraction Overlay */}
+              <div
+                className="absolute inset-0 pointer-events-none z-20"
+                style={{
+                  background:
+                    "linear-gradient(130deg, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0.12) 30%, transparent 52%, rgba(255,255,255,0.15) 100%)",
+                }}
+                aria-hidden="true"
+              />
+
+              {/* Glass Curved Lens Glare Arc */}
+              <div
+                className="absolute -top-1/3 -left-1/3 w-[160%] h-[160%] pointer-events-none z-20 opacity-30"
+                style={{
+                  background:
+                    "radial-gradient(circle at 45% 35%, rgba(255,255,255,0.6) 0%, transparent 48%)",
+                }}
+                aria-hidden="true"
+              />
+
+              {/* Frosted Glass Browser Chrome Header */}
+              <div className="absolute inset-x-0 top-0 h-7 flex items-center justify-between px-2.5 bg-black/40 backdrop-blur-md border-b border-white/15 z-30">
+                <div className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                </div>
+                <div className="font-mono text-[8.5px] font-medium tracking-tight text-white/80 truncate max-w-[100px]">
+                  {project.urlLabel}
+                </div>
               </div>
 
-              {/* Card visual themes */}
-              {site.theme === "oak" && (
-                <div className="absolute inset-0 pt-[14px] p-3.5 flex flex-col justify-between bg-[#0e0e10] text-[#ffd21f]">
-                  <div className="font-display font-black text-4xl mt-7 tracking-tighter leading-none">
-                    OAK
-                  </div>
-                  <div className="grid grid-cols-2 gap-1.5 mt-auto">
-                    <div className="h-8 rounded bg-[#ffd21f]/20" />
-                    <div className="h-8 rounded bg-[#ffd21f]/20" />
-                  </div>
-                </div>
-              )}
-
-              {site.theme === "luxe" && (
-                <div
-                  className="absolute inset-0 pt-[14px] p-3.5 flex flex-col justify-between text-white"
-                  style={{
-                    background: "radial-gradient(circle at 50% 38%, #5a3a30, #0c0c0e 65%)",
-                  }}
-                >
-                  <div className="mt-8">
-                    <div className="font-display font-black text-2xl tracking-wider leading-none">
-                      LUXE
-                    </div>
-                    <div className="font-mono text-[7px] tracking-[0.2em] opacity-75 mt-1.5">
-                      MAKEUP ARTIST
-                    </div>
-                  </div>
-                  <div className="mt-auto h-3.5 w-14 bg-[#e0212b] rounded-sm" />
-                </div>
-              )}
-
-              {site.theme === "bridal" && (
-                <div className="absolute inset-0 pt-[14px] p-3.5 flex flex-col justify-between bg-[#f7f2ec] text-[#2a2420]">
-                  <div className="mt-5">
-                    <div className="font-display font-medium text-[20px] tracking-widest leading-none">
-                      BRIDAL
-                    </div>
-                    <div className="font-mono text-[7.5px] tracking-[0.2em] opacity-70 mt-1.5">
-                      makeup artist
-                    </div>
-                    <div className="mt-2.5 h-3 w-12 bg-[#17120f] rounded-sm" />
-                  </div>
-                  <div className="mt-auto flex flex-col gap-1">
-                    <div className="h-[2.5px] bg-[#2a2420]/15 rounded-full" />
-                    <div className="h-[2.5px] bg-[#2a2420]/15 rounded-full w-2/3" />
-                  </div>
-                </div>
-              )}
-
-              {site.theme === "lablink" && (
-                <div className="absolute inset-0 pt-[14px] p-3.5 flex flex-col justify-between bg-[#0a1226] text-white">
-                  <div className="mt-6">
-                    <div className="font-display font-black text-[19px] tracking-wide text-white leading-tight">
-                      LABLINK
-                    </div>
-                    <div className="font-mono text-[7px] tracking-[0.16em] text-emerald-400 mt-1">
-                      DIAGNOSTICS
-                    </div>
-                  </div>
-                  <div className="mt-auto flex items-center justify-between pt-2 border-t border-white/10">
-                    <span className="font-mono text-[8px] text-white/60">Guwahati</span>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  </div>
-                </div>
-              )}
+              {/* Frosted Glass Bottom Scrim with Real Client Data */}
+              <div className="absolute inset-x-0 bottom-0 pt-6 pb-2.5 px-3 bg-gradient-to-t from-black/90 via-black/55 to-transparent backdrop-blur-[2px] z-30 flex flex-col justify-end">
+                <span className="font-mono text-[8px] font-bold text-accent-light dark:text-accent uppercase tracking-wider mb-0.5">
+                  {project.category}
+                </span>
+                <span className="font-display font-bold text-xs text-white leading-tight truncate">
+                  {project.client}
+                </span>
+              </div>
             </article>
           ))}
         </div>
 
         {/* Gallery Meta Row: Hint + Pause Button */}
-        <div className="flex items-center justify-between mt-2.5 px-0.5">
+        <div className="flex items-center justify-between mt-1 px-1">
           <div className="flex items-center gap-2 text-xs font-sans text-text-secondary dark:text-white/60">
             <svg
               width="24"
