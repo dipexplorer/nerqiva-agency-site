@@ -238,9 +238,9 @@ function MobileHero() {
         </div>
       </div>
 
-      {/* ── Bottom Actions & Trust Facts (Clean, No AI Slop Badge, Zero Margin Overflow) ── */}
+      {/* ── Bottom Actions (Clean, Confident, Zero Clutter) ── */}
       <div className="shrink-0 flex flex-col gap-2 mt-auto pt-2 w-full">
-        {/* Unified, Confident Primary WhatsApp CTA (No Clunky White Inner Box) */}
+        {/* Unified Primary WhatsApp CTA */}
         <a
           href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20want%20a%20website%20for%20my%20business."
           target="_blank"
@@ -256,20 +256,11 @@ function MobileHero() {
         {/* See Our Work Secondary Action */}
         <a
           href="#flagships"
-          className="w-full flex items-center justify-center gap-1.5 py-1 font-sans text-xs xs:text-[13px] font-semibold text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white active:opacity-75 transition-colors select-none"
+          className="w-full flex items-center justify-center gap-1.5 py-1.5 font-sans text-xs xs:text-[13px] font-semibold text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white active:opacity-75 transition-colors select-none"
         >
           <span>See Our Work</span>
           <ArrowDown size={13} strokeWidth={2.2} />
         </a>
-
-        {/* Facts Row: Mathematically Balanced, Zero Overflow */}
-        <div className="w-full border-t border-border/50 dark:border-white/10 pt-2 pb-0.5 flex items-center justify-between font-mono text-[9.5px] xs:text-[10.5px] text-text-tertiary dark:text-white/50 tracking-tight">
-          <span className="font-semibold text-text-primary dark:text-white shrink-0">Guwahati</span>
-          <span className="opacity-25 select-none">|</span>
-          <span className="font-semibold text-text-primary dark:text-white shrink-0">Transparent Sprints</span>
-          <span className="opacity-25 select-none">|</span>
-          <span className="font-semibold text-text-primary dark:text-white shrink-0">100% Code Ownership</span>
-        </div>
       </div>
 
     </div>
