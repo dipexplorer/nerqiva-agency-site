@@ -81,12 +81,12 @@ function MobileHero() {
   const displayProjects = [...REAL_MOBILE_PROJECTS, ...REAL_MOBILE_PROJECTS];
 
   return (
-    <div className="sm:hidden flex flex-col justify-between min-h-[100svh] w-full px-5 pt-20 pb-4 select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300">
+    <div className="sm:hidden flex flex-col justify-between min-h-[100svh] w-full max-w-full overflow-hidden px-5 pt-18 xs:pt-20 pb-4 select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300">
       
-      {/* ── Top Header Text: Pure Authority (Kicker Removed for Clean & Professional Polish) ── */}
+      {/* ── Top Header Text: Pure Authority (Clean & Professional) ── */}
       <div className="shrink-0 pt-1">
         {/* Editorial Headline with Purple Slot Box */}
-        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.75rem] leading-[0.98] tracking-[-0.04em] mb-2">
+        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.4rem] xs:text-[2.75rem] leading-[1.0] tracking-[-0.04em] mb-2">
           Your business gets<br />
           a<br />
           <span
@@ -106,13 +106,13 @@ function MobileHero() {
         </h1>
 
         {/* Subtitle */}
-        <p className="font-sans text-[13.5px] text-text-secondary dark:text-white/60 mb-2 leading-snug max-w-[30ch]">
+        <p className="font-sans text-[13px] xs:text-[13.5px] text-text-secondary dark:text-white/60 mb-2 leading-snug max-w-[30ch]">
           For business owners who refuse to look amateur online
         </p>
       </div>
 
       {/* ── Center Stage: Diagonal Glass Bending Gallery Rail ── */}
-      <div className="relative my-auto py-2 shrink-0 overflow-hidden -mx-5 px-5">
+      <div className="relative my-auto py-2 shrink-0 w-full overflow-hidden">
         
         {/* Subtle Ambient Refraction Gradients */}
         <div
@@ -121,23 +121,27 @@ function MobileHero() {
           aria-hidden="true"
         />
 
-        {/* Diagonal Rotated Track */}
+        {/* Diagonal Rotated Track with Strict Paint Containment */}
         <div
           ref={railRef}
           onTouchStart={() => { isInteracting.current = true; }}
           onTouchEnd={() => { isInteracting.current = false; }}
           onMouseDown={() => { isInteracting.current = true; }}
           onMouseUp={() => { isInteracting.current = false; }}
-          className="flex gap-4 overflow-x-auto py-4 px-5 touch-pan-x select-none -rotate-[2.5deg] scale-[1.02]"
-          style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+          className="flex gap-3.5 overflow-x-auto py-3 px-1 touch-pan-x select-none -rotate-[2deg]"
+          style={{
+            scrollbarWidth: "none",
+            WebkitOverflowScrolling: "touch",
+            contain: "paint",
+          }}
         >
           {displayProjects.map((project, idx) => (
             <article
               key={`${project.id}-${idx}`}
-              className="flex-none w-[172px] h-[245px] rounded-[18px] overflow-hidden relative shadow-2xl transition-transform active:scale-[0.98] bg-zinc-900 border border-white/25 dark:border-white/15"
+              className="flex-none w-[164px] h-[235px] rounded-[16px] overflow-hidden relative shadow-2xl transition-transform active:scale-[0.98] bg-zinc-900 border border-white/25 dark:border-white/15"
               style={{
                 boxShadow:
-                  "0 20px 40px -12px rgba(15, 10, 30, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset",
+                  "0 18px 36px -10px rgba(15, 10, 30, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.18) inset",
               }}
             >
               {/* Actual Real UI Screenshot */}
@@ -169,23 +173,23 @@ function MobileHero() {
               />
 
               {/* Frosted Glass Browser Chrome Header */}
-              <div className="absolute inset-x-0 top-0 h-7 flex items-center justify-between px-2.5 bg-black/40 backdrop-blur-md border-b border-white/15 z-30">
+              <div className="absolute inset-x-0 top-0 h-6 flex items-center justify-between px-2 bg-black/40 backdrop-blur-md border-b border-white/15 z-30">
                 <div className="flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                 </div>
-                <div className="font-mono text-[8.5px] font-medium tracking-tight text-white/80 truncate max-w-[100px]">
+                <div className="font-mono text-[8px] font-medium tracking-tight text-white/80 truncate max-w-[95px]">
                   {project.urlLabel}
                 </div>
               </div>
 
               {/* Frosted Glass Bottom Scrim with Real Client Data */}
-              <div className="absolute inset-x-0 bottom-0 pt-6 pb-2.5 px-3 bg-gradient-to-t from-black/90 via-black/55 to-transparent backdrop-blur-[2px] z-30 flex flex-col justify-end">
-                <span className="font-mono text-[8px] font-bold text-accent-light dark:text-accent uppercase tracking-wider mb-0.5">
+              <div className="absolute inset-x-0 bottom-0 pt-6 pb-2.5 px-2.5 bg-gradient-to-t from-black/90 via-black/55 to-transparent backdrop-blur-[2px] z-30 flex flex-col justify-end">
+                <span className="font-mono text-[7.5px] font-bold text-accent-light dark:text-accent uppercase tracking-wider mb-0.5">
                   {project.category}
                 </span>
-                <span className="font-display font-bold text-xs text-white leading-tight truncate">
+                <span className="font-display font-bold text-[11.5px] text-white leading-tight truncate">
                   {project.client}
                 </span>
               </div>
@@ -217,7 +221,7 @@ function MobileHero() {
             type="button"
             onClick={() => setIsPaused((prev) => !prev)}
             aria-pressed={isPaused}
-            className="h-[32px] px-3.5 flex items-center gap-1.5 rounded-full bg-bg-card dark:bg-[#1a1625] border border-border/80 dark:border-white/15 text-text-primary dark:text-white text-xs font-bold shadow-sm active:scale-95 transition-transform cursor-pointer"
+            className="h-[30px] px-3 flex items-center gap-1.5 rounded-full bg-bg-card dark:bg-[#1a1625] border border-border/80 dark:border-white/15 text-text-primary dark:text-white text-[11px] font-bold shadow-sm active:scale-95 transition-transform cursor-pointer"
           >
             {isPaused ? (
               <>
@@ -234,46 +238,37 @@ function MobileHero() {
         </div>
       </div>
 
-      {/* ── Bottom Actions & Trust Facts ── */}
-      <div className="shrink-0 flex flex-col gap-2 mt-auto pt-2">
-        {/* Main WhatsApp CTA with White Arrow Badge */}
+      {/* ── Bottom Actions & Trust Facts (Clean, No AI Slop Badge, Zero Margin Overflow) ── */}
+      <div className="shrink-0 flex flex-col gap-2 mt-auto pt-2 w-full">
+        {/* Unified, Confident Primary WhatsApp CTA (No Clunky White Inner Box) */}
         <a
           href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20want%20a%20website%20for%20my%20business."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full h-14 rounded-2xl text-white flex items-center justify-between px-5 font-sans font-bold text-[15px] shadow-lg active:scale-[0.98] transition-transform select-none"
-          style={{ background: "var(--accent, #5a0a9c)" }}
+          className="w-full h-13 xs:h-14 rounded-full text-white flex items-center justify-center gap-2.5 px-6 font-mono text-xs xs:text-sm font-bold tracking-wider active:scale-[0.98] transition-all duration-200 shadow-lg shadow-purple-900/25 select-none hover:opacity-95"
+          style={{ background: "var(--accent)" }}
           aria-label="Start on WhatsApp"
         >
           <span>Start on WhatsApp</span>
-          <span
-            className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm"
-            aria-hidden="true"
-          >
-            <ArrowUpRight
-              size={18}
-              strokeWidth={2.8}
-              style={{ color: "var(--accent, #5a0a9c)" }}
-            />
-          </span>
+          <ArrowUpRight size={16} strokeWidth={2.5} className="shrink-0" />
         </a>
 
-        {/* See Our Work link */}
+        {/* See Our Work Secondary Action */}
         <a
           href="#flagships"
-          className="w-full flex items-center justify-center gap-1.5 py-2 font-sans text-sm font-semibold text-text-primary dark:text-white active:opacity-75 transition-opacity select-none"
+          className="w-full flex items-center justify-center gap-1.5 py-1 font-sans text-xs xs:text-[13px] font-semibold text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white active:opacity-75 transition-colors select-none"
         >
           <span>See Our Work</span>
-          <ArrowDown size={14} strokeWidth={2.2} />
+          <ArrowDown size={13} strokeWidth={2.2} />
         </a>
 
-        {/* Facts Row with | Dividers */}
-        <div className="w-full border-t border-border/60 dark:border-white/10 pt-2.5 pb-1 flex items-center justify-between text-[11px] font-sans font-bold text-text-primary dark:text-white">
-          <span>Guwahati</span>
-          <span className="text-border dark:text-white/20 font-normal">|</span>
-          <span>Transparent Sprints</span>
-          <span className="text-border dark:text-white/20 font-normal">|</span>
-          <span>You own 100% of the code</span>
+        {/* Facts Row: Mathematically Balanced, Zero Overflow */}
+        <div className="w-full border-t border-border/50 dark:border-white/10 pt-2 pb-0.5 flex items-center justify-between font-mono text-[9.5px] xs:text-[10.5px] text-text-tertiary dark:text-white/50 tracking-tight">
+          <span className="font-semibold text-text-primary dark:text-white shrink-0">Guwahati</span>
+          <span className="opacity-25 select-none">|</span>
+          <span className="font-semibold text-text-primary dark:text-white shrink-0">Transparent Sprints</span>
+          <span className="opacity-25 select-none">|</span>
+          <span className="font-semibold text-text-primary dark:text-white shrink-0">100% Code Ownership</span>
         </div>
       </div>
 
@@ -386,7 +381,7 @@ export default function SensoryHero() {
   return (
     <section
       id="hero"
-      className="intro-hero relative w-full overflow-hidden select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300"
+      className="intro-hero relative w-full max-w-full overflow-hidden select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300"
     >
       <MobileHero />
       <DesktopHero />
