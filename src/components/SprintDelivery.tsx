@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useEffect, useState, useCallback, useMemo } from "react";
-import { ChevronLeft, ChevronRight, Check, Package, Smartphone, Sparkles, ArrowRight } from "lucide-react";
 
 /* ─── Static Data ────────────────────────────────────────────────────────── */
 const EVENTS = [
@@ -39,13 +38,6 @@ function getPhase(d: number) {
   if (d <= 2) return "Audit & Conversion Blueprint · Days 1–2";
   if (d <= 6) return "Full-Stack Build & Wiring · Days 3–6";
   return "Phone Test & Live Launch · Days 7–10";
-}
-
-function getActiveMilestoneIdx(d: number) {
-  if (d <= 2) return 0;
-  if (d <= 6) return 1;
-  if (d <= 9) return 2;
-  return 3;
 }
 
 // Generate realistic pseudo-random barcode bars
@@ -132,55 +124,6 @@ export default function SprintDelivery() {
   }, []);
 
   /* ── Stop / Play Timers ── */
-  const mobileRailRef = useRef<HTMLDivElement>(null);
-
-  const scrollToMilestone = useCallback((idx: number) => {
-    const rail = mobileRailRef.current;
-    if (!rail || !rail.children[idx]) return;
-    (rail.children[idx] as HTMLElement).scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-  }, []);
-
-  const handleMobileScroll = useCallback(() => {
-    const rail = mobileRailRef.current;
-    if (!rail) return;
-    const cards = rail.children;
-    const railCenter = rail.scrollLeft + rail.offsetWidth / 2;
-    let closestIdx = 0;
-    let minDiff = Infinity;
-    for (let i = 0; i < 4; i++) {
-      const card = cards[i] as HTMLElement | undefined;
-      if (!card) continue;
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const diff = Math.abs(railCenter - cardCenter);
-      if (diff < minDiff) {
-        minDiff = diff;
-        closestIdx = i;
-      }
-    }
-    const days = [1, 3, 7, 10];
-    const targetDay = days[closestIdx];
-    if (day !== targetDay && getActiveMilestoneIdx(day) !== closestIdx) {
-      applyDay(targetDay);
-    }
-  }, [day, applyDay]);
-
-  // Keep mobile rail centered on active milestone when day updates
-  useEffect(() => {
-    const activeIdx = getActiveMilestoneIdx(day);
-    const rail = mobileRailRef.current;
-    if (rail && rail.children[activeIdx]) {
-      (rail.children[activeIdx] as HTMLElement).scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest",
-      });
-    }
-  }, [day]);
-
   const stopAutoPlay = useCallback(() => {
     if (timerRef.current) {
       clearTimeout(timerRef.current);
@@ -304,403 +247,37 @@ export default function SprintDelivery() {
           </button>
         </div>
 
-        {/* ═══════════════════════════════════════════════════════════════════ */}
-        {/* MOBILE VIEW: Horizontal Rope Suspension Deck (Unique Mobile Design) */}
-        {/* ═══════════════════════════════════════════════════════════════════ */}
-        <div className="md:hidden flex flex-col w-full mt-3">
-          
-          {/* Milestone Selector Tap Bar */}
-          <div className="flex items-center justify-between gap-1.5 p-1 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/60 border border-border/70">
-            {STOPS.map(([sDay, sLabel], sIdx) => {
-              const isCurrent = getActiveMilestoneIdx(day) === sIdx;
-              const isPassed = day >= sDay;
-              return (
-                <button
-                  key={sDay}
-                  type="button"
-                  onClick={() => {
-                    stopAutoPlay();
-                    applyDay(sDay);
-                    scrollToMilestone(sIdx);
-                  }}
-                  className={`flex-1 py-1.5 px-1 rounded-lg font-mono text-[10.5px] font-semibold text-center transition-all cursor-pointer select-none flex flex-col items-center leading-tight ${
-                    isCurrent
-                      ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 shadow-xs"
-                      : isPassed
-                      ? "text-accent dark:text-accent-light bg-accent/10"
-                      : "text-text-tertiary hover:text-text-secondary"
-                  }`}
-                  aria-pressed={isCurrent}
-                >
-                  <span className="font-bold">Day {sDay}</span>
-                  <span className="truncate text-[8.5px] opacity-75">{sLabel}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Interactive Rope Suspension Stage */}
-          <div className="relative w-full overflow-hidden -mx-4 px-4 py-3 my-2">
-            
-            {/* ── Horizontal Tactile Braided Rope Line ── */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-8 flex items-center overflow-hidden">
-              <svg className="w-full h-8 overflow-visible" preserveAspectRatio="none">
-                <defs>
-                  <pattern id="sprintRopeTwist" width="16" height="8" patternUnits="userSpaceOnUse">
-                    <path d="M0 4 Q4 1, 8 4 T16 4" stroke="#8d6e63" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.85" />
-                    <path d="M0 4 Q4 7, 8 4 T16 4" stroke="#5d4037" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.75" />
-                    <line x1="4" y1="2" x2="6" y2="6" stroke="#d7ccc8" strokeWidth="1" opacity="0.45" />
-                    <line x1="12" y1="2" x2="14" y2="6" stroke="#d7ccc8" strokeWidth="1" opacity="0.45" />
-                  </pattern>
-                  <filter id="sprintRopeShadow" x="-10%" y="-30%" width="120%" height="160%">
-                    <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.16" />
-                  </filter>
-                </defs>
-                {/* Ambient shadow */}
-                <line x1="0" y1="16" x2="100%" y2="16" stroke="rgba(0,0,0,0.12)" strokeWidth="5" />
-                {/* Braided cord line */}
-                <line x1="0" y1="14" x2="100%" y2="14" stroke="url(#sprintRopeTwist)" strokeWidth="4.5" filter="url(#sprintRopeShadow)" />
-              </svg>
-            </div>
-
-            {/* Scrollable Track with Staggered Up & Down Milestone Cards */}
-            <div
-              ref={mobileRailRef}
-              onScroll={handleMobileScroll}
-              className="flex items-center gap-4 overflow-x-auto snap-x snap-mandatory px-[calc(50%-122px)] py-8 scrollbar-none touch-pan-x relative z-10"
-              style={{ WebkitOverflowScrolling: "touch" }}
-            >
-
-              {/* ── CARD 0: Day 01 · Picked Up (UP SIDE) ── */}
-              <div
-                onClick={() => {
-                  stopAutoPlay();
-                  applyDay(1);
-                  scrollToMilestone(0);
-                }}
-                className={`snap-center shrink-0 w-[245px] h-[265px] rounded-2xl p-4 bg-bg-primary dark:bg-[#13111c] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  getActiveMilestoneIdx(day) === 0
-                    ? "sprint-breathe-up opacity-100 z-20"
-                    : "opacity-55 z-10"
-                }`}
-                style={
-                  getActiveMilestoneIdx(day) === 0
-                    ? undefined
-                    : { transform: "translateY(-16px) scale(0.82)" }
-                }
-              >
-                {/* Anchor Clip to Central Rope */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-700" />
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                </div>
-
-                <div className="w-20 h-20 rounded-full bg-purple-500/15 blur-xl absolute -right-2 top-0 pointer-events-none" />
-
-                {/* Card Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-xs font-bold text-accent dark:text-accent-light">DAY 01</span>
-                    <span className="font-mono text-[9px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      PICKED UP
-                    </span>
-                  </div>
-                  <div className="font-display font-black text-lg text-text-primary tracking-tight leading-tight">
-                    Order Received
-                  </div>
-                  <div className="text-[11px] font-mono text-text-tertiary mt-0.5">
-                    Audit &amp; Conversion Blueprint
-                  </div>
-                </div>
-
-                {/* Card Graphic: Wireframe Audit Blueprint */}
-                <div className="relative h-28 rounded-xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-border/60 dark:border-white/10 p-2.5 flex flex-col justify-between my-auto z-10">
-                  <div className="flex items-center justify-between border-b border-border/40 pb-1.5">
-                    <span className="font-mono text-[9px] text-text-secondary">Guwahati Studio Sprint</span>
-                    <span className="font-mono text-[9px] font-bold text-emerald-600 dark:text-emerald-400">Verified ✓</span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-1.5 my-auto">
-                    <div className="h-9 rounded bg-zinc-200/70 dark:bg-zinc-800 flex flex-col p-1 justify-between">
-                      <div className="w-6 h-1 rounded bg-zinc-400/50" />
-                      <div className="w-4 h-1 rounded bg-accent/60" />
-                    </div>
-                    <div className="h-9 rounded bg-zinc-200/70 dark:bg-zinc-800 flex flex-col p-1 justify-between">
-                      <div className="w-7 h-1 rounded bg-zinc-400/50" />
-                      <div className="w-5 h-1 rounded bg-zinc-400/50" />
-                    </div>
-                    <div className="h-9 rounded bg-accent/15 border border-accent/30 flex flex-col p-1 justify-between">
-                      <div className="w-6 h-1 rounded bg-accent/80" />
-                      <div className="w-3 h-1 rounded bg-emerald-500" />
-                    </div>
-                  </div>
-                  <div className="text-[8.5px] font-mono text-text-secondary">
-                    Conversion architecture mapped
-                  </div>
-                </div>
-              </div>
-
-              {/* ── CARD 1: Day 03 · In Transit (DOWN SIDE) ── */}
-              <div
-                onClick={() => {
-                  stopAutoPlay();
-                  applyDay(3);
-                  scrollToMilestone(1);
-                }}
-                className={`snap-center shrink-0 w-[245px] h-[265px] rounded-2xl p-4 bg-bg-primary dark:bg-[#13111c] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  getActiveMilestoneIdx(day) === 1
-                    ? "sprint-breathe-down opacity-100 z-20"
-                    : "opacity-55 z-10"
-                }`}
-                style={
-                  getActiveMilestoneIdx(day) === 1
-                    ? undefined
-                    : { transform: "translateY(16px) scale(0.82)" }
-                }
-              >
-                {/* Anchor Clip to Central Rope */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-600 to-zinc-400 dark:from-zinc-700 dark:to-zinc-500" />
-                </div>
-
-                <div className="w-20 h-20 rounded-tl-[50px] bg-gradient-to-tl from-purple-500/15 to-transparent absolute -bottom-2 -right-2 pointer-events-none" />
-
-                {/* Card Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-xs font-bold text-accent dark:text-accent-light">DAY 03</span>
-                    <span className="font-mono text-[9px] font-bold text-purple-600 dark:text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-                      IN TRANSIT
-                    </span>
-                  </div>
-                  <div className="font-display font-black text-lg text-text-primary tracking-tight leading-tight">
-                    Full-Stack Build
-                  </div>
-                  <div className="text-[11px] font-mono text-text-tertiary mt-0.5">
-                    Services, WhatsApp &amp; Maps Wired
-                  </div>
-                </div>
-
-                {/* Card Graphic: Pipeline Node Architecture */}
-                <div className="relative h-28 rounded-xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-border/60 dark:border-white/10 p-2.5 flex flex-col justify-between my-auto z-10">
-                  <div className="flex items-center justify-between text-[9px] font-mono text-text-secondary">
-                    <span>Static Engine</span>
-                    <span className="text-accent font-bold">&lt; 50ms Speed</span>
-                  </div>
-                  <div className="flex items-center justify-around py-1.5">
-                    <div className="flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-md bg-zinc-200 dark:bg-zinc-800 flex items-center justify-center font-mono text-[9px] font-bold">
-                        TS
-                      </div>
-                      <span className="text-[7.5px] font-mono text-text-tertiary mt-0.5">React</span>
-                    </div>
-                    <span className="text-accent font-bold text-xs">→</span>
-                    <div className="flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-mono text-[9px] font-bold">
-                        WA
-                      </div>
-                      <span className="text-[7.5px] font-mono text-text-tertiary mt-0.5">Router</span>
-                    </div>
-                    <span className="text-accent font-bold text-xs">→</span>
-                    <div className="flex flex-col items-center">
-                      <div className="w-6 h-6 rounded-md bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center font-mono text-[9px] font-bold">
-                        G
-                      </div>
-                      <span className="text-[7.5px] font-mono text-text-tertiary mt-0.5">Maps</span>
-                    </div>
-                  </div>
-                  <div className="w-full bg-zinc-200 dark:bg-zinc-800 h-1 rounded-full overflow-hidden">
-                    <div className="bg-accent h-full w-3/5 rounded-full animate-pulse" />
-                  </div>
-                </div>
-              </div>
-
-              {/* ── CARD 2: Day 07 · Phone Staging (UP SIDE) ── */}
-              <div
-                onClick={() => {
-                  stopAutoPlay();
-                  applyDay(7);
-                  scrollToMilestone(2);
-                }}
-                className={`snap-center shrink-0 w-[245px] h-[265px] rounded-2xl p-4 bg-bg-primary dark:bg-[#13111c] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  getActiveMilestoneIdx(day) === 2
-                    ? "sprint-breathe-up opacity-100 z-20"
-                    : "opacity-55 z-10"
-                }`}
-                style={
-                  getActiveMilestoneIdx(day) === 2
-                    ? undefined
-                    : { transform: "translateY(-16px) scale(0.82)" }
-                }
-              >
-                {/* Anchor Clip to Central Rope */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-700" />
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                </div>
-
-                <div className="w-20 h-20 rounded-full bg-amber-500/15 blur-xl absolute -right-2 top-0 pointer-events-none" />
-
-                {/* Card Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-xs font-bold text-accent dark:text-accent-light">DAY 07</span>
-                    <span className="font-mono text-[9px] font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                      PHONE TEST
-                    </span>
-                  </div>
-                  <div className="font-display font-black text-lg text-text-primary tracking-tight leading-tight">
-                    Smartphone Staging
-                  </div>
-                  <div className="text-[11px] font-mono text-text-tertiary mt-0.5">
-                    Private Test on Your Phone
-                  </div>
-                </div>
-
-                {/* Card Graphic: Phone Screen Sign-off */}
-                <div className="relative h-28 rounded-xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-border/60 dark:border-white/10 p-2.5 flex flex-col justify-between my-auto z-10">
-                  <div className="flex items-center gap-1.5">
-                    <Smartphone size={12} className="text-amber-500" />
-                    <span className="font-mono text-[9px] text-text-secondary truncate">staging.nerqiva.com/demo</span>
-                  </div>
-                  <div className="bg-white dark:bg-zinc-800 rounded p-1.5 border border-border/60 flex items-center justify-between">
-                    <span className="text-[9px] font-sans font-semibold text-text-primary">Click &amp; Test Live</span>
-                    <span className="text-[8px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">100% Pass</span>
-                  </div>
-                  <div className="text-[8.5px] font-mono text-text-secondary">
-                    Before DNS connects to production
-                  </div>
-                </div>
-              </div>
-
-              {/* ── CARD 3: Day 10 · Delivered (DOWN SIDE) ── */}
-              <div
-                onClick={() => {
-                  stopAutoPlay();
-                  applyDay(10);
-                  scrollToMilestone(3);
-                }}
-                className={`snap-center shrink-0 w-[245px] h-[265px] rounded-2xl p-4 bg-bg-primary dark:bg-[#13111c] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  getActiveMilestoneIdx(day) === 3
-                    ? "sprint-breathe-down opacity-100 z-20"
-                    : "opacity-55 z-10"
-                }`}
-                style={
-                  getActiveMilestoneIdx(day) === 3
-                    ? undefined
-                    : { transform: "translateY(16px) scale(0.82)" }
-                }
-              >
-                {/* Anchor Clip to Central Rope */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-600 to-zinc-400 dark:from-zinc-700 dark:to-zinc-500" />
-                </div>
-
-                <div className="w-20 h-20 rounded-bl-[50px] bg-gradient-to-bl from-emerald-500/15 to-transparent absolute -top-2 -right-2 pointer-events-none" />
-
-                {/* Card Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-xs font-bold text-accent dark:text-accent-light">DAY 10</span>
-                    <span className="font-mono text-[9px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                      <Check size={9} strokeWidth={3} />
-                      DELIVERED
-                    </span>
-                  </div>
-                  <div className="font-display font-black text-lg text-text-primary tracking-tight leading-tight">
-                    Live on Google
-                  </div>
-                  <div className="text-[11px] font-mono text-text-tertiary mt-0.5">
-                    100% Code &amp; Asset Ownership
-                  </div>
-                </div>
-
-                {/* Card Graphic: Delivered Parcel & Ownership Badge */}
-                <div className="relative h-28 rounded-xl bg-zinc-50/80 dark:bg-zinc-900/60 border border-border/60 dark:border-white/10 p-2.5 flex flex-col justify-between my-auto z-10">
-                  <div className="flex items-center justify-between text-[9px] font-mono">
-                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">● Active on DNS</span>
-                    <span className="text-text-secondary">Guwahati, Assam</span>
-                  </div>
-                  <div className="flex items-center justify-center py-1">
-                    <div className="border-2 border-accent text-accent font-display font-black text-xs tracking-wider px-3 py-1 rounded rotate-[-4deg] shadow-xs">
-                      DELIVERED
-                    </div>
-                  </div>
-                  <div className="text-[8.5px] font-mono text-text-secondary text-center">
-                    Zero Monthly Maintenance Retainers
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Minimal Mobile Micro-Navigation */}
-          <div className="flex items-center justify-between px-2 pt-1 pb-1 text-text-tertiary font-mono text-[11px]">
-            <div className="flex items-center gap-1.5">
-              <span className="font-bold text-text-primary dark:text-white">
-                0{getActiveMilestoneIdx(day) + 1}
-              </span>
-              <span className="opacity-40">/</span>
-              <span>04</span>
-              <span className="mx-1 text-border dark:text-white/20">·</span>
-              <span className="font-sans font-semibold text-text-secondary dark:text-white/80">
-                {STOPS[getActiveMilestoneIdx(day)][1]}
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
+        {/* Mobile Milestone Quick Touch Bar (< 768px for easy thumb tapping) */}
+        <div className="flex md:hidden items-center justify-between gap-1.5 mt-3 p-1 rounded-xl bg-zinc-100/80 dark:bg-zinc-900/60 border border-border/70">
+          {STOPS.map(([sDay, sLabel]) => {
+            const isCurrent = day === sDay;
+            const isPassed = day >= sDay;
+            return (
               <button
+                key={sDay}
                 type="button"
                 onClick={() => {
                   stopAutoPlay();
-                  const targetIdx = Math.max(0, getActiveMilestoneIdx(day) - 1);
-                  const days = [1, 3, 7, 10];
-                  applyDay(days[targetIdx]);
-                  scrollToMilestone(targetIdx);
+                  applyDay(sDay);
                 }}
-                disabled={getActiveMilestoneIdx(day) === 0}
-                aria-label="Previous sprint milestone"
-                className="w-7 h-7 rounded-full flex items-center justify-center border border-border/80 dark:border-white/10 text-text-primary dark:text-white disabled:opacity-20 disabled:pointer-events-none active:scale-90 transition-transform cursor-pointer"
+                className={`flex-1 py-1.5 px-1.5 rounded-lg font-mono text-[10.5px] font-semibold text-center transition-all cursor-pointer select-none flex flex-col items-center leading-tight ${
+                  isCurrent
+                    ? "bg-text-primary text-bg-primary dark:bg-white dark:text-zinc-950 shadow-xs"
+                    : isPassed
+                    ? "text-accent dark:text-accent-light bg-accent/10"
+                    : "text-text-tertiary hover:text-text-secondary"
+                }`}
+                aria-pressed={isCurrent}
               >
-                <ChevronLeft size={14} />
+                <span className="font-bold">Day {sDay}</span>
+                <span className="truncate text-[9px] opacity-75">{sLabel}</span>
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  stopAutoPlay();
-                  const targetIdx = Math.min(3, getActiveMilestoneIdx(day) + 1);
-                  const days = [1, 3, 7, 10];
-                  applyDay(days[targetIdx]);
-                  scrollToMilestone(targetIdx);
-                }}
-                disabled={getActiveMilestoneIdx(day) === 3}
-                aria-label="Next sprint milestone"
-                className="w-7 h-7 rounded-full flex items-center justify-center border border-border/80 dark:border-white/10 text-text-primary dark:text-white disabled:opacity-20 disabled:pointer-events-none active:scale-90 transition-transform cursor-pointer"
-              >
-                <ChevronRight size={14} />
-              </button>
-            </div>
-          </div>
-
+            );
+          })}
         </div>
 
-        {/* ═══════════════════════════════════════════════════════════════════ */}
-        {/* DESKTOP VIEW: SVG Curved Route (Preserved 100% Intact)              */}
-        {/* ═══════════════════════════════════════════════════════════════════ */}
-        <div className="hidden md:block relative mt-8 select-none" style={{ touchAction: "none" }}>
+        {/* ── SVG Curved Route ── */}
+        <div className="relative mt-8 select-none" style={{ touchAction: "none" }}>
           <svg
             ref={svgRef}
             viewBox="0 0 1000 240"
@@ -999,36 +576,6 @@ export default function SprintDelivery() {
             opacity: 1;
             transform: translateY(0);
           }
-        }
-
-        @keyframes sprintBreatheUp {
-          0%, 100% {
-            transform: translateY(-16px) scale(1);
-            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(90, 20, 184, 0.22);
-          }
-          50% {
-            transform: translateY(-20px) scale(1.035);
-            box-shadow: 0 22px 38px -10px rgba(90, 20, 184, 0.35), 0 0 0 1.5px rgba(90, 20, 184, 0.45);
-          }
-        }
-
-        @keyframes sprintBreatheDown {
-          0%, 100% {
-            transform: translateY(16px) scale(1);
-            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(90, 20, 184, 0.22);
-          }
-          50% {
-            transform: translateY(20px) scale(1.035);
-            box-shadow: 0 22px 38px -10px rgba(90, 20, 184, 0.35), 0 0 0 1.5px rgba(90, 20, 184, 0.45);
-          }
-        }
-
-        .sprint-breathe-up {
-          animation: sprintBreatheUp 3.2s ease-in-out infinite;
-        }
-
-        .sprint-breathe-down {
-          animation: sprintBreatheDown 3.2s ease-in-out infinite;
         }
       `}</style>
     </section>
