@@ -113,24 +113,71 @@ export default function UnifiedEngine() {
           {/* Interactive Rope Stage */}
           <div className="relative w-full overflow-hidden -mx-4 px-4 py-3">
             
-            {/* ── Horizontal Tactile Braided Rope Line ── */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-8 flex items-center overflow-hidden">
-              <svg className="w-full h-8 overflow-visible" preserveAspectRatio="none">
+            {/* ── Horizontal S-Shape Tilde (~) Flowing Rope Wave ── */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-28 flex items-center overflow-hidden -rotate-[1.2deg]">
+              <svg
+                className="w-full h-full overflow-visible"
+                viewBox="0 0 1000 120"
+                preserveAspectRatio="none"
+                fill="none"
+              >
                 <defs>
-                  <pattern id="ropeBraided" width="16" height="8" patternUnits="userSpaceOnUse">
+                  {/* Subtle purple accent aura glow */}
+                  <linearGradient id="sTildeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="transparent" />
+                    <stop offset="15%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.25" />
+                    <stop offset="50%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.6" />
+                    <stop offset="85%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="transparent" />
+                  </linearGradient>
+
+                  {/* Tactile twisted braided pattern along the wave */}
+                  <pattern id="sTildeBraid" width="16" height="8" patternUnits="userSpaceOnUse">
                     <path d="M0 4 Q4 1, 8 4 T16 4" stroke="#8d6e63" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.85" />
                     <path d="M0 4 Q4 7, 8 4 T16 4" stroke="#5d4037" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.75" />
-                    <line x1="4" y1="2" x2="6" y2="6" stroke="#d7ccc8" strokeWidth="1" opacity="0.45" />
-                    <line x1="12" y1="2" x2="14" y2="6" stroke="#d7ccc8" strokeWidth="1" opacity="0.45" />
+                    <circle cx="8" cy="4" r="0.8" fill="#d7ccc8" />
                   </pattern>
-                  <filter id="ropeShadow" x="-10%" y="-30%" width="120%" height="160%">
-                    <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.16" />
+
+                  {/* Depth Drop Shadow Filter */}
+                  <filter id="sTildeShadow" x="-20%" y="-40%" width="140%" height="180%">
+                    <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="0.14" />
                   </filter>
                 </defs>
-                {/* Soft depth shadow */}
-                <line x1="0" y1="16" x2="100%" y2="16" stroke="rgba(0,0,0,0.12)" strokeWidth="5" />
-                {/* Braided twisted cord */}
-                <line x1="0" y1="14" x2="100%" y2="14" stroke="url(#ropeBraided)" strokeWidth="4.5" filter="url(#ropeShadow)" />
+
+                {/* Ambient Soft Under-Shadow Path */}
+                <path
+                  d="M -30 64 C 130 22, 250 22, 380 64 C 510 106, 630 106, 760 64 C 890 22, 970 22, 1030 64"
+                  stroke="rgba(0,0,0,0.12)"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  className="dark:stroke-black/50"
+                />
+
+                {/* Accent Atmospheric Glow Line */}
+                <path
+                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
+                  stroke="url(#sTildeGrad)"
+                  strokeWidth="7"
+                  strokeLinecap="round"
+                  filter="url(#sTildeShadow)"
+                />
+
+                {/* Primary Tactile Braided S-Curve Cord */}
+                <path
+                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
+                  stroke="url(#sTildeBraid)"
+                  strokeWidth="4.5"
+                  strokeLinecap="round"
+                />
+
+                {/* Delicate Whispering Light Filament */}
+                <path
+                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
+                  stroke="rgba(255,255,255,0.4)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeDasharray="6 10"
+                />
               </svg>
             </div>
 
