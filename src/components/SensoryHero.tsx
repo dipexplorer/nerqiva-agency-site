@@ -1,51 +1,43 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ArrowDown, Play, Pause } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { ArrowDown, ArrowUpRight, MessageCircle, Play, Pause } from "lucide-react";
 import AnfalovaHeroGallery from "./AnfalovaHeroGallery";
 
-// ─── Real Flagship Client Projects for Mobile Gallery ─────────────────────────
-interface RealMobileProject {
-  id: string;
-  client: string;
-  category: string;
-  urlLabel: string;
-  image: string;
-}
-
-const REAL_MOBILE_PROJECTS: RealMobileProject[] = [
+// ─── Real Mobile Project Data (Direct from Flagship Case Studies) ─────────────
+const REAL_MOBILE_PROJECTS = [
   {
     id: "lablink",
     client: "LabLink Diagnostics",
     category: "Healthcare & Diagnostics",
     urlLabel: "lablinkguwahati.in",
-    image: "/images/projects/lablink/desktop.png",
+    image: "/images/projects/lablink/final_hero.png",
   },
   {
     id: "krishav",
-    client: "Krishav Mehendi Atelier",
+    client: "Krishav Mehendi",
     category: "Bridal & Aesthetics",
-    urlLabel: "krishavmehendi.com",
-    image: "/images/projects/krishavmehendi/bridal.png",
+    urlLabel: "krishavmehendi.in",
+    image: "/images/projects/krishav/final_hero.png",
   },
   {
     id: "valerie",
-    client: "Valerie Laurent Couture",
-    category: "Editorial Haute Couture",
-    urlLabel: "valerielaurent.com",
-    image: "/images/projects/editorial/vogue.png",
+    client: "Valérie Laurent",
+    category: "Haute Couture & Atelier",
+    urlLabel: "valerielaurent.fr",
+    image: "/images/projects/valerie/final_hero.png",
   },
   {
-    id: "titangym",
-    client: "Titan Athletic Club",
-    category: "Athletics & Training",
-    urlLabel: "titangym.club",
-    image: "/images/projects/titangym/contrast.png",
+    id: "houseoftales",
+    client: "House of Tales",
+    category: "Commercial Photography",
+    urlLabel: "houseoftales.in",
+    image: "/images/projects/houseoftales/final_hero.png",
   },
   {
     id: "aurabeauty",
-    client: "Elena Styles · Aura Clinic",
-    category: "Clinical Aesthetics",
+    client: "Aura Styles",
+    category: "Bridal Aesthetics Studio",
     urlLabel: "auraclinic.in",
     image: "/images/projects/aurabeauty/final_hero.png",
   },
@@ -81,33 +73,31 @@ function MobileHero() {
   const displayProjects = [...REAL_MOBILE_PROJECTS, ...REAL_MOBILE_PROJECTS];
 
   return (
-    <div className="sm:hidden flex flex-col justify-between min-h-[100svh] w-full max-w-full overflow-hidden px-5 pt-18 xs:pt-20 pb-4 select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300">
+    <div className="sm:hidden flex flex-col justify-between min-h-[100svh] w-full max-w-full overflow-hidden px-5 pt-[104px] pb-5 select-none bg-bg-primary dark:bg-[#09090b] transition-colors duration-300">
       
-      {/* ── Top Header Text: Pure Authority (Clean & Professional) ── */}
+      {/* ── Top Header Text: Pure Authority & Generous Breathing Space ── */}
       <div className="shrink-0 pt-1">
-        {/* Editorial Headline with Purple Slot Box */}
-        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.4rem] xs:text-[2.75rem] leading-[1.0] tracking-[-0.04em] mb-2">
-          Your business gets<br />
-          a<br />
-          <span
-            className="inline-block text-white px-3 py-1 my-1 rounded-md font-display font-black"
-            style={{
-              background: "var(--accent, #5a0a9c)",
-              transform: "rotate(-1.4deg)",
-              boxShadow: "0 6px 20px rgba(90, 10, 156, 0.35)",
-            }}
-          >
-            website that<br />books clients
+        {/* Handwritten Studio Greeting */}
+        <div className="mb-1.5">
+          <span className="font-handwritten text-xl text-accent font-medium -rotate-1 inline-block tracking-wide">
+            Direct Engineering Studio —
           </span>
-          <br />
-          <span className="text-text-secondary dark:text-white/45 font-normal">
+        </div>
+
+        {/* Editorial Headline (Zero AI-Slop Box Sticker) */}
+        <h1 className="font-display font-black text-text-primary dark:text-white text-[2.25rem] leading-[1.04] tracking-[-0.04em] mb-2.5">
+          Your business gets a<br />
+          <span className="font-display italic font-normal text-accent inline-block -rotate-1">
+            website that books clients
+          </span>{" "}
+          <span className="text-text-secondary dark:text-white/45 font-normal block sm:inline">
             — built to convert.
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="font-sans text-[13px] xs:text-[13.5px] text-text-secondary dark:text-white/60 mb-2 leading-snug max-w-[30ch]">
-          For business owners who refuse to look amateur online
+        <p className="font-sans text-[13.5px] text-text-secondary dark:text-white/60 leading-relaxed max-w-[32ch]">
+          For business owners who refuse to look amateur online.
         </p>
       </div>
 
@@ -245,10 +235,11 @@ function MobileHero() {
           href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20want%20a%20website%20for%20my%20business."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full h-13 xs:h-14 rounded-full text-white flex items-center justify-center gap-2.5 px-6 font-mono text-xs xs:text-sm font-bold tracking-wider active:scale-[0.98] transition-all duration-200 shadow-lg shadow-purple-900/25 select-none hover:opacity-95"
+          className="w-full h-13 rounded-full text-white flex items-center justify-center gap-2.5 px-6 font-mono text-xs font-bold tracking-wider active:scale-[0.98] transition-all duration-200 shadow-lg shadow-purple-900/25 select-none hover:opacity-95"
           style={{ background: "var(--accent)" }}
           aria-label="Start on WhatsApp"
         >
+          <MessageCircle className="w-4 h-4 fill-current shrink-0" />
           <span>Start on WhatsApp</span>
           <ArrowUpRight size={16} strokeWidth={2.5} className="shrink-0" />
         </a>
@@ -256,7 +247,7 @@ function MobileHero() {
         {/* See Our Work Secondary Action */}
         <a
           href="#flagships"
-          className="w-full flex items-center justify-center gap-1.5 py-1.5 font-sans text-xs xs:text-[13px] font-semibold text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white active:opacity-75 transition-colors select-none"
+          className="w-full flex items-center justify-center gap-1.5 py-1.5 font-sans text-xs font-semibold text-text-secondary dark:text-white/60 hover:text-text-primary dark:hover:text-white active:opacity-75 transition-colors select-none"
         >
           <span>See Our Work</span>
           <ArrowDown size={13} strokeWidth={2.2} />
