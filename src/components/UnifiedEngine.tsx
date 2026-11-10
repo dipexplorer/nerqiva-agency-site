@@ -11,6 +11,21 @@ const DELIVERABLES_META = [
   { id: "upi", shortLabel: "0% Commission", num: "04" },
 ];
 
+const CARD_THEMES = [
+  { color: "#10b981", glow: "rgba(16, 185, 129, 0.45)" }, // 01 Mobile Ready
+  { color: "#25D366", glow: "rgba(37, 211, 102, 0.45)" }, // 02 Direct Leads
+  { color: "#4285F4", glow: "rgba(66, 133, 244, 0.45)" }, // 03 Google Maps
+  { color: "#a855f7", glow: "rgba(168, 85, 247, 0.45)" }, // 04 0% Commission
+];
+
+// Dynamic responsive paths that morph depending on active card
+const DYNAMIC_LINE_PATHS = [
+  "M -20 60 C 60 16, 140 16, 260 60 C 420 84, 700 50, 1020 60",  // 01: Arches UP to Card 0
+  "M -20 60 C 140 50, 260 104, 380 104 C 520 104, 700 50, 1020 60", // 02: Dips DOWN to Card 1
+  "M -20 60 C 300 50, 500 16, 620 16 C 740 16, 880 55, 1020 60",  // 03: Arches UP to Card 2
+  "M -20 60 C 300 55, 620 50, 740 104 C 860 104, 950 80, 1020 60", // 04: Dips DOWN to Card 3
+];
+
 export default function UnifiedEngine() {
   const [mobileActiveIdx, setMobileActiveIdx] = useState(0);
   const [selectedSlot, setSelectedSlot] = useState("08:30 AM");
@@ -65,9 +80,6 @@ export default function UnifiedEngine() {
             >
               What You Get In Every Build.
             </h2>
-            <span className="font-mono text-xs sm:text-sm text-text-tertiary">
-              / 04
-            </span>
           </div>
 
           <span className="hidden sm:inline-block font-mono text-xs text-text-tertiary">
@@ -113,70 +125,55 @@ export default function UnifiedEngine() {
           {/* Interactive 3D Stage */}
           <div className="relative w-full overflow-hidden -mx-4 px-4 py-2">
             
-            {/* ── Horizontal S-Shape Tilde (~) Flowing Rope Wave ── */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-24 flex items-center overflow-hidden -rotate-[1.2deg]">
+            {/* ── Dynamic Interactive Line: Responsive to Active Card UI ── */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-24 flex items-center overflow-hidden">
               <svg
                 className="w-full h-full overflow-visible"
                 viewBox="0 0 1000 120"
                 preserveAspectRatio="none"
                 fill="none"
               >
-                <defs>
-                  {/* Subtle purple accent aura glow */}
-                  <linearGradient id="sTildeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="transparent" />
-                    <stop offset="15%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.25" />
-                    <stop offset="50%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.6" />
-                    <stop offset="85%" stopColor="var(--accent, #5a0a9c)" stopOpacity="0.25" />
-                    <stop offset="100%" stopColor="transparent" />
-                  </linearGradient>
-
-                  {/* Tactile twisted braided pattern along the wave */}
-                  <pattern id="sTildeBraid" width="16" height="8" patternUnits="userSpaceOnUse">
-                    <path d="M0 4 Q4 1, 8 4 T16 4" stroke="#8d6e63" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.85" />
-                    <path d="M0 4 Q4 7, 8 4 T16 4" stroke="#5d4037" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.75" />
-                    <circle cx="8" cy="4" r="0.8" fill="#d7ccc8" />
-                  </pattern>
-
-                  {/* Depth Drop Shadow Filter */}
-                  <filter id="sTildeShadow" x="-20%" y="-40%" width="140%" height="180%">
-                    <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="0.14" />
-                  </filter>
-                </defs>
-
-                {/* Ambient Soft Under-Shadow Path */}
+                {/* Clean, subtle architectural baseline */}
                 <path
-                  d="M -30 64 C 130 22, 250 22, 380 64 C 510 106, 630 106, 760 64 C 890 22, 970 22, 1030 64"
-                  stroke="rgba(0,0,0,0.12)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  className="dark:stroke-black/50"
-                />
-
-                {/* Accent Atmospheric Glow Line */}
-                <path
-                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
-                  stroke="url(#sTildeGrad)"
-                  strokeWidth="7"
-                  strokeLinecap="round"
-                  filter="url(#sTildeShadow)"
-                />
-
-                {/* Primary Tactile Braided S-Curve Cord */}
-                <path
-                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
-                  stroke="url(#sTildeBraid)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                />
-
-                {/* Delicate Whispering Light Filament */}
-                <path
-                  d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
-                  stroke="rgba(255,255,255,0.4)"
+                  d="M -20 60 Q 250 40, 500 60 T 1020 60"
+                  stroke="currentColor"
                   strokeWidth="1.2"
+                  strokeDasharray="4 6"
+                  fill="none"
+                  className="text-zinc-300/80 dark:text-white/10"
+                />
+
+                {/* Dynamic Active Morphed Line: Changes color, curve, and glow with active card */}
+                <path
+                  d={DYNAMIC_LINE_PATHS[mobileActiveIdx]}
+                  stroke={CARD_THEMES[mobileActiveIdx].color}
+                  strokeWidth="2.5"
+                  fill="none"
                   strokeLinecap="round"
-                  strokeDasharray="6 10"
+                  className="transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{
+                    filter: `drop-shadow(0 0 8px ${CARD_THEMES[mobileActiveIdx].glow})`,
+                  }}
+                />
+
+                {/* Dynamic Traveling Beacon Node on the Active Card's Coordinates */}
+                <circle
+                  cx={
+                    mobileActiveIdx === 0
+                      ? "140"
+                      : mobileActiveIdx === 1
+                      ? "380"
+                      : mobileActiveIdx === 2
+                      ? "620"
+                      : "860"
+                  }
+                  cy={mobileActiveIdx % 2 === 0 ? "16" : "104"}
+                  r="4.5"
+                  fill={CARD_THEMES[mobileActiveIdx].color}
+                  className="transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  style={{
+                    filter: `drop-shadow(0 0 10px ${CARD_THEMES[mobileActiveIdx].color})`,
+                  }}
                 />
               </svg>
             </div>
@@ -551,14 +548,15 @@ export default function UnifiedEngine() {
 
           {/* Minimal Bottom Nav with Interactive Touch Controls */}
           <div className="flex items-center justify-between px-2 pt-1 pb-1 text-text-tertiary font-mono text-[11px]">
-            <div className="flex items-center gap-1.5">
-              <span className="font-bold text-text-primary dark:text-white">
+            <div className="flex items-center gap-2">
+              <span
+                className="font-mono text-xs font-bold transition-colors duration-500"
+                style={{ color: CARD_THEMES[mobileActiveIdx].color }}
+              >
                 {DELIVERABLES_META[mobileActiveIdx].num}
               </span>
-              <span className="opacity-40">/</span>
-              <span>04</span>
-              <span className="mx-1 text-border dark:text-white/20">·</span>
-              <span className="font-sans font-semibold text-text-secondary dark:text-white/80">
+              <span className="text-border dark:text-white/20">·</span>
+              <span className="font-sans font-semibold text-text-secondary dark:text-white/90 text-xs">
                 {DELIVERABLES_META[mobileActiveIdx].shortLabel}
               </span>
             </div>
