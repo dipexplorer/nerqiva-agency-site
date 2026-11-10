@@ -7,6 +7,13 @@ import AnfalovaHeroGallery from "./AnfalovaHeroGallery";
 // ─── Real Flagship Client Projects for Mobile Gallery ─────────────────────────
 const REAL_MOBILE_PROJECTS = [
   {
+    id: "aurabeauty",
+    client: "Elena Styles · Aura Clinic",
+    category: "Clinical Aesthetics",
+    urlLabel: "auraclinic.in",
+    image: "/images/projects/aurabeauty/final_hero.png",
+  },
+  {
     id: "lablink",
     client: "LabLink Diagnostics",
     category: "Healthcare & Diagnostics",
@@ -18,28 +25,21 @@ const REAL_MOBILE_PROJECTS = [
     client: "Krishav Mehendi Atelier",
     category: "Bridal & Aesthetics",
     urlLabel: "krishavmehendi.com",
-    image: "/images/projects/krishavmehendi/bridal.png",
-  },
-  {
-    id: "titangym",
-    client: "Titan Athletic Club",
-    category: "Athletics & Training",
-    urlLabel: "titangym.club",
-    image: "/images/projects/titangym/contrast.png",
+    image: "/images/projects/krishavmehendi/traditional.png",
   },
   {
     id: "valerie",
     client: "Valerie Laurent Couture",
     category: "Editorial Haute Couture",
     urlLabel: "valerielaurent.com",
-    image: "/images/projects/editorial/vogue.png",
+    image: "/images/projects/editorial/prada.png",
   },
   {
-    id: "aurabeauty",
-    client: "Elena Styles · Aura Clinic",
-    category: "Clinical Aesthetics",
-    urlLabel: "auraclinic.in",
-    image: "/images/projects/aurabeauty/final_hero.png",
+    id: "houseoftales",
+    client: "House of Tales",
+    category: "Commercial Photography",
+    urlLabel: "houseoftales.in",
+    image: "/images/projects/wedding/holi.png",
   },
 ];
 
@@ -94,17 +94,9 @@ function MobileHero() {
         </p>
       </div>
 
-      {/* ── Center Stage: Diagonal Glass Bending Gallery Rail ── */}
+      {/* ── Center Stage: Gallery Rail ── */}
       <div className="relative my-auto py-2 shrink-0 w-full overflow-hidden">
-        
-        {/* Subtle Ambient Refraction Gradients */}
-        <div
-          className="absolute -top-12 left-1/4 w-44 h-44 rounded-full pointer-events-none blur-3xl opacity-20 dark:opacity-25"
-          style={{ background: "var(--accent, #5a0a9c)" }}
-          aria-hidden="true"
-        />
-
-        {/* Diagonal Rotated Track with Strict Paint Containment */}
+        {/* Diagonal Rotated Track with Smooth Scroll */}
         <div
           ref={railRef}
           onTouchStart={() => { isInteracting.current = true; }}
@@ -121,58 +113,34 @@ function MobileHero() {
           {displayProjects.map((project, idx) => (
             <article
               key={`${project.id}-${idx}`}
-              className="flex-none w-[164px] h-[235px] rounded-[16px] overflow-hidden relative shadow-2xl transition-transform active:scale-[0.98] bg-zinc-900 border border-white/25 dark:border-white/15"
-              style={{
-                boxShadow:
-                  "0 18px 36px -10px rgba(15, 10, 30, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.18) inset",
-              }}
+              className="flex-none w-[164px] h-[235px] rounded-[14px] overflow-hidden relative shadow-lg transition-transform active:scale-[0.98] bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/15"
             >
-              {/* Actual Real UI Screenshot */}
+              {/* Actual Real Website UI Screenshot */}
               <img
                 src={project.image}
                 alt={project.client}
-                className="w-full h-full object-cover object-top filter brightness-[0.98]"
+                className="w-full h-full object-cover object-top"
                 loading="eager"
               />
 
-              {/* Glass Bending Specular Refraction Overlay */}
-              <div
-                className="absolute inset-0 pointer-events-none z-20"
-                style={{
-                  background:
-                    "linear-gradient(130deg, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0.12) 30%, transparent 52%, rgba(255,255,255,0.15) 100%)",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* Glass Curved Lens Glare Arc */}
-              <div
-                className="absolute -top-1/3 -left-1/3 w-[160%] h-[160%] pointer-events-none z-20 opacity-30"
-                style={{
-                  background:
-                    "radial-gradient(circle at 45% 35%, rgba(255,255,255,0.6) 0%, transparent 48%)",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* Frosted Glass Browser Chrome Header */}
-              <div className="absolute inset-x-0 top-0 h-6 flex items-center justify-between px-2 bg-black/40 backdrop-blur-md border-b border-white/15 z-30">
+              {/* Minimal Clean Browser Chrome Bar */}
+              <div className="absolute inset-x-0 top-0 h-5 flex items-center justify-between px-2 bg-black/65 backdrop-blur-sm border-b border-white/10 z-10">
                 <div className="flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                   <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                 </div>
-                <div className="font-mono text-[8px] font-medium tracking-tight text-white/80 truncate max-w-[95px]">
+                <div className="font-mono text-[8px] font-medium tracking-tight text-white/90 truncate max-w-[100px]">
                   {project.urlLabel}
                 </div>
               </div>
 
-              {/* Frosted Glass Bottom Scrim with Real Client Data */}
-              <div className="absolute inset-x-0 bottom-0 pt-6 pb-2.5 px-2.5 bg-gradient-to-t from-black/90 via-black/55 to-transparent backdrop-blur-[2px] z-30 flex flex-col justify-end">
-                <span className="font-mono text-[7.5px] font-bold text-accent-light dark:text-accent uppercase tracking-wider mb-0.5">
+              {/* Low-Profile Bottom Scrim (Unobscured UI) */}
+              <div className="absolute inset-x-0 bottom-0 pt-4 pb-2 px-2.5 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 flex flex-col justify-end">
+                <span className="font-mono text-[7px] font-bold text-purple-300 dark:text-purple-300 uppercase tracking-wider mb-0.5">
                   {project.category}
                 </span>
-                <span className="font-display font-bold text-[11.5px] text-white leading-tight truncate">
+                <span className="font-sans font-bold text-[11px] text-white leading-tight truncate">
                   {project.client}
                 </span>
               </div>
