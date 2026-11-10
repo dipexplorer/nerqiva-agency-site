@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { ArrowUpRight, MessageCircle, Mail, ArrowUp } from "lucide-react";
 import BrandLogo from "./BrandLogo";
@@ -58,13 +58,13 @@ const LEGAL_LINKS = [
 
 // Interactive Kinetic Logo Letters configuration for the big header
 const LOGO_HEADING_LETTERS = [
-  { char: "N", tilt: "-rotate-6", lift: "-translate-y-2" },
-  { char: "E", tilt: "rotate-6", lift: "-translate-y-2" },
-  { char: "R", tilt: "-rotate-8", lift: "-translate-y-2.5" },
-  { char: "Q", tilt: "rotate-8", lift: "-translate-y-3" },
-  { char: "I", tilt: "-rotate-4", lift: "-translate-y-1.5" },
-  { char: "V", tilt: "rotate-6", lift: "-translate-y-2" },
-  { char: "A", tilt: "-rotate-6", lift: "-translate-y-2" },
+  { char: "N", tilt: "-rotate-6", lift: "-translate-y-2", hoverClasses: "hover:-translate-y-2 hover:-rotate-6 active:-translate-y-2 active:-rotate-6 active:scale-105" },
+  { char: "E", tilt: "rotate-6", lift: "-translate-y-2", hoverClasses: "hover:-translate-y-2 hover:rotate-6 active:-translate-y-2 active:rotate-6 active:scale-105" },
+  { char: "R", tilt: "-rotate-8", lift: "-translate-y-2.5", hoverClasses: "hover:-translate-y-2.5 hover:-rotate-8 active:-translate-y-2.5 active:-rotate-8 active:scale-105" },
+  { char: "Q", tilt: "rotate-8", lift: "-translate-y-3", hoverClasses: "hover:-translate-y-3 hover:rotate-8 active:-translate-y-3 active:rotate-8 active:scale-105" },
+  { char: "I", tilt: "-rotate-4", lift: "-translate-y-1.5", hoverClasses: "hover:-translate-y-1.5 hover:-rotate-4 active:-translate-y-1.5 active:-rotate-4 active:scale-105" },
+  { char: "V", tilt: "rotate-6", lift: "-translate-y-2", hoverClasses: "hover:-translate-y-2 hover:rotate-6 active:-translate-y-2 active:rotate-6 active:scale-105" },
+  { char: "A", tilt: "-rotate-6", lift: "-translate-y-2", hoverClasses: "hover:-translate-y-2 hover:-rotate-6 active:-translate-y-2 active:-rotate-6 active:scale-105" },
 ];
 
 // Interactive Kinetic Letter physics & typography configuration for bottom display
@@ -83,6 +83,12 @@ export default function Footer() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(null);
+  const [ambientIndex, setAmbientIndex] = useState<number | null>(null);
+
+  const mousePosRef = useRef<{ x: number; y: number } | null>(null);
+  const hoveredIndexRef = useRef<number | null>(null);
+  mousePosRef.current = mousePos;
+  hoveredIndexRef.current = hoveredIndex;
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -98,12 +104,65 @@ export default function Footer() {
     setClickedIndex(null);
   }, []);
 
+  // Full touch tracking for mobile interaction
+  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    if (!containerRef.current || e.touches.length === 0) return;
+    const touch = e.touches[0];
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(1, (touch.clientX - rect.left) / rect.width));
+    const y = Math.max(0, Math.min(1, (touch.clientY - rect.top) / rect.height));
+    setMousePos({ x, y });
+
+    const letterIdx = Math.min(
+      WORDMARK_LETTERS.length - 1,
+      Math.max(0, Math.floor(x * WORDMARK_LETTERS.length))
+    );
+    setHoveredIndex(letterIdx);
+  }, []);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    handleTouchMove(e);
+  }, [handleTouchMove]);
+
+  const handleTouchEnd = useCallback(() => {
+    setMousePos(null);
+    setHoveredIndex(null);
+    setClickedIndex(null);
+  }, []);
+
   const handleLetterClick = (index: number) => {
     setClickedIndex(index);
     setTimeout(() => {
       setClickedIndex(null);
     }, 280);
   };
+
+  // Autonomous ambient wave on idle (both mobile & desktop)
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let step = 0;
+
+    const runWave = () => {
+      if (mousePosRef.current !== null || hoveredIndexRef.current !== null) {
+        setAmbientIndex(null);
+        timeoutId = setTimeout(runWave, 3500);
+        return;
+      }
+
+      if (step < WORDMARK_LETTERS.length) {
+        setAmbientIndex(step);
+        step++;
+        timeoutId = setTimeout(runWave, 130);
+      } else {
+        setAmbientIndex(null);
+        step = 0;
+        timeoutId = setTimeout(runWave, 3500);
+      }
+    };
+
+    timeoutId = setTimeout(runWave, 1800);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <footer id="footer" className="border-t border-border/40 bg-bg-primary text-text-primary relative z-20 pt-16 sm:pt-24 pb-12 overflow-hidden">
@@ -133,7 +192,7 @@ export default function Footer() {
                     {LOGO_HEADING_LETTERS.map((item, idx) => (
                       <span
                         key={idx}
-                        className={`inline-block transition-transform duration-300 ease-out hover:${item.lift} hover:${item.tilt} hover:scale-105 cursor-pointer`}
+                        className={`inline-block transition-transform duration-300 ease-out ${item.hoverClasses} cursor-pointer select-none`}
                       >
                         {item.char}
                       </span>
@@ -243,14 +302,21 @@ export default function Footer() {
 
         {/* ========================================================
             INTERACTIVE KINETIC WORDMARK: 'N E R Q I V A'
-            With live user interaction, organic letter tilt angles,
-            wave proximity physics, hover lift, and tactile spring motion.
+            Full responsive kinetic physics:
+            - Desktop: Live cursor tracking + cosine proximity wave
+            - Mobile: Real-time touch drag tracking across letters
+            - Tactile: Spring bounce on tap / click
+            - Ambient: Autonomous gentle wave ripple across letters on idle
             ======================================================== */}
         <div 
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="pt-12 sm:pt-16 pb-8 overflow-hidden select-none relative group/wordmark cursor-default"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
+          className="pt-12 sm:pt-16 pb-8 overflow-hidden select-none relative group/wordmark cursor-default touch-pan-y"
           aria-label="NERQIVA Studio Grand Display"
         >
           {/* Kinetic Letters Container */}
@@ -261,31 +327,44 @@ export default function Footer() {
             {WORDMARK_LETTERS.map((item, index) => {
               const isHovered = hoveredIndex === index;
               const isClicked = clickedIndex === index;
+              const isAmbient = ambientIndex === index && !mousePos && hoveredIndex === null;
 
-              // Proximity wave physics calculation
+              // Proximity wave physics calculation (smooth wave across adjacent letters)
               let waveLift = 0;
               let waveRotate = 0;
-              if (mousePos && hoveredIndex === null) {
+              if (mousePos && !isHovered) {
                 const letterCenter = (index + 0.5) / WORDMARK_LETTERS.length;
                 const dist = Math.abs(mousePos.x - letterCenter);
-                if (dist < 0.28) {
-                  const intensity = Math.cos((dist / 0.28) * (Math.PI / 2));
-                  waveLift = intensity * -15;
-                  waveRotate = intensity * item.hoverRotate * 0.7;
+                if (dist < 0.32) {
+                  const intensity = Math.cos((dist / 0.32) * (Math.PI / 2));
+                  waveLift = intensity * -14;
+                  waveRotate = intensity * item.hoverRotate * 0.65;
                 }
               }
 
               const currentRotate = isHovered 
                 ? item.hoverRotate 
+                : isAmbient
+                ? item.hoverRotate * 0.75
                 : (waveRotate || item.restRotate);
                 
               const currentTranslateY = isClicked 
                 ? item.hoverY * 0.4 
-                : (isHovered ? item.hoverY : waveLift);
+                : isHovered 
+                ? item.hoverY 
+                : isAmbient
+                ? item.hoverY * 0.65
+                : waveLift;
                 
               const currentScale = isClicked 
                 ? 0.94 
-                : (isHovered ? item.scale : (waveLift ? 1.05 : 1));
+                : isHovered 
+                ? item.scale 
+                : isAmbient
+                ? 1.08
+                : (waveLift ? 1.05 : 1);
+
+              const isHighlighted = isHovered || isAmbient;
 
               return (
                 <span
@@ -293,17 +372,18 @@ export default function Footer() {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   onClick={() => handleLetterClick(index)}
+                  onTouchStart={() => handleLetterClick(index)}
                   style={{
                     transform: `translate3d(0, ${currentTranslateY}px, 0) rotate(${currentRotate}deg) scale(${currentScale})`,
                     transition: isClicked
                       ? "transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)"
                       : "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, filter 0.3s ease",
                   }}
-                  className={`inline-block text-[14vw] sm:text-[13vw] lg:text-[12vw] tracking-normal cursor-pointer transition-colors will-change-transform ${
-                    isHovered
+                  className={`inline-block text-[14vw] sm:text-[13vw] lg:text-[12vw] tracking-normal cursor-pointer transition-colors will-change-transform select-none ${
+                    isHighlighted
                       ? "text-text-primary dark:text-white drop-shadow-[0_16px_30px_rgba(0,0,0,0.18)] dark:drop-shadow-[0_16px_30px_rgba(255,255,255,0.22)]"
                       : waveLift
-                      ? "text-text-primary/40 dark:text-white/40"
+                      ? "text-text-primary/45 dark:text-white/45"
                       : "text-text-primary/10 dark:text-white/10"
                   }`}
                 >
