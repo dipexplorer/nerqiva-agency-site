@@ -76,45 +76,45 @@ export default function UnifiedEngine() {
         </div>
 
         {/* ═══════════════════════════════════════════════════════════════════ */}
-        {/* MOBILE VIEW: Rope Line Suspension Deck with Breathing Motion        */}
+        {/* MOBILE VIEW: Compact 3D Deck along S-Shape Tilde Wave               */}
         {/* ═══════════════════════════════════════════════════════════════════ */}
         <div className="sm:hidden flex flex-col w-full relative">
           
-          {/* Scoped Keyframes for Subtle Breathing Motion */}
+          {/* Scoped Keyframes for Fluid 3D Breathing Motion */}
           <style>{`
-            @keyframes ropeBreatheUp {
+            @keyframes cardBreatheUp {
               0%, 100% {
-                transform: translateY(-16px) scale(1);
-                box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(90, 10, 156, 0.18);
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(90, 10, 156, 0.16);
               }
               50% {
-                transform: translateY(-19px) scale(1.04);
-                box-shadow: 0 22px 38px -10px rgba(90, 10, 156, 0.22), 0 0 0 1.5px rgba(90, 10, 156, 0.35);
+                transform: translateY(-11px) scale(1.05);
+                box-shadow: 0 18px 36px -8px rgba(90, 10, 156, 0.22), 0 0 0 1.5px rgba(90, 10, 156, 0.32);
               }
             }
-            @keyframes ropeBreatheDown {
+            @keyframes cardBreatheDown {
               0%, 100% {
-                transform: translateY(16px) scale(1);
-                box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(90, 10, 156, 0.18);
+                transform: translateY(8px) scale(1.02);
+                box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(90, 10, 156, 0.16);
               }
               50% {
-                transform: translateY(19px) scale(1.04);
-                box-shadow: 0 22px 38px -10px rgba(90, 10, 156, 0.22), 0 0 0 1.5px rgba(90, 10, 156, 0.35);
+                transform: translateY(11px) scale(1.05);
+                box-shadow: 0 18px 36px -8px rgba(90, 10, 156, 0.22), 0 0 0 1.5px rgba(90, 10, 156, 0.32);
               }
             }
-            .card-breathe-up {
-              animation: ropeBreatheUp 3.4s ease-in-out infinite;
+            .card-active-up {
+              animation: cardBreatheUp 3.2s ease-in-out infinite;
             }
-            .card-breathe-down {
-              animation: ropeBreatheDown 3.4s ease-in-out infinite;
+            .card-active-down {
+              animation: cardBreatheDown 3.2s ease-in-out infinite;
             }
           `}</style>
 
-          {/* Interactive Rope Stage */}
-          <div className="relative w-full overflow-hidden -mx-4 px-4 py-3">
+          {/* Interactive 3D Stage */}
+          <div className="relative w-full overflow-hidden -mx-4 px-4 py-2">
             
             {/* ── Horizontal S-Shape Tilde (~) Flowing Rope Wave ── */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-28 flex items-center overflow-hidden -rotate-[1.2deg]">
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 pointer-events-none z-0 h-24 flex items-center overflow-hidden -rotate-[1.2deg]">
               <svg
                 className="w-full h-full overflow-visible"
                 viewBox="0 0 1000 120"
@@ -166,7 +166,7 @@ export default function UnifiedEngine() {
                 <path
                   d="M -30 60 C 130 18, 250 18, 380 60 C 510 102, 630 102, 760 60 C 890 18, 970 18, 1030 60"
                   stroke="url(#sTildeBraid)"
-                  strokeWidth="4.5"
+                  strokeWidth="4"
                   strokeLinecap="round"
                 />
 
@@ -181,57 +181,63 @@ export default function UnifiedEngine() {
               </svg>
             </div>
 
-            {/* Scrollable Track with Staggered Up/Down Cards */}
+            {/* Scrollable 3D Perspective Track */}
             <div
               ref={mobileRailRef}
               onScroll={handleMobileScroll}
-              className="flex items-center gap-4 overflow-x-auto snap-x snap-mandatory px-[calc(50%-122px)] py-8 scrollbar-none touch-pan-x relative z-10"
-              style={{ WebkitOverflowScrolling: "touch" }}
+              className="flex items-center gap-3.5 overflow-x-auto snap-x snap-mandatory px-[calc(50%-110px)] py-6 scrollbar-none touch-pan-x relative z-10"
+              style={{
+                WebkitOverflowScrolling: "touch",
+                perspective: "900px",
+                transformStyle: "preserve-3d",
+              }}
             >
               
               {/* ── CARD 01: 100% Mobile Ready (UP SIDE) ── */}
               <div
-                className={`snap-center shrink-0 w-[245px] h-[280px] rounded-2xl p-3.5 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                onClick={() => scrollToCard(0)}
+                className={`snap-center shrink-0 w-[220px] h-[190px] rounded-2xl p-3 bg-white/95 dark:bg-[#131715]/95 backdrop-blur-md border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   mobileActiveIdx === 0
-                    ? "card-breathe-up opacity-100 z-20"
-                    : "opacity-60 z-10"
+                    ? "card-active-up opacity-100 z-30"
+                    : "opacity-50 blur-[0.2px] z-10"
                 }`}
                 style={
                   mobileActiveIdx === 0
                     ? undefined
-                    : { transform: "translateY(-16px) scale(0.82)" }
+                    : {
+                        transform: `translateY(-8px) scale(0.84) rotateY(${
+                          mobileActiveIdx > 0 ? "8deg" : "0deg"
+                        })`,
+                      }
                 }
               >
-                {/* Tactile Rope Anchor Clip (Hangs down to rope) */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-700" />
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
+                {/* Embedded Metallic Grommet Ring */}
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-zinc-400 dark:border-zinc-500 bg-white dark:bg-zinc-800 shadow-xs flex items-center justify-center pointer-events-none z-20">
+                  <div className="w-1 h-1 rounded-full bg-emerald-500" />
+                </div>
+
+                <div className="w-20 h-20 rounded-full bg-emerald-500/15 blur-lg absolute -right-2 top-0 pointer-events-none" />
+
+                {/* Compact Punchy Header */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[11px] font-bold text-emerald-600 dark:text-emerald-400">01</span>
+                    <span className="h-[1px] w-3 bg-border dark:bg-white/10" />
+                    <span className="font-display font-black text-[13.5px] text-text-primary tracking-tight leading-tight">
+                      100% Mobile Ready
+                    </span>
                   </div>
                 </div>
 
-                <div className="w-20 h-20 rounded-full bg-emerald-500/15 blur-xl absolute -right-2 top-0 pointer-events-none" />
-
-                {/* Minimal Header (Zero Useless Subtitle Fluff) */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">01</span>
-                    <span className="h-[1px] w-3.5 bg-border dark:bg-white/10" />
-                  </div>
-                  <div className="font-display font-black text-base text-text-primary tracking-tight leading-tight">
-                    100% Mobile Ready
-                  </div>
-                </div>
-
-                {/* Visual: Interactive Smartphone with LabLink UI */}
-                <div className="relative h-32 flex items-end justify-center overflow-hidden my-auto z-10">
-                  <div className="relative w-30 h-32 rounded-t-[16px] border-t-2 border-x-2 border-zinc-900/20 dark:border-white/20 bg-white dark:bg-zinc-950 shadow-md overflow-hidden flex flex-col">
+                {/* Visual: Compact Phone UI Filling the Card */}
+                <div className="relative h-[135px] flex items-end justify-center overflow-hidden z-10 pt-1">
+                  <div className="relative w-36 h-[135px] rounded-t-[14px] border-t-2 border-x-2 border-zinc-900/25 dark:border-white/20 bg-white dark:bg-zinc-950 shadow-md overflow-hidden flex flex-col">
                     {/* Notch */}
                     <div className="w-full pt-1 pb-0.5 bg-white dark:bg-zinc-950 flex justify-center shrink-0">
-                      <div className="w-7 h-1 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
+                      <div className="w-6 h-1 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
                     </div>
                     {/* Header */}
-                    <div className="px-1.5 py-0.5 border-b border-border/60 dark:border-white/10 flex items-center justify-between bg-white dark:bg-zinc-950 shrink-0">
+                    <div className="px-2 py-0.5 border-b border-border/60 dark:border-white/10 flex items-center justify-between bg-white dark:bg-zinc-950 shrink-0">
                       <div className="flex items-center gap-1">
                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[6px] font-black">
                           L
@@ -240,21 +246,20 @@ export default function UnifiedEngine() {
                           LabLink
                         </span>
                       </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="w-2 h-[1px] bg-zinc-500 rounded-full" />
-                        <span className="w-2 h-[1px] bg-zinc-500 rounded-full" />
+                      <div className="flex items-center gap-0.5 text-[7px] font-mono text-emerald-600 dark:text-emerald-400">
+                        <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+                        Live
                       </div>
                     </div>
 
                     {/* Body with Interactive Time Slots */}
-                    <div className="p-1.5 bg-zinc-50/70 dark:bg-zinc-900/50 flex-1 flex flex-col justify-between text-left">
+                    <div className="p-1.5 bg-zinc-50/80 dark:bg-zinc-900/60 flex-1 flex flex-col justify-between text-left">
                       <div>
-                        <div className="flex items-center gap-1 text-[7px] font-mono text-emerald-600 dark:text-emerald-400 mb-0.5">
-                          <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
-                          Guwahati Live
-                        </div>
-                        <div className="font-sans font-bold text-[9.5px] text-text-primary leading-tight">
+                        <div className="font-sans font-bold text-[9px] text-text-primary leading-tight">
                           Home Blood Test
+                        </div>
+                        <div className="text-[7.5px] text-text-secondary leading-tight">
+                          Doorstep in 60 mins.
                         </div>
                       </div>
 
@@ -264,8 +269,11 @@ export default function UnifiedEngine() {
                           <button
                             key={slot}
                             type="button"
-                            onClick={() => setSelectedSlot(slot)}
-                            className={`px-1 py-0.5 rounded text-[7px] font-mono transition-all ${
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedSlot(slot);
+                            }}
+                            className={`flex-1 py-0.5 rounded text-[7px] font-mono transition-all text-center ${
                               selectedSlot === slot
                                 ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/40"
                                 : "bg-white dark:bg-zinc-800 text-text-secondary border border-border/60"
@@ -287,75 +295,86 @@ export default function UnifiedEngine() {
 
               {/* ── CARD 02: 1-Tap Direct Leads (DOWN SIDE) ── */}
               <div
-                className={`snap-center shrink-0 w-[245px] h-[280px] rounded-2xl p-3.5 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                onClick={() => scrollToCard(1)}
+                className={`snap-center shrink-0 w-[220px] h-[190px] rounded-2xl p-3 bg-white/95 dark:bg-[#131715]/95 backdrop-blur-md border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   mobileActiveIdx === 1
-                    ? "card-breathe-down opacity-100 z-20"
-                    : "opacity-60 z-10"
+                    ? "card-active-down opacity-100 z-30"
+                    : "opacity-50 blur-[0.2px] z-10"
                 }`}
                 style={
                   mobileActiveIdx === 1
                     ? undefined
-                    : { transform: "translateY(16px) scale(0.82)" }
+                    : {
+                        transform: `translateY(8px) scale(0.84) rotateY(${
+                          mobileActiveIdx > 1
+                            ? "8deg"
+                            : mobileActiveIdx < 1
+                            ? "-8deg"
+                            : "0deg"
+                        })`,
+                      }
                 }
               >
-                {/* Tactile Rope Anchor Clip (Clips up to rope) */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-600 to-zinc-400 dark:from-zinc-700 dark:to-zinc-500" />
+                {/* Embedded Metallic Grommet Ring */}
+                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-zinc-400 dark:border-zinc-500 bg-white dark:bg-zinc-800 shadow-xs flex items-center justify-center pointer-events-none z-20">
+                  <div className="w-1 h-1 rounded-full bg-[#25D366]" />
                 </div>
 
-                <div className="w-20 h-20 rounded-tl-[50px] bg-gradient-to-tl from-emerald-500/15 to-transparent absolute -bottom-2 -right-2 pointer-events-none" />
+                <div className="w-20 h-20 rounded-tl-[40px] bg-gradient-to-tl from-emerald-500/15 to-transparent absolute -bottom-2 -right-2 pointer-events-none" />
 
-                {/* Minimal Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="font-mono text-xs font-bold text-[#25D366]">02</span>
-                    <span className="h-[1px] w-3.5 bg-border dark:bg-white/10" />
-                  </div>
-                  <div className="font-display font-black text-base text-text-primary tracking-tight leading-tight">
-                    1-Tap Direct Leads
-                  </div>
-                </div>
-
-                {/* Visual: Tactile WhatsApp Squircle & 3-Step Bar */}
-                <div className="relative h-32 flex flex-col items-center justify-between py-1 my-auto z-10">
-                  <div className="absolute top-1 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full border border-emerald-500/20 pointer-events-none" />
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setWhatsappPing(true);
-                      setTimeout(() => setWhatsappPing(false), 600);
-                    }}
-                    className={`relative mt-1 transition-transform cursor-pointer ${whatsappPing ? "scale-110" : "active:scale-95"}`}
-                    aria-label="Test WhatsApp routing interaction"
-                  >
-                    <div className="w-11 h-11 rounded-[14px] bg-gradient-to-b from-[#2de078] via-[#22c55e] to-[#15803d] flex items-center justify-center shadow-md">
-                      <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
-                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                      </svg>
-                    </div>
-                    <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#ef4444] border-2 border-white dark:border-zinc-900 text-[7px] font-bold text-white flex items-center justify-center">
-                      1
+                {/* Compact Punchy Header */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[11px] font-bold text-[#25D366]">02</span>
+                    <span className="h-[1px] w-3 bg-border dark:bg-white/10" />
+                    <span className="font-display font-black text-[13.5px] text-text-primary tracking-tight leading-tight">
+                      1-Tap Direct Leads
                     </span>
-                  </button>
+                  </div>
+                </div>
 
-                  <div className="w-full bg-zinc-100/90 dark:bg-zinc-900/90 rounded-lg p-1 border border-border/60 dark:border-white/10 flex items-center justify-between">
-                    <div className="flex flex-col items-center">
+                {/* Visual: WhatsApp Squircle & Flow Strip Filling Card */}
+                <div className="relative h-[135px] flex flex-col items-center justify-center gap-2 z-10">
+                  <div className="relative flex items-center justify-center">
+                    <div className="absolute w-16 h-16 rounded-full bg-emerald-500/15 animate-ping pointer-events-none" style={{ animationDuration: "3s" }} />
+                    <div className="absolute w-20 h-20 rounded-full border border-emerald-500/20 pointer-events-none" />
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setWhatsappPing(true);
+                        setTimeout(() => setWhatsappPing(false), 600);
+                      }}
+                      className={`relative transition-transform cursor-pointer ${whatsappPing ? "scale-110" : "active:scale-95"}`}
+                      aria-label="Test WhatsApp routing interaction"
+                    >
+                      <div className="w-12 h-12 rounded-[16px] bg-gradient-to-b from-[#2de078] via-[#22c55e] to-[#15803d] flex items-center justify-center shadow-lg shadow-emerald-500/25">
+                        <svg className="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                        </svg>
+                      </div>
+                      <span className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-[#ef4444] border-2 border-white dark:border-zinc-900 text-[8px] font-bold text-white flex items-center justify-center shadow-xs">
+                        1
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* Flow Chip */}
+                  <div className="w-full bg-zinc-100/90 dark:bg-zinc-900/90 rounded-lg py-1 px-2 border border-border/60 dark:border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-1">
                       <FileText size={9} className="text-text-primary" />
-                      <span className="font-mono text-[7px] text-text-tertiary">Inquiry</span>
+                      <span className="font-mono text-[7.5px] text-text-tertiary">Inquiry</span>
                     </div>
                     <span className="text-emerald-500 font-bold text-[9px]">→</span>
-                    <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-1">
                       <MessageSquare size={9} className="text-[#25D366]" fill="#25D366" />
-                      <span className="font-mono text-[7px] font-bold text-[#25D366]">WhatsApp</span>
+                      <span className="font-mono text-[7.5px] font-bold text-[#25D366]">WhatsApp</span>
                     </div>
                     <span className="text-emerald-500 font-bold text-[9px]">→</span>
-                    <div className="flex flex-col items-center">
+                    <div className="flex items-center gap-1">
                       <PhoneCall size={9} className="text-text-primary" />
-                      <span className="font-mono text-[7px] text-text-tertiary">Call</span>
+                      <span className="font-mono text-[7.5px] text-text-tertiary">Call</span>
                     </div>
                   </div>
                 </div>
@@ -363,58 +382,64 @@ export default function UnifiedEngine() {
 
               {/* ── CARD 03: #1 on Google Maps (UP SIDE) ── */}
               <div
-                className={`snap-center shrink-0 w-[245px] h-[280px] rounded-2xl p-3.5 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                onClick={() => scrollToCard(2)}
+                className={`snap-center shrink-0 w-[220px] h-[190px] rounded-2xl p-3 bg-white/95 dark:bg-[#131715]/95 backdrop-blur-md border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   mobileActiveIdx === 2
-                    ? "card-breathe-up opacity-100 z-20"
-                    : "opacity-60 z-10"
+                    ? "card-active-up opacity-100 z-30"
+                    : "opacity-50 blur-[0.2px] z-10"
                 }`}
                 style={
                   mobileActiveIdx === 2
                     ? undefined
-                    : { transform: "translateY(-16px) scale(0.82)" }
+                    : {
+                        transform: `translateY(-8px) scale(0.84) rotateY(${
+                          mobileActiveIdx > 2
+                            ? "8deg"
+                            : mobileActiveIdx < 2
+                            ? "-8deg"
+                            : "0deg"
+                        })`,
+                      }
                 }
               >
-                {/* Tactile Rope Anchor Clip (Hangs down to rope) */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-400 to-zinc-600 dark:from-zinc-500 dark:to-zinc-700" />
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
+                {/* Embedded Metallic Grommet Ring */}
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-zinc-400 dark:border-zinc-500 bg-white dark:bg-zinc-800 shadow-xs flex items-center justify-center pointer-events-none z-20">
+                  <div className="w-1 h-1 rounded-full bg-[#4285F4]" />
+                </div>
+
+                {/* Compact Punchy Header */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[11px] font-bold text-[#4285F4]">03</span>
+                    <span className="h-[1px] w-3 bg-border dark:bg-white/10" />
+                    <span className="font-display font-black text-[13.5px] text-text-primary tracking-tight leading-tight">
+                      #1 on Google Maps
+                    </span>
                   </div>
                 </div>
 
-                {/* Minimal Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="font-mono text-xs font-bold text-[#4285F4]">03</span>
-                    <span className="h-[1px] w-3.5 bg-border dark:bg-white/10" />
-                  </div>
-                  <div className="font-display font-black text-base text-text-primary tracking-tight leading-tight">
-                    #1 on Google Maps
-                  </div>
-                </div>
-
-                {/* Visual: Isometric 3D Map Vector */}
-                <div className="relative h-32 flex flex-col items-center justify-between py-1 my-auto z-10">
-                  <div className="w-full h-20 relative flex items-center justify-center">
+                {/* Visual: High-Density Isometric 3D Map Filling the Card */}
+                <div className="relative h-[135px] flex flex-col items-center justify-between py-0.5 z-10">
+                  <div className="w-full h-[95px] relative flex items-center justify-center">
                     <svg className="w-full h-full" viewBox="0 0 240 140" fill="none">
-                      <path d="M120 10 L228 62 L120 126 L12 62 Z" fill="currentColor" className="text-zinc-100/90 dark:text-zinc-900/60" />
+                      <path d="M120 10 L228 62 L120 126 L12 62 Z" fill="currentColor" className="text-zinc-100 dark:text-zinc-900/80" />
                       <path d="M45 45 L175 110 M75 25 L205 90" stroke="currentColor" strokeWidth="9" strokeLinecap="round" className="text-white dark:text-zinc-800" />
                       <path d="M60 90 L190 25 M95 110 L215 45" stroke="currentColor" strokeWidth="8" strokeLinecap="round" className="text-white dark:text-zinc-800" />
                       <path d="M35 55 L120 100 L180 65" stroke="#10b981" strokeWidth="3" strokeLinecap="round" strokeDasharray="3 2" />
-                      <ellipse cx="120" cy="100" rx="24" ry="12" fill="#10b981" fillOpacity="0.15" />
-                      <ellipse cx="120" cy="100" rx="7" ry="3.5" fill="#10b981" />
-                      <g opacity="0.4" transform="translate(65, 38) scale(0.55)">
+                      <ellipse cx="120" cy="100" rx="26" ry="13" fill="#10b981" fillOpacity="0.2" />
+                      <ellipse cx="120" cy="100" rx="8" ry="4" fill="#10b981" />
+                      <g opacity="0.45" transform="translate(62, 38) scale(0.6)">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#71717a" />
                         <circle cx="12" cy="9" r="2.5" fill="white" />
                       </g>
-                      <g opacity="0.4" transform="translate(175, 52) scale(0.55)">
+                      <g opacity="0.45" transform="translate(176, 50) scale(0.6)">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#71717a" />
                         <circle cx="12" cy="9" r="2.5" fill="white" />
                       </g>
-                      <g transform="translate(108, 62)">
-                        <ellipse cx="12" cy="38" rx="5" ry="2.5" fill="#000" fillOpacity="0.25" />
-                        <path d="M12 2C6.32 2 1.7 6.62 1.7 12.3c0 7.9 10.3 21.7 10.3 21.7s10.3-13.8 10.3-21.7c0-5.68-4.62-10.3-10.3-10.3z" fill="url(#emeraldPinGradMapsMobRope)" filter="drop-shadow(0 4px 6px rgba(16,185,129,0.5))" />
-                        <circle cx="12" cy="12.3" r="3.8" fill="white" />
+                      <g transform="translate(108, 58)">
+                        <ellipse cx="12" cy="40" rx="6" ry="3" fill="#000" fillOpacity="0.3" />
+                        <path d="M12 2C6.32 2 1.7 6.62 1.7 12.3c0 7.9 10.3 21.7 10.3 21.7s10.3-13.8 10.3-21.7c0-5.68-4.62-10.3-10.3-10.3z" fill="url(#emeraldPinGradMapsMobRope)" filter="drop-shadow(0 4px 8px rgba(16,185,129,0.5))" />
+                        <circle cx="12" cy="12.3" r="4" fill="white" />
                       </g>
                       <defs>
                         <linearGradient id="emeraldPinGradMapsMobRope" x1="1.7" y1="2" x2="22.3" y2="34" gradientUnits="userSpaceOnUse">
@@ -425,9 +450,10 @@ export default function UnifiedEngine() {
                     </svg>
                   </div>
 
-                  <div className="w-full bg-zinc-100/90 dark:bg-zinc-900/90 rounded-lg p-1 border border-border/60 dark:border-white/10 flex items-center justify-between">
-                    <div className="flex items-center gap-1 min-w-0">
-                      <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 24 24">
+                  {/* Verification Pill */}
+                  <div className="w-full bg-zinc-100/90 dark:bg-zinc-900/90 rounded-lg py-1 px-2 border border-border/60 dark:border-white/10 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 min-w-0">
+                      <svg className="w-3 h-3 shrink-0" viewBox="0 0 24 24">
                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                         <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
@@ -435,7 +461,7 @@ export default function UnifiedEngine() {
                       </svg>
                       <span className="font-sans text-[9px] font-bold text-text-primary truncate">Your Business</span>
                     </div>
-                    <span className="font-mono text-[7.5px] font-bold text-emerald-600 dark:text-emerald-400">
+                    <span className="font-mono text-[7.5px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1 py-0.5 rounded">
                       #1 Maps
                     </span>
                   </div>
@@ -444,52 +470,54 @@ export default function UnifiedEngine() {
 
               {/* ── CARD 04: 0% Commission (DOWN SIDE) ── */}
               <div
-                className={`snap-center shrink-0 w-[245px] h-[280px] rounded-2xl p-3.5 bg-bg-primary dark:bg-[#111614] border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                onClick={() => scrollToCard(3)}
+                className={`snap-center shrink-0 w-[220px] h-[190px] rounded-2xl p-3 bg-white/95 dark:bg-[#131715]/95 backdrop-blur-md border border-border/80 dark:border-white/10 flex flex-col justify-between overflow-hidden relative cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   mobileActiveIdx === 3
-                    ? "card-breathe-down opacity-100 z-20"
-                    : "opacity-60 z-10"
+                    ? "card-active-down opacity-100 z-30"
+                    : "opacity-50 blur-[0.2px] z-10"
                 }`}
                 style={
                   mobileActiveIdx === 3
                     ? undefined
-                    : { transform: "translateY(16px) scale(0.82)" }
+                    : {
+                        transform: `translateY(8px) scale(0.84) rotateY(${
+                          mobileActiveIdx < 3 ? "-8deg" : "0deg"
+                        })`,
+                      }
                 }
               >
-                {/* Tactile Rope Anchor Clip (Clips up to rope) */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-                  <div className="w-2.5 h-2.5 rounded-full border border-zinc-500 bg-amber-100 dark:bg-zinc-800 shadow-xs flex items-center justify-center">
-                    <div className="w-1 h-1 rounded-full bg-zinc-600 dark:bg-zinc-400" />
-                  </div>
-                  <div className="w-[2px] h-2 bg-gradient-to-b from-zinc-600 to-zinc-400 dark:from-zinc-700 dark:to-zinc-500" />
+                {/* Embedded Metallic Grommet Ring */}
+                <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-zinc-400 dark:border-zinc-500 bg-white dark:bg-zinc-800 shadow-xs flex items-center justify-center pointer-events-none z-20">
+                  <div className="w-1 h-1 rounded-full bg-purple-500" />
                 </div>
 
-                <div className="w-20 h-20 rounded-bl-[50px] bg-gradient-to-bl from-emerald-500/15 to-transparent absolute -top-2 -right-2 pointer-events-none" />
+                <div className="w-20 h-20 rounded-bl-[40px] bg-gradient-to-bl from-purple-500/15 to-transparent absolute -top-2 -right-2 pointer-events-none" />
 
-                {/* Minimal Header */}
-                <div className="relative z-10">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="font-mono text-xs font-bold text-text-tertiary">04</span>
-                    <span className="h-[1px] w-3.5 bg-border dark:bg-white/10" />
-                  </div>
-                  <div className="font-display font-black text-base text-text-primary tracking-tight leading-tight">
-                    0% Commission
+                {/* Compact Punchy Header */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-mono text-[11px] font-bold text-text-tertiary">04</span>
+                    <span className="h-[1px] w-3 bg-border dark:bg-white/10" />
+                    <span className="font-display font-black text-[13.5px] text-text-primary tracking-tight leading-tight">
+                      0% Commission
+                    </span>
                   </div>
                 </div>
 
-                {/* Visual: 3D Acrylic UPI Stand */}
-                <div className="relative h-32 flex flex-col items-center justify-center my-auto z-10">
+                {/* Visual: 3D Acrylic UPI Stand Filling the Card */}
+                <div className="relative h-[135px] flex flex-col items-center justify-center z-10">
                   <div className="relative">
-                    <div className="absolute top-1.5 -right-1 w-3.5 h-18 bg-zinc-800 dark:bg-zinc-950 rounded-r -skew-y-12 shadow-sm -z-10" />
-                    <div className="w-20 bg-white rounded-lg p-1.5 border border-zinc-200/90 shadow-md flex flex-col items-center text-zinc-900 relative">
-                      <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs">
-                        <Check size={7} strokeWidth={3} />
+                    <div className="absolute top-1.5 -right-1 w-3.5 h-16 bg-zinc-800 dark:bg-zinc-950 rounded-r -skew-y-12 shadow-sm -z-10" />
+                    <div className="w-24 bg-white rounded-xl p-1.5 border border-zinc-200/90 shadow-md flex flex-col items-center text-zinc-900 relative">
+                      <div className="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs">
+                        <Check size={8} strokeWidth={3} />
                       </div>
                       <div className="relative p-0.5 bg-white rounded my-0.5">
-                        <div className="absolute top-0 left-0 w-1 h-1 border-t border-l border-emerald-500" />
-                        <div className="absolute top-0 right-0 w-1 h-1 border-t border-r border-emerald-500" />
-                        <div className="absolute bottom-0 left-0 w-1 h-1 border-b border-l border-emerald-500" />
-                        <div className="absolute bottom-0 right-0 w-1 h-1 border-b border-r border-emerald-500" />
-                        <svg className="w-10 h-10" viewBox="0 0 29 29" fill="black">
+                        <div className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-emerald-500" />
+                        <div className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-emerald-500" />
+                        <div className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-emerald-500" />
+                        <div className="absolute bottom-0 right-0 w-1.5 h-1.5 border-b border-r border-emerald-500" />
+                        <svg className="w-11 h-11" viewBox="0 0 29 29" fill="black">
                           <rect x="0" y="0" width="7" height="7" fill="black" />
                           <rect x="1" y="1" width="5" height="5" fill="white" />
                           <rect x="2" y="2" width="3" height="3" fill="black" />
@@ -508,12 +536,12 @@ export default function UnifiedEngine() {
                         </svg>
                       </div>
                       <div className="mt-0.5 pt-0.5 border-t border-zinc-100 w-full flex items-center justify-center gap-0.5">
-                        <span className="font-sans font-black italic tracking-tighter text-[8px] text-[#008542]">U</span>
-                        <span className="font-sans font-black italic tracking-tighter text-[8px] text-[#F37021]">P</span>
-                        <span className="font-sans font-black italic tracking-tighter text-[8px] text-[#008542]">I</span>
+                        <span className="font-sans font-black italic tracking-tighter text-[9px] text-[#008542]">U</span>
+                        <span className="font-sans font-black italic tracking-tighter text-[9px] text-[#F37021]">P</span>
+                        <span className="font-sans font-black italic tracking-tighter text-[9px] text-[#008542]">I</span>
                       </div>
                     </div>
-                    <div className="w-20 h-1.5 bg-black/15 dark:bg-black/40 blur-xs rounded-full mx-auto mt-0.5" />
+                    <div className="w-24 h-1.5 bg-black/15 dark:bg-black/40 blur-xs rounded-full mx-auto mt-0.5" />
                   </div>
                 </div>
               </div>
