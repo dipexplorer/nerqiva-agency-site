@@ -11,19 +11,19 @@ import ProjectDualDeviceModal from "./ProjectDualDeviceModal";
 const HOMEPAGE_FLAGSHIPS = [
   {
     id: "lablink",
-    tiltClass: "rotate-0 sm:-rotate-2 lg:translate-y-2",
+    tiltClass: "-rotate-[1.2deg] sm:-rotate-2 lg:translate-y-2",
     tag: "Live Client",
     isClient: true,
   },
   {
     id: "houseoftales",
-    tiltClass: "rotate-0 sm:rotate-1.5 lg:-translate-y-3",
+    tiltClass: "rotate-[1.2deg] sm:rotate-1.5 lg:-translate-y-3",
     tag: "Photography",
     isClient: false,
   },
   {
     id: "titangym",
-    tiltClass: "rotate-0 sm:-rotate-1 lg:translate-y-3",
+    tiltClass: "-rotate-[1deg] sm:-rotate-1 lg:translate-y-3",
     tag: "Athletic Club",
     isClient: false,
   },
@@ -46,13 +46,14 @@ export default function CaseStudies() {
       <div className="section-container relative z-10">
         
         {/* Section Header: Pure Typographic Authority, Zero Fluff */}
-        <div className="flex items-baseline justify-between mb-10 sm:mb-14 pb-4 border-b border-border/40">
-          <div className="flex items-baseline gap-3">
+        <div className="flex items-end justify-between mb-8 sm:mb-14 pb-4 border-b border-border/40">
+          <div className="flex items-baseline gap-2.5 sm:gap-3">
             <h2
-              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.04]"
+              className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-text-primary tracking-tight leading-[1.02]"
               style={{ letterSpacing: "-0.035em" }}
             >
-              Selected Works
+              <span className="block sm:inline">Selected</span>{" "}
+              <span className="block sm:inline">Works</span>
             </h2>
             <span className="font-mono text-xs sm:text-sm text-text-tertiary">
               / 03
@@ -61,7 +62,7 @@ export default function CaseStudies() {
 
           <Link
             href="/work"
-            className="font-mono text-xs font-semibold tracking-wider text-text-secondary hover:text-accent flex items-center gap-1.5 transition-colors group"
+            className="font-mono text-xs font-semibold tracking-wider text-text-secondary hover:text-accent flex items-center gap-1.5 transition-colors group pb-0.5"
           >
             <span>All Builds [8]</span>
             <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
@@ -69,7 +70,7 @@ export default function CaseStudies() {
         </div>
 
         {/* Handcrafted Tilted Cards Stage */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 pt-4 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 pt-4 pb-6 px-1 sm:px-0">
           {curatedProjects.map(({ id, tiltClass, isClient, tag, project }) => {
             const displayImage =
               project.desktopImage ||
@@ -80,7 +81,7 @@ export default function CaseStudies() {
             return (
               <div
                 key={id}
-                className={`group relative cursor-pointer transform-gpu will-change-transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${tiltClass} hover:!rotate-0 hover:!-translate-y-3 hover:scale-[1.025] hover:z-20`}
+                className={`group relative cursor-pointer transform-gpu will-change-transform transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${tiltClass} active:!rotate-0 active:scale-[0.98] hover:!rotate-0 hover:!-translate-y-3 hover:scale-[1.025] hover:z-20`}
                 onClick={() => setActiveModalProject(project)}
               >
                 {/* Visual Preview Box */}
@@ -105,7 +106,7 @@ export default function CaseStudies() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-3 right-3 z-10 p-2 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md text-white border border-white/10 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200 shadow-md"
+                      className="absolute top-3 right-3 z-10 w-7 h-7 rounded-full bg-black/60 hover:bg-black/90 active:scale-90 backdrop-blur-md text-white border border-white/10 flex items-center justify-center transition-all duration-200 shadow-md"
                       title="Open Live Site"
                       aria-label={`Visit ${project.name} live`}
                     >
