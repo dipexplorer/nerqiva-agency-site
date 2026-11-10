@@ -52,6 +52,16 @@ export const LOCAL_FAQS: FAQItem[] = [
   },
 ];
 
+const CARD_TILTS = [
+  "-rotate-[1deg]",
+  "rotate-[1.2deg]",
+  "-rotate-[0.8deg]",
+  "rotate-[1deg]",
+  "-rotate-[1.1deg]",
+  "rotate-[0.9deg]",
+  "-rotate-[0.7deg]",
+];
+
 interface FAQProps {
   isHomepage?: boolean;
 }
@@ -73,7 +83,7 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-bg-primary text-text-primary border-t border-border/40 relative z-10 overflow-hidden">
+    <section id="faq" className="py-14 sm:py-24 lg:py-32 bg-bg-primary text-text-primary border-t border-border/40 relative z-10 overflow-hidden">
       {/* Search Engine Optimization Schema (100% visible in SSR DOM) */}
       <script
         type="application/ld+json"
@@ -82,15 +92,14 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
 
       {/* ========================================================
           BACKGROUND SCULPTURAL WATERMARK (F, A, Q)
-          Fully contained inside section boundaries (no overflow/clipping),
-          distinctly visible, and responsively calibrated for mobile & desktop.
+          Desktop only (hidden on mobile to prevent watermark clutter)
           ======================================================== */}
       <div
-        className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
+        className="hidden lg:block absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
         aria-hidden="true"
       >
-        {/* Sculptural 'F' — Upper-Left, rendered in Fraunces luxury editorial serif */}
-        <div className="absolute top-2 sm:top-4 lg:top-6 left-[5%] sm:left-[8%] lg:left-[11%] xl:left-[14%] w-28 sm:w-52 lg:w-64 h-36 sm:h-64 lg:h-80 text-text-primary dark:text-white">
+        {/* Sculptural 'F' — Upper-Left */}
+        <div className="absolute top-6 left-[11%] xl:left-[14%] w-64 h-80 text-text-primary dark:text-white">
           <svg viewBox="0 0 320 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptF" x1="0" y1="0" x2="0.8" y2="1">
@@ -114,8 +123,8 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
           </svg>
         </div>
 
-        {/* Sculptural 'A' — Mid-Right Margin, rendered in Fraunces luxury editorial serif */}
-        <div className="absolute top-[26%] sm:top-[16%] lg:top-[12%] right-[5%] sm:right-[8%] lg:right-[11%] xl:right-[14%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
+        {/* Sculptural 'A' — Mid-Right Margin */}
+        <div className="absolute top-[12%] right-[11%] xl:right-[14%] w-72 h-88 text-text-primary dark:text-white">
           <svg viewBox="0 0 340 340" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptA" x1="0.2" y1="0" x2="1" y2="1">
@@ -139,8 +148,8 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
           </svg>
         </div>
 
-        {/* Sculptural 'Q' — Lower Area, rendered in Fraunces luxury editorial serif */}
-        <div className="absolute bottom-20 sm:bottom-24 lg:bottom-20 left-[8%] sm:left-[18%] lg:left-[26%] w-32 sm:w-56 lg:w-72 h-40 sm:h-72 lg:h-88 text-text-primary dark:text-white">
+        {/* Sculptural 'Q' — Lower Area */}
+        <div className="absolute bottom-20 left-[26%] w-72 h-88 text-text-primary dark:text-white">
           <svg viewBox="0 0 340 370" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="sculptQ" x1="0.1" y1="0.1" x2="0.9" y2="1">
@@ -165,65 +174,150 @@ export default function FAQ({ isHomepage = false }: FAQProps) {
         </div>
       </div>
 
-      {/* ========================================================
-          FOREGROUND CONTENT: 2-COLUMN OPEN EDITORIAL GRID
-          ======================================================== */}
       <div className="section-container max-w-5xl relative z-10 px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header: Pure Editorial Authority (Zero Eyebrow / Zero Split Typography) */}
-        <div className="mb-14 sm:mb-20">
-          <h2
-            className="font-display font-bold text-4xl sm:text-5xl lg:text-[3.5rem] text-text-primary dark:text-white leading-[1.05] tracking-[-0.035em] mb-4"
-          >
-            {isHomepage ? "Before we begin." : "Frequently asked questions."}
-          </h2>
-
-          <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed max-w-xl font-normal">
-            {isHomepage
-              ? "Everything you need to know about timeline, pricing, and how we deliver your site."
-              : "Clear, direct answers about turnaround times, one-time pricing, ownership, and how we work."}
-          </p>
-        </div>
-
-        {/* 2-Column Open Grid (Immediate Readability + 100% SEO Indexing) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-14 lg:gap-x-20 gap-y-12 sm:gap-y-16">
-          {displayList.map((faq, index) => (
-            <div key={index} className="flex flex-col">
-              <h3 className="font-sans font-bold text-lg sm:text-xl lg:text-[1.375rem] text-text-primary dark:text-white tracking-[-0.025em] leading-[1.3] mb-3">
-                {faq.question}
-              </h3>
-              <p className="text-text-secondary dark:text-white/70 text-sm sm:text-base leading-relaxed font-normal">
-                {faq.answer}
-              </p>
+        {/* ========================================================
+            MOBILE VIEW (< 1024px)
+            Handcrafted tilted editorial cards with zero AI slop
+            ======================================================== */}
+        <div className="block lg:hidden">
+          {/* Mobile Section Header */}
+          <div className="mb-6">
+            <div className="mb-1">
+              <span className="font-handwritten text-2xl text-accent font-medium -rotate-1 inline-block tracking-wide">
+                Clear answers —
+              </span>
             </div>
-          ))}
-        </div>
+            <h2 className="font-display font-black text-3xl sm:text-4xl text-text-primary dark:text-white leading-[1.05] tracking-tight mb-2">
+              {isHomepage ? "Before we begin." : "Frequently asked questions."}
+            </h2>
+            <p className="text-text-secondary dark:text-white/70 text-sm leading-relaxed font-normal">
+              {isHomepage
+                ? "Everything you need to know about timeline, pricing, and delivery."
+                : "Turnaround times, one-time pricing, ownership, and how we work."}
+            </p>
+          </div>
 
-        {/* Bottom Actions & WhatsApp Direct Line */}
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-border/50 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          {isHomepage ? (
-            <Link
-              href="/faq"
-              className="inline-flex items-center gap-2 text-sm text-text-secondary dark:text-white/70 hover:text-accent dark:hover:text-accent font-medium transition-colors group focus-visible:outline-2 focus-visible:outline-accent rounded-sm"
+          {/* Tilted Editorial Cards Stack */}
+          <div className="flex flex-col gap-4">
+            {displayList.map((faq, index) => (
+              <div
+                key={index}
+                className={`p-5 rounded-2xl bg-bg-card/80 dark:bg-zinc-900/60 border border-border/80 dark:border-white/10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.06)] dark:shadow-[0_12px_32px_-10px_rgba(0,0,0,0.5)] transition-all duration-300 active:!rotate-0 active:scale-[0.99] select-none ${
+                  CARD_TILTS[index % CARD_TILTS.length]
+                }`}
+              >
+                {/* Card Top: Mono Index & Category */}
+                <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-border/40 dark:border-white/5 mb-2.5">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-bold text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-text-tertiary/40 text-xs">/</span>
+                    <span className="font-mono text-[10px] tracking-widest uppercase font-semibold text-text-tertiary dark:text-white/50">
+                      {faq.category}
+                    </span>
+                  </div>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/70" />
+                </div>
+
+                {/* Question */}
+                <h3 className="font-display font-bold text-[16.5px] text-text-primary dark:text-white tracking-tight leading-snug mb-2">
+                  {faq.question}
+                </h3>
+
+                {/* Answer */}
+                <p className="text-text-secondary dark:text-white/75 text-[13px] leading-relaxed font-normal">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Bottom Actions */}
+          <div className="mt-7 pt-5 border-t border-border/50 dark:border-white/10 flex flex-col gap-3">
+            {isHomepage && (
+              <Link
+                href="/faq"
+                className="inline-flex items-center justify-between py-1 px-0.5 text-xs font-mono text-text-secondary dark:text-white/70 hover:text-accent transition-colors group"
+              >
+                <span>Have more questions? Read full directory</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            )}
+
+            <a
+              href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20have%20a%20question%20about%20a%20website%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-full text-xs font-semibold tracking-wide transition-all bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 active:scale-[0.98] shadow-sm cursor-pointer select-none"
             >
-              <span>Have more questions? Read the full directory</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
-          ) : (
-            <div className="text-sm text-text-secondary dark:text-white/60">
-              North Guwahati, Assam · Available Pan-India
-            </div>
-          )}
+              <MessageCircle size={16} />
+              <span>Ask Dipjyoti on WhatsApp</span>
+            </a>
+          </div>
+        </div>
 
-          <a
-            href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20have%20a%20question%20about%20a%20website%20project."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] shadow-sm cursor-pointer select-none shrink-0 w-full sm:w-auto justify-center focus-visible:outline-2 focus-visible:outline-accent"
-          >
-            <MessageCircle size={16} />
-            <span>Ask Dipjyoti on WhatsApp</span>
-          </a>
+        {/* ========================================================
+            DESKTOP VIEW (>= 1024px)
+            2-Column open editorial grid with full margin watermarks
+            ======================================================== */}
+        <div className="hidden lg:block">
+          {/* Section Header */}
+          <div className="mb-14 sm:mb-20">
+            <h2
+              className="font-display font-bold text-4xl sm:text-5xl lg:text-[3.5rem] text-text-primary dark:text-white leading-[1.05] tracking-[-0.035em] mb-4"
+            >
+              {isHomepage ? "Before we begin." : "Frequently asked questions."}
+            </h2>
+
+            <p className="text-text-secondary dark:text-white/70 text-base sm:text-lg leading-relaxed max-w-xl font-normal">
+              {isHomepage
+                ? "Everything you need to know about timeline, pricing, and how we deliver your site."
+                : "Clear, direct answers about turnaround times, one-time pricing, ownership, and how we work."}
+            </p>
+          </div>
+
+          {/* 2-Column Open Grid */}
+          <div className="grid grid-cols-2 gap-x-14 lg:gap-x-20 gap-y-12 sm:gap-y-16">
+            {displayList.map((faq, index) => (
+              <div key={index} className="flex flex-col">
+                <h3 className="font-sans font-bold text-lg sm:text-xl lg:text-[1.375rem] text-text-primary dark:text-white tracking-[-0.025em] leading-[1.3] mb-3">
+                  {faq.question}
+                </h3>
+                <p className="text-text-secondary dark:text-white/70 text-sm sm:text-base leading-relaxed font-normal">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom Actions & WhatsApp Direct Line */}
+          <div className="mt-16 sm:mt-20 pt-8 border-t border-border/50 dark:border-white/10 flex items-center justify-between gap-6">
+            {isHomepage ? (
+              <Link
+                href="/faq"
+                className="inline-flex items-center gap-2 text-sm text-text-secondary dark:text-white/70 hover:text-accent dark:hover:text-accent font-medium transition-colors group focus-visible:outline-2 focus-visible:outline-accent rounded-sm"
+              >
+                <span>Have more questions? Read the full directory</span>
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            ) : (
+              <div className="text-sm text-text-secondary dark:text-white/60">
+                North Guwahati, Assam · Available Pan-India
+              </div>
+            )}
+
+            <a
+              href="https://wa.me/918724932985?text=Hi%20Dipjyoti,%20I%20have%20a%20question%20about%20a%20website%20project."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 bg-text-primary dark:bg-white text-bg-primary dark:text-black hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] shadow-sm cursor-pointer select-none shrink-0 focus-visible:outline-2 focus-visible:outline-accent"
+            >
+              <MessageCircle size={16} />
+              <span>Ask Dipjyoti on WhatsApp</span>
+            </a>
+          </div>
         </div>
 
       </div>
