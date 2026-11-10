@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
-import { ArrowDown, ArrowUpRight, MessageCircle } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { ArrowDown, ArrowUpRight, MessageCircle, Play, Pause } from "lucide-react";
 import AnfalovaHeroGallery from "./AnfalovaHeroGallery";
 
 // ─── Real Flagship Client Projects for Mobile Gallery ─────────────────────────
@@ -18,7 +18,7 @@ const REAL_MOBILE_PROJECTS = [
     client: "LabLink Diagnostics",
     category: "Healthcare & Diagnostics",
     urlLabel: "lablinkguwahati.in",
-    image: "/images/projects/lablink/full_mobile.webp",
+    image: "/images/projects/lablink/desktop.png",
   },
   {
     id: "krishav",
@@ -45,16 +45,17 @@ const REAL_MOBILE_PROJECTS = [
 
 function MobileHero() {
   const railRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
   const isInteracting = useRef(false);
 
-  // Auto-scroll loop with smooth continuous movement (pauses naturally on user touch)
+  // Auto-scroll loop with smooth continuous subpixel movement
   useEffect(() => {
     const rail = railRef.current;
     if (!rail) return;
 
     let animId: number;
     const step = () => {
-      if (!isInteracting.current && rail) {
+      if (!isPaused && !isInteracting.current && rail) {
         rail.scrollLeft += 0.65;
         // Infinite wrap: when scrolled past half of the doubled list, smoothly loop
         if (rail.scrollLeft >= rail.scrollWidth / 2) {
@@ -66,7 +67,7 @@ function MobileHero() {
 
     animId = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animId);
-  }, []);
+  }, [isPaused]);
 
   // Doubled set for seamless continuous carousel loop
   const displayProjects = [...REAL_MOBILE_PROJECTS, ...REAL_MOBILE_PROJECTS];
@@ -93,16 +94,16 @@ function MobileHero() {
         </p>
       </div>
 
-      {/* ── Center Stage: Clean Edge-to-Edge Project Rail ── */}
-      <div className="relative my-auto py-3 shrink-0 w-full overflow-hidden">
-        {/* Level Track with Smooth Native Scrolling */}
+      {/* ── Center Stage: Gallery Rail ── */}
+      <div className="relative my-auto py-2 shrink-0 w-full overflow-hidden">
+        {/* Diagonal Rotated Track with Smooth Scroll */}
         <div
           ref={railRef}
           onTouchStart={() => { isInteracting.current = true; }}
           onTouchEnd={() => { isInteracting.current = false; }}
           onMouseDown={() => { isInteracting.current = true; }}
           onMouseUp={() => { isInteracting.current = false; }}
-          className="flex gap-4 overflow-x-auto py-2 px-1 touch-pan-x select-none"
+          className="flex gap-3.5 overflow-x-auto py-3 px-1 touch-pan-x select-none -rotate-[2deg]"
           style={{
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch",
@@ -112,7 +113,7 @@ function MobileHero() {
           {displayProjects.map((project, idx) => (
             <article
               key={`${project.id}-${idx}`}
-              className="flex-none w-[172px] h-[256px] rounded-[18px] overflow-hidden relative shadow-[0_12px_28px_-6px_rgba(0,0,0,0.18)] dark:shadow-[0_14px_32px_-6px_rgba(0,0,0,0.6)] bg-white dark:bg-zinc-900 border border-black/[0.08] dark:border-white/[0.12] transition-transform active:scale-[0.98]"
+              className="flex-none w-[164px] h-[235px] rounded-[14px] overflow-hidden relative shadow-lg transition-transform active:scale-[0.98] bg-zinc-100 dark:bg-zinc-900 border border-black/10 dark:border-white/15"
             >
               {/* Actual Real Website UI Screenshot */}
               <img
@@ -122,19 +123,69 @@ function MobileHero() {
                 loading="eager"
               />
 
-              {/* Bespoke Floating Client Pill (Zero Text Collision, Pure Craft) */}
-              <div className="absolute inset-x-2 bottom-2 py-1.5 px-2.5 rounded-[12px] bg-black/85 dark:bg-zinc-950/90 backdrop-blur-md border border-white/15 z-10 flex items-center justify-between gap-1 shadow-md">
-                <div className="min-w-0 flex-1">
-                  <div className="text-[10.5px] font-semibold text-white tracking-tight truncate leading-tight">
-                    {project.client}
-                  </div>
-                  <div className="font-mono text-[7.5px] text-white/50 tracking-wide uppercase truncate">
-                    {project.category}
-                  </div>
+              {/* Minimal Clean Browser Chrome Bar */}
+              <div className="absolute inset-x-0 top-0 h-5 flex items-center justify-between px-2 bg-black/65 backdrop-blur-sm border-b border-white/10 z-10">
+                <div className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
                 </div>
+                <div className="font-mono text-[8px] font-medium tracking-tight text-white/90 truncate max-w-[100px]">
+                  {project.urlLabel}
+                </div>
+              </div>
+
+              {/* Low-Profile Bottom Scrim (Unobscured UI) */}
+              <div className="absolute inset-x-0 bottom-0 pt-4 pb-2 px-2.5 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 flex flex-col justify-end">
+                <span className="font-mono text-[7px] font-bold text-purple-300 dark:text-purple-300 uppercase tracking-wider mb-0.5">
+                  {project.category}
+                </span>
+                <span className="font-sans font-bold text-[11px] text-white leading-tight truncate">
+                  {project.client}
+                </span>
               </div>
             </article>
           ))}
+        </div>
+
+        {/* Gallery Meta Row: Hint + Pause Button */}
+        <div className="flex items-center justify-between mt-1 px-1">
+          <div className="flex items-center gap-2 text-xs font-sans text-text-secondary dark:text-white/60">
+            <svg
+              width="24"
+              height="10"
+              viewBox="0 0 26 10"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="animate-pulse"
+              aria-hidden="true"
+            >
+              <path d="M1 5h23M20 1l4 4-4 4" />
+            </svg>
+            <span>Drag gallery to inspect</span>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsPaused((prev) => !prev)}
+            aria-pressed={isPaused}
+            className="h-[30px] px-3 flex items-center gap-1.5 rounded-full bg-bg-card dark:bg-[#1a1625] border border-border/80 dark:border-white/15 text-text-primary dark:text-white text-[11px] font-bold shadow-sm active:scale-95 transition-transform cursor-pointer"
+          >
+            {isPaused ? (
+              <>
+                <Play size={10} className="fill-current" />
+                <span>PLAY</span>
+              </>
+            ) : (
+              <>
+                <Pause size={10} className="fill-current" />
+                <span>PAUSE</span>
+              </>
+            )}
+          </button>
         </div>
       </div>
 
