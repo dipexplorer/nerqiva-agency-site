@@ -448,9 +448,9 @@ export default function SprintDelivery() {
             </ul>
           </div>
 
-          {/* Right Column: Physical Shipping Label (Paper in Both Light & Dark) */}
+          {/* Right Column: Physical Shipping Label (Desktop Only - hidden on mobile as shown in reference) */}
           <div
-            className="relative rounded-lg font-mono text-zinc-900 border border-zinc-200 shadow-2xl max-w-md w-full md:ml-auto"
+            className="hidden md:block relative rounded-lg font-mono text-zinc-900 border border-zinc-200 shadow-2xl max-w-md w-full md:ml-auto"
             style={{
               background: "#ffffff",
               padding: "1.3rem 1.3rem 1.1rem",
